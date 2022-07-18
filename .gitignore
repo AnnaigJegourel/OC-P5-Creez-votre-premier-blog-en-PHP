@@ -1,23 +1,5 @@
-# TEMPLATE Philippe :
-
-# Jetbrains
-# .idea/
-
-# DB (uncomment when you start using the template)
-# config/db.php
-# config/db.sql
-
-# Images
-# public/img/
+public/img/
 
 # Dependencies
-# public/node_modules/
-# vendor/
-
-
-# EXEMPLE talks.freelancerepublik :
-
-# .DS_Store
-# Thumbs.db
-# UserInterfaceState.xcuserstate
-# /node_modules
+public/node_modules/
+vendor/
