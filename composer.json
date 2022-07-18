@@ -1,0 +1,19 @@
+{
+    "name": "annaigjegourel/oc-p5-creez-votre-premier-blog-en-php",
+    "description": "OpenClassrooms P5 Blog",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Annaigjegourel\\OcP5CreezVotrePremierBlogEnPhp\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Annaig Jégourel",
+            "email": "a_jegourel@yahoo.fr"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {}
+}
