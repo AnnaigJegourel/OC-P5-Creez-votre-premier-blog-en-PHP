@@ -16,5 +16,7 @@
         }
     ],
     "minimum-stability": "dev",
-    "require": {}
+    "require": {
+        "twig/twig": "3.x-dev"
+    }
 }
