@@ -5,7 +5,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Annaigjegourel\\OcP5CreezVotrePremierBlogEnPhp\\": "src/"
+            "Annaigjegourel\\OcP5CreezVotrePremierBlogEnPhp\\": "src/",
+            "App\\" : "src/"
         }
     },
     "authors": [
