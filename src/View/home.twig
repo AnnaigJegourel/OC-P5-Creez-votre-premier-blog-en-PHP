@@ -1,0 +1,30 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Home{% endblock %}
+
+{% block description %}Homepage of my PHP-MVC Blog{% endblock %}
+
+{% block main %}
+    <main id="home">
+        <section>
+            <h2>Introduction</h2>
+
+            <p>This project is ...</p>
+            <p>You will find the documentation <a href="#">here</a>...</p>
+            <p>Don't hesitate to send <a href="https://github.com/AnnaigJegourel/OC-P5-Creez-votre-premier-blog-en-PHP/issues">issues</a>, I will watch them with interest.</p>
+        </section>
+
+        <section>
+            <h2>Demonstration</h2>
+
+            <p>The example users are :</p>
+            <ul>
+                {% for user in allUsers %}
+                    <li>
+                        {{ user.name }} <hr> {{ user.email }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+{% endblock %}
