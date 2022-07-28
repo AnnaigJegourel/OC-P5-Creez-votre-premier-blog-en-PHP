@@ -1,0 +1,29 @@
+{
+  "name": "p5-blog",
+  "version": "1.0.0",
+  "description": "OpenClassrooms Project 5 Blog",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AnnaigJegourel/OC-P5-Creez-votre-premier-blog-en-PHP.git"
+  },
+  "keywords": [
+    "application",
+    "web",
+    "blog",
+    "php",
+    "mvc"
+  ],
+  "author": "\"Annaig Jégourel\"",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AnnaigJegourel/OC-P5-Creez-votre-premier-blog-en-PHP/issues"
+  },
+  "homepage": "https://github.com/AnnaigJegourel/OC-P5-Creez-votre-premier-blog-en-PHP#readme",
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.1.1"
+  }
+}
