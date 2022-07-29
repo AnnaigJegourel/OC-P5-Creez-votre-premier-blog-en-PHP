@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"               content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible"  content="IE=edge">
+
+    <title>{{ block('title') }}</title>
+
+    <link rel="canonical" href="{% block canonical %}https://annaig-jegourel.net{% endblock %}">
+    <link rel="icon" type="image/x-icon" href="img/favicon.ico">
+
+    <meta name="description"                content="{{ block('description') }}">
+    <meta name="author"                     content="Annaig Jegourel">
+    <meta name="copyright"                  content="MIT">
+
+    <link rel="stylesheet" href="#">
+    <link rel="stylesheet" href="node_modules/@fortawesome/fontawesome-free/css/all.min.css">
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    {{ include('layout/navbar.twig') }}
+
+    <header>
+        <h1>{{ block('title') }}</h1>
+    </header>
+
+    {% block main %}{% endblock %}
+
+    {{ include('layout/footer.twig') }}
+
+</body>
+</html>
