@@ -1,6 +1,6 @@
 <?php
-/* Replace the host value (localhost here) with your database host & the dbname value (php_mvc) with your database name */
-define("DB_DSN", "mysql:host=localhost;dbname=php_mvc");
+/* Replace the host value (localhost here) with your database host & the dbname value (p5-blog) with your database name */
+define("DB_DSN", "mysql:host=localhost;dbname=p5-blog");
 
 /* Replace root with the user name of your database */
 define("DB_USER", "root");
