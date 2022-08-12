@@ -1,8 +1,6 @@
 # OC-P5-Créez votre premier blog en PHP
 🚧 Work in progress...
-
 <a href="https://codeclimate.com/github/AnnaigJegourel/OC-P5-Creez-votre-premier-blog-en-PHP/maintainability"><img src="https://api.codeclimate.com/v1/badges/45cffc5f39efdfb0c1b5/maintainability" /></a>
-
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/67632e5883c04645a5864846ade98bab)](https://www.codacy.com/gh/AnnaigJegourel/OC-P5-Creez-votre-premier-blog-en-PHP/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AnnaigJegourel/OC-P5-Creez-votre-premier-blog-en-PHP&amp;utm_campaign=Badge_Grade)
 
 CONTEXTE :

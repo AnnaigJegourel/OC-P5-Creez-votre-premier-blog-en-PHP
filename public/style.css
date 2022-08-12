@@ -3,12 +3,12 @@ body {
   /* background-image: url("../img/bg.jpg"); */
   text-align: center;
 }
-  
+
 main {
   padding: 10px;
   background-color: aquamarine;
 }
-  
+
 ul {
   display: flex;
   justify-content: space-evenly;

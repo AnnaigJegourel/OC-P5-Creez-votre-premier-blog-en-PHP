@@ -4,11 +4,11 @@
 -- Schema mydb
 -- -----------------------------------------------------
 -- For Development only ! 
-DROP DATABASE IF EXISTS `p5-blog`;
-CREATE DATABASE `p5-blog` CHARACTER SET utf8;
+DROP DATABASE IF EXISTS `p5-blog`
+CREATE DATABASE `p5-blog` CHARACTER SET utf8
 
 -- Needs to be replaced in Production with the db name of the online server
-USE `p5-blog`;
+USE `p5-blog`
 
 
 -- -----------------------------------------------------
@@ -21,7 +21,7 @@ CREATE TABLE `User` (
     `password` VARCHAR(255) NOT NULL,
     `date_created` DATETIME NOT NULL,
     `role` TINYINT(1) NOT NULL
-) ENGINE = InnoDB;
+) ENGINE = InnoDB
 
 -- Inserts the User data
 -- WARNING : Never store real passwords in a commit file
@@ -29,7 +29,7 @@ INSERT INTO `User`
 (`name`, `email`, `password`, `role`)
 VALUES
 ('John', 'john@doe.com', 'john465', 0),
-('Jane', 'jane@doe.com', 'jane465', 0);
+('Jane', 'jane@doe.com', 'jane465', 0)
 
 
 -- -----------------------------------------------------
@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `Post` (
     CONSTRAINT `post_fk_user_id`
         FOREIGN KEY (`user_id`)
         REFERENCES `User` (`id`)
-) ENGINE = InnoDB;
+) ENGINE = InnoDB
 
 
 -- -----------------------------------------------------
