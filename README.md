@@ -1,12 +1,10 @@
 # OC-P5-Créez votre premier blog en PHP
 🚧 Work in progress...
 
-
 CONTEXTE :
 
 Vous avez besoin de visibilité pour pouvoir convaincre vos futurs employeurs/clients en un seul regard. 
 Vous êtes développeuse PHP, il est donc temps de montrer vos talents au travers d’un blog à vos couleurs.
-
 
 DESCRIPTION DU BESOIN :
 
@@ -31,7 +29,6 @@ Voici la liste des pages qui devront être accessibles depuis votre site web :
 📑 les pages permettant de modifier/supprimer un blog post ;
 
 📑 les pages de connexion/enregistrement des utilisateurs.
-
 
 CONTRAINTES :
 
