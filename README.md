@@ -1,4 +1,7 @@
 # OC-P5-Créez votre premier blog en PHP
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/e08834691250487eb1aa40c4f884cffa)](https://app.codacy.com/gh/AnnaigJegourel/OC-P5-Creez-votre-premier-blog-en-PHP?utm_source=github.com&utm_medium=referral&utm_content=AnnaigJegourel/OC-P5-Creez-votre-premier-blog-en-PHP&utm_campaign=Badge_Grade_Settings)
+
 🚧 Work in progress...
 
 
