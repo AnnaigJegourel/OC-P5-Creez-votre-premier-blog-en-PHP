@@ -35,7 +35,7 @@ abstract class MainController
     {
         $params["access"] = $page;
         header("Location: index.php?" . http_build_query($params));
-
+        
         exit;
     }
 };

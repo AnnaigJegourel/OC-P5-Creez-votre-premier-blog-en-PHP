@@ -18,5 +18,12 @@
     "minimum-stability": "dev",
     "require": {
         "twig/twig": "3.x-dev"
+    },
+
+    
+    "require-dev": {
+        "tracy/tracy": "^2.9.4"
     }
+    
+
 }

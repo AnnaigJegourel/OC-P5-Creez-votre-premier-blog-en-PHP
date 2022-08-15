@@ -74,9 +74,11 @@ abstract class MainModel
     {
         if (isset($key)) {
             $query = "SELECT * FROM " . $this->table . " WHERE " . $key . " = ?";
-        } else {
-            $query = "SELECT * FROM " . $this->table . " WHERE id = ?";
-        }
+            return;
+        } 
+        
+        $query = "SELECT * FROM " . $this->table . " WHERE id = ?";
+        
 
         return $this->database->getData($query, [$value]);
     }
@@ -99,9 +101,10 @@ abstract class MainModel
 
         if (isset($key)) {
             $query = "UPDATE " . $this->table . " SET " . $set . " WHERE " . $key . " = ?";
-        } else {
-            $query = "UPDATE " . $this->table . " SET " . $set . " WHERE id = ?";
-        }
+            return;
+        }  
+            
+        $query = "UPDATE " . $this->table . " SET " . $set . " WHERE id = ?";
 
         $this->database->setData($query, [$value]);
     }
@@ -115,9 +118,10 @@ abstract class MainModel
     {
         if (isset($key)) {
             $query = "DELETE FROM " . $this->table . " WHERE " . $key . " = ?";
-        } else {
-            $query = "DELETE FROM " . $this->table . " WHERE id = ?";
-        }
+            return;
+        }  
+        
+        $query = "DELETE FROM " . $this->table . " WHERE id = ?";
 
         $this->database->setData($query, [$value]);
     }
