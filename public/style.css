@@ -14,3 +14,7 @@ ul {
   justify-content: space-evenly;
   list-style: none;
 }
+
+.postInList {
+  flex-direction: column;
+}
