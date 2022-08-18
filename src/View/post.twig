@@ -1,0 +1,31 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Un article{% endblock %}
+
+{% block description %}Page d'un article de blog{% endblock %}
+
+{% block main %}
+    <main id="post">
+
+        <section>
+            <h2>{{ post.title }} </h2>
+
+            <p><str>par {{ post.user_id }} <str></p>
+            <p><em>créé le : {{ post.date_created }} <em></p>
+            <p><em>modifié le : {{ post.date_updated }} <em></p>
+
+            <p> {{ post.intro }} </p>
+            <p> {{ post.content }} </p>
+
+        </section>
+
+        <section>
+            <h2>Pour commenter cet article, remplissez le formulaire :</h2>
+        </section>
+
+        <section>
+            <h2>Commentaires :</h2>
+        </section>
+
+    </main>
+{% endblock %}
