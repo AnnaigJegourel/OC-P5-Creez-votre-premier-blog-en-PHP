@@ -25,7 +25,7 @@ class PostController extends MainController
     {
         $allPosts = ModelFactory::getModel("Post")->listData();
 
-        return $this->twig->render("post.twig", ["allPosts" => $allPosts]);
+        return $this->twig->render("postslist.twig", ["allPosts" => $allPosts]);
     }
 
 }
