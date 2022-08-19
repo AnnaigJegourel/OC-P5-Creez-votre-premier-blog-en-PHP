@@ -5,7 +5,7 @@
 {% block description %}Page listant tous les articles du blog{% endblock %}
 
 {% block main %}
-    <main id="post">
+    <main id="postslist">
 
         <section>
             <h2>Liste des articles :</h2>
@@ -18,7 +18,7 @@
                     <li> créé le : {{ post.date_created }} </li>
                     <li> modifié le :{{ post.date_updated }} </li>
                     <li> <em> {{ post.intro }} </em> </li>
-                    <li> <a href="#"> vers l'article entier </a> </li>
+                    <li> <a href="index.php?access=post!singlepost" accesskey="p" title="Post"> vers l'article entier </a> </li>
                 {% endfor %}
             </ul>
         </section>
