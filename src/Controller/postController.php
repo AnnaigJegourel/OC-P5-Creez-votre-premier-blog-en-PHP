@@ -30,10 +30,9 @@ class PostController extends MainController
 
     public function singlepostMethod()
     {
-        $allPosts = ModelFactory::getModel("Post")->listData();
 
-        return $this->twig->render("post.twig", ["allPosts" => $allPosts]);
+        $post = ModelFactory::getModel("Post")->readData("1");
+
+        return $this->twig->render("post.twig", ["post" => $post]);
     }
-
-
 }
