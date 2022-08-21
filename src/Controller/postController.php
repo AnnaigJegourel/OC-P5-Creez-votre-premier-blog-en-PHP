@@ -30,8 +30,13 @@ class PostController extends MainController
 
     public function singlepostMethod()
     {
+        $id = filter_input(INPUT_GET, "id");   
+        if (!isset($id)) 
+        {
+            $id = "1";
+        }
 
-        $post = ModelFactory::getModel("Post")->readData("1");
+        $post = ModelFactory::getModel("Post")->readData(strval($id));
 
         return $this->twig->render("post.twig", ["post" => $post]);
     }
