@@ -25,7 +25,19 @@ class PostController extends MainController
     {
         $allPosts = ModelFactory::getModel("Post")->listData();
 
-        return $this->twig->render("post.twig", ["allPosts" => $allPosts]);
+        return $this->twig->render("postslist.twig", ["allPosts" => $allPosts]);
     }
 
+    public function singlepostMethod()
+    {
+        $id = filter_input(INPUT_GET, "id");   
+        if (!isset($id)) 
+        {
+            $id = "1";
+        }
+
+        $post = ModelFactory::getModel("Post")->readData(strval($id));
+
+        return $this->twig->render("post.twig", ["post" => $post]);
+    }
 }

@@ -79,7 +79,6 @@ abstract class MainModel
         
         $query = "SELECT * FROM " . $this->table . " WHERE id = ?";
         
-
         return $this->database->getData($query, [$value]);
     }
 
