@@ -98,6 +98,6 @@ class Router
         $this->controller   = new $this->controller();
         $response           = call_user_func([$this->controller, $this->method]);
 
-        print_r(filter_var($response));
+        echo filter_var($response);
     }
 }
