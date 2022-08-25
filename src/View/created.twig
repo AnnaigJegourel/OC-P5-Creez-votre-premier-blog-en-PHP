@@ -1,0 +1,14 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Message de création{% endblock %}
+
+{% block description %}Page confirmant la création de l'article{% endblock %}
+
+{% block main %}
+    <main id="created">
+
+        <p>Votre article "{{newpost.title}}"a bien été créé.</p>
+        <p><a href="index.php?access=post!singlepost&id={{newpost.id}}" >lire l'article</a></p>
+
+    </main>
+{% endblock %}

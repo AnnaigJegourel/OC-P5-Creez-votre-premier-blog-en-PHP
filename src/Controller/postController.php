@@ -69,7 +69,33 @@ class PostController extends MainController
      */
     public function postcreateMethod()
     {
-        return $this->twig->render("test.twig");
+        
+        $title = htmlspecialchars($_POST['title']);
+        $intro = htmlspecialchars($_POST['intro']);
+        $content = htmlspecialchars($_POST['content']);
+        $date_created = "2022-08-22";
+        $user_id = 1;
+        
+        $data = [
+            'title' => $title,
+            'intro' => $intro,
+            'content' => $content,
+            'date_created' => $date_created,
+            'user_id' => $user_id
+        ];
+        
+        $newpost = ModelFactory::getModel('Post')->createData($data);
+
+        return $this->twig->render("created.twig", ["newpost" => $newpost]);
+
     }
+/** 
+* problèmes d'affichage : 
+*          caractères spéciaux, 
+*          datetime-> string :             
+*              'date_created' => new \DateTime('now', new \DateTimeZone('Europe/Paris')),
+*
+* 'id_user' => self::getUserId()?
+*/
 
 }
