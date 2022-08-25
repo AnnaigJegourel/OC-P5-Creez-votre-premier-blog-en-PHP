@@ -60,4 +60,16 @@ class PostController extends MainController
         return $this->twig->render("postcreate.twig");
     }
 
+    /**
+     * Manages post creation
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function postcreateMethod()
+    {
+        return $this->twig->render("test.twig");
+    }
+
 }

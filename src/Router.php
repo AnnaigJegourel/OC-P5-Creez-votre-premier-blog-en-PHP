@@ -65,6 +65,26 @@ class Router
     }
 
     /**
+     * Gets form action to get the controller & his method
+     */
+    public function parseAction()                           
+    {
+        $action = filter_input(INPUT_POST, "action");   
+
+        $access            = explode("?", $action);
+        $access            = $access[1];
+
+        $access            = explode("=", $access);
+        $access            = $access[1];
+
+        $access            = explode("!", $access);
+
+        $this->controller   = $access[0];
+        $this->method       = count($access) == 1 ? "default" : $access[1];
+
+    }
+
+    /**
      * Sets the requested controller
      */
     public function setController()
