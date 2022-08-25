@@ -89,13 +89,29 @@ class PostController extends MainController
         return $this->twig->render("created.twig", ["newpost" => $newpost]);
 
     }
-/** 
-* problèmes d'affichage : 
-*          caractères spéciaux, 
-*          datetime-> string :             
-*              'date_created' => new \DateTime('now', new \DateTimeZone('Europe/Paris')),
-*
-* 'id_user' => self::getUserId()?
-*/
+    /** 
+    * problèmes d'affichage : 
+    *          caractères spéciaux, 
+    *          datetime-> string :             
+    *              'date_created' => new \DateTime('now', new \DateTimeZone('Europe/Paris')),
+    *
+    * 'id_user' => self::getUserId()?
+    */
+
+    /**
+     * Deletes a post
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function postdeleteMethod()
+    {
+        $id = filter_input(INPUT_GET, "id");   
+
+        ModelFactory::getModel("Post")->deleteData(strval($id));
+
+        return $this->twig->render("deleted.twig");
+    }
 
 }
