@@ -99,6 +99,18 @@ class PostController extends MainController
     */
 
     /**
+     * Renders the view update post form
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function updatepostformMethod()
+    {
+        return $this->twig->render("postupdate.twig");
+    }
+
+    /**
      * Deletes a post
      * @return string
      * @throws LoaderError
