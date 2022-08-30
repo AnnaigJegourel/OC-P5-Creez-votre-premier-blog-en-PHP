@@ -1,0 +1,14 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Message de modification réussie{% endblock %}
+
+{% block description %}Page confirmant la modification de l'article{% endblock %}
+
+{% block main %}
+    <main id="updated">
+
+        <p>Votre article "{{post.title}}"a bien été modifié.</p>
+        <p><a href="index.php?access=post!singlepost&id={{post.id}}" >lire l'article</a></p>
+
+    </main>
+{% endblock %}

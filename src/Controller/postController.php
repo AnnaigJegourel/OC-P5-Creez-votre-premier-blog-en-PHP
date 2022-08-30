@@ -69,7 +69,6 @@ class PostController extends MainController
      */
     public function postcreateMethod()
     {
-        
         $title = htmlspecialchars($_POST['title']);
         $intro = htmlspecialchars($_POST['intro']);
         $content = htmlspecialchars($_POST['content']);
@@ -107,7 +106,38 @@ class PostController extends MainController
      */
     public function updatepostformMethod()
     {
-        return $this->twig->render("postupdate.twig");
+        $id = filter_input(INPUT_GET, "id");   
+        if (!isset($id)) 
+        {
+            return $this->twig->render("error.twig");
+        }
+
+        $post = $post = ModelFactory::getModel("Post")->readData(strval($id));
+        return $this->twig->render("postupdate.twig",["post" => $post]);
+    }
+
+    public function postupdateMethod()
+    {
+        $title = htmlspecialchars($_POST['title']);
+        $intro = htmlspecialchars($_POST['intro']);
+        $content = htmlspecialchars($_POST['content']);
+        $date_created = "2022-08-22";
+        $date_updated = "2022-08-25";
+        $user_id = 1;
+                
+        $data = [
+            'title' => $title,
+            'intro' => $intro,
+            'content' => $content,
+            'date_created' => $date_created,
+            'date_updated' => $date_updated,
+            'user_id' => $user_id
+        ];
+        
+        $post_id = filter_input(INPUT_POST, "id");
+        $post = ModelFactory::getModel('Post')->updateData(strval($post_id), $data);
+
+        return $this->twig->render("updated.twig", ["post" => $post]);
     }
 
     /**
