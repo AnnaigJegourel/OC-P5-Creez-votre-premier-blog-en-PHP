@@ -1,0 +1,14 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Message de suppression{% endblock %}
+
+{% block description %}Page confirmant la suppression de l'article{% endblock %}
+
+{% block main %}
+    <main id="deleted">
+
+        <p>Votre article a bien été supprimé.</p>
+        <p><a href="index.php?access=post" accesskey="p" title="Post">retourner à la liste des articles</a></p>
+
+    </main>
+{% endblock %}

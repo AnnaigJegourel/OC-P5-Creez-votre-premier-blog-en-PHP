@@ -1,0 +1,24 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Création d'un article{% endblock %}
+
+{% block description %}Page de création d'un article de blog{% endblock %}
+
+{% block main %}
+    <main id="postcreate">
+
+        <form method="post" action="index.php?access=post!postcreate">Saisissez les informations de votre article :
+            <label for="title">Titre : </label>
+			<input type="text" name="title">
+
+            <label for="intro">Chapô (150 caractères maximum) : </label>
+			<textarea name="intro" maxlength="150"></textarea>
+
+            <label for="content">Texte de l'article : </label>
+			<textarea name="content"></textarea>
+					
+			<input type="submit" value="Envoyer">
+        </form>
+
+    </main>
+{% endblock %}

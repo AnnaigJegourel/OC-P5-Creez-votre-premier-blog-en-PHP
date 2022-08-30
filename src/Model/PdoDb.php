@@ -61,7 +61,7 @@ class PdoDb
      * @param array $params
      * @return bool|mixed
      */
-    public function setDData(string $query, array $params = [])
+    public function setData(string $query, array $params = [])
     {
         $PDOStatement = $this->pdo->prepare($query);
 
