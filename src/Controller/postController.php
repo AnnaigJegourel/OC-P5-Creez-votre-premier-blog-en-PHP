@@ -44,8 +44,12 @@ class PostController extends MainController
         }
 
         $post = ModelFactory::getModel("Post")->readData(strval($id));
+        $session = $this->getSession();
 
-        return $this->twig->render("post.twig", ["post" => $post]);
+        return $this->twig->render("post.twig", [
+            "post" => $post,
+            "session" => $session
+        ]);
     }
 
     /**
@@ -72,7 +76,10 @@ class PostController extends MainController
         $title = htmlspecialchars($_POST['title']);
         $intro = htmlspecialchars($_POST['intro']);
         $content = htmlspecialchars($_POST['content']);
-        $date_created = "2022-08-22";
+
+        $date_created = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        $date_created = $date_created->format('Y-m-d H:i:s');
+
         $user_id = 1;
         
         $data = [
@@ -121,8 +128,12 @@ class PostController extends MainController
         $title = htmlspecialchars($_POST['title']);
         $intro = htmlspecialchars($_POST['intro']);
         $content = htmlspecialchars($_POST['content']);
-        $date_created = "2022-08-22";
-        $date_updated = "2022-08-25";
+
+        $date_updated = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
+        $date_updated = $date_updated->format('Y-m-d H:i:s');
+
+        $date_created = "2025-08-22";
+
         $user_id = 1;
                 
         $data = [
