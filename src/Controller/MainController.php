@@ -18,14 +18,30 @@ abstract class MainController
     protected $twig = null;
 
     /**
+     * @var array
+     */
+    private $session = [];
+
+    /**
      * MainController constructor
      * Creates the Template Engine & adds its Extensions
      */
     public function __construct()
         {
             $this->twig = new Environment(new FilesystemLoader("../src/View"), array("cache"=>false));
+            $this->session = filter_var_array($_SESSION) ?? [];
         }
     
+    /**
+     * Get Session Array
+     * @param null|string $var
+     * @return array|string
+     */
+    protected function getSession()
+    {
+        return $this->session;
+    }
+
     /**
      * Redirects to another URL
      * @param string $page
