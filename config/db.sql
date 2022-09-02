@@ -87,6 +87,6 @@ CREATE TABLE IF NOT EXISTS `Comment` (
 INSERT INTO `Comment`
 (`date_created`, `title`, `content`, `user_id`, `post_id`)
 VALUES
-("2022-08-28", "mon comm", "Je commente cet article", 2, 1),
-("2022-08-29", "commentaire!", "Jai un truc à dire", 2, 1),
-("2022-08-27", "Ceci est un commentaire", "Jai un avis sur ton artcile", 2, 2);
+("2022-08-28", "mon comm sur le 1e article", "Je commente le premier article du blog", 2, 1),
+("2022-08-29", "commentaire! du 1er article", "Jai encore un truc à dire sur ce premier article", 2, 1),
+("2022-08-27", "Ceci est un commentaire sur le 2e article", "Jai un avis sur ton artcile", 2, 2);
