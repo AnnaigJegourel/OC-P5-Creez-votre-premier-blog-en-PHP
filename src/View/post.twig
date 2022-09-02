@@ -25,5 +25,36 @@
             <p>la session est : {{ session }}</p>
         </section>
 
+        <section>
+            <h2>CREER UN COMMENTAIRE POUR CET ARTICLE :</h2>
+            <p>post id: {{post.id}}</p>
+            <form method="post" action="index.php?access=comment!commentcreate&id={{post.id}}">Saisissez votre commentaire :
+                <label for="title">Saisissez un titre : </label>
+                <input type="text" name="title">
+
+                <label for="content">Saisissez votre texte : </label>
+                <textarea name="content"></textarea>
+                    
+                <input type="submit" value="Envoyer">
+            </form>
+        </section>
+
+        <section>
+            <h2>LIRE!! et supprimer !! TOUS LES COMMENTAIRES DE CET ARTICLE :</h2>
+            <p>Voici l'ensemble des commentaires publiés sur cet article :</p>
+            <ul class="commentsInPost">
+                {% for comment in allComments %}
+                    <li> <h3> {{ comment.title }} </h3> </li>
+                    <li> par {{ comment.user_id }} </li>
+                    <li> créé le : {{ comment.date_created }} </li>
+                    <li> {{ comment.content }} </li>
+                    <li> <a href="index.php?access=comment!commentdelete&id={{comment.id}}" accesskey="dc" title="DeleteComment">Supprimer ce commentaire </a> </li>
+                {% endfor %}
+            </ul>
+        </section>
+
+        </section>
+
+
     </main>
 {% endblock %}
