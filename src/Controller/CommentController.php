@@ -48,4 +48,14 @@ class CommentController extends MainController {
         return filter_input(INPUT_GET, 'id');
     }
 
+    public function commentdeleteMethod()
+    {
+        $id = filter_input(INPUT_GET, "id");   
+
+        ModelFactory::getModel("Comment")->deleteData(strval($id));
+
+        return $this->twig->render("deleted.twig");
+    }
+
+
 }
