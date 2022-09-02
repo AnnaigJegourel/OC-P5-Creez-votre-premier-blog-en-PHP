@@ -24,7 +24,6 @@ CREATE TABLE `User` (
 ) ENGINE = InnoDB;
 
 -- Inserts the User data
--- WARNING : Never store real passwords in a commit file
 INSERT INTO `User`
 (`name`, `email`, `password`, `role`)
 VALUES
@@ -83,3 +82,11 @@ CREATE TABLE IF NOT EXISTS `Comment` (
         FOREIGN KEY (`post_id`)
         REFERENCES `Post` (`id`)
 ) ENGINE = InnoDB;
+
+-- Inserts comments
+INSERT INTO `Comment`
+(`date_created`, `title`, `content`, `user_id`, `post_id`)
+VALUES
+("2022-08-28", "mon comm", "Je commente cet article", 2, 1),
+("2022-08-29", "commentaire!", "Jai un truc à dire", 2, 1),
+("2022-08-27", "Ceci est un commentaire", "Jai un avis sur ton artcile", 2, 2);
