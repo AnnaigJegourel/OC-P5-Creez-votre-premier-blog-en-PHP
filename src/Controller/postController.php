@@ -7,6 +7,7 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
+
 /**
  * Class PostController
  * manages the post page
@@ -45,12 +46,25 @@ class PostController extends MainController
 
         $post = ModelFactory::getModel("Post")->readData(strval($id));
         $session = $this->getSession();
+        $allComments = self::getComments();
 
         return $this->twig->render("post.twig", [
             "post" => $post,
-            "session" => $session
+            "session" => $session,
+            "allComments" => $allComments
         ]);
     }
+
+    public function getComments()
+    {
+        return ModelFactory::getModel("Comment")->listData(self::getId(), 'post_id');
+    }
+    
+    public function getId()
+    {
+        return filter_input(INPUT_GET, 'id');
+    }
+
 
     /**
      * Renders the view create post form
