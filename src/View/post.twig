@@ -25,5 +25,25 @@
             <p>la session est : {{ session }}</p>
         </section>
 
+                <section>
+            <h2>CREER UN COMMENTAIRE POUR CET ARTICLE :</h2>
+            <p>post id: {{post.id}}</p>
+            <form method="post" action="index.php?access=comment!commentcreate&id={{post.id}}">Saisissez votre commentaire :
+                <label for="title">Saisissez un titre : </label>
+                <input type="text" name="title">
+
+                <label for="content">Saisissez votre texte : </label>
+                <textarea name="content"></textarea>
+                    
+                <input type="submit" value="Envoyer">
+            </form>
+
+        </section>
+
+        <section>
+            <h2>LIRE TOUS LES COMMENTAIRES DE CET ARTICLE :</h2>
+        </section>
+
+
     </main>
 {% endblock %}
