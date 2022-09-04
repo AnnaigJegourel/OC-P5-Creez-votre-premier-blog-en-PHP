@@ -42,6 +42,18 @@ abstract class MainController
         return $this->session;
     }
 
+            /**
+     * Returns current id
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    protected function getId()
+    {
+        return filter_input(INPUT_GET, 'id');
+    }
+
     /**
      * Redirects to another URL
      * @param string $page

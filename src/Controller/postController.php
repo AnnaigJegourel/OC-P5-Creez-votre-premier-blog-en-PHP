@@ -38,7 +38,7 @@ class PostController extends MainController
      */
     public function singlepostMethod()
     {
-        $id = filter_input(INPUT_GET, "id");   
+        $id = self::getId();   
         if (!isset($id)) 
         {
             $id = "1";
@@ -55,16 +55,17 @@ class PostController extends MainController
         ]);
     }
 
+    /**
+     * Returns the comments of a post
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
     public function getComments()
     {
         return ModelFactory::getModel("Comment")->listData(self::getId(), 'post_id');
     }
-    
-    public function getId()
-    {
-        return filter_input(INPUT_GET, 'id');
-    }
-
 
     /**
      * Renders the view create post form
@@ -110,11 +111,7 @@ class PostController extends MainController
 
     }
     /** 
-    * problèmes d'affichage : 
-    *          caractères spéciaux, 
-    *          datetime-> string :             
-    *              'date_created' => new \DateTime('now', new \DateTimeZone('Europe/Paris')),
-    *
+    * problèmes d'affichage : caractères spéciaux
     * 'id_user' => self::getUserId()?
     */
 
@@ -127,7 +124,7 @@ class PostController extends MainController
      */
     public function updatepostformMethod()
     {
-        $id = filter_input(INPUT_GET, "id");   
+        $id = self::getId();   
         if (!isset($id)) 
         {
             return $this->twig->render("error.twig");
@@ -159,7 +156,7 @@ class PostController extends MainController
             'user_id' => $user_id
         ];
         
-        $post_id = filter_input(INPUT_POST, "id");
+        $post_id = self::getId();
         $post = ModelFactory::getModel('Post')->updateData(strval($post_id), $data);
 
         return $this->twig->render("updated.twig", ["post" => $post]);
@@ -174,7 +171,7 @@ class PostController extends MainController
      */
     public function postdeleteMethod()
     {
-        $id = filter_input(INPUT_GET, "id");   
+        $id = self::getId();   
 
         ModelFactory::getModel("Post")->deleteData(strval($id));
 
