@@ -69,7 +69,17 @@ class Router
      */
     public function parseAction()                           
     {
-        $action = filter_input(INPUT_POST, "action");   
+        /*$access = filter_input(INPUT_POST, "access");   
+
+        if (!isset($access)) {
+            $access = "home";
+        }
+
+        $access             = explode("!", $access);
+        $this->controller   = $access[0];
+        $this->method       = count($access) == 1 ? "default" : $access[1];*/
+
+        /*$action = filter_input(INPUT_POST, "action");   
 
         $access            = explode("?", $action);
         $access            = $access[1];
@@ -80,7 +90,7 @@ class Router
         $access            = explode("!", $access);
 
         $this->controller   = $access[0];
-        $this->method       = count($access) == 1 ? "default" : $access[1];
+        $this->method       = count($access) == 1 ? "default" : $access[1];*/
 
     }
 

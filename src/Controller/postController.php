@@ -88,19 +88,15 @@ class PostController extends MainController
      */
     public function postcreateMethod()
     {
-        $title = htmlspecialchars($_POST['title']);
-        $intro = htmlspecialchars($_POST['intro']);
-        $content = htmlspecialchars($_POST['content']);
-
         $date_created = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
         $date_created = $date_created->format('Y-m-d H:i:s');
 
         $user_id = 1;
         
         $data = [
-            'title' => $title,
-            'intro' => $intro,
-            'content' => $content,
+            'title' => self::getPost()['title'],
+            'intro' => self::getPost()['intro'],
+            'content' => self::getPost()['content'],
             'date_created' => $date_created,
             'user_id' => $user_id
         ];
@@ -108,7 +104,6 @@ class PostController extends MainController
         $newpost = ModelFactory::getModel('Post')->createData($data);
 
         return $this->twig->render("created.twig", ["newpost" => $newpost]);
-
     }
     /** 
     * problèmes d'affichage : caractères spéciaux
@@ -136,21 +131,16 @@ class PostController extends MainController
 
     public function postupdateMethod()
     {
-        $title = htmlspecialchars($_POST['title']);
-        $intro = htmlspecialchars($_POST['intro']);
-        $content = htmlspecialchars($_POST['content']);
-
         $date_updated = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
         $date_updated = $date_updated->format('Y-m-d H:i:s');
 
-        $date_created = "2025-08-22";
-
+        $date_created = "2025-09-01";
         $user_id = 1;
                 
         $data = [
-            'title' => $title,
-            'intro' => $intro,
-            'content' => $content,
+            'title' => self::getPost()['title'],
+            'intro' => self::getPost()['intro'],
+            'content' => self::getPost()['content'],
             'date_created' => $date_created,
             'date_updated' => $date_updated,
             'user_id' => $user_id

@@ -31,8 +31,8 @@ class CommentController extends MainController {
         $user_id = 1;
         
         $data = [
-            'title' => htmlspecialchars($_POST['title']),
-            'content' => htmlspecialchars($_POST['content']),
+            'title' => self::getPost()['title'],
+            'content' => self::getPost()['content'],
             'post_id' => self::getId(),
             'date_created' => $date_created,
             'user_id' => $user_id

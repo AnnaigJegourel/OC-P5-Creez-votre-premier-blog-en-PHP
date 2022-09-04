@@ -23,6 +23,11 @@ abstract class MainController
     private $session = [];
 
     /**
+     * @var array
+     */
+    private $post = [];
+
+    /**
      * MainController constructor
      * Creates the Template Engine & adds its Extensions
      */
@@ -30,6 +35,7 @@ abstract class MainController
         {
             $this->twig = new Environment(new FilesystemLoader("../src/View"), array("cache"=>false));
             $this->session = filter_var_array($_SESSION) ?? [];
+            $this->post     = filter_input_array(INPUT_POST) ?? [];
         }
     
     /**
@@ -52,6 +58,21 @@ abstract class MainController
     protected function getId()
     {
         return filter_input(INPUT_GET, 'id');
+    }
+
+    /**
+     * Gets Post Array or Post Var
+     * @param null|string $var
+     * @return array|string
+     */
+    protected function getPost(string $var = null)
+    {
+        if ($var === null) {
+
+            return $this->post;
+        }
+
+        return $this->post[$var] ?? "";
     }
 
     /**
