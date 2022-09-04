@@ -115,13 +115,14 @@ abstract class MainModel
      */
     public function deleteData(string $value, string $key = null)
     {
+
         if (isset($key)) {
             $query = "DELETE FROM " . $this->table . " WHERE " . $key . " = ?";
-            return;
-        }  
-        
-        $query = "DELETE FROM " . $this->table . " WHERE id = ?";
+        } else {
+            $query = "DELETE FROM " . $this->table . " WHERE id = ?";
+        }
 
         $this->database->setData($query, [$value]);
+
     }
 }

@@ -173,6 +173,8 @@ class PostController extends MainController
     {
         $id = self::getId();   
 
+        ModelFactory::getModel("Comment")->deleteData(strval($id), "post_id");
+    
         ModelFactory::getModel("Post")->deleteData(strval($id));
 
         return $this->twig->render("deleted.twig");
