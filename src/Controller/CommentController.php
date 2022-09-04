@@ -33,7 +33,7 @@ class CommentController extends MainController {
         $data = [
             'title' => htmlspecialchars($_POST['title']),
             'content' => htmlspecialchars($_POST['content']),
-            'post_id' => self::getPostId(),
+            'post_id' => self::getId(),
             'date_created' => $date_created,
             'user_id' => $user_id
         ];
@@ -43,14 +43,10 @@ class CommentController extends MainController {
         return $this->twig->render("post.twig", ["comment" => $comment]);
     }
 
-    public function getPostId()
-    {
-        return filter_input(INPUT_GET, 'id');
-    }
-
+    
     public function commentdeleteMethod()
     {
-        $id = filter_input(INPUT_GET, "id");   
+        $id = self::getId();   
 
         ModelFactory::getModel("Comment")->deleteData(strval($id));
 
