@@ -101,9 +101,13 @@ class PostController extends MainController
             'user_id' => $user_id
         ];
         
-        $newpost = ModelFactory::getModel('Post')->createData($data);
+        ModelFactory::getModel('Post')->createData($data);
+        /*$id = self::getId();   */
 
-        return $this->twig->render("created.twig", ["newpost" => $newpost]);
+        return $this->twig->render("created.twig", [
+            "newpost" => $data
+            /*"post_id" => $id*/
+        ]);
     }
     /** 
     * problèmes d'affichage : caractères spéciaux
@@ -147,9 +151,12 @@ class PostController extends MainController
         ];
         
         $post_id = self::getId();
-        $post = ModelFactory::getModel('Post')->updateData(strval($post_id), $data);
+        ModelFactory::getModel('Post')->updateData(strval($post_id), $data);
 
-        return $this->twig->render("updated.twig", ["post" => $post]);
+        return $this->twig->render("updated.twig", [
+            "post" => $data,
+            "post_id" => $post_id
+        ]);
     }
 
     /**
