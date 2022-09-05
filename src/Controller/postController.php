@@ -101,12 +101,16 @@ class PostController extends MainController
             'user_id' => $user_id
         ];
         
-        $newpost = ModelFactory::getModel('Post')->createData($data);
+        ModelFactory::getModel('Post')->createData($data);
+        /*$id = self::getId();   */
 
-        return $this->twig->render("created.twig", ["newpost" => $newpost]);
+        return $this->twig->render("created.twig", [
+            "newpost" => $data
+            /*"post_id" => $id*/
+        ]);
     }
     /** 
-    * problèmes d'affichage : caractères spéciaux
+    * problèmes d'affichage : apostrophe saisie dans form -> erreur 
     * 'id_user' => self::getUserId()?
     */
 
@@ -125,31 +129,30 @@ class PostController extends MainController
             return $this->twig->render("error.twig");
         }
 
-        $post = $post = ModelFactory::getModel("Post")->readData(strval($id));
+        $post = ModelFactory::getModel("Post")->readData(strval($id));
         return $this->twig->render("postupdate.twig",["post" => $post]);
     }
 
     public function postupdateMethod()
     {
+        $post_id = self::getId();
+
         $date_updated = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
         $date_updated = $date_updated->format('Y-m-d H:i:s');
-
-        $date_created = "2025-09-01";
-        $user_id = 1;
                 
         $data = [
             'title' => self::getPost()['title'],
             'intro' => self::getPost()['intro'],
             'content' => self::getPost()['content'],
-            'date_created' => $date_created,
-            'date_updated' => $date_updated,
-            'user_id' => $user_id
+            'date_updated' => $date_updated
         ];
         
-        $post_id = self::getId();
-        $post = ModelFactory::getModel('Post')->updateData(strval($post_id), $data);
+        ModelFactory::getModel('Post')->updateData(strval($post_id), $data);
 
-        return $this->twig->render("updated.twig", ["post" => $post]);
+        return $this->twig->render("updated.twig", [
+            "post" => $data,
+            "post_id" => $post_id
+        ]);
     }
 
     /**

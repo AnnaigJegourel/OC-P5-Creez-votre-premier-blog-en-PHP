@@ -9,12 +9,10 @@ use Twig\Error\SyntaxError;
 
 class CommentController extends MainController {
 
-    /*public function defaultMethod()
+    public function defaultMethod()
     {
-        $allComments = ModelFactory::getModel("Comment")->listData();
-
-        return $this->twig->render("#", ["allComments" => $allComments]);
-    }*/
+        self::redirect("home");
+    }
 
     /**
      * Manages comment creation
