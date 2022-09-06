@@ -1,13 +1,13 @@
 {% extends 'layout/layout.twig' %}
 
-{% block title %}Connection à votre compte{% endblock %}
+{% block title %}Connexion à votre compte{% endblock %}
 
-{% block description %}Page de connection à un compte U existant{% endblock %}
+{% block description %}Page de connexion à un compte U existant{% endblock %}
 
 {% block main %}
     <main id="loginUser">
 
-        <form method="post" action="index.php?access=user!login">Saisissez les informations de votre compte :
+        <form method="post" action="index.php?access=user">Saisissez les informations de votre compte :
             <label for="name">Votre nom: </label>
 			<input type="text" name="name">
 
