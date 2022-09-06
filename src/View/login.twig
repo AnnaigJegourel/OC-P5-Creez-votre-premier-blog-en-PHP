@@ -1,0 +1,21 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Connection à votre compte{% endblock %}
+
+{% block description %}Page de connection à un compte U existant{% endblock %}
+
+{% block main %}
+    <main id="loginUser">
+
+        <form method="post" action="index.php?access=user!login">Saisissez les informations de votre compte :
+            <label for="name">Votre nom: </label>
+			<input type="text" name="name">
+
+            <label for="pwd">Votre mot de passe: </label>
+            <input type="password" id="pwd" name="pwd">
+
+			<input type="submit" value="Envoyer">
+        </form>
+
+    </main>
+{% endblock %}
