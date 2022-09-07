@@ -17,14 +17,12 @@
         <section>
             <h2>Demonstration</h2>
 
-            <p>The example users are :</p>
-            <ul>
-                {% for user in allUsers %}
-                    <li>
-                        {{ user.name }} <hr> {{ user.email }}
-                    </li>
-                {% endfor %}
-            </ul>
+            <p>L'admin a accès à la liste des Users: 
+                <a href="index.php?access=user!readAllUsers" accesskey="rau" title="User">
+                voir la liste
+                </a>
+            </p>
+
         </section>
     </main>
 {% endblock %}

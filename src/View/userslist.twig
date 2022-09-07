@@ -1,0 +1,22 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Utilisateurs du site:{% endblock %}
+
+{% block description %}Liste et données de tous les utilisateurs inscrit(e)s{% endblock %}
+
+{% block main %}
+    <main id="userslist">
+
+        <section>
+            <h2>Personnes ayant un compte sur ce site:</h2>
+
+            <ul>
+                {% for user in allUsers %}
+                    <li> <strong> {{ user.name }} </strong> <hr> {{ user.email }} </li>
+                    <li>role: {{ user.role }} </li>
+                    <li>compte créé le: {{ user.date_created }} </li>
+                {% endfor %}
+            </ul>
+        </section>
+    </main>
+{% endblock %}
