@@ -58,6 +58,20 @@ class UserController extends MainController
         return $this->twig->render("userslist.twig", ["allUsers" => $allUsers]);
     }
 
+    /**
+     * Returns the id of the current logged User
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    /*public function getUserId()
+    {
+        $session = $this->getSession();
+        $user = $session['user'];
+        $id = $user['id'];
+    }*/
+
 
     /**
      * Renders the View Profile (read single User)
@@ -81,9 +95,7 @@ class UserController extends MainController
             return $this->twig->render("error.twig", ["message" => $message]);
         } else {
             $user = ModelFactory::getModel("User")->readData(strval($id));
-            return $this->twig->render("profile.twig", [
-                "user" => $user,
-            ]);    
+            return $this->twig->render("profile.twig", ["user" => $user,]);    
         }
     }
 
@@ -130,11 +142,74 @@ class UserController extends MainController
 
 
     /* ***************** UPDATE ***************** */
+    /**
+     * Renders the view update user form
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function updateuserformMethod()
+    {
+        /*$id = $this->getUserId();   */
+        $session = $this->getSession();
+        $user = $session['user'];
+        $id = $user['id'];
+        /*var_dump($id);die;*/
 
+        if (!isset($id)) 
+        {
+            $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
+            return $this->twig->render("error.twig", ["message" => $message]);
+        }
+
+        $user = ModelFactory::getModel("User")->readData(strval($id));
+        return $this->twig->render("userupdate.twig",["user" => $user]);
+    }
+
+    public function userupdateMethod()
+    {
+        $session = $this->getSession();
+        $user = $session['user'];
+        $user_id = $user['id'];
+
+        /*$date_updated = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+        $date_updated = $date_updated->format("Y-m-d H:i:s");*/
+                
+        $data = [
+            "name" => $this->getPost()["name"],
+            "email" => $this->getPost()["email"],
+            "password" => $this->getPost()["password"],
+            /*"date_updated" => $date_updated*/
+        ];
+        
+        ModelFactory::getModel("User")->updateData(strval($user_id), $data);
+
+        $message = "Votre profil a bien été modifié.";
+        return $this->twig->render("updated.twig", ["message" => $message]);
+    }
+
+    
 
 
     /* ***************** DELETE ***************** */
+    /**
+     * Deletes a post
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function postdeleteMethod()
+    {
+        $id = $this->getId();   
 
+        ModelFactory::getModel("Comment")->deleteData(strval($id), "post_id");
+    
+        ModelFactory::getModel("Post")->deleteData(strval($id));
+
+        return $this->twig->render("deleted.twig");
+    }
 
 
     /* ***************** LOG ***************** */

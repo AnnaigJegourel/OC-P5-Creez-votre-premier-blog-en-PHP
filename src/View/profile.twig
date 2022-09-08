@@ -7,19 +7,32 @@
 {% block main %}
     <main id="profile">
 
-        <p>Voici tes informations enregistrées:</p>
-        <p>ton id = {{user.id}}</p>
-        <p>ton nom = {{user.name}}</p>
-        <p>ton e-mail = {{user.email}}</p>
-        <p>ton rôle = {{user.role}}
-        <p>ton mot de passe = {{user.password}}</p>
-        <p>la date de création de ton compte = {{user.date_created}}</p>
-        <p>la dernière modification de ton compte = cette donnée n'existe pas (encore)</p>
+        <section>
+            <h2>Voici tes informations enregistrées:</h2>
+            <p>ton id = {{user.id}}</p>
+            <p>ton nom = {{user.name}}</p>
+            <p>ton e-mail = {{user.email}}</p>
+            <p>ton rôle = {{user.role}}
+            <p>ton mot de passe = {{user.password}}</p>
+            <p>la date de création de ton compte = {{user.date_created}}</p>
+            <p>la dernière modification de ton compte = cette donnée n'existe pas (encore)</p>
+        </section>
 
-        <a href="index.php?access=user!logout" accesskey="lou" title="Logout">
-            Se déconnecter
-        </a>
+        <section>
+        <h2>Gérer ton compte:</h2>
+        <ul>
+            <li>
+                <a href="index.php?access=user!updateuserform&id={{user.id}}" accesskey="uu" title="UpdateUser">
+                Modifier le profil</a>
+            </li>
 
+            <li>
+                <a href="index.php?access=user!userdelete&id={{user.id}}" accesskey="du" title="DeleteUser">
+                Supprimer le compte </a>
+            </li>
 
+            <li><a href="index.php?access=user!logout" accesskey="lou" title="Logout">
+                Se déconnecter</a>
+            </li>
     </main>
 {% endblock %}
