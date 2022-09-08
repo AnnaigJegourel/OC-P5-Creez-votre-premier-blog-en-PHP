@@ -1,0 +1,15 @@
+{% extends 'layout/layout.twig' %}
+
+{% block title %}Bonjour, {{saisie.name}}!{% endblock %}
+
+{% block description %}Page de profil U{% endblock %}
+
+{% block main %}
+    <main id="profile">
+
+        <p>Voici tes informations saisies:</p>
+        <p>le nom saisi = {{saisie.name}}</p>
+        <p>le mot de passe saisi = {{saisie.pwd}}</p>
+
+    </main>
+{% endblock %}

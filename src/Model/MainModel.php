@@ -74,10 +74,10 @@ abstract class MainModel
     {
         if (isset($key)) {
             $query = "SELECT * FROM " . $this->table . " WHERE " . $key . " = ?";
-            return;
-        } 
-        
-        $query = "SELECT * FROM " . $this->table . " WHERE id = ?";
+            /*return;*/
+        } else {
+            $query = "SELECT * FROM " . $this->table . " WHERE id = ?";
+        }
         
         return $this->database->getData($query, [$value]);
     }

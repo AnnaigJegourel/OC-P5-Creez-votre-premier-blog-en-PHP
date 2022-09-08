@@ -46,6 +46,8 @@ class PostController extends MainController
 
         $post = ModelFactory::getModel("Post")->readData(strval($id));
         $session = $this->getSession();
+        var_dump($session);
+
         $allComments = self::getComments();
 
         return $this->twig->render("post.twig", [

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use App\Model\Factory\ModelFactory;
 
 /**
  * Class MainController
@@ -46,7 +47,22 @@ abstract class MainController
         }
     
     /**
-     * Get Session Array
+     * Redirects to another URL
+     * @param string $page
+     * @param array $params
+     */
+    public function redirect(string $page, array $params = [])
+    {
+        $params["access"] = $page;
+        header("Location: index.php?" . http_build_query($params));
+        
+        exit;
+    }
+
+    /* *************** GETTERS *************** */
+
+    /**
+     * Gets SESSION Array
      * @param null|string $var
      * @return array|string
      */
@@ -55,8 +71,22 @@ abstract class MainController
         return filter_var_array($_SESSION) ?? [];
     }
 
+
     /**
-     * Gets Post Array or Post Var
+     * Gets USER Array
+     * @param  mixed $key
+     * @return array|string
+     */
+    public function getUser(string $value, string $key)
+    {
+        $value = $this->value;
+        $key = $this->key;
+        return ModelFactory::getModel('User')->readData(strval($value), $key);
+    }
+
+
+    /**
+     * Gets POST Array or Post Var
      * @param null|string $var
      * @return array|string
      */
@@ -70,11 +100,11 @@ abstract class MainController
 
         /* return $this->post[$var] ?? "";*/
         return filter_input(INPUT_POST, $var);
-
     }
 
+
     /**
-     * Gets Get Array or Get Var
+     * Gets GET Array or Get Var
      * @param null|string $var
      * @return array|string
      */
@@ -91,7 +121,7 @@ abstract class MainController
     }
 
     /**
-     * Returns current id
+     * Returns current ID
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
@@ -103,16 +133,4 @@ abstract class MainController
         /*return filter_input(INPUT_GET, 'id'); si utilisé qu'une fois*/
     }
 
-    /**
-     * Redirects to another URL
-     * @param string $page
-     * @param array $params
-     */
-    public function redirect(string $page, array $params = [])
-    {
-        $params["access"] = $page;
-        header("Location: index.php?" . http_build_query($params));
-        
-        exit;
-    }
 };

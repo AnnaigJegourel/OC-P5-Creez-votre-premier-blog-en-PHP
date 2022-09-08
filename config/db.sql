@@ -25,10 +25,10 @@ CREATE TABLE `User` (
 
 -- Inserts the User data
 INSERT INTO `User`
-(`name`, `email`, `password`, `role`)
+(`name`, `email`, `password`, `date_created`, `role`)
 VALUES
-('John', 'john@doe.com', 'john465', 0),
-('Jane', 'jane@doe.com', 'jane465', 0);
+('John', 'john@doe.com', 'john465', "2022-07-30", 0),
+('Jane', 'jane@doe.com', 'jane465', "2022-07-31", 0);
 
 
 -- -----------------------------------------------------
