@@ -7,9 +7,14 @@
 {% block main %}
     <main id="profile">
 
-        <p>Voici tes informations saisies:</p>
-        <p>l'e-mail saisi = {{data.email}}</p>
-        <p>le mot de passe saisi = {{data.pwd}}</p>
+        <p>Voici tes informations enregistrées:</p>
+        <p>ton id = {{user.id}}</p>
+        <p>ton nom = {{user.name}}</p>
+        <p>ton e-mail = {{user.email}}</p>
+        <p>ton rôle = {{user.role}}
+        <p>ton mot de passe = {{user.password}}</p>
+        <p>la date de création de ton compte = {{user.date_created}}</p>
+        <p>la dernière modification de ton compte = cette donnée n'existe pas (encore)</p>
 
     </main>
 {% endblock %}

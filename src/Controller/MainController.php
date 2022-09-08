@@ -21,7 +21,7 @@ abstract class MainController
     /**
      * @var array
      */
-    /*private $session = [];*/
+    private $session = [];
 
     /**
      * @var array
@@ -41,7 +41,7 @@ abstract class MainController
     public function __construct()
         {
             $this->twig = new Environment(new FilesystemLoader("../src/View"), array("cache"=>false));
-            /*$this->session = filter_var_array($_SESSION) ?? [];*/
+            $this->session = filter_var_array($_SESSION) ?? [];
             /*$this->post     = filter_input_array(INPUT_POST) ?? [];*/
             $this->get     = filter_input_array(INPUT_GET) ?? [];
         }
@@ -68,22 +68,9 @@ abstract class MainController
      */
     protected function getSession()
     {
-        return filter_var_array($_SESSION) ?? [];
+        return $this->session;
     }
-
-
-    /**
-     * Gets USER Array
-     * @param  mixed $key
-     * @return array|string
-     */
-    public function getUser(string $value, string $key)
-    {
-        $value = $this->value;
-        $key = $this->key;
-        return ModelFactory::getModel("User")->readData(strval($value), $key);
-    }
-
+    
 
     /**
      * Gets POST Array or Post Var

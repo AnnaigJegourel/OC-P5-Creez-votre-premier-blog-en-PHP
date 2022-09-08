@@ -54,6 +54,35 @@ class UserController extends MainController
         return $this->twig->render("userslist.twig", ["allUsers" => $allUsers]);
     }
 
+        /**
+     * Renders the View Profile (single User)
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function readUserMethod()
+    {
+        $session = $this->getSession();
+        /*var_dump($session);die();*/
+        $user = $session['user'];
+        /*var_dump($user);die();*/
+        $id = $user['id'];
+        /* var_dump($id);die();*/
+
+        if (!isset($id)) 
+        {
+            $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
+            return $this->twig->render("error.twig", ["message" => $message]);
+        } else {
+            $user = ModelFactory::getModel("User")->readData(strval($id));
+            return $this->twig->render("profile.twig", [
+                "user" => $user,
+            ]);    
+        }
+    }
+
+
     /**
      * Logs in User & return user data
      * @return array\string
@@ -65,7 +94,6 @@ class UserController extends MainController
     {
         $data = $this->getPost();
         $user = ModelFactory::getModel("User")->readData(strval($data["email"]), "email");
-        /*var_dump($user);die;*/
 
         if(!$user) {
             $message = "L'e-mail saisi n'est pas dans la base de données.";
@@ -75,17 +103,32 @@ class UserController extends MainController
                 $message = "Il y a une erreur sur le mot de passe.";
                 return $this->twig->render("error.twig", ["message" => $message]);
             } else {
-                return $this->twig->render("profile.twig", [
-                    "data" => $data,
-                    "user" => $user
-                ]);
+                self::createSession($user);
+                return $this->twig->render("profile.twig", ["user" => $user]);
             }    
         }
-
-        /* Pourquoi ça ne marche pas avec getUser() ?? */
-        /* $user = self::getUser(strval($data["email"]), "email"); */
-        /*         var_dump($user);die(); donne : "bool(false)" */
-        /*         tracy : undefined $value / $key + lignes 82/83 dans MainController */
-
     }
+
+
+    /**
+     * Creates a user session
+     *
+     * @param  mixed $user
+     *
+     * @return void
+     */
+    private function createSession($user)
+    {
+        $this->session['user'] = [
+            'id' => $user['id'],
+            'name' => $user['name'],
+            'email' => $user['email'],
+            'password' => $user['password'],
+            'date_created' => $user['date_created'],
+            'role' => $user['role']
+        ];
+
+        $_SESSION['user'] = $this->session['user'];
+    }
+
 } 
