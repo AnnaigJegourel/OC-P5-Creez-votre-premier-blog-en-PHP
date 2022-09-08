@@ -33,7 +33,7 @@ class UserController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function getAllUsers()
+    private function getAllUsers()
     {
         $allUsers = ModelFactory::getModel("User")->listData();
 
@@ -63,17 +63,27 @@ class UserController extends MainController
      */
     public function loginMethod()
     {
-        $data = self::getPost();
-        $user = ModelFactory::getModel('User')->readData(strval($data['name']), 'name');
+        $data = $this->getPost();
+        $user = ModelFactory::getModel("User")->readData(strval($data["email"]), "email");
+        /*var_dump($user);die;*/
 
-        if ($data['pwd'] !== $user['password']) {
-            return $this->twig->render("error.twig");
+        if(!$user) {
+            $message = "L'e-mail saisi n'est pas dans la base de données.";
+            return $this->twig->render("error.twig", ["message" => $message]);
         } else {
-            return $this->twig->render("profile.twig", ["saisie"=> $data]);
+            if ($data["pwd"] !== $user["password"]) {
+                $message = "Il y a une erreur sur le mot de passe.";
+                return $this->twig->render("error.twig", ["message" => $message]);
+            } else {
+                return $this->twig->render("profile.twig", [
+                    "data" => $data,
+                    "user" => $user
+                ]);
+            }    
         }
 
         /* Pourquoi ça ne marche pas avec getUser() ?? */
-        /* $user = self::getUser(strval($data['name']), 'name'); */
+        /* $user = self::getUser(strval($data["email"]), "email"); */
         /*         var_dump($user);die(); donne : "bool(false)" */
         /*         tracy : undefined $value / $key + lignes 82/83 dans MainController */
 

@@ -1,4 +1,4 @@
-{% extends 'layout/layout.twig' %}
+{% extends "layout/layout.twig" %}
 
 {% block title %}Connexion à votre compte{% endblock %}
 
@@ -8,11 +8,11 @@
     <main id="loginUser">
 
         <form method="post" action="index.php?access=user!login">Saisissez les informations de votre compte :
-            <label for="name">Votre nom: </label>
-			<input type="text" name="name">
+            <label for="email">Votre adresse e-mail: </label>
+			<input type="email" name="email" placeholder="e-mail@exemple.com">
 
             <label for="pwd">Votre mot de passe: </label>
-            <input type="password" id="pwd" name="pwd">
+            <input type="password" id="pwd" name="pwd" placeholder="motdepasse">
 
 			<input type="submit" value="Envoyer">
         </form>

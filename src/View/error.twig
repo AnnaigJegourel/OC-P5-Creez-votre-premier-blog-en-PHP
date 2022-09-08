@@ -1,4 +1,4 @@
-{% extends 'layout/layout.twig' %}
+{% extends "layout/layout.twig" %}
 
 {% block title %}Message d'erreur{% endblock %}
 
@@ -8,6 +8,7 @@
     <main id="error">
 
         <p>Une erreur est survenue.</p>
+        <p> {{message}} </p>
 
     </main>
 {% endblock %}

@@ -66,7 +66,7 @@ class PostController extends MainController
      */
     public function getComments()
     {
-        return ModelFactory::getModel("Comment")->listData(self::getId(), 'post_id');
+        return ModelFactory::getModel("Comment")->listData($this->getId(), "post_id");
     }
 
     /**
@@ -90,20 +90,20 @@ class PostController extends MainController
      */
     public function postcreateMethod()
     {
-        $date_created = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
-        $date_created = $date_created->format('Y-m-d H:i:s');
+        $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+        $date_created = $date_created->format("Y-m-d H:i:s");
 
         $user_id = 1;
         
         $data = [
-            'title' => self::getPost()['title'],
-            'intro' => self::getPost()['intro'],
-            'content' => self::getPost()['content'],
-            'date_created' => $date_created,
-            'user_id' => $user_id
+            "title" => $this->getPost()["title"],
+            "intro" => $this->getPost()["intro"],
+            "content" => $this->getPost()["content"],
+            "date_created" => $date_created,
+            "user_id" => $user_id
         ];
         
-        ModelFactory::getModel('Post')->createData($data);
+        ModelFactory::getModel("Post")->createData($data);
         /*$id = self::getId();   */
 
         return $this->twig->render("created.twig", [
@@ -113,7 +113,7 @@ class PostController extends MainController
     }
     /** 
     * problèmes d'affichage : apostrophe saisie dans form -> erreur 
-    * 'id_user' => self::getUserId()?
+    * "id_user" => $this->getUserId()?
     */
 
     /**
@@ -139,17 +139,17 @@ class PostController extends MainController
     {
         $post_id = self::getId();
 
-        $date_updated = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
-        $date_updated = $date_updated->format('Y-m-d H:i:s');
+        $date_updated = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+        $date_updated = $date_updated->format("Y-m-d H:i:s");
                 
         $data = [
-            'title' => self::getPost()['title'],
-            'intro' => self::getPost()['intro'],
-            'content' => self::getPost()['content'],
-            'date_updated' => $date_updated
+            "title" => $this->getPost()["title"],
+            "intro" => $this->getPost()["intro"],
+            "content" => $this->getPost()["content"],
+            "date_updated" => $date_updated
         ];
         
-        ModelFactory::getModel('Post')->updateData(strval($post_id), $data);
+        ModelFactory::getModel("Post")->updateData(strval($post_id), $data);
 
         return $this->twig->render("updated.twig", [
             "post" => $data,
@@ -166,7 +166,7 @@ class PostController extends MainController
      */
     public function postdeleteMethod()
     {
-        $id = self::getId();   
+        $id = $this->getId();   
 
         ModelFactory::getModel("Comment")->deleteData(strval($id), "post_id");
     

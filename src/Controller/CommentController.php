@@ -23,20 +23,20 @@ class CommentController extends MainController {
      */
     public function commentcreateMethod()
     {
-        $date_created = new \DateTime('now', new \DateTimeZone('Europe/Paris'));
-        $date_created = $date_created->format('Y-m-d H:i:s');
+        $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+        $date_created = $date_created->format("Y-m-d H:i:s");
 
         $user_id = 1;
         
         $data = [
-            'title' => self::getPost()['title'],
-            'content' => self::getPost()['content'],
-            'post_id' => self::getId(),
-            'date_created' => $date_created,
-            'user_id' => $user_id
+            "title" => $this->getPost()["title"],
+            "content" => $this->getPost()["content"],
+            "post_id" => $this->getId(),
+            "date_created" => $date_created,
+            "user_id" => $user_id
         ];
         
-        $comment = ModelFactory::getModel('Comment')->createData($data);
+        $comment = ModelFactory::getModel("Comment")->createData($data);
 
         return $this->twig->render("post.twig", ["comment" => $comment]);
     }
@@ -44,7 +44,7 @@ class CommentController extends MainController {
     
     public function commentdeleteMethod()
     {
-        $id = self::getId();   
+        $id = $this->getId();   
 
         ModelFactory::getModel("Comment")->deleteData(strval($id));
 
