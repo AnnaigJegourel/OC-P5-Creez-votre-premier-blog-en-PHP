@@ -42,8 +42,10 @@ class UserController extends MainController
     }
 
 
+    /* ***************** READ ***************** */
+
     /**
-     * Renders the View of all Users
+     * Renders the View of Users list (read all Users)
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
@@ -57,8 +59,8 @@ class UserController extends MainController
     }
 
 
-        /**
-     * Renders the View Profile (single User)
+    /**
+     * Renders the View Profile (read single User)
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
@@ -86,6 +88,56 @@ class UserController extends MainController
     }
 
 
+    /* ***************** CREATE ***************** */
+    /**
+     * Renders the view of the form to create a user account
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function createuserformMethod()
+    {
+        return $this->twig->render("usercreate.twig");
+    }
+
+    /**
+     * Manages user account creation
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function usercreateMethod()
+    {
+        $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+        $date_created = $date_created->format("Y-m-d H:i:s");
+        
+        $data = [
+            "name" => $this->getPost()["name"],
+            "email" => $this->getPost()["email"],
+            "password" => $this->getPost()["password"],
+            "date_created" => $date_created,
+            "role" => "0"
+        ];
+        
+        ModelFactory::getModel("User")->createData($data);
+
+        $message = "Félicitations! Votre compte a bien été créé. Connectez-vous pour commenter les articles.";
+
+        return $this->twig->render("created.twig", ["message" => $message]);
+    }
+
+
+    /* ***************** UPDATE ***************** */
+
+
+
+    /* ***************** DELETE ***************** */
+
+
+
+    /* ***************** LOG ***************** */
     /**
      * Logs in User & return user data
      * @return array\string
@@ -146,6 +198,24 @@ class UserController extends MainController
         session_destroy();
         $this->redirect('home');
     }
+
+    /**
+     * getLoggedUser
+     *
+     * @return void
+     */
+    /*public function isLog()
+    {
+        if (isset($this->session['user'])) {
+            $user = $this->session['user'];
+            if (isset($user) && !empty($user)) {
+                return $user;
+            }
+        }
+    }*/
+    /* faire plutôt une fonction isLogged(): bool?*/
+
+
 
 
 } 
