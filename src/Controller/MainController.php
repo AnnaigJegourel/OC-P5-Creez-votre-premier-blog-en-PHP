@@ -21,7 +21,12 @@ abstract class MainController
     /**
      * @var array
      */
-    /*private $session = [];*/
+    private $session = [];
+
+    /**
+     * @var array
+     */
+    private $cookie = [];
 
     /**
      * @var array
@@ -41,7 +46,8 @@ abstract class MainController
     public function __construct()
         {
             $this->twig = new Environment(new FilesystemLoader("../src/View"), array("cache"=>false));
-            /*$this->session = filter_var_array($_SESSION) ?? [];*/
+            $this->session = filter_var_array($_SESSION) ?? [];
+            $this->cookie   = filter_input_array(INPUT_COOKIE) ?? [];
             /*$this->post     = filter_input_array(INPUT_POST) ?? [];*/
             $this->get     = filter_input_array(INPUT_GET) ?? [];
         }
@@ -68,22 +74,9 @@ abstract class MainController
      */
     protected function getSession()
     {
-        return filter_var_array($_SESSION) ?? [];
+        return $this->session;
     }
-
-
-    /**
-     * Gets USER Array
-     * @param  mixed $key
-     * @return array|string
-     */
-    public function getUser(string $value, string $key)
-    {
-        $value = $this->value;
-        $key = $this->key;
-        return ModelFactory::getModel("User")->readData(strval($value), $key);
-    }
-
+    
 
     /**
      * Gets POST Array or Post Var
@@ -131,6 +124,24 @@ abstract class MainController
     {
         return $this->get["id"];
         /*return filter_input(INPUT_GET, "id"); si utilisé qu'une fois*/
+    }
+
+
+    /* ******************** SETTERS ******************** *\
+
+    /**
+     * Set Cookie
+     * @param string $name
+     * @param string $value
+     * @param int $expire
+     */
+    protected function setCookie(string $name, string $value = "", int $expire = 0) {
+
+        if ($expire === 0) {
+            $expire = time() + 3600;
+        }
+
+        setcookie($name, $value, $expire, "/");
     }
 
 };
