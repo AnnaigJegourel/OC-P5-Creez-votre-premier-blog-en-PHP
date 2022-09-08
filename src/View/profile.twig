@@ -1,6 +1,6 @@
 {% extends "layout/layout.twig" %}
 
-{% block title %}Bonjour, {{data.name}}!{% endblock %}
+{% block title %}Bonjour, {{user.name}}!{% endblock %}
 
 {% block description %}Page de profil U{% endblock %}
 
@@ -8,7 +8,7 @@
     <main id="profile">
 
         <p>Voici tes informations saisies:</p>
-        <p>le nom saisi = {{data.name}}</p>
+        <p>l'e-mail saisi = {{data.email}}</p>
         <p>le mot de passe saisi = {{data.pwd}}</p>
 
     </main>
