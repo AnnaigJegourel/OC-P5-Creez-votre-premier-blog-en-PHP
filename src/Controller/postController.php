@@ -96,9 +96,9 @@ class PostController extends MainController
         $user_id = 1;
         
         $data = [
-            'title' => self::getPost()['title'],
-            'intro' => self::getPost()['intro'],
-            'content' => self::getPost()['content'],
+            'title' => $this->getPost()['title'],
+            'intro' => $this->getPost()['intro'],
+            'content' => $this->getPost()['content'],
             'date_created' => $date_created,
             'user_id' => $user_id
         ];
@@ -143,9 +143,9 @@ class PostController extends MainController
         $date_updated = $date_updated->format('Y-m-d H:i:s');
                 
         $data = [
-            'title' => self::getPost()['title'],
-            'intro' => self::getPost()['intro'],
-            'content' => self::getPost()['content'],
+            'title' => $this->getPost()['title'],
+            'intro' => $this->getPost()['intro'],
+            'content' => $this->getPost()['content'],
             'date_updated' => $date_updated
         ];
         

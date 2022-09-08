@@ -33,7 +33,7 @@ class UserController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function getAllUsers()
+    private function getAllUsers()
     {
         $allUsers = ModelFactory::getModel("User")->listData();
 
@@ -63,7 +63,7 @@ class UserController extends MainController
      */
     public function loginMethod()
     {
-        $data = self::getPost();
+        $data = $this->getPost();
         $user = ModelFactory::getModel('User')->readData(strval($data['name']), 'name');
 
         if ($data['pwd'] !== $user['password']) {

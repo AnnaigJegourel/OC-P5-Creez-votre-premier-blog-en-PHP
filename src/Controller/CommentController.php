@@ -29,9 +29,9 @@ class CommentController extends MainController {
         $user_id = 1;
         
         $data = [
-            'title' => self::getPost()['title'],
-            'content' => self::getPost()['content'],
-            'post_id' => self::getId(),
+            'title' => $this->getPost()['title'],
+            'content' => $this->getPost()['content'],
+            'post_id' => $this->getId(),
             'date_created' => $date_created,
             'user_id' => $user_id
         ];
@@ -44,7 +44,7 @@ class CommentController extends MainController {
     
     public function commentdeleteMethod()
     {
-        $id = self::getId();   
+        $id = $this->getId();   
 
         ModelFactory::getModel("Comment")->deleteData(strval($id));
 
