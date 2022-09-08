@@ -69,7 +69,7 @@ class UserController extends MainController
         if ($data["pwd"] !== $user["password"]) {
             return $this->twig->render("error.twig");
         } else {
-            return $this->twig->render("profile.twig", ["saisie"=> $data]);
+            return $this->twig->render("profile.twig", ["data"=> $data]);
         }
 
         /* Pourquoi ça ne marche pas avec getUser() ?? */
