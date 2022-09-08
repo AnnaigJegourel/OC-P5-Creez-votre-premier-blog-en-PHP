@@ -66,13 +66,17 @@ class UserController extends MainController
         $data = $this->getPost();
         $user = ModelFactory::getModel("User")->readData(strval($data["email"]), "email");
 
-        if ($data["pwd"] !== $user["password"]) {
+        if(empty($user)) {
             return $this->twig->render("error.twig");
         } else {
-            return $this->twig->render("profile.twig", [
-                "data" => $data,
-                "user" => $user
-            ]);
+            if ($data["pwd"] !== $user["password"]) {
+                return $this->twig->render("error.twig");
+            } else {
+                return $this->twig->render("profile.twig", [
+                    "data" => $data,
+                    "user" => $user
+                ]);
+            }    
         }
 
         /* Pourquoi ça ne marche pas avec getUser() ?? */
