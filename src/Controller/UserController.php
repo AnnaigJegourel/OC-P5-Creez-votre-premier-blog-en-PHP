@@ -64,16 +64,16 @@ class UserController extends MainController
     public function loginMethod()
     {
         $data = $this->getPost();
-        $user = ModelFactory::getModel('User')->readData(strval($data['name']), 'name');
+        $user = ModelFactory::getModel("User")->readData(strval($data["name"]), "name");
 
-        if ($data['pwd'] !== $user['password']) {
+        if ($data["pwd"] !== $user["password"]) {
             return $this->twig->render("error.twig");
         } else {
             return $this->twig->render("profile.twig", ["saisie"=> $data]);
         }
 
         /* Pourquoi ça ne marche pas avec getUser() ?? */
-        /* $user = self::getUser(strval($data['name']), 'name'); */
+        /* $user = self::getUser(strval($data["name"]), "name"); */
         /*         var_dump($user);die(); donne : "bool(false)" */
         /*         tracy : undefined $value / $key + lignes 82/83 dans MainController */
 

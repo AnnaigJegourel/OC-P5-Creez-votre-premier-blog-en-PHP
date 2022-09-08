@@ -81,7 +81,7 @@ abstract class MainController
     {
         $value = $this->value;
         $key = $this->key;
-        return ModelFactory::getModel('User')->readData(strval($value), $key);
+        return ModelFactory::getModel("User")->readData(strval($value), $key);
     }
 
 
@@ -129,8 +129,8 @@ abstract class MainController
      */
     protected function getId()
     {
-        return $this->get['id'];
-        /*return filter_input(INPUT_GET, 'id'); si utilisé qu'une fois*/
+        return $this->get["id"];
+        /*return filter_input(INPUT_GET, "id"); si utilisé qu'une fois*/
     }
 
 };
