@@ -189,26 +189,25 @@ class UserController extends MainController
         return $this->twig->render("updated.twig", ["message" => $message]);
     }
 
-    
-
 
     /* ***************** DELETE ***************** */
     /**
-     * Deletes a post
+     * Deletes a User Account
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function postdeleteMethod()
+    public function userdeleteMethod()
     {
-        $id = $this->getId();   
-
-        ModelFactory::getModel("Comment")->deleteData(strval($id), "post_id");
+        $session = $this->getSession();
+        $user = $session['user'];
+        $user_id = $user['id'];
     
-        ModelFactory::getModel("Post")->deleteData(strval($id));
+        ModelFactory::getModel("User")->deleteData(strval($user_id));
 
-        return $this->twig->render("deleted.twig");
+        $message = "Votre compte a bien été supprimé.";
+        return $this->twig->render("deleted.twig", ["message" => $message]);
     }
 
 
