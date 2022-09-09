@@ -74,6 +74,7 @@ CREATE TABLE IF NOT EXISTS `Comment` (
     `date_created` DATETIME NOT NULL,
     `title` VARCHAR(100) NOT NULL,
     `content` MEDIUMTEXT NOT NULL,
+    `approved` TINYINT(1) UNSIGNED NOT NULL,
     `user_id` SMALLINT UNSIGNED NOT NULL,
     `post_id` SMALLINT UNSIGNED NOT NULL,
     CONSTRAINT `comment_fk_user_id`
