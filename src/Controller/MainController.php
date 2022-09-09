@@ -144,4 +144,21 @@ abstract class MainController
         setcookie($name, $value, $expire, "/");
     }
 
+
+    /* ***************** CHECK ADMIN ***************** */
+    /**
+     * Checks if logged User is Admin
+     * @return bool
+     */
+    protected function isAdmin() {
+        $session = $this->getSession();
+        $user = $session['user'];
+        
+        if (isset($user) && !empty($user) && $user['role'] === "1") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 };

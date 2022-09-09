@@ -28,7 +28,7 @@ INSERT INTO `User`
 (`name`, `email`, `password`, `date_created`, `role`)
 VALUES
 ("John", "john@doe.com", "john465", "2022-07-30", 0),
-("Jane", "jane@doe.com", "jane465", "2022-07-31", 0);
+("Jane", "jane@doe.com", "jane465", "2022-07-31", 0),
 ("Annaig", "a_jegourel@yahoo.fr", "aj57", "2022-09-09", 1);
 
 
@@ -89,5 +89,5 @@ INSERT INTO `Comment`
 (`date_created`, `title`, `content`, `user_id`, `post_id`)
 VALUES
 ("2022-08-28", "mon comm sur le 1e article", "Je commente le premier article du blog", 2, 1),
-("2022-08-29", "commentaire! du 1er article", "Jai encore un truc à dire sur ce premier article", 2, 1),
+("2022-08-29", "2e commentaire du 1er article", "Jai encore un truc à dire sur ce premier article", 2, 1),
 ("2022-08-27", "Ceci est un commentaire sur le 2e article", "Jai un avis sur ton artcile", 2, 2);

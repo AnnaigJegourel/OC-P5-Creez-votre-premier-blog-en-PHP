@@ -53,9 +53,14 @@ class UserController extends MainController
      */
     public function readAllUsersMethod()
     {
-        $allUsers = $this->getAllUsers();
+        if ($this->isAdmin()) {
+            $allUsers = $this->getAllUsers();
 
-        return $this->twig->render("userslist.twig", ["allUsers" => $allUsers]);
+            return $this->twig->render("userslist.twig", ["allUsers" => $allUsers]);    
+        } else {
+            $message = "Vous n'avez pas accès à la liste des utilisateurs du site.";
+            return $this->twig->render("error.twig", ["message" => $message]);
+        }
     }
 
     /**
