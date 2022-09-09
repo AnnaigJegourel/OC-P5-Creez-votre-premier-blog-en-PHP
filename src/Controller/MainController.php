@@ -28,11 +28,6 @@ abstract class MainController
      */
     private $cookie = [];
 
-    /**
-     * @var array
-     */
-    /*private $post = [];*/
-
         /**
      * @var array
      */
@@ -48,7 +43,6 @@ abstract class MainController
             $this->twig = new Environment(new FilesystemLoader("../src/View"), array("cache"=>false));
             $this->session = filter_var_array($_SESSION) ?? [];
             $this->cookie   = filter_input_array(INPUT_COOKIE) ?? [];
-            /*$this->post     = filter_input_array(INPUT_POST) ?? [];*/
             $this->get     = filter_input_array(INPUT_GET) ?? [];
         }
     
@@ -112,6 +106,28 @@ abstract class MainController
         return $this->get[$var] ?? "";
         /*return filter_input(INPUT_GET, $var);*/
     }
+
+    /**
+     * Gets USER
+     */
+    protected function getUser()
+    {
+        if (isset($session) && isset($session['user'])) {
+            $session = $this->getSession();
+            return $session['user'];
+        }
+    }
+
+    /**
+     * Gets USER ID
+     */
+    protected function getUserId()
+    {
+        $user = $this->getUser();
+        return $user['id'];
+    }
+
+
 
     /**
      * Returns current ID
