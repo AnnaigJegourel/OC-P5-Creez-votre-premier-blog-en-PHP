@@ -29,6 +29,7 @@ INSERT INTO `User`
 VALUES
 ("John", "john@doe.com", "john465", "2022-07-30", 0),
 ("Jane", "jane@doe.com", "jane465", "2022-07-31", 0);
+("Annaig", "a_jegourel@yahoo.fr", "aj57", "2022-09-09", 1);
 
 
 -- -----------------------------------------------------
