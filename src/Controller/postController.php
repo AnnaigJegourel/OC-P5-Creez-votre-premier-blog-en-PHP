@@ -78,7 +78,11 @@ class PostController extends MainController
      */
     public function createpostformMethod()
     {
-        return $this->twig->render("postcreate.twig");
+        if ($this->isAdmin()) {
+            return $this->twig->render("postcreate.twig");
+        } else {
+            $message = "Vous ne disposez pas des droits pour créer un article.";                return $this->twig->render("error.twig", ["message" => $message]);
+        }
     }
 
     /**
@@ -125,14 +129,19 @@ class PostController extends MainController
      */
     public function updatepostformMethod()
     {
-        $id = self::getId();   
-        if (!isset($id)) 
-        {
-            return $this->twig->render("error.twig");
-        }
+        if ($this->isAdmin()) {
+            $id = self::getId();   
+            if (!isset($id)) 
+            {
+                return $this->twig->render("error.twig");
+            }
+    
+            $post = ModelFactory::getModel("Post")->readData(strval($id));
+            return $this->twig->render("postupdate.twig",["post" => $post]);
 
-        $post = ModelFactory::getModel("Post")->readData(strval($id));
-        return $this->twig->render("postupdate.twig",["post" => $post]);
+        } else {
+            $message = "Vous ne disposez pas des droits pour modifier un article.";                return $this->twig->render("error.twig", ["message" => $message]);
+        }
     }
 
     public function postupdateMethod()
@@ -166,13 +175,14 @@ class PostController extends MainController
      */
     public function postdeleteMethod()
     {
-        $id = $this->getId();   
-
-        ModelFactory::getModel("Comment")->deleteData(strval($id), "post_id");
+        if ($this->isAdmin()) {
+            $id = $this->getId();   
+            ModelFactory::getModel("Comment")->deleteData(strval($id), "post_id");
+            ModelFactory::getModel("Post")->deleteData(strval($id));
     
-        ModelFactory::getModel("Post")->deleteData(strval($id));
-
-        return $this->twig->render("deleted.twig");
+            return $this->twig->render("deleted.twig");
+        } else {
+            $message = "Vous ne disposez pas des droits pour supprimer un article.";                return $this->twig->render("error.twig", ["message" => $message]);
+        }
     }
-
 }
