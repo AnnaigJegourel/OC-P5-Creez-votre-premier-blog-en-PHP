@@ -14,6 +14,7 @@ class CommentController extends MainController {
         self::redirect("home");
     }
 
+
     /**
      * Manages comment creation
      * @return string
@@ -25,7 +26,8 @@ class CommentController extends MainController {
     {
         $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
         $date_created = $date_created->format("Y-m-d H:i:s");
-
+        
+        /* getUserId */
         $user_id = 1;
         
         $data = [
@@ -52,4 +54,45 @@ class CommentController extends MainController {
     }
 
 
+    /**
+     * Renders the View Comments List
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function commentslistMethod()
+    {
+        if ($this->isAdmin()) {
+            $allComments = ModelFactory::getModel("Comment")->listData();
+
+            return $this->twig->render("commentslist.twig", ["allComments" => $allComments]);
+        } else {
+            $message = "Vous n'êtes pas autorisé à voir la liste des commentaires";
+            
+            return $this->twig->render("error.twig", ["message" => $message]);
+        }
+    }
+
+
+    /**
+     * Manages Admin's comments choice
+     */
+    public function commentapproveMethod()
+    {
+        $choice = $this->getPost()["value"];
+        var_dump($choice);die;
+        $data = ["approved" => intval($choice)];
+        $comment_id = $this->getId();
+
+        if ($choice === "1") {
+            $approved = "approuvé";
+        } elseif ($choice === "2") {
+            $approved = "refusé";
+        };
+
+        ModelFactory::getModel("Comment")->updateData(strval($comment_id), $data);
+
+        return $this->twig->render("approved.twig", ["approved" => $approved]);
+    }
 }
