@@ -1,0 +1,39 @@
+{% extends "layout/layout.twig" %}
+
+{% block title %}Les commentaires{% endblock %}
+
+{% block description %}Page listant tous les commentaires d'un U (ou du site pour l'admin){% endblock %}
+
+{% block main %}
+    <main id="commentslist">
+
+        <section>
+            <h2>Liste des commentaires :</h2>
+
+            <ul class="commentInList">
+                {% for comment in allComments %}
+                    <li> <strong> {{ comment.date_created }} </strong> <hr> {{ comment.title }} </li>
+                    <li> {{ comment.content }} </li>
+                    <li> Auteur :{{ comment.user_id }} <hr> Article : </li>
+                    <li> {{comment.approved}} </li>
+                    
+                    <li>
+                        <form method="post" action="index.php?access=comment!commentapprove&id={{comment.id}}">
+                            <fieldset>
+                                <input type="radio" name="approve" value="1">
+                                <label for="approve">approuver le commentaire</label><br>
+
+                                <input type="radio" name="approve" value="2">
+                                <label for="approve">refuser le commentaire</label><br>
+                                
+                                <input type="submit" value="Envoyer">
+                            </fieldset>
+                        </form>
+                    </li>
+
+                {% endfor %}
+            </ul>
+        </section>
+
+    </main>
+{% endblock %}
