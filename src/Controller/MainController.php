@@ -117,6 +117,24 @@ abstract class MainController
             return $session['user'];
         }
     }*/
+    /**
+     * Gets USER
+     * Returns the data of current logged User
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    protected function getUser($id)
+    {
+        if (isset($id) && !empty($id)) {
+            $user = ModelFactory::getModel("User")->readData(strval($id));
+        } else {
+            $session = $this->getSession();
+            $user = $session["user"];
+        }       
+        return $user;
+    }
 
 
     /**
