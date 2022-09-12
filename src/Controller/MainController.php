@@ -110,22 +110,30 @@ abstract class MainController
     /**
      * Gets USER
      */
-    protected function getUser()
+    /*protected function getUser()
     {
         if (isset($session) && isset($session['user'])) {
             $session = $this->getSession();
             return $session['user'];
         }
-    }
+    }*/
+
 
     /**
      * Gets USER ID
+     * Returns the id of the current logged User
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
      */
     protected function getUserId()
     {
-        $user = $this->getUser();
-        return $user['id'];
+        $session = $this->getSession();
+        $id = $session["user"]["id"];
+        return $id;
     }
+
 
 
 
