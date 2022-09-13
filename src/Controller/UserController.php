@@ -83,7 +83,7 @@ class UserController extends MainController
             return $this->twig->render("error.twig", ["message" => $message]);
         } else {
             $user = ModelFactory::getModel("User")->readData(strval($id));
-            return $this->twig->render("profile.twig", ["user" => $user,]);    
+            return $this->twig->render("profile.twig", ["user" => $user]);    
         }
     }
 

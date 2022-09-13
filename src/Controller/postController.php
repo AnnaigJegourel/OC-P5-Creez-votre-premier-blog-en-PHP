@@ -25,10 +25,24 @@ class PostController extends MainController
     public function defaultMethod()
     {
         $allPosts = ModelFactory::getModel("Post")->listData();
+        /*var_dump($allPosts);die();*/
 
         return $this->twig->render("postslist.twig", ["allPosts" => $allPosts]);
     }
 
+        /**
+     * Returns the comments of a post
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function getComments()
+    {
+        return ModelFactory::getModel("Comment")->listData($this->getId(), "post_id");
+    }
+
+    
     /**
      * Renders the View Post
      * @return string
@@ -47,7 +61,7 @@ class PostController extends MainController
         $post = ModelFactory::getModel("Post")->readData(strval($id));
 
         $author = $this->getUser($post['user_id']);
-        var_dump($author);
+        /*var_dump($author);*/
 
         $session = $this->getSession();
 
@@ -61,17 +75,6 @@ class PostController extends MainController
         ]);
     }
 
-    /**
-     * Returns the comments of a post
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    public function getComments()
-    {
-        return ModelFactory::getModel("Comment")->listData($this->getId(), "post_id");
-    }
 
     /**
      * Renders the view create post form
