@@ -24,23 +24,29 @@ class CommentController extends MainController {
      */
     public function commentcreateMethod()
     {
-        $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
-        $date_created = $date_created->format("Y-m-d H:i:s");
-        
-        /* getUserId */
-        $user_id = 1;
-        
-        $data = [
-            "title" => $this->getPost()["title"],
-            "content" => $this->getPost()["content"],
-            "post_id" => $this->getId(),
-            "date_created" => $date_created,
-            "user_id" => $user_id
-        ];
-        
-        $comment = ModelFactory::getModel("Comment")->createData($data);
+        $user_id = $this->getUserId();
 
-        return $this->twig->render("post.twig", ["comment" => $comment]);
+        if (!isset($user_id) || empty($user_id)) 
+        {
+            $message = "Vous devez vous connecter pour écrire un commentaire.";
+            return $this->twig->render("error.twig", ["message" => $message]);
+
+        } else {
+            $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+            $date_created = $date_created->format("Y-m-d H:i:s");
+        
+            $data = [
+                "title" => $this->getPost()["title"],
+                "content" => $this->getPost()["content"],
+                "post_id" => $this->getId(),
+                "date_created" => $date_created,
+                "user_id" => $user_id
+            ];
+        
+            $comment = ModelFactory::getModel("Comment")->createData($data);
+
+            return $this->twig->render("post.twig", ["comment" => $comment]);
+        }
     }
 
     
