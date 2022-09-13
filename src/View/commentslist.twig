@@ -2,7 +2,7 @@
 
 {% block title %}Les commentaires{% endblock %}
 
-{% block description %}Page listant tous les commentaires d'un U (ou du site pour l'admin){% endblock %}
+{% block description %}Page listant tous les commentaires du site{% endblock %}
 
 {% block main %}
     <main id="commentslist">
@@ -12,10 +12,12 @@
 
             <ul class="commentInList">
                 {% for comment in allComments %}
-                    <li> <strong> {{ comment.date_created }} </strong> <hr> {{ comment.title }} </li>
+                    <li> {{ comment.date_created }} 
+                    <li> <em> {{ comment.title }} </em> </li>
                     <li> {{ comment.content }} </li>
-                    <li> Auteur :{{ comment.user_id }} <hr> Article : </li>
-                    <li> {{comment.approved}} </li>
+                    <li> Auteur :{{ author }} </li>
+                    <li> Article : {{ post.title }} </li>
+                    <li> <strong> statut du commentaire : {{comment.approved}} </strong></li>
                     
                     <li>
                         <form method="post" action="index.php?access=comment!commentapprove&id={{comment.id}}">

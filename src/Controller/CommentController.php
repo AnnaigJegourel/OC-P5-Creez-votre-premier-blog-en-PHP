@@ -75,24 +75,39 @@ class CommentController extends MainController {
     }
 
 
+
     /**
      * Manages Admin's comments choice
      */
-    public function commentapproveMethod()
+    public function commentApproveMethod()
     {
-        $choice = $this->getPost()["value"];
-        var_dump($choice);die;
+        /*var_dump($this->getPost());die(); */
+        /* array(1) { ["approve"]=> string(1) "1" } */
+
+        /* RECUPERER LE CHOIX CLIQUÉ PAR L'ADMIN */
+        $choice = $this->getPost()["approve"];
+        /*  var_dump($choice);die(); */
+        /* string(1) "1" */
+        
+        /* CONVERTIR CE CHOIX EN INT POUR LA BDD */
         $data = ["approved" => intval($choice)];
+        /* var_dump($data); die(); */
+        /* array(1) { ["approved"]=> int(1) } */
+
+        /* RECUPÉRER L'ID DU COMMENTAIRE APPROUVÉ OU REFUSÉ */
         $comment_id = $this->getId();
 
+        /* TRADUIRE LE CHOIX EN MOT POUR L'AFFICHAGE DU MESSAGE */
         if ($choice === "1") {
             $approved = "approuvé";
         } elseif ($choice === "2") {
             $approved = "refusé";
         };
 
+        /* MODIFIER L'ATTRIBUT CORRESPONDANT DANS LA BDD */
         ModelFactory::getModel("Comment")->updateData(strval($comment_id), $data);
 
+        /* RENVOYER VERS LA VUE DU MESSAGE DE SUCCÈS */
         return $this->twig->render("approved.twig", ["approved" => $approved]);
     }
 }
