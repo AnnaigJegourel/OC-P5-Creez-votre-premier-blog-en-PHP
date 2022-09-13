@@ -52,11 +52,42 @@ class CommentController extends MainController {
     
     public function commentdeleteMethod()
     {
-        $id = $this->getId();   
+        /* RECUP L'ID DU USER CONNECTÉ */
+        $user_id = $this->getUserId();
+        /*var_dump($user_id);die();*/
+        /* string = "1" */
 
-        ModelFactory::getModel("Comment")->deleteData(strval($id));
+        /* VERIF SI QQUN EST CONNECTÉ */
+        /* SI NON : MESSAGE D'ERREUR */
+        if (!isset($user_id) || empty($user_id)) 
+        {
+            $message = "Vous devez vous connecter pour supprimer un commentaire.";
+            return $this->twig->render("error.twig", ["message" => $message]);
+        /* SI UN USER EST CONNECTÉ : */
+        } else {
+            /* RECUP */
+            /* récup l'id du commentaire à supprimer */
+            $comment_id = $this->getId();   
 
-        return $this->twig->render("deleted.twig");
+            /* récup l'id de l'auteur du commentaire à supprimer */
+            /*$author_id = getComment($comment_id)[$user_id];*/
+            $comment = ModelFactory::getModel("Comment")->readData(strval($comment_id));
+            $author_id = strval($comment["user_id"]);
+            /*var_dump($author_id);die();*/
+            /* int = 1 */
+
+            /* COMPARE */
+            /* si le User connecté n'est pas l'auteur du comm */
+            if ($user_id !== $author_id){
+                $message = "Vous ne pouvez pas supprimer les commentaires créés par d'autres comptes.";
+                return $this->twig->render("error.twig", ["message" => $message]);    
+            
+             /* si le User connecté est bien l'auteur du comm */
+            } else {
+                ModelFactory::getModel("Comment")->deleteData(strval($comment_id));
+                return $this->twig->render("deleted.twig");
+            }
+        }
     }
 
 
