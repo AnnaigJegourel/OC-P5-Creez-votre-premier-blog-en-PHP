@@ -33,7 +33,6 @@ abstract class MainController
      */
     private $get = [];
 
-
     /**
      * MainController constructor
      * Creates the Template Engine & adds its Extensions
@@ -41,6 +40,7 @@ abstract class MainController
     public function __construct()
         {
             $this->twig = new Environment(new FilesystemLoader("../src/View"), array("cache"=>false));
+            /* Ajouter addslashes() ? */
             $this->session = filter_var_array($_SESSION) ?? [];
             $this->cookie   = filter_input_array(INPUT_COOKIE) ?? [];
             $this->get     = filter_input_array(INPUT_GET) ?? [];
@@ -60,7 +60,6 @@ abstract class MainController
     }
 
     /* *************** GETTERS *************** */
-
     /**
      * Gets SESSION Array
      * @param null|string $var
@@ -71,7 +70,6 @@ abstract class MainController
         return $this->session;
     }
     
-
     /**
      * Gets POST Array or Post Var
      * @param null|string $var
@@ -80,15 +78,12 @@ abstract class MainController
     protected function getPost(string $var = null)
     {
         if ($var === null) {
-
-            /* return $this->post;*/
+            /* Ajouter addslashes() ? */
             return filter_input_array(INPUT_POST);
         }
 
-        /* return $this->post[$var] ?? "";*/
         return filter_input(INPUT_POST, $var);
     }
-
 
     /**
      * Gets GET Array or Get Var
@@ -98,25 +93,13 @@ abstract class MainController
     protected function getGet(string $var = null)
     {
         if ($var === null) {
-
+            /* Ajouter addslashes() ? */
             return $this->get;
-            /*return filter_input_array(INPUT_GET);*/
         }
 
         return $this->get[$var] ?? "";
-        /*return filter_input(INPUT_GET, $var);*/
     }
 
-    /**
-     * Gets USER
-     */
-    /*protected function getUser()
-    {
-        if (isset($session) && isset($session['user'])) {
-            $session = $this->getSession();
-            return $session['user'];
-        }
-    }*/
     /**
      * Gets USER
      * Returns the data of current logged User
@@ -136,7 +119,6 @@ abstract class MainController
         return $user;
     }
 
-
     /**
      * Gets USER ID
      * Returns the id of the current logged User
@@ -152,9 +134,6 @@ abstract class MainController
         return $id;
     }
 
-
-
-
     /**
      * Returns current ID
      * @return string
@@ -165,14 +144,11 @@ abstract class MainController
     protected function getId()
     {
         return $this->get["id"];
-        /*return filter_input(INPUT_GET, "id"); si utilisé qu'une fois*/
     }
 
-
     /* ******************** SETTERS ******************** *\
-
     /**
-     * Set Cookie
+     * Sets Cookie
      * @param string $name
      * @param string $value
      * @param int $expire
@@ -185,7 +161,6 @@ abstract class MainController
 
         setcookie($name, $value, $expire, "/");
     }
-
 
     /* ***************** CHECK ADMIN ***************** */
     /**
