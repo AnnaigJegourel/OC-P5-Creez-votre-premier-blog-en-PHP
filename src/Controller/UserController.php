@@ -42,6 +42,7 @@ class UserController extends MainController
     }
 
 
+
     /* ***************** READ ***************** */
 
     /**
@@ -63,19 +64,6 @@ class UserController extends MainController
         }
     }
 
-    /**
-     * Returns the id of the current logged User
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    /*public function getUserId()
-    {
-        $session = $this->getSession();
-        $user = $session['user'];
-        $id = $user['id'];
-    }*/
 
 
     /**
@@ -87,20 +75,15 @@ class UserController extends MainController
      */
     public function readUserMethod()
     {
-        $session = $this->getSession();
-        /*var_dump($session);die();*/
-        $user = $session['user'];
-        /*var_dump($user);die();*/
-        $id = $user['id'];
-        /* var_dump($id);die();*/
+        $id = $this->getUserId();
 
-        if (!isset($id)) 
+        if (!isset($id) || empty($id)) 
         {
             $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
             return $this->twig->render("error.twig", ["message" => $message]);
         } else {
             $user = ModelFactory::getModel("User")->readData(strval($id));
-            return $this->twig->render("profile.twig", ["user" => $user,]);    
+            return $this->twig->render("profile.twig", ["user" => $user]);    
         }
     }
 
@@ -156,11 +139,7 @@ class UserController extends MainController
      */
     public function updateuserformMethod()
     {
-        /*$id = $this->getUserId();   */
-        $session = $this->getSession();
-        $user = $session['user'];
-        $id = $user['id'];
-        /*var_dump($id);die;*/
+        $id = $this->getUserId();
 
         if (!isset($id)) 
         {

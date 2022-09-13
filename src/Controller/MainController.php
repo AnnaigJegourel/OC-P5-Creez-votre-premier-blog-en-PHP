@@ -28,11 +28,6 @@ abstract class MainController
      */
     private $cookie = [];
 
-    /**
-     * @var array
-     */
-    /*private $post = [];*/
-
         /**
      * @var array
      */
@@ -48,7 +43,6 @@ abstract class MainController
             $this->twig = new Environment(new FilesystemLoader("../src/View"), array("cache"=>false));
             $this->session = filter_var_array($_SESSION) ?? [];
             $this->cookie   = filter_input_array(INPUT_COOKIE) ?? [];
-            /*$this->post     = filter_input_array(INPUT_POST) ?? [];*/
             $this->get     = filter_input_array(INPUT_GET) ?? [];
         }
     
@@ -112,6 +106,54 @@ abstract class MainController
         return $this->get[$var] ?? "";
         /*return filter_input(INPUT_GET, $var);*/
     }
+
+    /**
+     * Gets USER
+     */
+    /*protected function getUser()
+    {
+        if (isset($session) && isset($session['user'])) {
+            $session = $this->getSession();
+            return $session['user'];
+        }
+    }*/
+    /**
+     * Gets USER
+     * Returns the data of current logged User
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    protected function getUser($id)
+    {
+        if (isset($id) && !empty($id)) {
+            $user = ModelFactory::getModel("User")->readData(strval($id));
+        } else {
+            $session = $this->getSession();
+            $user = $session["user"];
+        }       
+        return $user;
+    }
+
+
+    /**
+     * Gets USER ID
+     * Returns the id of the current logged User
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    protected function getUserId()
+    {
+        $session = $this->getSession();
+        $id = $session["user"]["id"];
+        return $id;
+    }
+
+
+
 
     /**
      * Returns current ID

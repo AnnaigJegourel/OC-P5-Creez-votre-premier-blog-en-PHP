@@ -25,10 +25,24 @@ class PostController extends MainController
     public function defaultMethod()
     {
         $allPosts = ModelFactory::getModel("Post")->listData();
+        /*var_dump($allPosts);die();*/
 
         return $this->twig->render("postslist.twig", ["allPosts" => $allPosts]);
     }
 
+        /**
+     * Returns the comments of a post
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function getComments()
+    {
+        return ModelFactory::getModel("Comment")->listData($this->getId(), "post_id");
+    }
+
+    
     /**
      * Renders the View Post
      * @return string
@@ -45,29 +59,22 @@ class PostController extends MainController
         }
 
         $post = ModelFactory::getModel("Post")->readData(strval($id));
+
+        $author = $this->getUser($post['user_id']);
+        /*var_dump($author);*/
+
         $session = $this->getSession();
-        var_dump($session);
 
         $allComments = self::getComments();
 
         return $this->twig->render("post.twig", [
             "post" => $post,
+            "author" => $author,
             "session" => $session,
             "allComments" => $allComments
         ]);
     }
 
-    /**
-     * Returns the comments of a post
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    public function getComments()
-    {
-        return ModelFactory::getModel("Comment")->listData($this->getId(), "post_id");
-    }
 
     /**
      * Renders the view create post form
@@ -97,7 +104,9 @@ class PostController extends MainController
         $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
         $date_created = $date_created->format("Y-m-d H:i:s");
 
-        $user_id = 1;
+        /*$user_id = 1;*/
+        $user_id = $this->getUserId();
+
         
         $data = [
             "title" => $this->getPost()["title"],
