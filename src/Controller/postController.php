@@ -25,12 +25,11 @@ class PostController extends MainController
     public function defaultMethod()
     {
         $allPosts = ModelFactory::getModel("Post")->listData();
-        /*var_dump($allPosts);die();*/
 
         return $this->twig->render("postslist.twig", ["allPosts" => $allPosts]);
     }
 
-        /**
+    /**
      * Returns the comments of a post
      * @return string
      * @throws LoaderError
@@ -42,7 +41,6 @@ class PostController extends MainController
         return ModelFactory::getModel("Comment")->listData($this->getId(), "post_id");
     }
 
-    
     /**
      * Renders the View Post
      * @return string
@@ -59,12 +57,8 @@ class PostController extends MainController
         }
 
         $post = ModelFactory::getModel("Post")->readData(strval($id));
-
-        $author = $this->getUser($post['user_id']);
-        /*var_dump($author);*/
-
+        $author = $this->getUser($post["user_id"]);
         $session = $this->getSession();
-
         $allComments = self::getComments();
 
         return $this->twig->render("post.twig", [
@@ -74,7 +68,6 @@ class PostController extends MainController
             "allComments" => $allComments
         ]);
     }
-
 
     /**
      * Renders the view create post form
@@ -103,31 +96,20 @@ class PostController extends MainController
     {
         $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
         $date_created = $date_created->format("Y-m-d H:i:s");
-
-        /*$user_id = 1;*/
         $user_id = $this->getUserId();
 
-        
         $data = [
-            "title" => $this->getPost()["title"],
-            "intro" => $this->getPost()["intro"],
-            "content" => $this->getPost()["content"],
+            "title" => addslashes($this->getPost()["title"]),
+            "intro" => addslashes($this->getPost()["intro"]),
+            "content" => addslashes($this->getPost()["content"]),
             "date_created" => $date_created,
             "user_id" => $user_id
         ];
         
         ModelFactory::getModel("Post")->createData($data);
-        /*$id = self::getId();   */
 
-        return $this->twig->render("created.twig", [
-            "newpost" => $data
-            /*"post_id" => $id*/
-        ]);
+        return $this->twig->render("created.twig", ["newpost" => $data]);
     }
-    /** 
-    * problèmes d'affichage : apostrophe saisie dans form -> erreur 
-    * "id_user" => $this->getUserId()?
-    */
 
     /**
      * Renders the view update post form
@@ -161,9 +143,9 @@ class PostController extends MainController
         $date_updated = $date_updated->format("Y-m-d H:i:s");
                 
         $data = [
-            "title" => $this->getPost()["title"],
-            "intro" => $this->getPost()["intro"],
-            "content" => $this->getPost()["content"],
+            "title" => addslashes($this->getPost()["title"]),
+            "intro" => addslashes($this->getPost()["intro"]),
+            "content" => addslashes($this->getPost()["content"]),
             "date_updated" => $date_updated
         ];
         
@@ -184,12 +166,13 @@ class PostController extends MainController
      */
     public function postdeleteMethod()
     {
-        if ($this->isAdmin()) {
+        if($this->isAdmin()) {
             $id = $this->getId();   
             ModelFactory::getModel("Comment")->deleteData(strval($id), "post_id");
             ModelFactory::getModel("Post")->deleteData(strval($id));
     
             return $this->twig->render("deleted.twig");
+            
         } else {
             $message = "Vous ne disposez pas des droits pour supprimer un article.";                return $this->twig->render("error.twig", ["message" => $message]);
         }

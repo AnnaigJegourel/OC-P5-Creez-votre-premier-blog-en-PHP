@@ -36,8 +36,8 @@ class CommentController extends MainController {
             $date_created = $date_created->format("Y-m-d H:i:s");
         
             $data = [
-                "title" => $this->getPost()["title"],
-                "content" => $this->getPost()["content"],
+                "title" => addslashes($this->getPost()["title"]),
+                "content" => addslashes($this->getPost()["content"]()),
                 "post_id" => $this->getId(),
                 "date_created" => $date_created,
                 "user_id" => $user_id
@@ -122,7 +122,7 @@ class CommentController extends MainController {
         /* array(1) { ["approve"]=> string(1) "1" } */
 
         /* RECUPERER LE CHOIX CLIQUÉ PAR L'ADMIN */
-        $choice = $this->getPost()["approve"];
+        $choice = addslashes($this->getPost()["approve"]);
         /*  var_dump($choice);die(); */
         /* string(1) "1" */
         
