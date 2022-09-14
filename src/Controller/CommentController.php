@@ -28,8 +28,8 @@ class CommentController extends MainController {
         if (!isset($user_id) || empty($user_id)) 
         {
             $message = "Vous devez vous connecter pour écrire un commentaire.";
-            return $this->twig->render("error.twig", ["message" => $message]);
 
+            return $this->twig->render("message.twig", ["message" => $message]);
         } else {
             $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
             $date_created = $date_created->format("Y-m-d H:i:s");
@@ -42,9 +42,10 @@ class CommentController extends MainController {
                 "user_id" => $user_id
             ];
         
-            $comment = ModelFactory::getModel("Comment")->createData($data);
+            ModelFactory::getModel("Comment")->createData($data);
+            $message = "Votre commentaire a bien été créé. Il sera publié une fois approuvé par l'admin.";
 
-            return $this->twig->render("post.twig", ["comment" => $comment]);
+            return $this->twig->render("message.twig", ["message" => $message]);
         }
     }
 
@@ -63,7 +64,7 @@ class CommentController extends MainController {
         {
             $message = "Vous devez vous connecter pour supprimer un commentaire.";
 
-            return $this->twig->render("error.twig", ["message" => $message]);
+            return $this->twig->render("message.twig", ["message" => $message]);
         } else {
             $comment_id = $this->getId();   
             $comment = ModelFactory::getModel("Comment")->readData(strval($comment_id));
@@ -72,11 +73,12 @@ class CommentController extends MainController {
             if ($user_id !== $author_id){
                 $message = "Vous ne pouvez pas supprimer les commentaires créés par d'autres comptes.";
                 
-                return $this->twig->render("error.twig", ["message" => $message]);    
+                return $this->twig->render("message.twig", ["message" => $message]);    
             } else {
                 ModelFactory::getModel("Comment")->deleteData(strval($comment_id));
-
-                return $this->twig->render("deleted.twig");
+                $message = "Votre commentaire a bien été supprimé.";
+                
+                return $this->twig->render("message.twig", ["message" => $message]);    
             }
         }
     }
@@ -97,7 +99,7 @@ class CommentController extends MainController {
         } else {
             $message = "Vous n'êtes pas autorisé à voir la liste des commentaires";
             
-            return $this->twig->render("error.twig", ["message" => $message]);
+            return $this->twig->render("message.twig", ["message" => $message]);
         }
     }
 
@@ -111,13 +113,13 @@ class CommentController extends MainController {
         $comment_id = $this->getId();
 
         if ($choice === "1") {
-            $approved = "approuvé";
+            $message = "Le commentaire a bien été approuvé et publié.";
         } elseif ($choice === "2") {
-            $approved = "refusé";
+            $message = "Le commentaire a été refusé et ne sera pas publié.";
         };
 
         ModelFactory::getModel("Comment")->updateData(strval($comment_id), $data);
 
-        return $this->twig->render("approved.twig", ["approved" => $approved]);
+        return $this->twig->render("message.twig", ["message" => $message]);
     }
 }

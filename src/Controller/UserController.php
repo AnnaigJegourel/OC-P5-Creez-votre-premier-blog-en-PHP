@@ -57,7 +57,7 @@ class UserController extends MainController
         } else {
             $message = "Vous n'avez pas accès à la liste des utilisateurs du site.";
 
-            return $this->twig->render("error.twig", ["message" => $message]);
+            return $this->twig->render("message.twig", ["message" => $message]);
         }
     }
 
@@ -75,7 +75,7 @@ class UserController extends MainController
         {
             $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
 
-            return $this->twig->render("error.twig", ["message" => $message]);
+            return $this->twig->render("message.twig", ["message" => $message]);
         } else {
             $user = ModelFactory::getModel("User")->readData(strval($id));
 
@@ -119,7 +119,7 @@ class UserController extends MainController
         ModelFactory::getModel("User")->createData($data);
         $message = "Félicitations! Votre compte a bien été créé. Connectez-vous pour commenter les articles.";
 
-        return $this->twig->render("created.twig", ["message" => $message]);
+        return $this->twig->render("message.twig", ["message" => $message]);
     }
 
     /* ***************** UPDATE ***************** */
@@ -137,7 +137,7 @@ class UserController extends MainController
         {
             $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
             
-            return $this->twig->render("error.twig", ["message" => $message]);
+            return $this->twig->render("message.twig", ["message" => $message]);
         }
         $user = ModelFactory::getModel("User")->readData(strval($id));
 
@@ -170,7 +170,7 @@ class UserController extends MainController
         ModelFactory::getModel("User")->updateData(strval($user_id), $data);
         $message = "Votre profil a bien été modifié.";
 
-        return $this->twig->render("updated.twig", ["message" => $message]);
+        return $this->twig->render("message.twig", ["message" => $message]);
     }
 
     /* ***************** DELETE ***************** */
@@ -190,7 +190,7 @@ class UserController extends MainController
         ModelFactory::getModel("User")->deleteData(strval($user_id));
         $message = "Votre compte a bien été supprimé.";
 
-        return $this->twig->render("deleted.twig", ["message" => $message]);
+        return $this->twig->render("message.twig", ["message" => $message]);
     }
 
     /* ***************** LOG ***************** */
@@ -230,12 +230,12 @@ class UserController extends MainController
         if(!$user) {
             $message = "L'e-mail saisi n'est pas dans la base de données.";
 
-            return $this->twig->render("error.twig", ["message" => $message]);
+            return $this->twig->render("message.twig", ["message" => $message]);
         } else {
             if ($data["pwd"] !== $user["password"]) {
                 $message = "Le mot de passe est erroné.";
 
-                return $this->twig->render("error.twig", ["message" => $message]);
+                return $this->twig->render("message.twig", ["message" => $message]);
             } else {
                 self::createSession($user);
 

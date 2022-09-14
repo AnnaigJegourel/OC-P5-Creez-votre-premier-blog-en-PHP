@@ -82,7 +82,9 @@ class PostController extends MainController
 
             return $this->twig->render("postcreate.twig");
         } else {
-            $message = "Vous ne disposez pas des droits pour créer un article.";                return $this->twig->render("error.twig", ["message" => $message]);
+            $message = "Vous ne disposez pas des droits pour créer un article.";                
+            
+            return $this->twig->render("message.twig", ["message" => $message]);
         }
     }
 
@@ -108,8 +110,9 @@ class PostController extends MainController
         ];
         
         ModelFactory::getModel("Post")->createData($data);
-
-        return $this->twig->render("created.twig", ["newpost" => $data]);
+        $message = "Votre article a bien été créé.";                
+            
+        return $this->twig->render("message.twig", ["message" => $message]);
     }
 
     /**
@@ -125,7 +128,9 @@ class PostController extends MainController
             $id = self::getId();   
             if (!isset($id)) 
             {
-                return $this->twig->render("error.twig");
+                $message = "Vous devez être connecté(e) comme admin pour modifier un article.";                
+            
+                return $this->twig->render("message.twig", ["message" => $message]);
             }
             $post = ModelFactory::getModel("Post")->readData(strval($id));
 
@@ -133,7 +138,7 @@ class PostController extends MainController
         } else {
             $message = "Vous ne disposez pas des droits pour modifier un article.";      
             
-            return $this->twig->render("error.twig", ["message" => $message]);
+            return $this->twig->render("message.twig", ["message" => $message]);
         }
     }
 
@@ -154,11 +159,9 @@ class PostController extends MainController
         ];
         
         ModelFactory::getModel("Post")->updateData(strval($post_id), $data);
-
-        return $this->twig->render("updated.twig", [
-            "post" => $data,
-            "post_id" => $post_id
-        ]);
+        $message = "Votre article a bien été modifié.";                
+            
+        return $this->twig->render("message.twig", ["message" => $message]);
     }
 
     /**
@@ -174,12 +177,13 @@ class PostController extends MainController
             $id = $this->getId();   
             ModelFactory::getModel("Comment")->deleteData(strval($id), "post_id");
             ModelFactory::getModel("Post")->deleteData(strval($id));
-    
-            return $this->twig->render("deleted.twig");
+            $message = "Votre article a bien été supprimé.";                
+            
+            return $this->twig->render("message.twig", ["message" => $message]);
         } else {
             $message = "Vous ne disposez pas des droits pour supprimer un article.";
 
-            return $this->twig->render("error.twig", ["message" => $message]);
+            return $this->twig->render("message.twig", ["message" => $message]);
         }
     }
 }
