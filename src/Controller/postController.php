@@ -48,7 +48,7 @@ class PostController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function singlepostMethod()
+    public function readPostMethod()
     {
         $id = self::getId();   
         if (!isset($id)) 
@@ -76,9 +76,10 @@ class PostController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function createpostformMethod()
+    public function createPostFormMethod()
     {
         if ($this->isAdmin()) {
+
             return $this->twig->render("postcreate.twig");
         } else {
             $message = "Vous ne disposez pas des droits pour créer un article.";                return $this->twig->render("error.twig", ["message" => $message]);
@@ -92,7 +93,7 @@ class PostController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function postcreateMethod()
+    public function createPostMethod()
     {
         $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
         $date_created = $date_created->format("Y-m-d H:i:s");
@@ -118,7 +119,7 @@ class PostController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function updatepostformMethod()
+    public function updatePostFormMethod()
     {
         if ($this->isAdmin()) {
             $id = self::getId();   
@@ -126,19 +127,22 @@ class PostController extends MainController
             {
                 return $this->twig->render("error.twig");
             }
-    
             $post = ModelFactory::getModel("Post")->readData(strval($id));
-            return $this->twig->render("postupdate.twig",["post" => $post]);
 
+            return $this->twig->render("postupdate.twig",["post" => $post]);
         } else {
-            $message = "Vous ne disposez pas des droits pour modifier un article.";                return $this->twig->render("error.twig", ["message" => $message]);
+            $message = "Vous ne disposez pas des droits pour modifier un article.";      
+            
+            return $this->twig->render("error.twig", ["message" => $message]);
         }
     }
 
-    public function postupdateMethod()
+    /**
+     * Manages post update
+     */
+    public function updatePostMethod()
     {
         $post_id = self::getId();
-
         $date_updated = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
         $date_updated = $date_updated->format("Y-m-d H:i:s");
                 
@@ -164,7 +168,7 @@ class PostController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function postdeleteMethod()
+    public function deletePostMethod()
     {
         if($this->isAdmin()) {
             $id = $this->getId();   
@@ -172,9 +176,10 @@ class PostController extends MainController
             ModelFactory::getModel("Post")->deleteData(strval($id));
     
             return $this->twig->render("deleted.twig");
-            
         } else {
-            $message = "Vous ne disposez pas des droits pour supprimer un article.";                return $this->twig->render("error.twig", ["message" => $message]);
+            $message = "Vous ne disposez pas des droits pour supprimer un article.";
+
+            return $this->twig->render("error.twig", ["message" => $message]);
         }
     }
 }

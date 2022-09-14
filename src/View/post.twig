@@ -16,14 +16,14 @@
 
             <p> {{ post.intro }} </p>
             <p> {{ post.content }} </p>
-            <p> <a href="index.php?access=post!postdelete&id={{post.id}}" accesskey="dp" title="DeletePost"> supprimer l'article </a> </p>
+            <p> <a href="index.php?access=post!deletePost&id={{post.id}}" accesskey="dp" title="DeletePost"> supprimer l'article </a> </p>
             <p> <a href="index.php?access=post!updatepostform&id={{post.id}}" accesskey="up" title="UpdatePost"> modifier l'article </a> </p>
         </section>
 
         <section>
             <h2>CREER UN COMMENTAIRE POUR CET ARTICLE :</h2>
             <p>post id: {{post.id}}</p>
-            <form method="post" action="index.php?access=comment!commentcreate&id={{post.id}}">Saisissez votre commentaire :
+            <form method="post" action="index.php?access=comment!createcomment&id={{post.id}}">Saisissez votre commentaire :
                 <label for="title">Saisissez un titre : </label>
                 <input type="text" name="title">
 
@@ -44,7 +44,7 @@
                         <li> par {{ comment.user_id }} </li>
                         <li> créé le : {{ comment.date_created }} </li>
                         <li> {{ comment.content }} </li>
-                        <li> <a href="index.php?access=comment!commentdelete&id={{comment.id}}" accesskey="dc" title="DeleteComment">Supprimer ce commentaire </a> </li>
+                        <li> <a href="index.php?access=comment!deletecomment&id={{comment.id}}" accesskey="dc" title="DeleteComment">Supprimer ce commentaire </a> </li>
                     {% endif %}
                 {% endfor %}
             </ul>

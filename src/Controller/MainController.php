@@ -158,7 +158,8 @@ abstract class MainController
         if ($expire === 0) {
             $expire = time() + 3600;
         }
-
+        /* s'auto-appelle?! */
+        /* où est l'utilistation de la variable $cookie?! */
         setcookie($name, $value, $expire, "/");
     }
 
@@ -177,5 +178,4 @@ abstract class MainController
             return false;
         }
     }
-
 };
