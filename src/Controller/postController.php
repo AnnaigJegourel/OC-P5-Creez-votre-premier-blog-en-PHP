@@ -36,7 +36,7 @@ class PostController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function getComments()
+    private function getComments()
     {
         return ModelFactory::getModel("Comment")->listData($this->getId(), "post_id");
     }

@@ -51,7 +51,7 @@ abstract class MainController
      * @param string $page
      * @param array $params
      */
-    public function redirect(string $page, array $params = [])
+    protected function redirect(string $page, array $params = [])
     {
         $params["access"] = $page;
         header("Location: index.php?" . http_build_query($params));
@@ -86,19 +86,20 @@ abstract class MainController
     }
 
     /**
+     * NOT USED !
      * Gets GET Array or Get Var
      * @param null|string $var
      * @return array|string
      */
-    protected function getGet(string $var = null)
+    /*protected function getGet(string $var = null)
     {
-        if ($var === null) {
+        if ($var === null) {*/
             /* Ajouter addslashes() ? */
-            return $this->get;
+            /*return $this->get;
         }
 
         return $this->get[$var] ?? "";
-    }
+    }*/
 
     /**
      * Gets USER
