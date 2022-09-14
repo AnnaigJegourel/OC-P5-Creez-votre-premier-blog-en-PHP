@@ -5,7 +5,7 @@
 {% block description %}Page listant tous les commentaires du site{% endblock %}
 
 {% block main %}
-    <main id="commentslist">
+    <main id="listComments">
 
         <section>
             <h2>Liste des commentaires :</h2>
@@ -20,7 +20,7 @@
                     <li> <strong> statut du commentaire : {{comment.approved}} </strong></li>
                     
                     <li>
-                        <form method="post" action="index.php?access=comment!commentapprove&id={{comment.id}}">
+                        <form method="post" action="index.php?access=comment!approvecomment&id={{comment.id}}">
                             <fieldset>
                                 <input type="radio" name="approve" value="1">
                                 <label for="approve">approuver le commentaire</label><br>

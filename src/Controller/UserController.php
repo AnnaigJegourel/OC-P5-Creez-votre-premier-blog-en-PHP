@@ -48,17 +48,16 @@ class UserController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function readAllUsersMethod()
+    public function listUsersMethod()
     {
         if ($this->isAdmin()) {
             $allUsers = $this->getAllUsers();
 
-            return $this->twig->render("userslist.twig", ["allUsers" => $allUsers]);  
-
+            return $this->twig->render("listUsers.twig", ["allUsers" => $allUsers]);  
         } else {
             $message = "Vous n'avez pas accès à la liste des utilisateurs du site.";
 
-            return $this->twig->render("error.twig", ["message" => $message]);
+            return $this->twig->render("message.twig", ["message" => $message]);
         }
     }
 
@@ -76,7 +75,7 @@ class UserController extends MainController
         {
             $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
 
-            return $this->twig->render("error.twig", ["message" => $message]);
+            return $this->twig->render("message.twig", ["message" => $message]);
         } else {
             $user = ModelFactory::getModel("User")->readData(strval($id));
 
@@ -92,9 +91,9 @@ class UserController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function createuserformMethod()
+    public function createUserFormMethod()
     {
-        return $this->twig->render("usercreate.twig");
+        return $this->twig->render("createUser.twig");
     }
 
     /**
@@ -104,7 +103,7 @@ class UserController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function usercreateMethod()
+    public function createUserMethod()
     {
         $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
         $date_created = $date_created->format("Y-m-d H:i:s");
@@ -120,7 +119,7 @@ class UserController extends MainController
         ModelFactory::getModel("User")->createData($data);
         $message = "Félicitations! Votre compte a bien été créé. Connectez-vous pour commenter les articles.";
 
-        return $this->twig->render("created.twig", ["message" => $message]);
+        return $this->twig->render("message.twig", ["message" => $message]);
     }
 
     /* ***************** UPDATE ***************** */
@@ -131,20 +130,28 @@ class UserController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function updateuserformMethod()
+    public function updateUserFormMethod()
     {
         $id = $this->getUserId();
         if (!isset($id)) 
         {
             $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
-            return $this->twig->render("error.twig", ["message" => $message]);
+            
+            return $this->twig->render("message.twig", ["message" => $message]);
         }
         $user = ModelFactory::getModel("User")->readData(strval($id));
 
-        return $this->twig->render("userupdate.twig",["user" => $user]);
+        return $this->twig->render("updateUser.twig",["user" => $user]);
     }
 
-    public function userupdateMethod()
+    /**
+     * Manages update user form
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function updateUserMethod()
     {
         $session = $this->getSession();
         $user = $session['user'];
@@ -163,7 +170,7 @@ class UserController extends MainController
         ModelFactory::getModel("User")->updateData(strval($user_id), $data);
         $message = "Votre profil a bien été modifié.";
 
-        return $this->twig->render("updated.twig", ["message" => $message]);
+        return $this->twig->render("message.twig", ["message" => $message]);
     }
 
     /* ***************** DELETE ***************** */
@@ -174,7 +181,7 @@ class UserController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function userdeleteMethod()
+    public function deleteUserMethod()
     {
         $session = $this->getSession();
         $user = $session['user'];
@@ -183,38 +190,10 @@ class UserController extends MainController
         ModelFactory::getModel("User")->deleteData(strval($user_id));
         $message = "Votre compte a bien été supprimé.";
 
-        return $this->twig->render("deleted.twig", ["message" => $message]);
+        return $this->twig->render("message.twig", ["message" => $message]);
     }
 
     /* ***************** LOG ***************** */
-    /**
-     * Logs in User & return user data
-     * @return array\string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    public function loginMethod()
-    {
-        $data = $this->getPost();
-        $user = ModelFactory::getModel("User")->readData(strval($data["email"]), "email");
-
-        if(!$user) {
-            $message = "L'e-mail saisi n'est pas dans la base de données.";
-            return $this->twig->render("error.twig", ["message" => $message]);
-        } else {
-            if ($data["pwd"] !== $user["password"]) {
-                $message = "Le mot de passe est erroné.";
-
-                return $this->twig->render("error.twig", ["message" => $message]);
-            } else {
-                self::createSession($user);
-
-                return $this->twig->render("profile.twig", ["user" => $user]);
-            }    
-        }
-    }
-
     /**
      * Creates a user session
      *
@@ -237,6 +216,35 @@ class UserController extends MainController
     }
 
     /**
+     * Logs in User & return user data
+     * @return array\string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function loginMethod()
+    {
+        $data = $this->getPost();
+        $user = ModelFactory::getModel("User")->readData(strval($data["email"]), "email");
+
+        if(!$user) {
+            $message = "L'e-mail saisi n'est pas dans la base de données.";
+
+            return $this->twig->render("message.twig", ["message" => $message]);
+        } else {
+            if ($data["pwd"] !== $user["password"]) {
+                $message = "Le mot de passe est erroné.";
+
+                return $this->twig->render("message.twig", ["message" => $message]);
+            } else {
+                $this->createSession($user);
+
+                return $this->twig->render("profile.twig", ["user" => $user]);
+            }    
+        }
+    }
+
+    /**
      * Logs out user
      *
      * @return void
@@ -245,6 +253,6 @@ class UserController extends MainController
     {
         setcookie("PHPSESSID", "", time() - 3600, "/");
         session_destroy();
-        $this->redirect('home');
+        $this->redirect("home");
     }
 } 

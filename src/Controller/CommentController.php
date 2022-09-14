@@ -11,9 +11,8 @@ class CommentController extends MainController {
 
     public function defaultMethod()
     {
-        self::redirect("home");
+        $this->redirect("home");
     }
-
 
     /**
      * Manages comment creation
@@ -22,74 +21,67 @@ class CommentController extends MainController {
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function commentcreateMethod()
+    public function createCommentMethod()
     {
         $user_id = $this->getUserId();
 
         if (!isset($user_id) || empty($user_id)) 
         {
             $message = "Vous devez vous connecter pour écrire un commentaire.";
-            return $this->twig->render("error.twig", ["message" => $message]);
 
+            return $this->twig->render("message.twig", ["message" => $message]);
         } else {
             $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
             $date_created = $date_created->format("Y-m-d H:i:s");
         
             $data = [
                 "title" => addslashes($this->getPost()["title"]),
-                "content" => addslashes($this->getPost()["content"]()),
+                "content" => addslashes($this->getPost()["content"]),
                 "post_id" => $this->getId(),
                 "date_created" => $date_created,
                 "user_id" => $user_id
             ];
         
-            $comment = ModelFactory::getModel("Comment")->createData($data);
+            ModelFactory::getModel("Comment")->createData($data);
+            $message = "Votre commentaire a bien été créé. Il sera publié une fois approuvé par l'admin.";
 
-            return $this->twig->render("post.twig", ["comment" => $comment]);
+            return $this->twig->render("message.twig", ["message" => $message]);
         }
     }
 
-    
-    public function commentdeleteMethod()
+        /**
+     * Manages comment delete
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function deleteCommentMethod()
     {
-        /* RECUP L'ID DU USER CONNECTÉ */
         $user_id = $this->getUserId();
-        /*var_dump($user_id);die();*/
-        /* string = "1" */
 
-        /* VERIF SI QQUN EST CONNECTÉ */
-        /* SI NON : MESSAGE D'ERREUR */
         if (!isset($user_id) || empty($user_id)) 
         {
             $message = "Vous devez vous connecter pour supprimer un commentaire.";
-            return $this->twig->render("error.twig", ["message" => $message]);
-        /* SI UN USER EST CONNECTÉ : */
-        } else {
-            /* RECUP */
-            /* récup l'id du commentaire à supprimer */
-            $comment_id = $this->getId();   
 
-            /* récup l'id de l'auteur du commentaire à supprimer */
-            /*$author_id = getComment($comment_id)[$user_id];*/
+            return $this->twig->render("message.twig", ["message" => $message]);
+        } else {
+            $comment_id = $this->getId();   
             $comment = ModelFactory::getModel("Comment")->readData(strval($comment_id));
             $author_id = strval($comment["user_id"]);
-            /*var_dump($author_id);die();*/
-            /* int = 1 */
 
-            /* COMPARE */
-            /* si le User connecté n'est pas l'auteur du comm */
             if ($user_id !== $author_id){
                 $message = "Vous ne pouvez pas supprimer les commentaires créés par d'autres comptes.";
-                return $this->twig->render("error.twig", ["message" => $message]);    
-            
-             /* si le User connecté est bien l'auteur du comm */
+                
+                return $this->twig->render("message.twig", ["message" => $message]);    
             } else {
                 ModelFactory::getModel("Comment")->deleteData(strval($comment_id));
-                return $this->twig->render("deleted.twig");
+                $message = "Votre commentaire a bien été supprimé.";
+                
+                return $this->twig->render("message.twig", ["message" => $message]);    
             }
         }
     }
-
 
     /**
      * Renders the View Comments List
@@ -98,53 +90,36 @@ class CommentController extends MainController {
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function commentslistMethod()
+    public function listCommentsMethod()
     {
         if ($this->isAdmin()) {
             $allComments = ModelFactory::getModel("Comment")->listData();
 
-            return $this->twig->render("commentslist.twig", ["allComments" => $allComments]);
+            return $this->twig->render("listComments.twig", ["allComments" => $allComments]);
         } else {
             $message = "Vous n'êtes pas autorisé à voir la liste des commentaires";
             
-            return $this->twig->render("error.twig", ["message" => $message]);
+            return $this->twig->render("message.twig", ["message" => $message]);
         }
     }
-
-
 
     /**
      * Manages Admin's comments choice
      */
-    public function commentApproveMethod()
+    public function approveCommentMethod()
     {
-        /*var_dump($this->getPost());die(); */
-        /* array(1) { ["approve"]=> string(1) "1" } */
-
-        /* RECUPERER LE CHOIX CLIQUÉ PAR L'ADMIN */
         $choice = addslashes($this->getPost()["approve"]);
-        /*  var_dump($choice);die(); */
-        /* string(1) "1" */
-        
-        /* CONVERTIR CE CHOIX EN INT POUR LA BDD */
         $data = ["approved" => intval($choice)];
-        /* var_dump($data); die(); */
-        /* array(1) { ["approved"]=> int(1) } */
-
-        /* RECUPÉRER L'ID DU COMMENTAIRE APPROUVÉ OU REFUSÉ */
         $comment_id = $this->getId();
 
-        /* TRADUIRE LE CHOIX EN MOT POUR L'AFFICHAGE DU MESSAGE */
         if ($choice === "1") {
-            $approved = "approuvé";
+            $message = "Le commentaire a bien été approuvé et publié.";
         } elseif ($choice === "2") {
-            $approved = "refusé";
+            $message = "Le commentaire a été refusé et ne sera pas publié.";
         };
 
-        /* MODIFIER L'ATTRIBUT CORRESPONDANT DANS LA BDD */
         ModelFactory::getModel("Comment")->updateData(strval($comment_id), $data);
 
-        /* RENVOYER VERS LA VUE DU MESSAGE DE SUCCÈS */
-        return $this->twig->render("approved.twig", ["approved" => $approved]);
+        return $this->twig->render("message.twig", ["message" => $message]);
     }
 }

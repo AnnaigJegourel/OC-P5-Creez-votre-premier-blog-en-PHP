@@ -5,9 +5,9 @@
 {% block description %}Page de modification d'un compte utilisateur{% endblock %}
 
 {% block main %}
-    <main id="userupdate">
+    <main id="updateUser">
 
-        <form method="post" action="index.php?access=user!userupdate&id={{user.id}}">Saisissez vos modifications :
+        <form method="post" action="index.php?access=user!updateuser&id={{user.id}}">Saisissez vos modifications :
             <label for="name">Nom ou pseudo: </label>
 			<input type="text" name="name" value="{{user.name}}">
 
