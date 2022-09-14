@@ -50,7 +50,7 @@ class PostController extends MainController
      */
     public function readPostMethod()
     {
-        $id = self::getId();   
+        $id = $this->getId();   
         if (!isset($id)) 
         {
             $id = "1";
@@ -59,7 +59,7 @@ class PostController extends MainController
         $post = ModelFactory::getModel("Post")->readData(strval($id));
         $author = $this->getUser($post["user_id"]);
         $session = $this->getSession();
-        $allComments = self::getComments();
+        $allComments = $this->getComments();
 
         return $this->twig->render("post.twig", [
             "post" => $post,
@@ -125,7 +125,7 @@ class PostController extends MainController
     public function updatePostFormMethod()
     {
         if ($this->isAdmin()) {
-            $id = self::getId();   
+            $id = $this->getId();   
             if (!isset($id)) 
             {
                 $message = "Vous devez être connecté(e) comme admin pour modifier un article.";                
@@ -147,7 +147,7 @@ class PostController extends MainController
      */
     public function updatePostMethod()
     {
-        $post_id = self::getId();
+        $post_id = $this->getId();
         $date_updated = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
         $date_updated = $date_updated->format("Y-m-d H:i:s");
                 

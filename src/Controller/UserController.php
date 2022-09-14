@@ -237,7 +237,7 @@ class UserController extends MainController
 
                 return $this->twig->render("message.twig", ["message" => $message]);
             } else {
-                self::createSession($user);
+                $this->createSession($user);
 
                 return $this->twig->render("profile.twig", ["user" => $user]);
             }    

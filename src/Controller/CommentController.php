@@ -11,7 +11,7 @@ class CommentController extends MainController {
 
     public function defaultMethod()
     {
-        self::redirect("home");
+        $this->redirect("home");
     }
 
     /**
