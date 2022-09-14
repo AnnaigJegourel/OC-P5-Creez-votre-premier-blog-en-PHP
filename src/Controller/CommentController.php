@@ -95,7 +95,7 @@ class CommentController extends MainController {
         if ($this->isAdmin()) {
             $allComments = ModelFactory::getModel("Comment")->listData();
 
-            return $this->twig->render("commentslist.twig", ["allComments" => $allComments]);
+            return $this->twig->render("listComments.twig", ["allComments" => $allComments]);
         } else {
             $message = "Vous n'êtes pas autorisé à voir la liste des commentaires";
             

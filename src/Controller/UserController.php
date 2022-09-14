@@ -53,7 +53,7 @@ class UserController extends MainController
         if ($this->isAdmin()) {
             $allUsers = $this->getAllUsers();
 
-            return $this->twig->render("userslist.twig", ["allUsers" => $allUsers]);  
+            return $this->twig->render("listUsers.twig", ["allUsers" => $allUsers]);  
         } else {
             $message = "Vous n'avez pas accès à la liste des utilisateurs du site.";
 
@@ -93,7 +93,7 @@ class UserController extends MainController
      */
     public function createUserFormMethod()
     {
-        return $this->twig->render("usercreate.twig");
+        return $this->twig->render("createUser.twig");
     }
 
     /**
@@ -141,7 +141,7 @@ class UserController extends MainController
         }
         $user = ModelFactory::getModel("User")->readData(strval($id));
 
-        return $this->twig->render("userupdate.twig",["user" => $user]);
+        return $this->twig->render("updateUser.twig",["user" => $user]);
     }
 
     /**

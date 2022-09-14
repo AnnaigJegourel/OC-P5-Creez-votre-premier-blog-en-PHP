@@ -26,7 +26,7 @@ class PostController extends MainController
     {
         $allPosts = ModelFactory::getModel("Post")->listData();
 
-        return $this->twig->render("postslist.twig", ["allPosts" => $allPosts]);
+        return $this->twig->render("listPosts.twig", ["allPosts" => $allPosts]);
     }
 
     /**
@@ -80,7 +80,7 @@ class PostController extends MainController
     {
         if ($this->isAdmin()) {
 
-            return $this->twig->render("postcreate.twig");
+            return $this->twig->render("createPost.twig");
         } else {
             $message = "Vous ne disposez pas des droits pour créer un article.";                
             
@@ -134,7 +134,7 @@ class PostController extends MainController
             }
             $post = ModelFactory::getModel("Post")->readData(strval($id));
 
-            return $this->twig->render("postupdate.twig",["post" => $post]);
+            return $this->twig->render("updatePost.twig",["post" => $post]);
         } else {
             $message = "Vous ne disposez pas des droits pour modifier un article.";      
             
