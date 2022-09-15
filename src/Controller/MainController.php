@@ -98,7 +98,7 @@ abstract class MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    protected function getUser($id)
+    protected function getUser($id = null)
     {
         if (isset($id) && !empty($id)) {
             $user = ModelFactory::getModel("User")->readData(strval($id));
@@ -128,16 +128,15 @@ abstract class MainController
 
     /**
      * Checks if a user is connected
+     * @return bool
      */
     protected function isLogged(){
-        $user_id = $this->getUserId();
-
-        if (!isset($user_id) || empty($user_id)) 
-        {
-            $this->redirect("login");
-        } else {
+        $session = $this->getSession();
+        if(!empty($session) && isset($session['user']) && !empty($session['user'])) {
             return true;
-        }
+        } /* else {
+            $this->redirect("login"); 
+        }*/
     }
 
     /**
@@ -145,13 +144,8 @@ abstract class MainController
      * @return bool
      */
     protected function isAdmin() {
-        $session = $this->getSession();
-        $user = $session['user'];
-        
-        if (isset($user) && !empty($user) && $user['role'] === "1") {
+        if ($this->isLogged() && $this->getUser()['role'] === "1"){
             return true;
-        } else {
-            return false;
         }
     }
 };
