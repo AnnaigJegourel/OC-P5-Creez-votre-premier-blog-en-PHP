@@ -26,13 +26,6 @@ abstract class MainController
     /**
      * @var array
      */
-    /*private $cookie = [];*/
-    /* Utilisée où??? */
-
-
-        /**
-     * @var array
-     */
     private $get = [];
 
     /**
@@ -42,9 +35,7 @@ abstract class MainController
     public function __construct()
         {
             $this->twig = new Environment(new FilesystemLoader("../src/View"), array("cache"=>false));
-            /* Ajouter addslashes() ? */
             $this->session = filter_var_array($_SESSION) ?? [];
-            /*$this->cookie   = filter_input_array(INPUT_COOKIE) ?? [];*/
             $this->get     = filter_input_array(INPUT_GET) ?? [];
         }
     
@@ -62,15 +53,6 @@ abstract class MainController
     }
 
     /* *************** GETTERS *************** */
-    /**
-     * Gets SESSION Array
-     * @param null|string $var
-     * @return array|string
-     */
-    protected function getSession()
-    {
-        return $this->session;
-    }
     
     /**
      * Gets POST Array or Post Var
@@ -80,7 +62,6 @@ abstract class MainController
     protected function getPost(string $var = null)
     {
         if ($var === null) {
-            /* Ajouter addslashes() ? */
             return filter_input_array(INPUT_POST);
         }
 
@@ -88,24 +69,30 @@ abstract class MainController
     }
 
     /**
-     * NOT USED !
-     * Gets GET Array or Get Var
+     * Gets SESSION Array
      * @param null|string $var
      * @return array|string
      */
-    /*protected function getGet(string $var = null)
+    protected function getSession()
     {
-        if ($var === null) {*/
-            /* Ajouter addslashes() ? */
-            /*return $this->get;
-        }
+        return $this->session;
+    }
 
-        return $this->get[$var] ?? "";
-    }*/
+    /**
+     * Returns current ID
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    protected function getId()
+    {
+        return $this->get["id"];
+    }
 
     /**
      * Gets USER
-     * Returns the data of current logged User
+     * Returns the data of User with id or of logged User
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
@@ -137,35 +124,22 @@ abstract class MainController
         return $id;
     }
 
+    /* ***************** CHECKERS ***************** */
+
     /**
-     * Returns current ID
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
+     * Checks if a user is connected
      */
-    protected function getId()
-    {
-        return $this->get["id"];
+    protected function isLogged(){
+        $user_id = $this->getUserId();
+
+        if (!isset($user_id) || empty($user_id)) 
+        {
+            $this->redirect("login");
+        } else {
+            return true;
+        }
     }
 
-    /* ******************** SETTERS ******************** */
-    /**
-     * Sets Cookie
-     * @param string $name
-     * @param string $value
-     * @param int $expire
-     */
-    /*protected function setCookie(string $name, string $value = "", int $expire = 0) 
-    {
-        if ($expire === 0) {
-            $expire = time() + 3600;
-        }
-        setcookie($name, $value, $expire, "/");
-    }*/
-    /* Utilisée où??? */
-
-    /* ***************** CHECK ADMIN ***************** */
     /**
      * Checks if logged User is Admin
      * @return bool
