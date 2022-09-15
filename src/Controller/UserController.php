@@ -83,7 +83,7 @@ class UserController extends MainController
         }
     }
 
-    public function adminMethod(){
+    /*public function adminMethod(){
         if (!$this->isAdmin()) 
         {
             $message = "Il faut avoir les droits d'administration pour gérer le site.";
@@ -92,7 +92,7 @@ class UserController extends MainController
         } else {
             return $this->twig->render("admin.twig");    
         }
-    }
+    }*/
 
     /* ***************** CREATE ***************** */
     /**

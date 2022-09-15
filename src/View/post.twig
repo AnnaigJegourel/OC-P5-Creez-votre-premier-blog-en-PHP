@@ -1,6 +1,6 @@
 {% extends "layout/layout.twig" %}
 
-{% block title %}Un article{% endblock %}
+{% block title %}Article du blog{% endblock %}
 
 {% block description %}Page d'un article de blog{% endblock %}
 
@@ -16,8 +16,8 @@
 
             <p> {{ post.intro }} </p>
             <p> {{ post.content }} </p>
-            <p> <a href="index.php?access=post!deletePost&id={{post.id}}" accesskey="dp" title="DeletePost"> supprimer l'article </a> </p>
-            <p> <a href="index.php?access=post!updatepostform&id={{post.id}}" accesskey="up" title="UpdatePost"> modifier l'article </a> </p>
+            <p> <a href="index.php?access=post!deletePost&id={{post.id}}" title="DeletePost"> supprimer l'article </a> </p>
+            <p> <a href="index.php?access=post!updatepostform&id={{post.id}}" title="UpdatePost"> modifier l'article </a> </p>
         </section>
 
         <section>
@@ -42,7 +42,7 @@
                         <li> par {{ comment.user_id }} </li>
                         <li> créé le : {{ comment.date_created }} </li>
                         <li> {{ comment.content }} </li>
-                        <li> <a href="index.php?access=comment!deletecomment&id={{comment.id}}" accesskey="dc" title="DeleteComment">Supprimer ce commentaire </a> </li>
+                        <li> <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">Supprimer ce commentaire </a> </li>
                     {% endif %}
                 {% endfor %}
             </ul>

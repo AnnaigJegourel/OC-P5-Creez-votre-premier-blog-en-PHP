@@ -15,14 +15,14 @@
                     <li> <h3> {{ post.title }} </h3> </li>
                     <li> modifié le :{{ post.date_updated }} </li>
                     <li> <em> {{ post.intro }} </em> </li>
-                    <li> <a href="index.php?access=post!readpost&id={{post.id}}" accesskey="p" title="Post"> vers l'article entier </a> </li>
+                    <li> <a href="index.php?access=post!readpost&id={{post.id}}" title="Post"> vers l'article entier </a> </li>
                 {% endfor %}
             </ul>
         </section>
 
         <section>
             <h2>Créer un article</h2>
-            <p> <a href="index.php?access=post!createpostform" accesskey="cpf" title="Post"> créer un article </a> </p>
+            <p> <a href="index.php?access=post!createpostform" title="Post"> créer un article </a> </p>
         </section>
 
     </main>
