@@ -8,14 +8,11 @@
     <main id="listPosts">
 
         <section>
-            <h2>Liste des articles :</h2>
+            <h2>Tous les articles publiés :</h2>
 
-            <p>Voici la liste de tous les articles publiés :</p>
             <ul class="postInList">
                 {% for post in allPosts %}
                     <li> <h3> {{ post.title }} </h3> </li>
-                    <li> par {{ post.user_id }} </li>
-                    <li> créé le : {{ post.date_created }} </li>
                     <li> modifié le :{{ post.date_updated }} </li>
                     <li> <em> {{ post.intro }} </em> </li>
                     <li> <a href="index.php?access=post!readpost&id={{post.id}}" accesskey="p" title="Post"> vers l'article entier </a> </li>
