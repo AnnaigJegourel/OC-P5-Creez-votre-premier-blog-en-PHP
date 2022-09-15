@@ -37,6 +37,7 @@ class CommentController extends MainController {
             $data = [
                 "title" => addslashes($this->getPost()["title"]),
                 "content" => addslashes($this->getPost()["content"]),
+                "author" => addslashes($this->getPost()["author"]),
                 "post_id" => $this->getId(),
                 "date_created" => $date_created,
                 "user_id" => $user_id

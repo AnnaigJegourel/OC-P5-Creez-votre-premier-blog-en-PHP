@@ -18,21 +18,31 @@
 
         <section>
             <h2>Me contacter</h2>
-            <form method="post" action="index.php?access=home!contact">
-				<p>Sujet 1
-					<input type="radio" name="radio" value="oui"/> oui 
-					<input type="radio" name="radio" value="toutafait"/> tout à fait
-                </p>
-                
-				<p>Sujet 2
-					<input type="checkbox" name="choix" value="non"/> non 
-					<input type="checkbox" name="choix" value="pasdutout"/> pas du tout 
-					<input type="checkbox" name="choix" value="absolumentpas"/> absolument pas
-                </p>
-				
-                <input type="text" name="mail" size="100" placeholder="Ecrivez ici votre message"/>
 
-				<input type="submit" value="Envoyer"/>
+            <form method="post" action="index.php?access=home!contact">
+
+                <fieldset>
+                    <label for="first_name">Votre prénom: </label>
+			        <input type="text" name="first_name">
+
+                    <label for="family_name">Votre nom de famille: </label>
+			        <input type="text" name="family_name">
+                
+                    <label for="email">L'adresse e-mail où vous contacter: </label>
+			        <input type="email" name="email">
+                </fieldset>
+                
+				<fieldset>Votre message concerne :
+					<input type="checkbox" name="choix" value="dev"/>Le développement web, l'informatique 
+					<input type="checkbox" name="choix" value="blog"/>Le blog, les articles, les commentaires 
+					<input type="checkbox" name="choix" value="autre"/>D'autres sujets
+                </fieldset>
+				
+                <fieldset>
+                    <input type="text" name="courrier" size="100" placeholder="Ecrivez ici votre message"/>
+                    <input type="submit" value="Envoyer"/>
+                </fieldset>
+                
 			</form>
 		</section>
     </main>

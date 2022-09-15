@@ -22,11 +22,14 @@
 
         <section>
             <h2>Commentez cet article :</h2>
-            <form method="post" action="index.php?access=comment!createcomment&id={{post.id}}">Saisissez votre commentaire :
-                <label for="title">Saisissez un titre : </label>
+            <form method="post" action="index.php?access=comment!createcomment&id={{post.id}}">Saisissez vos informations:
+                <label for="author">nom ou pseudo: </label>
+                <input type="text" name="author">
+
+                <label for="title">titre: </label>
                 <input type="text" name="title">
 
-                <label for="content">Saisissez votre texte : </label>
+                <label for="content">commentaire: </label>
                 <textarea name="content"></textarea>
                     
                 <input type="submit" value="Envoyer">
@@ -39,7 +42,7 @@
                 {% for comment in allComments %}
                     {% if (comment.approved is same as(1)) %}
                         <li> <h3> {{ comment.title }} </h3> </li>
-                        <li> par {{ comment.user_id }} </li>
+                        <li> par {{ comment.author }} </li>
                         <li> créé le : {{ comment.date_created }} </li>
                         <li> {{ comment.content }} </li>
                         <li> <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">Supprimer ce commentaire </a> </li>
