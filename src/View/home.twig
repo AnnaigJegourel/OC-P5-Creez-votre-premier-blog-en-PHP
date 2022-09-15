@@ -1,28 +1,39 @@
 {% extends "layout/layout.twig" %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Annaig Jégourel{% endblock %}
 
-{% block description %}Homepage of my PHP-MVC Blog{% endblock %}
+{% block description %}Page d'accueil de mon blog en PHP-MVC{% endblock %}
 
 {% block main %}
     <main id="home">
         <section>
-            <h2>Introduction</h2>
-
-            <p>This project is ...</p>
-            <p>You will find the documentation <a href="#">here</a>...</p>
-            <p>Don't hesitate to send <a href="https://github.com/AnnaigJegourel/OC-P5-Creez-votre-premier-blog-en-PHP/issues">issues</a>, I will watch them with interest.</p>
+            <h2>Développement web</h2>
+            <p>
+				<img src="/public/img/portraitPetit.jpg" alt="photo d'identité en couleur"/>
+			</p>
+            <p>Créativité et innovation</p>
+            <p>Vos applications, un développement simple et efficace</p>
+            <p><a href="/public/img/CV.pdf">Voir mon CV en pdf</a></p>
         </section>
 
         <section>
-            <h2>Demonstration</h2>
+            <h2>Me contacter</h2>
+            <form method="post" action="index.php?access=home!contact">
+				<p>Sujet 1
+					<input type="radio" name="radio" value="oui"/> oui 
+					<input type="radio" name="radio" value="toutafait"/> tout à fait
+                </p>
+                
+				<p>Sujet 2
+					<input type="checkbox" name="choix" value="non"/> non 
+					<input type="checkbox" name="choix" value="pasdutout"/> pas du tout 
+					<input type="checkbox" name="choix" value="absolumentpas"/> absolument pas
+                </p>
+				
+                <input type="text" name="mail" size="100" placeholder="Ecrivez ici votre message"/>
 
-            <p>L'admin a accès à la liste des Users: 
-                <a href="index.php?access=user!listUsers" accesskey="rau" title="User">
-                voir la liste
-                </a>
-            </p>
-
-        </section>
+				<input type="submit" value="Envoyer"/>
+			</form>
+		</section>
     </main>
 {% endblock %}
