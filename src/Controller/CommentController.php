@@ -21,6 +21,8 @@ class CommentController extends MainController {
         $this->redirect("home");
     }
 
+    /* ***************** CREATE ***************** */
+
     /**
      * Manages comment creation
      * @return string
@@ -50,7 +52,31 @@ class CommentController extends MainController {
         }
     }
 
-        /**
+    /* ***************** READ ***************** */
+
+    /**
+     * Renders the View Comments List
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function listCommentsMethod()
+    {
+        if ($this->isAdmin()) {
+            $allComments = ModelFactory::getModel("Comment")->listData();
+
+            return $this->twig->render("listComments.twig", ["allComments" => $allComments]);
+        } else {
+            $message = "Vous n'êtes pas autorisé à voir la liste des commentaires";
+            
+            return $this->twig->render("message.twig", ["message" => $message]);
+        }
+    }
+
+    /* ***************** DELETE ***************** */
+
+    /**
      * Manages comment delete
      * @return string
      * @throws LoaderError
@@ -73,25 +99,7 @@ class CommentController extends MainController {
         return $this->twig->render("message.twig", ["message" => $message]);    
     }
 
-    /**
-     * Renders the View Comments List
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    public function listCommentsMethod()
-    {
-        if ($this->isAdmin()) {
-            $allComments = ModelFactory::getModel("Comment")->listData();
-
-            return $this->twig->render("listComments.twig", ["allComments" => $allComments]);
-        } else {
-            $message = "Vous n'êtes pas autorisé à voir la liste des commentaires";
-            
-            return $this->twig->render("message.twig", ["message" => $message]);
-        }
-    }
+    /* ***************** ADMIN ***************** */
 
     /**
      * Manages Admin's comments choice

@@ -15,6 +15,8 @@ use Twig\Error\SyntaxError;
  */
 class PostController extends MainController
 {
+    /* ***************** READ ***************** */
+
     /**
      * Renders the View Posts List
      * @return string
@@ -27,18 +29,6 @@ class PostController extends MainController
         $allPosts = ModelFactory::getModel("Post")->listData();
 
         return $this->twig->render("listPosts.twig", ["allPosts" => $allPosts]);
-    }
-
-    /**
-     * Returns the comments of a post
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    private function getComments()
-    {
-        return ModelFactory::getModel("Comment")->listData($this->getId(), "post_id");
     }
 
     /**
@@ -68,6 +58,8 @@ class PostController extends MainController
             "allComments" => $allComments
         ]);
     }
+
+    /* ***************** CREATE ***************** */
 
     /**
      * Renders the view create post form
@@ -115,6 +107,8 @@ class PostController extends MainController
         return $this->twig->render("message.twig", ["message" => $message]);
     }
 
+    /* ***************** UPDATE ***************** */
+
     /**
      * Renders the view update post form
      * @return string
@@ -157,6 +151,8 @@ class PostController extends MainController
             
         return $this->twig->render("message.twig", ["message" => $message]);
     }
+
+    /* ***************** DELETE ***************** */
 
     /**
      * Deletes a post
