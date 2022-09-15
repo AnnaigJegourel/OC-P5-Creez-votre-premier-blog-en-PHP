@@ -9,42 +9,24 @@
 
         <section>
             <h2>Voici tes informations enregistrées:</h2>
-            <p>ton id = {{user.id}}</p>
-            <p>ton nom = {{user.name}}</p>
             <p>ton e-mail = {{user.email}}</p>
-            <p>ton rôle = {{user.role}}
-            <p>ton mot de passe = {{user.password}}</p>
             <p>la date de création de ton compte = {{user.date_created}}</p>
             <p>la dernière modification de ton compte = cette donnée n'existe pas (encore)</p>
         </section>
 
         <section>
-        <h2>Gérer les commentaires:</h2>
-        <ul>
-            <li>
-                <a href="index.php?access=comment!listcomments&id={{user.id}}" accesskey="lc" title="listComments">
-                Voir tous les commentaires</a>
-            </li>
-        </ul>
+            <h2>Gérer ton compte:</h2>
+            <ul>
+                <li>
+                    <a href="index.php?access=user!updateuserform&id={{user.id}}" title="UpdateUser">
+                    Modifier le profil</a>
+                </li>
+                <li>
+                    <a href="index.php?access=user!deleteuser&id={{user.id}}" title="DeleteUser">
+                    Supprimer le compte </a>
+                </li>
+            </ul>
         </section>
-
-        <section>
-        <h2>Gérer ton compte:</h2>
-        <ul>
-            <li>
-                <a href="index.php?access=user!updateuserform&id={{user.id}}" accesskey="uu" title="UpdateUser">
-                Modifier le profil</a>
-            </li>
-
-            <li>
-                <a href="index.php?access=user!deleteuser&id={{user.id}}" accesskey="du" title="DeleteUser">
-                Supprimer le compte </a>
-            </li>
-
-            <li><a href="index.php?access=user!logout" accesskey="lou" title="Logout">
-                Se déconnecter</a>
-            </li>
-        </ul>
-        </section>
+        
     </main>
 {% endblock %}

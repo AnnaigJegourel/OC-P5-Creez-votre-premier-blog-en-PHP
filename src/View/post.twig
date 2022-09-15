@@ -1,6 +1,6 @@
 {% extends "layout/layout.twig" %}
 
-{% block title %}Un article{% endblock %}
+{% block title %}Article du blog{% endblock %}
 
 {% block description %}Page d'un article de blog{% endblock %}
 
@@ -16,13 +16,12 @@
 
             <p> {{ post.intro }} </p>
             <p> {{ post.content }} </p>
-            <p> <a href="index.php?access=post!deletePost&id={{post.id}}" accesskey="dp" title="DeletePost"> supprimer l'article </a> </p>
-            <p> <a href="index.php?access=post!updatepostform&id={{post.id}}" accesskey="up" title="UpdatePost"> modifier l'article </a> </p>
+            <p> <a href="index.php?access=post!deletePost&id={{post.id}}" title="DeletePost"> supprimer l'article </a> </p>
+            <p> <a href="index.php?access=post!updatepostform&id={{post.id}}" title="UpdatePost"> modifier l'article </a> </p>
         </section>
 
         <section>
-            <h2>CREER UN COMMENTAIRE POUR CET ARTICLE :</h2>
-            <p>post id: {{post.id}}</p>
+            <h2>Commentez cet article :</h2>
             <form method="post" action="index.php?access=comment!createcomment&id={{post.id}}">Saisissez votre commentaire :
                 <label for="title">Saisissez un titre : </label>
                 <input type="text" name="title">
@@ -35,8 +34,7 @@
         </section>
 
         <section>
-            <h2>LIRE!! et supprimer !! TOUS LES COMMENTAIRES DE CET ARTICLE :</h2>
-            <p>Voici l'ensemble des commentaires publiés sur cet article :</p>
+            <h2>Tous les commentaires sur cet article:</h2>
             <ul class="commentsInPost">
                 {% for comment in allComments %}
                     {% if (comment.approved is same as(1)) %}
@@ -44,7 +42,7 @@
                         <li> par {{ comment.user_id }} </li>
                         <li> créé le : {{ comment.date_created }} </li>
                         <li> {{ comment.content }} </li>
-                        <li> <a href="index.php?access=comment!deletecomment&id={{comment.id}}" accesskey="dc" title="DeleteComment">Supprimer ce commentaire </a> </li>
+                        <li> <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">Supprimer ce commentaire </a> </li>
                     {% endif %}
                 {% endfor %}
             </ul>
