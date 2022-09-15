@@ -104,7 +104,7 @@ class CommentController extends MainController {
 
         if ($choice === "1") {
             $message = "Le commentaire a bien été approuvé et publié.";
-        } elseif ($choice === "2") {
+        } elseif ($choice === "0") {
             $message = "Le commentaire a été refusé et ne sera pas publié.";
         };
 
