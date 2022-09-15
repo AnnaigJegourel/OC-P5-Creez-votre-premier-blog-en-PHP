@@ -60,23 +60,17 @@ class CommentController extends MainController {
     public function deleteCommentMethod()
     {
         $user_id = $this->getUserId();
+        $comment_id = $this->getId();   
+        $comment = ModelFactory::getModel("Comment")->readData(strval($comment_id));
+        $author_id = strval($comment["user_id"]);
 
-        if($this->isLogged()){
-            $comment_id = $this->getId();   
-            $comment = ModelFactory::getModel("Comment")->readData(strval($comment_id));
-            $author_id = strval($comment["user_id"]);
-
-            if ($user_id !== $author_id){
-                $message = "Vous ne pouvez pas supprimer les commentaires créés par d'autres comptes.";
-                
-                return $this->twig->render("message.twig", ["message" => $message]);    
+        if($this->isLogged() && ($user_id === $author_id || $this->isAdmin())) {
+            ModelFactory::getModel("Comment")->deleteData(strval($comment_id));
+            $message = "Le commentaire a bien été supprimé.";
             } else {
-                ModelFactory::getModel("Comment")->deleteData(strval($comment_id));
-                $message = "Votre commentaire a bien été supprimé.";
-                
-                return $this->twig->render("message.twig", ["message" => $message]);    
+                $message = "Vous ne pouvez pas supprimer les commentaires créés par d'autres comptes.";
             }
-        }
+        return $this->twig->render("message.twig", ["message" => $message]);    
     }
 
     /**
