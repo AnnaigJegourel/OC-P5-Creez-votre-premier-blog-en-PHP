@@ -21,8 +21,7 @@
         </section>
 
         <section>
-            <h2>CREER UN COMMENTAIRE POUR CET ARTICLE :</h2>
-            <p>post id: {{post.id}}</p>
+            <h2>Commentez cet article :</h2>
             <form method="post" action="index.php?access=comment!createcomment&id={{post.id}}">Saisissez votre commentaire :
                 <label for="title">Saisissez un titre : </label>
                 <input type="text" name="title">
@@ -35,8 +34,7 @@
         </section>
 
         <section>
-            <h2>LIRE!! et supprimer !! TOUS LES COMMENTAIRES DE CET ARTICLE :</h2>
-            <p>Voici l'ensemble des commentaires publiés sur cet article :</p>
+            <h2>Tous les commentaires sur cet article:</h2>
             <ul class="commentsInPost">
                 {% for comment in allComments %}
                     {% if (comment.approved is same as(1)) %}
