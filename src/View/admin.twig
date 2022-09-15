@@ -1,0 +1,23 @@
+{% extends "layout/layout.twig" %}
+
+{% block title %}Administrer le site{% endblock %}
+
+{% block description %}Page d'administration du site{% endblock %}
+
+{% block main %}
+    <main id="admin">
+
+        <ul>
+            <li>
+                <a href="index.php?access=comment!listcomments" accesskey="lc" title="listComments">
+                Gérer les commentaires</a>
+            </li>
+            <li>
+                <a href="index.php?access=user!listUsers" accesskey="rau" title="User">
+                Gérer les utilisateurs
+                </a>
+            </li>
+        </ul>
+
+    </main>
+{% endblock %}

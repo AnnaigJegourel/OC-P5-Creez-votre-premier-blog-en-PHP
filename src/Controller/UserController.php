@@ -83,6 +83,17 @@ class UserController extends MainController
         }
     }
 
+    public function adminMethod(){
+        if (!$this->isAdmin()) 
+        {
+            $message = "Il faut avoir les droits d'administration pour gérer le site.";
+
+            return $this->twig->render("message.twig", ["message" => $message]);
+        } else {
+            return $this->twig->render("admin.twig");    
+        }
+    }
+
     /* ***************** CREATE ***************** */
     /**
      * Renders the view of the form to create a user account
