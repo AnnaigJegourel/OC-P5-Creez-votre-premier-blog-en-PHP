@@ -50,13 +50,13 @@ class PostController extends MainController
      */
     public function readPostMethod()
     {
-        $id = $this->getId();   
-        if (!isset($id)) 
+        $post_id = $this->getId();   
+        if (!isset($post_id)) 
         {
-            $id = "1";
+            $post_id = "1";
         }
 
-        $post = ModelFactory::getModel("Post")->readData(strval($id));
+        $post = ModelFactory::getModel("Post")->readData(strval($post_id));
         $author = $this->getUser($post["user_id"]);
         $session = $this->getSession();
         $allComments = $this->getComments();
@@ -126,12 +126,6 @@ class PostController extends MainController
     {
         if ($this->isAdmin()) {
             $id = $this->getId();   
-            if (!isset($id)) 
-            {
-                $message = "Vous devez être connecté(e) comme admin pour modifier un article.";                
-            
-                return $this->twig->render("message.twig", ["message" => $message]);
-            }
             $post = ModelFactory::getModel("Post")->readData(strval($id));
 
             return $this->twig->render("updatePost.twig",["post" => $post]);
@@ -174,10 +168,10 @@ class PostController extends MainController
     public function deletePostMethod()
     {
         if($this->isAdmin()) {
-            $id = $this->getId();   
-            ModelFactory::getModel("Comment")->deleteData(strval($id), "post_id");
-            ModelFactory::getModel("Post")->deleteData(strval($id));
-            $message = "Votre article a bien été supprimé.";                
+            $post_id = $this->getId();   
+            ModelFactory::getModel("Comment")->deleteData(strval($post_id), "post_id");
+            ModelFactory::getModel("Post")->deleteData(strval($post_id));
+            $message = "L'article a bien été supprimé.";                
             
             return $this->twig->render("message.twig", ["message" => $message]);
         } else {

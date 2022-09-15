@@ -26,11 +26,6 @@ abstract class MainController
     /**
      * @var array
      */
-    private $cookie = [];
-
-        /**
-     * @var array
-     */
     private $get = [];
 
     /**
@@ -40,9 +35,7 @@ abstract class MainController
     public function __construct()
         {
             $this->twig = new Environment(new FilesystemLoader("../src/View"), array("cache"=>false));
-            /* Ajouter addslashes() ? */
             $this->session = filter_var_array($_SESSION) ?? [];
-            $this->cookie   = filter_input_array(INPUT_COOKIE) ?? [];
             $this->get     = filter_input_array(INPUT_GET) ?? [];
         }
     
@@ -60,15 +53,6 @@ abstract class MainController
     }
 
     /* *************** GETTERS *************** */
-    /**
-     * Gets SESSION Array
-     * @param null|string $var
-     * @return array|string
-     */
-    protected function getSession()
-    {
-        return $this->session;
-    }
     
     /**
      * Gets POST Array or Post Var
@@ -78,7 +62,6 @@ abstract class MainController
     protected function getPost(string $var = null)
     {
         if ($var === null) {
-            /* Ajouter addslashes() ? */
             return filter_input_array(INPUT_POST);
         }
 
@@ -86,30 +69,36 @@ abstract class MainController
     }
 
     /**
-     * NOT USED !
-     * Gets GET Array or Get Var
+     * Gets SESSION Array
      * @param null|string $var
      * @return array|string
      */
-    /*protected function getGet(string $var = null)
+    protected function getSession()
     {
-        if ($var === null) {*/
-            /* Ajouter addslashes() ? */
-            /*return $this->get;
-        }
-
-        return $this->get[$var] ?? "";
-    }*/
+        return $this->session;
+    }
 
     /**
-     * Gets USER
-     * Returns the data of current logged User
+     * Returns current ID
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    protected function getUser($id)
+    protected function getId()
+    {
+        return $this->get["id"];
+    }
+
+    /**
+     * Gets USER
+     * Returns the data of User with id or of logged User
+     * @return string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    protected function getUser($id = null)
     {
         if (isset($id) && !empty($id)) {
             $user = ModelFactory::getModel("User")->readData(strval($id));
@@ -135,48 +124,28 @@ abstract class MainController
         return $id;
     }
 
+    /* ***************** CHECKERS ***************** */
+
     /**
-     * Returns current ID
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
+     * Checks if a user is connected
+     * @return bool
      */
-    protected function getId()
-    {
-        return $this->get["id"];
+    protected function isLogged(){
+        $session = $this->getSession();
+        if(!empty($session) && isset($session['user']) && !empty($session['user'])) {
+            return true;
+        } /* else {
+            $this->redirect("login"); 
+        }*/
     }
 
-    /* ******************** SETTERS ******************** *\
-    /**
-     * Sets Cookie
-     * @param string $name
-     * @param string $value
-     * @param int $expire
-     */
-    protected function setCookie(string $name, string $value = "", int $expire = 0) {
-
-        if ($expire === 0) {
-            $expire = time() + 3600;
-        }
-        /* s'auto-appelle?! */
-        /* où est l'utilistation de la variable $cookie?! */
-        setcookie($name, $value, $expire, "/");
-    }
-
-    /* ***************** CHECK ADMIN ***************** */
     /**
      * Checks if logged User is Admin
      * @return bool
      */
     protected function isAdmin() {
-        $session = $this->getSession();
-        $user = $session['user'];
-        
-        if (isset($user) && !empty($user) && $user['role'] === "1") {
+        if ($this->isLogged() && $this->getUser()['role'] === "1"){
             return true;
-        } else {
-            return false;
         }
     }
 };
