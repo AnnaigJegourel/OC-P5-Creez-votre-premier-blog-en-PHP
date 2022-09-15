@@ -75,6 +75,7 @@ CREATE TABLE IF NOT EXISTS `Comment` (
     `title` VARCHAR(100) NOT NULL,
     `content` MEDIUMTEXT NOT NULL,
     `approved` TINYINT(1) UNSIGNED,
+    `author`VARCHAR(50),
     `user_id` SMALLINT UNSIGNED NOT NULL,
     `post_id` SMALLINT UNSIGNED NOT NULL,
     CONSTRAINT `comment_fk_user_id`
@@ -87,8 +88,8 @@ CREATE TABLE IF NOT EXISTS `Comment` (
 
 -- Inserts comments
 INSERT INTO `Comment`
-(`date_created`, `title`, `content`, `user_id`, `post_id`)
+(`date_created`, `title`, `content`, `author`, `user_id`, `post_id`)
 VALUES
-("2022-08-28", "mon comm sur le 1e article", "Je commente le premier article du blog", 2, 1),
-("2022-08-29", "2e commentaire du 1er article", "Jai encore un truc à dire sur ce premier article", 2, 1),
-("2022-08-27", "Ceci est un commentaire sur le 2e article", "Jai un avis sur ton artcile", 2, 2);
+("2022-08-28", "mon comm sur le 1e article", "Je commente le premier article du blog", "Moi", 2, 1),
+("2022-08-29", "2e commentaire du 1er article", "Jai encore un truc à dire sur ce premier article", "Jane", 2, 1),
+("2022-08-27", "Ceci est un commentaire sur le 2e article", "Jai un avis sur ton artcile", "Pas John", 1, 2);
