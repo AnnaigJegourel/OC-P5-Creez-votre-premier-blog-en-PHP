@@ -13,8 +13,12 @@
             <ul>
                 {% for user in allUsers %}
                     <li> <strong> {{ user.name }} </strong> <hr> {{ user.email }} </li>
-                    <li>role: {{ user.role }} </li>
+                    <li>identifiant: {{ user.id }} </li>
                     <li>compte créé le: {{ user.date_created }} </li>
+                    <li>
+                        <a href="index.php?access=user!deleteuser&id={{user.id}}" title="DeleteUser">
+                        Supprimer le compte </a>
+                    </li>
                 {% endfor %}
             </ul>
         </section>
