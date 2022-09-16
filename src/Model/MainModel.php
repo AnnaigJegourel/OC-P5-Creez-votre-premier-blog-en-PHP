@@ -59,16 +59,16 @@ abstract class MainModel
      */
     public function listDataNewest(string $value = null, string $key = null)
     {
+        $newest = "date_updated";
         if (isset($key)) {
-            $query = "SELECT * FROM " . $this->table . " WHERE " . $key . " = ? ORDER BY date_updated DESC";
+            $query = "SELECT * FROM " . $this->table . " WHERE " . $key . " = ? ORDER BY " . $newest . " DESC";
 
             return $this->database->getAllData($query, [$value]);
         }
-        $query = "SELECT * FROM " . $this->table . "ORDER BY date_updated DESC";
+        $query = "SELECT * FROM " . $this->table . " ORDER BY " . $newest . " DESC";
 
         return $this->database->getAllData($query);
     }
-    /* REQUÊTE SQL NE FONCTIONNE PAS !!! ??? */
 
     /**
      * Creates a new Data entry

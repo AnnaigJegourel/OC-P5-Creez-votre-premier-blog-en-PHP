@@ -26,17 +26,10 @@ class PostController extends MainController
      */
     public function defaultMethod()
     {
-        $allPosts = ModelFactory::getModel("Post")->listData();
-
-        return $this->twig->render("listPosts.twig", ["allPosts" => $allPosts]);
-    }
-    /*public function defaultMethod()
-    {
         $allPosts = ModelFactory::getModel("Post")->listDataNewest();
 
         return $this->twig->render("listPosts.twig", ["allPosts" => $allPosts]);
-    }*/
-
+    }
 
     /**
      * Renders the View Post
@@ -105,6 +98,7 @@ class PostController extends MainController
             "intro" => addslashes($this->getPost()["intro"]),
             "content" => addslashes($this->getPost()["content"]),
             "date_created" => $date_created,
+            "date_updated" => $date_created,
             "user_id" => $user_id
         ];
         
