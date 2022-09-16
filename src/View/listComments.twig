@@ -12,11 +12,11 @@
 
             <ul class="commentInList">
                 {% for comment in allComments %}
-                    <li> {{ comment.date_created }} 
-                    <li> <em> {{ comment.title }} </em> </li>
-                    <li> {{ comment.content }} </li>
-                    <li> Auteur :{{ author }} </li>
-                    <li> Article : {{ post.title }} </li>
+                    <li>Date de création: {{ comment.date_created }} 
+                    <li>Titre: <em>{{ comment.title }} </em> </li>
+                    <li>Commentaire: {{ comment.content }} </li>
+                    <li> Auteur : {{ comment.author }} (identifiant: {{comment.user_id}})</li>
+                    <li> Identifiant de l'article : {{ comment.post_id }} </li>
                     
                     {% if comment.approved is same as(null) %}
                         <li> <strong> statut: EN ATTENTE </strong></li>
