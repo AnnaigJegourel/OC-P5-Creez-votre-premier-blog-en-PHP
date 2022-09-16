@@ -52,14 +52,14 @@ abstract class MainModel
     }
 
     /**
-     * Lists all Datas from the id or another key BEGINNING WITH THE NEWEST UPDATE
+     * Lists all Datas from the id or another key BEGINNING WITH THE LATEST UPDATE
      * @param string $value
      * @param string $key
      * @return array|mixed
      */
-    public function listDataNewest(string $value = null, string $key = null)
+    public function listDataLatest(string $value = null, string $key = null)
     {
-        $newest = "date_updated";
+        $newest = "date_created";
         if (isset($key)) {
             $query = "SELECT * FROM " . $this->table . " WHERE " . $key . " = ? ORDER BY " . $newest . " DESC";
 

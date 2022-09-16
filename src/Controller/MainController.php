@@ -125,7 +125,7 @@ abstract class MainController
     }
 
     /**
-     * Gets the COMMENTS of ONE POST
+     * Gets the COMMENTS of ONE POST beginning with the LATEST
      * @return string
      * @throws LoaderError
      * @throws RuntimeError
@@ -133,7 +133,7 @@ abstract class MainController
      */
     protected function getComments()
     {
-        return ModelFactory::getModel("Comment")->listData($this->getId(), "post_id");
+        return ModelFactory::getModel("Comment")->listDataLatest($this->getId(), "post_id");
     }
 
     /* ***************** CHECKERS ***************** */

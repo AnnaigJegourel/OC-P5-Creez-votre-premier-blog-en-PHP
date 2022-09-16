@@ -26,7 +26,7 @@ class PostController extends MainController
      */
     public function defaultMethod()
     {
-        $allPosts = ModelFactory::getModel("Post")->listDataNewest();
+        $allPosts = ModelFactory::getModel("Post")->listDataLatest();
 
         return $this->twig->render("listPosts.twig", ["allPosts" => $allPosts]);
     }
