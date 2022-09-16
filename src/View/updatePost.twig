@@ -8,15 +8,16 @@
     <main id="updatePost">
 
         <form method="post" action="index.php?access=post!updatePost&id={{post.id}}">Saisissez vos modifications :
+            </br>
             <label for="title">Titre : </label>
 			<input type="text" name="title" value="{{post.title}}">
-
+            </br>
             <label for="intro">Chapô (150 caractères maximum) : </label>
 			<textarea name="intro" maxlength="150">{{post.intro}}</textarea>
-
+            </br>
             <label for="content">Texte de l'article : </label>
 			<textarea name="content">{{post.content}}</textarea>
-					
+			</br>
 			<input type="submit" value="Envoyer">
         </form>
 

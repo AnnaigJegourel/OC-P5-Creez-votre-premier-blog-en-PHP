@@ -1,26 +1,45 @@
 {% extends "layout/layout.twig" %}
 
-{% block title %}Utilisateurs du site:{% endblock %}
+{% block title %}Utilisateurs{% endblock %}
 
-{% block description %}Liste et données de tous les utilisateurs inscrit(e)s{% endblock %}
+{% block description %}Page listant tous les utilisateurs du site{% endblock %}
 
 {% block main %}
     <main id="listUsers">
 
         <section>
-            <h2>Personnes ayant un compte sur ce site:</h2>
+        
+            <h2>Back-office : liste des utilisateurs inscrit(e)s sur le site</h2>
 
-            <ul>
-                {% for user in allUsers %}
-                    <li> <strong> {{ user.name }} </strong> <hr> {{ user.email }} </li>
-                    <li>identifiant: {{ user.id }} </li>
-                    <li>compte créé le: {{ user.date_created }} </li>
-                    <li>
-                        <a href="index.php?access=user!deleteuser&id={{user.id}}" title="DeleteUser">
-                        Supprimer le compte </a>
-                    </li>
-                {% endfor %}
-            </ul>
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Comptes créés sur ce site</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="ligne1"> 
+                        <td><strong>Date de création</strong></td>
+                        <td><strong>Identifiant</strong></td>
+                        <td><strong>Nom</strong></td>
+                        <td><strong>E-mail</strong></td>
+                        <td><strong>Supprimer le compte</strong></td>
+                    </tr>
+                    {% for user in allUsers %}
+                        <tr>
+                            <td> {{ user.date_created }} </td>
+                            <td> {{ user.id }} </td>
+                            <td> {{ user.name }} </td>
+                            <td> {{ user.email }} </td>
+                            <td> Supprimer
+                                <a href="index.php?access=user!deleteuser&id={{user.id}}" title="DeleteUser">
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
         </section>
+
     </main>
 {% endblock %}
