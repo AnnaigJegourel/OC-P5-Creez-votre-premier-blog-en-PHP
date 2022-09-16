@@ -64,7 +64,7 @@ class CommentController extends MainController {
     public function listCommentsMethod()
     {
         if ($this->isAdmin()) {
-            $allComments = ModelFactory::getModel("Comment")->listData();
+            $allComments = ModelFactory::getModel("Comment")->listDataLatest();
 
             return $this->twig->render("listComments.twig", ["allComments" => $allComments]);
         } else {
