@@ -239,7 +239,7 @@ class UserController extends MainController
     public function deleteUserMethod()
     {
         $user_id = $this->getUserId();
-    
+        ModelFactory::getModel("Comment")->deleteData(strval($user_id), "user_id");
         ModelFactory::getModel("User")->deleteData(strval($user_id));
         $this->logoutMethod();
         $message = "Le compte a bien été supprimé.";
