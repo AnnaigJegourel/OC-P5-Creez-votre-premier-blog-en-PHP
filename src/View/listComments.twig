@@ -12,16 +12,28 @@
 
             <ul class="commentInList">
                 {% for comment in allComments %}
-                    <li> {{ comment.date_created }} 
-                    <li> <em> {{ comment.title }} </em> </li>
-                    <li> {{ comment.content }} </li>
-                    <li> Auteur :{{ author }} </li>
-                    <li> Article : {{ post.title }} </li>
-                    <li> <strong> statut du commentaire : {{comment.approved}} </strong></li>
+                    <li>Date de création: {{ comment.date_created }} 
+                    <li>Titre: <em>{{ comment.title }} </em> </li>
+                    <li>Commentaire: {{ comment.content }} </li>
+                    <li> Auteur : {{ comment.author }} (identifiant: {{comment.user_id}})</li>
+                    <li> Identifiant de l'article : {{ comment.post_id }} </li>
                     
+                    {% if comment.approved is same as(null) %}
+                        <li> <strong> statut: EN ATTENTE </strong></li>
+                    {% endif %}
+
+                    {% if comment.approved is same as(0) %}
+                        <li> <strong> statut: refusé </strong></li>
+                        <li> <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">Supprimer ce commentaire </a> </li>
+                    {% endif %}
+
+                    {% if comment.approved is same as(1) %}
+                        <li> <strong> statut: accepté </strong></li>
+                    {% endif %}
+
                     <li>
                         <form method="post" action="index.php?access=comment!approvecomment&id={{comment.id}}">
-                            <fieldset>
+                            <fieldset>Modifier le statut :
                                 <input type="radio" name="approve" value="1">
                                 <label for="approve">approuver le commentaire</label><br>
 
