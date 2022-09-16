@@ -11,6 +11,7 @@
         </li>
     </ul>
 
+    {% if (isAdmin()) %}
     <ul class="admin">
         <li>
             <a href="index.php?access=comment!listcomments" title="listComments">
@@ -22,4 +23,6 @@
             </a>
         </li>
     </ul>
+    {% endif %}
+
 </footer>

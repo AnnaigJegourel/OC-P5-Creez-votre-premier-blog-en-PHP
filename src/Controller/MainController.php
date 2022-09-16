@@ -142,7 +142,7 @@ abstract class MainController
      * Checks if a user is connected
      * @return bool
      */
-    protected function isLogged(){
+    public function isLogged(){
         $session = $this->getSession();
         if(!empty($session) && isset($session['user']) && !empty($session['user'])) {
             return true;
@@ -155,7 +155,7 @@ abstract class MainController
      * Checks if logged User is Admin
      * @return bool
      */
-    protected function isAdmin() {
+    public function isAdmin() {
         if ($this->isLogged() && $this->getUser()['role'] === "1"){
             return true;
         }
