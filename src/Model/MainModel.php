@@ -52,6 +52,25 @@ abstract class MainModel
     }
 
     /**
+     * Lists all Datas from the id or another key BEGINNING WITH THE LATEST UPDATE
+     * @param string $value
+     * @param string $key
+     * @return array|mixed
+     */
+    public function listDataLatest(string $value = null, string $key = null)
+    {
+        $newest = "date_created";
+        if (isset($key)) {
+            $query = "SELECT * FROM " . $this->table . " WHERE " . $key . " = ? ORDER BY " . $newest . " DESC";
+
+            return $this->database->getAllData($query, [$value]);
+        }
+        $query = "SELECT * FROM " . $this->table . " ORDER BY " . $newest . " DESC";
+
+        return $this->database->getAllData($query);
+    }
+
+    /**
      * Creates a new Data entry
      * @param array $data
      */
