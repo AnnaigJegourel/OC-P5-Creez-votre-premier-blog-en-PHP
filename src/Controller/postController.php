@@ -120,8 +120,8 @@ class PostController extends MainController
     public function updatePostFormMethod()
     {
         if ($this->isAdmin()) {
-            $id = $this->getId();   
-            $post = ModelFactory::getModel("Post")->readData(strval($id));
+            $post_id = $this->getId();   
+            $post = ModelFactory::getModel("Post")->readData(strval($post_id));
 
             return $this->twig->render("updatePost.twig",["post" => $post]);
         } else {
