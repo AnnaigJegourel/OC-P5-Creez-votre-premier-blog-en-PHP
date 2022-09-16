@@ -212,14 +212,10 @@ class UserController extends MainController
     {
         $user_id = $this->getUserId();
 
-        /*$date_updated = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
-        $date_updated = $date_updated->format("Y-m-d H:i:s");*/
-                
         $data = [
             "name" => $this->getPost()["name"],
             "email" => $this->getPost()["email"],
             "password" => $this->getPost()["password"],
-            /*"date_updated" => $date_updated*/
         ];
         
         ModelFactory::getModel("User")->updateData(strval($user_id), $data);
