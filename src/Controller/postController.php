@@ -30,6 +30,13 @@ class PostController extends MainController
 
         return $this->twig->render("listPosts.twig", ["allPosts" => $allPosts]);
     }
+    /*public function defaultMethod()
+    {
+        $allPosts = ModelFactory::getModel("Post")->listDataNewest();
+
+        return $this->twig->render("listPosts.twig", ["allPosts" => $allPosts]);
+    }*/
+
 
     /**
      * Renders the View Post
