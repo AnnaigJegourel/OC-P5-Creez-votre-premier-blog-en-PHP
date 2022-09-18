@@ -1,12 +1,32 @@
-/* Add your custom style here */
+:root{ 
+  --dark-blue : #0E397F;
+  --dark-green: rgb(60, 127, 98);    /* #15dea5 */ /* boutons, liens non cliqués */
+  --medium-green: rgb(117, 238, 205); /* #75EECD */ /* footer */
+  --light-green: rgb(214, 255, 245);  /* #d6fff5 */ /* fond du main */
+}         
+  
 body {
-  /* background-image: url("../img/bg.jpg"); */
   text-align: center;
+  font-family: Geneva, 'Open Sans', Roboto, Calibri, Helvetica, Cambria, Arial, sans-serif, 'Times New Roman';
+  color: var(--dark-blue);
 }
 
 main {
   padding: 10px;
-  background-color: aquamarine;
+  background-color: var(--light-green);
+}
+
+footer {
+  padding: 10px;
+  background-color: var(--medium-green);
+}
+
+a {
+  color: var(--dark-blue);
+}
+
+a:hover{
+  color: var(--dark-green);
 }
 
 ul {
