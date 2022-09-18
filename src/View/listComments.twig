@@ -1,6 +1,6 @@
 {% extends "layout/layout.twig" %}
 
-{% block title %}Les commentaires{% endblock %}
+{% block title %}Commentaires{% endblock %}
 
 {% block description %}Page listant tous les commentaires du site{% endblock %}
 
@@ -8,45 +8,61 @@
     <main id="listComments">
 
         <section>
-            <h2>Liste des commentaires :</h2>
 
-            <ul class="commentInList">
-                {% for comment in allComments %}
-                    <li>Date de création: {{ comment.date_created }} 
-                    <li>Titre: <em>{{ comment.title }} </em> </li>
-                    <li>Commentaire: {{ comment.content }} </li>
-                    <li> Auteur : {{ comment.author }} (identifiant: {{comment.user_id}})</li>
-                    <li> Identifiant de l'article : {{ comment.post_id }} </li>
-                    
-                    {% if comment.approved is same as(null) %}
-                        <li> <strong> statut: EN ATTENTE </strong></li>
-                    {% endif %}
+            <h2>Back-office : liste des commentaires envoyés sur le site</h2>
 
-                    {% if comment.approved is same as(0) %}
-                        <li> <strong> statut: refusé </strong></li>
-                        <li> <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">Supprimer ce commentaire </a> </li>
-                    {% endif %}
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="7">Tous les commentaires</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="ligne1"> 
+                        <td><strong>Date de création</strong></td>
+                        <td><strong>Id de l'article</strong></td>
+                        <td><strong>Auteur</strong></td>
+                        <td><strong>Titre</strong></td>
+                        <td><strong>Commentaire</strong></td>
+                        <td><strong>Statut</strong></td>
+                        <td><strong>Modifier le statut</strong></td>
+                    </tr>
+                    {% for comment in allComments %}
+                        <tr>
+                            <td> {{ comment.date_created }} </td>
+                            <td> {{ comment.post_id }} </td>
+                            <td> "{{ comment.author }}" (identifiant: {{comment.user_id}})</td>
+                            <td> {{ comment.title }} </td>
+                            <td> {{ comment.content }} </td>
+                            <td>
+                                {% if comment.approved is same as(null) %}
+                                    EN ATTENTE
+                                {% endif %}
+                                {% if comment.approved is same as(0) %}
+                                    refusé 
+                                    </br>
+                                    <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">Supprimer ce commentaire </a>
+                                {% endif %}
+                                {% if comment.approved is same as(1) %}
+                                    accepté
+                                {% endif %}
+                            </td>
+                            <td>
+                                <form method="post" action="index.php?access=comment!approvecomment&id={{comment.id}}">
+                                    <fieldset>
+                                        <input type="radio" name="approve" value="1">
+                                        <label for="approve">approuver le commentaire</label><br>
+                                        <input type="radio" name="approve" value="0">
+                                        <label for="approve">refuser le commentaire</label><br>
+                                        <input type="submit" value="Envoyer">
+                                    </fieldset>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
-                    {% if comment.approved is same as(1) %}
-                        <li> <strong> statut: accepté </strong></li>
-                    {% endif %}
-
-                    <li>
-                        <form method="post" action="index.php?access=comment!approvecomment&id={{comment.id}}">
-                            <fieldset>Modifier le statut :
-                                <input type="radio" name="approve" value="1">
-                                <label for="approve">approuver le commentaire</label><br>
-
-                                <input type="radio" name="approve" value="0">
-                                <label for="approve">refuser le commentaire</label><br>
-                                
-                                <input type="submit" value="Envoyer">
-                            </fieldset>
-                        </form>
-                    </li>
-
-                {% endfor %}
-            </ul>
         </section>
 
     </main>
