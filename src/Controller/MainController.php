@@ -52,6 +52,37 @@ abstract class MainController
         exit;
     }
 
+    /**
+     * Return string value with slashes where necessary
+     *
+     * @param string $input
+     * @return void
+     */
+    protected function putSlashes(string $input) {
+        return addslashes($input);
+    }
+
+    /**
+     * Parse a value & return it as string
+     *
+     * @param mixed $val
+     * @return void
+     */
+    protected function toString(mixed $val) {
+        return strval($val);
+    }
+
+    /**
+     * Parse a value & return it as integer
+     *
+     * @param mixed $val
+     * @return void
+     */
+    protected function toInt(mixed $val) {
+        return intval($val);
+    }
+
+
     /* *************** GETTERS *************** */
     
     /**
@@ -101,7 +132,7 @@ abstract class MainController
     protected function getUser($id = null)
     {
         if (isset($id) && !empty($id)) {
-            $user = ModelFactory::getModel("User")->readData(strval($id));
+            $user = ModelFactory::getModel("User")->readData($this->toString($id));
         } else {
             $session = $this->getSession();
             $user = $session["user"];
@@ -136,7 +167,7 @@ abstract class MainController
         return ModelFactory::getModel("Comment")->listDataLatest($this->getId(), "post_id");
     }
 
-    /* ***************** CHECKERS ***************** */
+    /* ***************** BOOL / CHECKERS ***************** */
 
     /**
      * Checks if a user is connected

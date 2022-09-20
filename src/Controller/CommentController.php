@@ -9,7 +9,7 @@ use Twig\Error\SyntaxError;
 
 class CommentController extends MainController {
 
-     /**
+    /**
      * Renders the View Home
      * @return string
      * @throws LoaderError
@@ -23,6 +23,7 @@ class CommentController extends MainController {
 
     /* ***************** CREATE ***************** */
 
+    
     /**
      * Manages comment creation
      * @return string
@@ -38,9 +39,9 @@ class CommentController extends MainController {
             $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
             $date_created = $date_created->format("Y-m-d H:i:s");
             $data = [
-                "title" => addslashes($this->getPost()["title"]),
-                "content" => addslashes($this->getPost()["content"]),
-                "author" => addslashes($this->getPost()["author"]),
+                "author" => $this->putSlashes($this->getPost()["author"]),
+                "title" => $this->putSlashes($this->getPost()["title"]),
+                "content" => $this->putSlashes($this->getPost()["content"]),
                 "post_id" => $this->getId(),
                 "date_created" => $date_created,
                 "user_id" => $user_id
@@ -87,11 +88,11 @@ class CommentController extends MainController {
     {
         $user_id = $this->getUserId();
         $comment_id = $this->getId();   
-        $comment = ModelFactory::getModel("Comment")->readData(strval($comment_id));
-        $author_id = strval($comment["user_id"]);
+        $comment = ModelFactory::getModel("Comment")->readData($this->toString($comment_id));
+        $author_id = $this->toString($comment["user_id"]);
 
         if($this->isLogged() && ($user_id === $author_id || $this->isAdmin())) {
-            ModelFactory::getModel("Comment")->deleteData(strval($comment_id));
+            ModelFactory::getModel("Comment")->deleteData($this->toString($comment_id));
             $message = "Le commentaire a bien été supprimé.";
             } else {
                 $message = "Vous ne pouvez pas supprimer les commentaires créés par d'autres comptes.";
@@ -106,8 +107,8 @@ class CommentController extends MainController {
      */
     public function approveCommentMethod()
     {
-        $choice = addslashes($this->getPost()["approve"]);
-        $data = ["approved" => intval($choice)];
+        $choice = $this->putSlashes($this->getPost()["approve"]);
+        $data = ["approved" => $this->toInt($choice)];
         $comment_id = $this->getId();
 
         if ($choice === "1") {
@@ -116,7 +117,7 @@ class CommentController extends MainController {
             $message = "Le commentaire a été refusé et ne sera pas publié.";
         };
 
-        ModelFactory::getModel("Comment")->updateData(strval($comment_id), $data);
+        ModelFactory::getModel("Comment")->updateData($this->toString($comment_id), $data);
 
         return $this->twig->render("message.twig", ["message" => $message]);
     }
