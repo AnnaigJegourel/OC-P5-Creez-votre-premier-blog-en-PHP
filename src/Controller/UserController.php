@@ -72,7 +72,7 @@ class UserController extends MainController
     public function loginMethod()
     {
         $data = $this->getPost();
-        $user = ModelFactory::getModel("User")->readData(strval($data["email"]), "email");
+        $user = ModelFactory::getModel("User")->readData($this->toString($data["email"]), "email");
 
         if(isset($user) && !empty($user) && $data["pwd"] === $user["password"]) {
             $this->createSession($user);
@@ -134,7 +134,7 @@ class UserController extends MainController
 
             return $this->twig->render("message.twig", ["message" => $message]);
         } else {
-            $user = ModelFactory::getModel("User")->readData(strval($id));
+            $user = ModelFactory::getModel("User")->readData($this->toString($id));
 
             return $this->twig->render("profile.twig", ["user" => $user]);    
         }
@@ -196,7 +196,7 @@ class UserController extends MainController
             
             return $this->twig->render("message.twig", ["message" => $message]);
         }
-        $user = ModelFactory::getModel("User")->readData(strval($user_id));
+        $user = ModelFactory::getModel("User")->readData($this->toString($user_id));
 
         return $this->twig->render("updateUser.twig",["user" => $user]);
     }
@@ -218,7 +218,7 @@ class UserController extends MainController
             "password" => $this->getPost()["password"],
         ];
         
-        ModelFactory::getModel("User")->updateData(strval($user_id), $data);
+        ModelFactory::getModel("User")->updateData($this->toString($user_id), $data);
         $message = "Votre profil a bien été modifié.";
 
         return $this->twig->render("message.twig", ["message" => $message]);
@@ -235,8 +235,8 @@ class UserController extends MainController
     public function deleteUserMethod()
     {
         $user_id = $this->getUserId();
-        ModelFactory::getModel("Comment")->deleteData(strval($user_id), "user_id");
-        ModelFactory::getModel("User")->deleteData(strval($user_id));
+        ModelFactory::getModel("Comment")->deleteData($this->toString($user_id), "user_id");
+        ModelFactory::getModel("User")->deleteData($this->toString($user_id));
         $this->logoutMethod();
         $message = "Le compte a bien été supprimé.";
 

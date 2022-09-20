@@ -52,9 +52,26 @@ abstract class MainController
         exit;
     }
 
-    protected function putSlashes($input) {
+    /**
+     * Return text with slashes
+     *
+     * @param string $input
+     * @return void
+     */
+    protected function putSlashes(string $input) {
         return addslashes($input);
     }
+
+    /**
+     * Parse a value & return it as string
+     *
+     * @param mixed $val
+     * @return void
+     */
+    protected function toString(mixed $val) {
+        return strval($val);
+    }
+
 
     /* *************** GETTERS *************** */
     
@@ -105,7 +122,7 @@ abstract class MainController
     protected function getUser($id = null)
     {
         if (isset($id) && !empty($id)) {
-            $user = ModelFactory::getModel("User")->readData(strval($id));
+            $user = ModelFactory::getModel("User")->readData($this->toString($id));
         } else {
             $session = $this->getSession();
             $user = $session["user"];

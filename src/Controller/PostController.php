@@ -46,7 +46,7 @@ class PostController extends MainController
             $post_id = "1";
         }
 
-        $post = ModelFactory::getModel("Post")->readData(strval($post_id));
+        $post = ModelFactory::getModel("Post")->readData($this->toString($post_id));
         $author = $this->getUser($post["user_id"]);
         $session = $this->getSession();
         $allComments = $this->getComments();
@@ -121,7 +121,7 @@ class PostController extends MainController
     {
         if ($this->isAdmin()) {
             $post_id = $this->getId();   
-            $post = ModelFactory::getModel("Post")->readData(strval($post_id));
+            $post = ModelFactory::getModel("Post")->readData($this->toString($post_id));
 
             return $this->twig->render("updatePost.twig",["post" => $post]);
         } else {
@@ -147,7 +147,7 @@ class PostController extends MainController
             "date_updated" => $date_updated
         ];
         
-        ModelFactory::getModel("Post")->updateData(strval($post_id), $data);
+        ModelFactory::getModel("Post")->updateData($this->toString($post_id), $data);
         $message = "Votre article a bien été modifié.";                
             
         return $this->twig->render("message.twig", ["message" => $message]);
@@ -166,8 +166,8 @@ class PostController extends MainController
     {
         if($this->isAdmin()) {
             $post_id = $this->getId();   
-            ModelFactory::getModel("Comment")->deleteData(strval($post_id), "post_id");
-            ModelFactory::getModel("Post")->deleteData(strval($post_id));
+            ModelFactory::getModel("Comment")->deleteData($this->toString($post_id), "post_id");
+            ModelFactory::getModel("Post")->deleteData($this->toString($post_id));
             $message = "L'article a bien été supprimé.";                
             
             return $this->twig->render("message.twig", ["message" => $message]);
