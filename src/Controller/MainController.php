@@ -52,6 +52,10 @@ abstract class MainController
         exit;
     }
 
+    protected function putSlashes($input) {
+        return addslashes($input);
+    }
+
     /* *************** GETTERS *************** */
     
     /**
@@ -136,7 +140,7 @@ abstract class MainController
         return ModelFactory::getModel("Comment")->listDataLatest($this->getId(), "post_id");
     }
 
-    /* ***************** CHECKERS ***************** */
+    /* ***************** BOOL / CHECKERS ***************** */
 
     /**
      * Checks if a user is connected

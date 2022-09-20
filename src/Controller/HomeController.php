@@ -6,6 +6,10 @@ use App\Model\Factory\ModelFactory;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
+/*use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMailer\Exception;*/
+
 
 /**
  * Class HomeController
@@ -33,12 +37,14 @@ class HomeController extends MainController
      */
     public function contactMethod()
     {
+        /*$mail = new PHPMailer(true);*/
+
         $to = "a_jegourel@yahoo.fr";
-        $subject= addslashes($this->getPost()["choice"]);
-        /* $message = "Line 1\r\nLine 2\r\nLine 3"; */
-        $text = addslashes($this->getPost()["message"]);
-        $name = addslashes($this->getPost()["name"]);
-        $reply_to = addslashes($this->getPost()["email"]);
+        $subject= $this->putSlashes($this->getPost()["choice"]);
+        $message = "Line 1\r\nLine 2\r\nLine 3";
+        $text = $this->putSlashes($this->getPost()["message"]);
+        $name = $this->putSlashes($this->getPost()["name"]);
+        $reply_to = $this->putSlashes($this->getPost()["email"]);
 
         mail($to, $subject, $text, $name, $reply_to);
         $message = "Votre message a bien été envoyé. Nous vous répondrons dès que possible.";

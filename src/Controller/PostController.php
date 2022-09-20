@@ -94,9 +94,9 @@ class PostController extends MainController
         $user_id = $this->getUserId();
 
         $data = [
-            "title" => addslashes($this->getPost()["title"]),
-            "intro" => addslashes($this->getPost()["intro"]),
-            "content" => addslashes($this->getPost()["content"]),
+            "title" => $this->putSlashes($this->getPost()["title"]),
+            "intro" => $this->putSlashes($this->getPost()["intro"]),
+            "content" => $this->putSlashes($this->getPost()["content"]),
             "date_created" => $date_created,
             "date_updated" => $date_created,
             "user_id" => $user_id
@@ -141,9 +141,9 @@ class PostController extends MainController
         $date_updated = $date_updated->format("Y-m-d H:i:s");
                 
         $data = [
-            "title" => addslashes($this->getPost()["title"]),
-            "intro" => addslashes($this->getPost()["intro"]),
-            "content" => addslashes($this->getPost()["content"]),
+            "title" => $this->putSlashes($this->getPost()["title"]),
+            "intro" => $this->putSlashes($this->getPost()["intro"]),
+            "content" => $this->putSlashes($this->getPost()["content"]),
             "date_updated" => $date_updated
         ];
         

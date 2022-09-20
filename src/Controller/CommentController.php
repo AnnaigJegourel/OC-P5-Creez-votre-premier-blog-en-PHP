@@ -9,7 +9,7 @@ use Twig\Error\SyntaxError;
 
 class CommentController extends MainController {
 
-     /**
+    /**
      * Renders the View Home
      * @return string
      * @throws LoaderError
@@ -38,9 +38,9 @@ class CommentController extends MainController {
             $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
             $date_created = $date_created->format("Y-m-d H:i:s");
             $data = [
-                "title" => addslashes($this->getPost()["title"]),
-                "content" => addslashes($this->getPost()["content"]),
-                "author" => addslashes($this->getPost()["author"]),
+                "author" => $this->putSlashes($this->getPost()["author"]),
+                "title" => $this->putSlashes($this->getPost()["title"]),
+                "content" => $this->putSlashes($this->getPost()["content"]),
                 "post_id" => $this->getId(),
                 "date_created" => $date_created,
                 "user_id" => $user_id
@@ -106,7 +106,7 @@ class CommentController extends MainController {
      */
     public function approveCommentMethod()
     {
-        $choice = addslashes($this->getPost()["approve"]);
+        $choice = $this->putSlashes($this->getPost()["approve"]);
         $data = ["approved" => intval($choice)];
         $comment_id = $this->getId();
 

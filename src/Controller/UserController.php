@@ -166,9 +166,9 @@ class UserController extends MainController
         $date_created = $date_created->format("Y-m-d H:i:s");
         
         $data = [
-            "name" => addslashes($this->getPost()["name"]),
-            "email" => addslashes($this->getPost()["email"]),
-            "password" => addslashes($this->getPost()["password"]),
+            "name" => $this->putSlashes($this->getPost()["name"]),
+            "email" => $this->putSlashes($this->getPost()["email"]),
+            "password" => $this->putSlashes($this->getPost()["password"]),
             "date_created" => $date_created,
             "role" => "0"
         ];
