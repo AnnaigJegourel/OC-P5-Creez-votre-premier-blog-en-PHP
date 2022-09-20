@@ -14,10 +14,12 @@
             <p> <em> créé le : {{ post.date_created }} </em> </p>
             <p> <em> modifié le : {{ post.date_updated }} </em> </p>
             <p> <strong> <em> {{ post.intro }} </em> </strong> </p>
-
             <p> {{ post.content }} </p>
-            <p> <a href="index.php?access=post!deletePost&id={{post.id}}" title="DeletePost"> supprimer l'article </a> </p>
-            <p> <a href="index.php?access=post!updatepostform&id={{post.id}}" title="UpdatePost"> modifier l'article </a> </p>
+            
+            {% if (isAdmin()) %}
+                <p> <a href="index.php?access=post!deletePost&id={{post.id}}" title="DeletePost"> supprimer l'article </a> </p>
+                <p> <a href="index.php?access=post!updatepostform&id={{post.id}}" title="UpdatePost"> modifier l'article </a> </p>
+            {% endif %}
         </section>
 
         <section>
