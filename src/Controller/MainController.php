@@ -53,7 +53,7 @@ abstract class MainController
     }
 
     /**
-     * Return text with slashes
+     * Return string value with slashes where necessary
      *
      * @param string $input
      * @return void
@@ -70,6 +70,16 @@ abstract class MainController
      */
     protected function toString(mixed $val) {
         return strval($val);
+    }
+
+    /**
+     * Parse a value & return it as integer
+     *
+     * @param mixed $val
+     * @return void
+     */
+    protected function toInt(mixed $val) {
+        return intval($val);
     }
 
 
