@@ -1,0 +1,17 @@
+{% extends "layout/layout.twig" %}
+
+{% block title %}Administration du site{% endblock %}
+
+{% block description %}Page d'administration du site{% endblock %}
+
+{% block main %}
+
+    <main id="admin">
+
+    {{ include("Back/createPost.twig") }}
+    {{ include("Back/adminPosts.twig") }}
+    {{ include("Back/listComments.twig") }}
+    {{ include("Back/listUsers.twig") }}
+    
+    </main>
+{% endblock %}

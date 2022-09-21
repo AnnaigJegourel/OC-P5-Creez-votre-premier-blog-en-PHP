@@ -68,7 +68,7 @@ class PostController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function createPostFormMethod()
+    /*public function createPostFormMethod()
     {
         if ($this->isAdmin()) {
 
@@ -78,7 +78,7 @@ class PostController extends MainController
             
             return $this->twig->render("Front/message.twig", ["message" => $message]);
         }
-    }
+    }*/
 
     /**
      * Manages post creation
@@ -103,7 +103,7 @@ class PostController extends MainController
         ];
         
         ModelFactory::getModel("Post")->createData($data);
-        $message = "Votre article a bien été créé.";                
+        $message = "L'article a bien été créé.";                
             
         return $this->twig->render("Front/message.twig", ["message" => $message]);
     }
@@ -164,17 +164,11 @@ class PostController extends MainController
      */
     public function deletePostMethod()
     {
-        if($this->isAdmin()) {
-            $post_id = $this->getId();   
-            ModelFactory::getModel("Comment")->deleteData($this->toString($post_id), "post_id");
-            ModelFactory::getModel("Post")->deleteData($this->toString($post_id));
-            $message = "L'article a bien été supprimé.";                
+        $post_id = $this->getId();   
+        ModelFactory::getModel("Comment")->deleteData($this->toString($post_id), "post_id");
+        ModelFactory::getModel("Post")->deleteData($this->toString($post_id));
+        $message = "L'article a bien été supprimé.";                
             
-            return $this->twig->render("Front/message.twig", ["message" => $message]);
-        } else {
-            $message = "Vous ne disposez pas des droits pour supprimer un article.";
-
-            return $this->twig->render("Front/message.twig", ["message" => $message]);
-        }
+        return $this->twig->render("Front/message.twig", ["message" => $message]);
     }
 }

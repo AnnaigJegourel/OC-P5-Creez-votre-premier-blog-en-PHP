@@ -1,11 +1,6 @@
-{% extends "layout/layout.twig" %}
+    <section class="createPost">
 
-{% block title %}Création d'un article{% endblock %}
-
-{% block description %}Page de création d'un article de blog{% endblock %}
-
-{% block main %}
-    <main id="createPost">
+        <h2>CREER UN ARTICLE</h2>
 
         <form method="post" action="index.php?access=post!createpost">Saisissez les informations de votre article :
             </br>
@@ -21,5 +16,4 @@
 			<input type="submit" value="Envoyer">
         </form>
 
-    </main>
-{% endblock %}
+    </section>

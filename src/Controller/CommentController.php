@@ -62,18 +62,18 @@ class CommentController extends MainController {
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function listCommentsMethod()
+    /*public function listCommentsMethod()
     {
         if ($this->isAdmin()) {
             $allComments = ModelFactory::getModel("Comment")->listDataLatest();
 
-            return $this->twig->render("Back/listComments.twig", ["allComments" => $allComments]);
+            return $this->twig->render("Back/admin.twig", ["allComments" => $allComments]);
         } else {
             $message = "Vous n'êtes pas autorisé à voir la liste des commentaires";
             
             return $this->twig->render("Front/message.twig", ["message" => $message]);
         }
-    }
+    }*/
 
     /* ***************** DELETE ***************** */
 

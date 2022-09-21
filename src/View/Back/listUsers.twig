@@ -1,30 +1,21 @@
-{% extends "layout/layout.twig" %}
-
-{% block title %}Utilisateurs{% endblock %}
-
-{% block description %}Page listant tous les utilisateurs du site{% endblock %}
-
-{% block main %}
-    <main id="listUsers">
-
-        <section>
+<section class="listUsers">
         
-            <h2>Back-office : liste des utilisateurs inscrit(e)s sur le site</h2>
+        <h2>GERER LES UTILISATEURS inscrit(e)s sur le site</h2>
 
-            <table>
-                <thead>
-                    <tr>
-                        <th colspan="5">Comptes créés sur ce site</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr class="ligne1"> 
-                        <td><strong>Date de création</strong></td>
-                        <td><strong>Identifiant</strong></td>
-                        <td><strong>Nom</strong></td>
-                        <td><strong>E-mail</strong></td>
-                        <td><strong>Supprimer le compte</strong></td>
-                    </tr>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="5">Comptes créés sur ce site</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="ligne1"> 
+                    <td><strong>Date de création</strong></td>
+                    <td><strong>Identifiant</strong></td>
+                    <td><strong>Nom</strong></td>
+                    <td><strong>E-mail</strong></td>
+                    <td><strong>Supprimer le compte</strong></td>
+                </tr>
                     {% for user in allUsers %}
                         <tr>
                             <td> {{ user.date_created }} </td>
@@ -36,10 +27,7 @@
                             </td>
                         </tr>
                     {% endfor %}
-                </tbody>
-            </table>
+            </tbody>
+        </table>
 
-        </section>
-
-    </main>
-{% endblock %}
+</main>

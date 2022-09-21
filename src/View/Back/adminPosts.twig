@@ -1,0 +1,47 @@
+
+<section class="listPosts">
+
+            <h2>GERER LES ARTICLES</h2>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th colspan="5">Tous les posts</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="ligne1">
+                        <td><strong>Date de création</strong></td>
+                        <td><strong>Dernière modification</strong></td>
+                        <td><strong>Titre</strong></td>
+                        <td><strong>Chapô</strong></td>
+                        <td><strong>Gérer</strong></td>
+                    </tr>
+                    {% for post in allPosts %}
+                        <tr>
+                            <td> {{ post.date_created }} </td>
+                            <td> {{ post.date_updated }} </td>
+                            <td> {{ post.title }} </td>
+                            <td> {{ post.intro }} </td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="index.php?access=post!readpost&id={{post.id}}" title="Post">
+                                        Lire</a>
+                                    </li>
+                                    <li>
+                                        <a href="index.php?access=post!updatepostform&id={{post.id}}" title="UpdatePost">
+                                        Modifier</a>
+                                    </li>
+                                    <li>
+                                        <a href="index.php?access=post!deletePost&id={{post.id}}" title="DeletePost">
+                                        Supprimer</a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+</section>
