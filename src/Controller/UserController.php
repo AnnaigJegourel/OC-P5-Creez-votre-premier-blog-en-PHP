@@ -77,7 +77,7 @@ class UserController extends MainController
         if(isset($user) && !empty($user) && $data["pwd"] === $user["password"]) {
             $this->createSession($user);
 
-            return $this->twig->render("profile.twig", ["user" => $user]);
+            return $this->twig->render("Front/profile.twig", ["user" => $user]);
         } else {
             $message = "L'e-mail ou le mot de passe n'existe pas dans la base de données.";
 
@@ -136,7 +136,7 @@ class UserController extends MainController
         } else {
             $user = ModelFactory::getModel("User")->readData($this->toString($id));
 
-            return $this->twig->render("profile.twig", ["user" => $user]);    
+            return $this->twig->render("Front/profile.twig", ["user" => $user]);    
         }
     }
 
@@ -198,7 +198,7 @@ class UserController extends MainController
         }
         $user = ModelFactory::getModel("User")->readData($this->toString($user_id));
 
-        return $this->twig->render("updateUser.twig",["user" => $user]);
+        return $this->twig->render("Front/updateUser.twig",["user" => $user]);
     }
 
     /**

@@ -51,7 +51,7 @@ class PostController extends MainController
         $session = $this->getSession();
         $allComments = $this->getComments();
 
-        return $this->twig->render("post.twig", [
+        return $this->twig->render("Front/post.twig", [
             "post" => $post,
             "author" => $author,
             "session" => $session,
@@ -123,7 +123,7 @@ class PostController extends MainController
             $post_id = $this->getId();   
             $post = ModelFactory::getModel("Post")->readData($this->toString($post_id));
 
-            return $this->twig->render("updatePost.twig",["post" => $post]);
+            return $this->twig->render("Back/updatePost.twig",["post" => $post]);
         } else {
             $message = "Vous ne disposez pas des droits pour modifier un article.";      
             
