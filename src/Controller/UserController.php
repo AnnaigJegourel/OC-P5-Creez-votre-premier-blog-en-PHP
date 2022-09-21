@@ -23,7 +23,7 @@ class UserController extends MainController
      */
     public function defaultMethod()
     {
-        return $this->twig->render("login.twig");
+        return $this->twig->render("Front/login.twig");
     }
 
     /**
@@ -81,7 +81,7 @@ class UserController extends MainController
         } else {
             $message = "L'e-mail ou le mot de passe n'existe pas dans la base de données.";
 
-            return $this->twig->render("message.twig", ["message" => $message]);
+            return $this->twig->render("Front/message.twig", ["message" => $message]);
         }
     }
 
@@ -94,7 +94,7 @@ class UserController extends MainController
     {
         setcookie("PHPSESSID", "", time() - 3600, "/");
         session_destroy();
-        $this->redirect("home");
+        $this->redirect("Front/home");
     }
 
     /* ***************** READ ***************** */
@@ -110,11 +110,11 @@ class UserController extends MainController
         if ($this->isAdmin()) {
             $allUsers = $this->getAllUsers();
 
-            return $this->twig->render("listUsers.twig", ["allUsers" => $allUsers]);  
+            return $this->twig->render("Back/listUsers.twig", ["allUsers" => $allUsers]);  
         } else {
             $message = "Vous n'avez pas accès à la liste des utilisateurs du site.";
 
-            return $this->twig->render("message.twig", ["message" => $message]);
+            return $this->twig->render("Front/message.twig", ["message" => $message]);
         }
     }
 
@@ -132,7 +132,7 @@ class UserController extends MainController
         {
             $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
 
-            return $this->twig->render("message.twig", ["message" => $message]);
+            return $this->twig->render("Front/message.twig", ["message" => $message]);
         } else {
             $user = ModelFactory::getModel("User")->readData($this->toString($id));
 
@@ -150,7 +150,7 @@ class UserController extends MainController
      */
     public function createUserFormMethod()
     {
-        return $this->twig->render("createUser.twig");
+        return $this->twig->render("Front/createUser.twig");
     }
 
     /**
@@ -176,7 +176,7 @@ class UserController extends MainController
         ModelFactory::getModel("User")->createData($data);
         $message = "Félicitations! Votre compte a bien été créé. Connectez-vous pour commenter les articles.";
 
-        return $this->twig->render("message.twig", ["message" => $message]);
+        return $this->twig->render("Front/message.twig", ["message" => $message]);
     }
 
     /* ***************** UPDATE ***************** */
@@ -194,7 +194,7 @@ class UserController extends MainController
         {
             $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
             
-            return $this->twig->render("message.twig", ["message" => $message]);
+            return $this->twig->render("Front/message.twig", ["message" => $message]);
         }
         $user = ModelFactory::getModel("User")->readData($this->toString($user_id));
 
@@ -221,7 +221,7 @@ class UserController extends MainController
         ModelFactory::getModel("User")->updateData($this->toString($user_id), $data);
         $message = "Votre profil a bien été modifié.";
 
-        return $this->twig->render("message.twig", ["message" => $message]);
+        return $this->twig->render("Front/message.twig", ["message" => $message]);
     }
 
     /* ***************** DELETE ***************** */
@@ -240,6 +240,6 @@ class UserController extends MainController
         $this->logoutMethod();
         $message = "Le compte a bien été supprimé.";
 
-        return $this->twig->render("message.twig", ["message" => $message]);
+        return $this->twig->render("Front/message.twig", ["message" => $message]);
     }
 } 
