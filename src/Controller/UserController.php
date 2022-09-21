@@ -40,7 +40,7 @@ class UserController extends MainController
         return $allUsers;
     }
 
-    /* ***************** LOG ***************** */
+    /* ***************** LOG & ADMIN ***************** */
     /**
      * Creates a user session
      *
@@ -97,6 +97,7 @@ class UserController extends MainController
         $this->redirect("Front/home");
     }
 
+
     /* ***************** READ ***************** */
     /**
      * Renders the View of Users list (read all Users)
@@ -105,17 +106,29 @@ class UserController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function listUsersMethod()
+    /*public function listUsersMethod()
     {
         if ($this->isAdmin()) {
             $allUsers = $this->getAllUsers();
 
-            return $this->twig->render("Back/listUsers.twig", ["allUsers" => $allUsers]);  
+            return $this->twig->render("Back/admin.twig", ["allUsers" => $allUsers]);  
         } else {
             $message = "Vous n'avez pas accès à la liste des utilisateurs du site.";
 
             return $this->twig->render("Front/message.twig", ["message" => $message]);
         }
+    }*/
+
+    public function adminMethod()
+    {
+        $allComments = ModelFactory::getModel("Comment")->listDataLatest();    
+        $allUsers = $this->getAllUsers();
+
+        return $this->twig->render("Back/admin.twig", [
+            "allPosts" => ModelFactory::getModel("Post")->listDataLatest(),
+            "allComments" => $allComments,
+            "allUsers" => $allUsers
+        ]);
     }
 
     /**

@@ -12,16 +12,11 @@
         </li>
     </ul>
 
-    <ul class="admin">
-        <li>
-            <a href="index.php?access=comment!listcomments" title="listComments">
-                Gérer les commentaires</a>
-        </li>
-        <li>
-            <a href="index.php?access=user!listUsers" title="User">
-                Gérer les utilisateurs
-            </a>
-        </li>
-    </ul>
+    {% if (isAdmin()) %}
+        <p class="admin">
+                <a href="index.php?access=user!admin" title="admin">
+                    Administrer le site</a>
+        </p>
+    {% endif %}
 
 </footer>
