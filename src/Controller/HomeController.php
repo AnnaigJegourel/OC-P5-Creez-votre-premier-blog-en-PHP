@@ -46,7 +46,7 @@ class HomeController extends MainController
         $name = $this->putSlashes($this->getPost()["name"]);
         $reply_to = $this->putSlashes($this->getPost()["email"]);
 
-        mail($to, $subject, $text, $name, $reply_to);
+        /*mail($to, $subject, $text, $name, $reply_to);*/
         $message = "Votre message a bien été envoyé. Nous vous répondrons dès que possible.";
         /* oui enfin non y a rien qui arrive dans ma boîte mail (spams compris) */
         return $this->twig->render("Front/message.twig", ["message" => $message]);

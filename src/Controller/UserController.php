@@ -121,13 +121,10 @@ class UserController extends MainController
 
     public function adminMethod()
     {
-        $allComments = ModelFactory::getModel("Comment")->listDataLatest();    
-        $allUsers = $this->getAllUsers();
-
         return $this->twig->render("Back/admin.twig", [
             "allPosts" => ModelFactory::getModel("Post")->listDataLatest(),
-            "allComments" => $allComments,
-            "allUsers" => $allUsers
+            "allComments" => ModelFactory::getModel("Comment")->listDataLatest(),
+            "allUsers" => $this->getAllUsers()
         ]);
     }
 
@@ -232,7 +229,7 @@ class UserController extends MainController
         ];
         
         ModelFactory::getModel("User")->updateData($this->toString($user_id), $data);
-        $message = "Votre profil a bien été modifié.";
+        $message = "Le profil a bien été modifié.";
 
         return $this->twig->render("Front/message.twig", ["message" => $message]);
     }

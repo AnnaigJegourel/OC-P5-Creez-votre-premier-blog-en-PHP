@@ -16,10 +16,12 @@
             <p> <strong> <em> {{ post.intro }} </em> </strong> </p>
             <p> {{ post.content }} </p>
             
-            {% if (isAdmin()) %}
+            <!--
+            % if (isAdmin()) %
                 <p> <a href="index.php?access=post!deletePost&id={{post.id}}" title="DeletePost"> supprimer l'article </a> </p>
                 <p> <a href="index.php?access=post!updatepostform&id={{post.id}}" title="UpdatePost"> modifier l'article </a> </p>
-            {% endif %}
+            % endif %
+            -->
         </section>
 
         <section>
