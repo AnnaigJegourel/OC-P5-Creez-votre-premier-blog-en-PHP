@@ -13,24 +13,27 @@
     </ul>
 
     <ul class="connection">
-        <li>
-            <a href="index.php?access=user!readUser" title="ReadUser">
-                Voir mon profil
-            </a>
-        </li>
-        <li>
-            <a href="index.php?access=user!logout" title="Logout">
-                Se déconnecter</a>
-        </li>
-        <li>
-            <a href="index.php?access=user" title="User">
-                Se connecter
-            </a>
-        </li>
-        <li>
-            <a href="index.php?access=user!createuserform" title="CreateUserForm">
-                Créer un compte
-            </a>
-        </li>
+        {% if (isLogged()) %}
+            <li>
+                <a href="index.php?access=user!readUser" title="ReadUser">
+                    Voir mon profil
+                </a>
+            </li>
+            <li>
+                <a href="index.php?access=user!logout" title="Logout">
+                    Se déconnecter</a>
+            </li>
+        {% else %}
+            <li>
+                <a href="index.php?access=user" title="User">
+                    Se connecter
+                </a>
+            </li>
+            <li>
+                <a href="index.php?access=user!createuserform" title="CreateUserForm">
+                    Créer un compte
+                </a>
+            </li>
+        {% endif %}
     </ul>
 </nav>

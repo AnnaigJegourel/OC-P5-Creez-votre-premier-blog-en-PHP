@@ -49,7 +49,7 @@ class CommentController extends MainController {
             ModelFactory::getModel("Comment")->createData($data);
             $message = "Votre commentaire a bien été créé. Il sera publié une fois approuvé par l'admin.";
 
-            return $this->twig->render("message.twig", ["message" => $message]);
+            return $this->twig->render("Front/message.twig", ["message" => $message]);
         }
     }
 
@@ -67,11 +67,11 @@ class CommentController extends MainController {
         if ($this->isAdmin()) {
             $allComments = ModelFactory::getModel("Comment")->listDataLatest();
 
-            return $this->twig->render("listComments.twig", ["allComments" => $allComments]);
+            return $this->twig->render("Back/listComments.twig", ["allComments" => $allComments]);
         } else {
             $message = "Vous n'êtes pas autorisé à voir la liste des commentaires";
             
-            return $this->twig->render("message.twig", ["message" => $message]);
+            return $this->twig->render("Front/message.twig", ["message" => $message]);
         }
     }
 
@@ -97,7 +97,7 @@ class CommentController extends MainController {
             } else {
                 $message = "Vous ne pouvez pas supprimer les commentaires créés par d'autres comptes.";
             }
-        return $this->twig->render("message.twig", ["message" => $message]);    
+        return $this->twig->render("Front/message.twig", ["message" => $message]);    
     }
 
     /* ***************** ADMIN ***************** */
@@ -119,6 +119,6 @@ class CommentController extends MainController {
 
         ModelFactory::getModel("Comment")->updateData($this->toString($comment_id), $data);
 
-        return $this->twig->render("message.twig", ["message" => $message]);
+        return $this->twig->render("Front/message.twig", ["message" => $message]);
     }
 }

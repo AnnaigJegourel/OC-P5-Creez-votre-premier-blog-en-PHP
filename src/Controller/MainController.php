@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+use App\View\TwigExtension;
 use App\Model\Factory\ModelFactory;
 
 /**
@@ -35,6 +36,7 @@ abstract class MainController
     public function __construct()
         {
             $this->twig = new Environment(new FilesystemLoader("../src/View"), array("cache"=>false));
+            $this->twig->addExtension(new TwigExtension());
             $this->session = filter_var_array($_SESSION) ?? [];
             $this->get     = filter_input_array(INPUT_GET) ?? [];
         }

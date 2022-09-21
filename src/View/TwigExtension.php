@@ -13,6 +13,16 @@ use App\Model\Factory\ModelFactory;
  */
 class TwigExtension extends AbstractExtension
 {
+     /**
+     * @var array
+     */
+    private $session = [];
+
+    public function __construct()
+    {
+        $this->session = filter_var_array($_SESSION) ?? [];
+    }
+
     /**
      * @return array|TwigFunction[]
      */

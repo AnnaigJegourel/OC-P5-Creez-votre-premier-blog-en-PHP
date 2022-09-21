@@ -27,7 +27,7 @@ class HomeController extends MainController
      */
     public function defaultMethod()
     {
-        return $this->twig->render("home.twig");
+        return $this->twig->render("Front/home.twig");
     }
 
     /**
@@ -49,6 +49,6 @@ class HomeController extends MainController
         mail($to, $subject, $text, $name, $reply_to);
         $message = "Votre message a bien été envoyé. Nous vous répondrons dès que possible.";
         /* oui enfin non y a rien qui arrive dans ma boîte mail (spams compris) */
-        return $this->twig->render("message.twig", ["message" => $message]);
+        return $this->twig->render("Front/message.twig", ["message" => $message]);
     }
 }
