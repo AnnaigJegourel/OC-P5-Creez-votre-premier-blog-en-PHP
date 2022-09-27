@@ -4,20 +4,20 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "9f6eb0cfd797fbd970ec62b6a27a29e7",
+    "content-hash": "4662d803c98e04b64d99c298883d6022",
     "packages": [
         {
             "name": "phpmailer/phpmailer",
-            "version": "dev-master",
+            "version": "v6.6.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/PHPMailer/PHPMailer.git",
-                "reference": "410086d03ec58c8a864dcd3b3f975f5302fa30bf"
+                "reference": "a94fdebaea6bd17f51be0c2373ab80d3d681269b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/410086d03ec58c8a864dcd3b3f975f5302fa30bf",
-                "reference": "410086d03ec58c8a864dcd3b3f975f5302fa30bf",
+                "url": "https://api.github.com/repos/PHPMailer/PHPMailer/zipball/a94fdebaea6bd17f51be0c2373ab80d3d681269b",
+                "reference": "a94fdebaea6bd17f51be0c2373ab80d3d681269b",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +44,6 @@
                 "stevenmaguire/oauth2-microsoft": "Needed for Microsoft XOAUTH2 authentication",
                 "symfony/polyfill-mbstring": "To support UTF-8 if the Mbstring PHP extension is not enabled (^1.2)"
             },
-            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -75,7 +74,7 @@
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
             "support": {
                 "issues": "https://github.com/PHPMailer/PHPMailer/issues",
-                "source": "https://github.com/PHPMailer/PHPMailer/tree/master"
+                "source": "https://github.com/PHPMailer/PHPMailer/tree/v6.6.4"
             },
             "funding": [
                 {
@@ -83,7 +82,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-09-12T07:11:03+00:00"
+            "time": "2022-08-22T09:22:00+00:00"
         },
         {
             "name": "symfony/polyfill-ctype",
@@ -258,12 +257,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "5b5aea4690f907cc1055bfe5a66e853a3379ceca"
+                "reference": "40b6f59430cc17999406a5557c9e178704e92fa8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/5b5aea4690f907cc1055bfe5a66e853a3379ceca",
-                "reference": "5b5aea4690f907cc1055bfe5a66e853a3379ceca",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/40b6f59430cc17999406a5557c9e178704e92fa8",
+                "reference": "40b6f59430cc17999406a5557c9e178704e92fa8",
                 "shasum": ""
             },
             "require": {
@@ -327,7 +326,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-07-04T19:57:33+00:00"
+            "time": "2022-08-14T13:29:42+00:00"
         }
     ],
     "packages-dev": [
@@ -337,18 +336,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/nette/tracy.git",
-                "reference": "e67d406bb59b5f528733312018287af3a22d6fd0"
+                "reference": "92a557155cd77060ac1755005a8819d97852a79f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/nette/tracy/zipball/e67d406bb59b5f528733312018287af3a22d6fd0",
-                "reference": "e67d406bb59b5f528733312018287af3a22d6fd0",
+                "url": "https://api.github.com/repos/nette/tracy/zipball/92a557155cd77060ac1755005a8819d97852a79f",
+                "reference": "92a557155cd77060ac1755005a8819d97852a79f",
                 "shasum": ""
             },
             "require": {
                 "ext-json": "*",
                 "ext-session": "*",
-                "php": ">=7.2 <8.2"
+                "php": ">=7.2 <8.3"
             },
             "conflict": {
                 "nette/di": "<3.0"
@@ -403,15 +402,12 @@
                 "issues": "https://github.com/nette/tracy/issues",
                 "source": "https://github.com/nette/tracy/tree/v2.9"
             },
-            "time": "2022-07-22T17:00:56+00:00"
+            "time": "2022-09-06T00:11:39+00:00"
         }
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "twig/twig": 20,
-        "phpmailer/phpmailer": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": [],
