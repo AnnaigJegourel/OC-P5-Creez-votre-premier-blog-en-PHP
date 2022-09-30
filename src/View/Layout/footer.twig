@@ -1,22 +1,27 @@
 <footer>
+
     <ul>
+
         <li>
-            <a href="https://github.com/AnnaigJegourel" title="GitHub" rel="noreferrer noopener" target="_blank">
+            <a href="https://github.com/AnnaigJegourel" title="Mon GitHub" rel="noreferrer noopener" target="_blank">
                 <i class="fab fa-github-alt fa-fw fa-3x" aria-hidden="true"></i>
             </a>
         </li>
+
         <li>
-            <a href="http://linkedin.com/in/annaig-jégourel-2a9b3b161" title="LinkedIn" rel="noreferrer noopener" target="_blank">
+            {% if (isAdmin()) %}
+                <a href="index.php?access=user!admin" title="Administrer le site">
+                    <i class="fa-solid fa-screwdriver-wrench fa-3x" ></i>
+                </a>
+            {% endif %}
+        </li>
+
+        <li>
+            <a href="http://linkedin.com/in/annaig-jégourel-2a9b3b161" title="Mon LinkedIn" rel="noreferrer noopener" target="_blank">
                 <i class="fa-brands fa-linkedin fa-fw fa-3x"></i>
 			</a>
         </li>
+        
     </ul>
-
-    {% if (isAdmin()) %}
-        <p class="admin">
-                <a href="index.php?access=user!admin" title="admin">
-                    Administrer le site</a>
-        </p>
-    {% endif %}
 
 </footer>

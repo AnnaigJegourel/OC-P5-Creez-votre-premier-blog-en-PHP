@@ -1,19 +1,28 @@
     <section class="createPost">
 
-        <h2>CREER UN ARTICLE</h2>
+        <h2>Créer un article</h2>
 
-        <form method="post" action="index.php?access=post!createpost">Saisissez les informations de votre article :
-            </br>
-            <label for="title">Titre : </label>
-			<input type="text" name="title">
-            </br>
-            <label for="intro">Chapô (150 caractères maximum) : </label>
-			<textarea name="intro" maxlength="150"></textarea>
-            </br>
-            <label for="content">Texte de l'article : </label>
-			<textarea name="content"></textarea>
-			</br>	
-			<input type="submit" value="Envoyer">
+        <form method="post" action="index.php?access=post!createpost">
+            
+            <fieldset>
+                <label for="title">Titre : </label>
+                <input type="text" name="title">
+            </fieldset>
+
+            <fieldset>
+                <label for="intro">Chapô (150 caractères maximum) : </label>
+                <textarea name="intro" maxlength="150"></textarea>
+            </fieldset>
+
+            <fieldset>
+                <label for="content">Texte de l'article : </label>
+                <textarea name="content"></textarea>
+            </fieldset>
+			
+            <fieldset class="btn-fieldset">
+                <input class="btn" type="submit" value="Envoyer">
+            </fieldset>
+
         </form>
 
     </section>

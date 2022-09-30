@@ -7,16 +7,29 @@
 {% block main %}
     <main id="login">
 
-        <form method="post" action="index.php?access=user!login">Saisissez les informations de votre compte :
-            </br>
-            <label for="email">Votre adresse e-mail: </label>
-			<input type="email" name="email" placeholder="e-mail@exemple.com">
-            </br>
-            <label for="pwd">Votre mot de passe: </label>
-            <input type="password" id="pwd" name="pwd" placeholder="motdepasse">
-            </br>
-			<input type="submit" value="Envoyer">
-        </form>
+        <section>
+
+            <h2>Se connecter</h2>
+
+            <form method="post" action="index.php?access=user!login">Saisissez les informations de votre compte :
+            
+                <fieldset>
+                    <label for="email">Votre adresse e-mail: </label>
+                    <input type="email" name="email" placeholder="adresse-e-mail@exemple.com">
+                </fieldset>
+            
+                <fieldset>
+                    <label for="pwd">Votre mot de passe: </label>
+                    <input type="password" id="pwd" name="pwd" placeholder="motdepasse">
+                </fieldset>
+            
+                <fieldset class="btn-fieldset">
+                    <input class="btn" type="submit" value="Envoyer">
+                </fieldset>
+            
+            </form>
+
+        </section>
 
     </main>
 {% endblock %}

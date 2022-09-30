@@ -6,45 +6,50 @@
 
 {% block main %}
     <main id="home">
+
         <section>
+
             <h2>Développement web</h2>
-            <p>
-				<img src="img/portraitPetit.jpg" alt="photo d'identité en couleur"/>
-			</p>
-            <p>Créativité et innovation</p>
-            <p>Vos applications, un développement simple et efficace</p>
-            <p><a href="CV.pdf">Voir mon CV en pdf</a></p>
+
+            <article>
+                <img src="img/portraitPetit.jpg" alt="photo d'identité en couleur"/>
+                <p>Créativité et innovation</p>
+                <p>Vos applications, un développement simple et efficace</p>
+                <p>
+                    <a href="CV.pdf" title="CV en pdf">Voir mon CV</a>
+                </p>
+            </article>
+            
         </section>
 
         <section>
+
             <h2>Me contacter</h2>
 
-            <form method="post" action="index.php?access=home!contact">
+            <form method="post" action="index.php?access=mailer">
 
                 <fieldset>
                     <label for="name">Votre nom: </label>
                     <input type="text" name="name">
-                    </br>
+                </fieldset>
+
+                <fieldset>
                     <label for="email">L'adresse e-mail où vous contacter: </label>
                     <input type="email" name="email">
-                </fieldset>
-                
-				<fieldset>Votre message concerne :
-					</br>
-                    <input type="checkbox" name="choice" value="dev"/>Le développement web, l'informatique 
-					</br>
-                    <input type="checkbox" name="choice" value="blog"/>Le blog, les articles, les commentaires 
-					</br>
-                    <input type="checkbox" name="choichoicex" value="autre"/>D'autres sujets
-                </fieldset>
-				
+                </fieldset>			
+
                 <fieldset>
+                    <label for="message">Votre message: </label>
                     <input type="text" name="message" placeholder="Ecrivez ici votre message"/>
-                    </br>
-                    <input type="submit" value="Envoyer"/>
+                </fieldset>			
+                
+                <fieldset class="btn-fieldset">
+                    <input class="btn" type="submit" value="Envoyer"/>
                 </fieldset>
                 
 			</form>
+
 		</section>
+
     </main>
 {% endblock %}

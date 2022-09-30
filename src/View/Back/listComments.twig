@@ -1,37 +1,30 @@
     <section class="listComments">
 
-        <h2>GERER LES COMMENTAIRES</h2>
+        <h2>Gérer les commentaires</h2>
 
         <table>
-            <thead>
+            <tr>
+                <th>Date de création</th>
+                <th>Id de l'article</th>
+                <th>Auteur</th>
+                <th>Titre</th>
+                <th>Commentaire</th>
+                <th>Statut</th>
+                <th>Modifier le statut</th>
+            </tr>
+            {% for comment in allComments %}
                 <tr>
-                    <th colspan="7">Tous les commentaires</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr class="ligne1">
-                    <td><strong>Date de création</strong></td>
-                    <td><strong>Id de l'article</strong></td>
-                    <td><strong>Auteur</strong></td>
-                    <td><strong>Titre</strong></td>
-                    <td><strong>Commentaire</strong></td>
-                    <td><strong>Statut</strong></td>
-                    <td><strong>Modifier le statut</strong></td>
-                </tr>
-                {% for comment in allComments %}
-                    <tr>
-                        <td> {{ comment.date_created }} </td>
-                        <td> {{ comment.post_id }} </td>
-                        <td> "{{ comment.author }}" (identifiant: {{comment.user_id}})</td>
-                        <td> {{ comment.title }} </td>
-                        <td> {{ comment.content }} </td>
-                        <td>
+                    <td> {{ comment.date_created }} </td>
+                    <td> {{ comment.post_id }} </td>
+                    <td> "{{ comment.author }}" (identifiant: {{comment.user_id}})</td>
+                    <td> {{ comment.title }} </td>
+                    <td> {{ comment.content }} </td>
+                    <td>
                             {% if comment.approved is same as(null) %}
                                 EN ATTENTE
                             {% endif %}
                             {% if comment.approved is same as(0) %}
                                 refusé 
-                                </br>
                                 <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">Supprimer ce commentaire </a>
                             {% endif %}
                             {% if comment.approved is same as(1) %}
@@ -42,16 +35,19 @@
                             <form method="post" action="index.php?access=comment!approvecomment&id={{comment.id}}">
                                 <fieldset>
                                     <input type="radio" name="approve" value="1">
-                                    <label for="approve">Approuver</label><br>
+                                    <label for="approve">Approuver</label>
+                                </fieldset>
+                                <fieldset>
                                     <input type="radio" name="approve" value="0">
-                                    <label for="approve">Refuser</label><br>
-                                    <input type="submit" value="Envoyer">
+                                    <label for="approve">Refuser</label>
+                                </fieldset>
+                                <fieldset class="btn-fieldset">
+                                    <input class="btn" type="submit" value="Envoyer">
                                 </fieldset>
                             </form>
                         </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
+                </tr>
+            {% endfor %}
         </table>
 
     </section>

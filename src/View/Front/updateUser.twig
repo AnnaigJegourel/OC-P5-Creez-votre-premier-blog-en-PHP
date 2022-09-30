@@ -7,19 +7,34 @@
 {% block main %}
     <main id="updateUser">
 
-        <form method="post" action="index.php?access=user!updateuser&id={{user.id}}">Saisissez vos modifications :
-            </br>
-            <label for="name">Nom ou pseudo: </label>
-			<input type="text" name="name" value="{{user.name}}">
-            </br>
-            <label for="email">Adresse e-mail: </label>
-			<input type="email" name="email" value="{{user.email}}">
-            </br>
-			<label for="password">Mot de passe: </label>
-			<input type="password" name="password" value="{{user.password}}">
-            </br>
-			<input type="submit" value="Envoyer">
-        </form>
+        <section>
+
+            <h2>Modifier le profil</h2>
+
+            <form class="updateUser" method="post" action="index.php?access=user!updateuser&id={{user.id}}">
+                
+                <fieldset>
+                    <label for="name">Nom ou pseudo: </label>
+                    <input type="text" name="name" value="{{user.name}}">
+                </fieldset>
+
+                <fieldset>
+                    <label for="email">Adresse e-mail: </label>
+                    <input type="email" name="email" value="{{user.email}}">
+                </fieldset>
+
+                <fieldset>
+                    <label for="password">Mot de passe: </label>
+                    <input type="password" name="password" value="{{user.password}}">
+                </fieldset>
+
+                <fieldset class="btn-fieldset">
+                    <input class="btn" type="submit" value="Envoyer">
+                </fieldset>
+                
+            </form>
+
+        </section>
 
     </main>
 {% endblock %}

@@ -7,19 +7,34 @@
 {% block main %}
     <main id="updatePost">
 
-        <form method="post" action="index.php?access=post!updatePost&id={{post.id}}">Saisissez vos modifications :
-            </br>
-            <label for="title">Titre : </label>
-			<input type="text" name="title" value="{{post.title}}">
-            </br>
-            <label for="intro">Chapô (150 caractères maximum) : </label>
-			<textarea name="intro" maxlength="150">{{post.intro}}</textarea>
-            </br>
-            <label for="content">Texte de l'article : </label>
-			<textarea name="content">{{post.content}}</textarea>
-			</br>
-			<input type="submit" value="Envoyer">
-        </form>
+        <section>
+
+            <h2>Modifier un article</h2>
+
+            <form method="post" action="index.php?access=post!updatePost&id={{post.id}}">
+            
+                <fieldset>
+                    <label for="title">Titre : </label>
+                    <input type="text" name="title" value="{{post.title}}">
+                </fieldset>
+            
+                <fieldset>
+                    <label for="intro">Chapô (150 caractères maximum) : </label>
+                    <textarea name="intro" maxlength="150">{{post.intro}}</textarea>
+                </fieldset>
+
+                <fieldset>
+                    <label for="content">Texte de l'article : </label>
+                    <textarea name="content">{{post.content}}</textarea>
+                </fieldset>
+
+                <fieldset class="btn-fieldset">
+                    <input class="btn" type="submit" value="Envoyer">
+                </fieldset>
+
+            </form>
+
+        </section>
 
     </main>
 {% endblock %}

@@ -8,56 +8,70 @@
     <main id="post">
 
         <section>
+
             <h2>{{ post.title }} </h2>
 
-            <p><str> <em> par <strong> {{ author.name }} </strong> </em> <str></p>
-            <p> <em> créé le : {{ post.date_created }} </em> </p>
-            <p> <em> modifié le : {{ post.date_updated }} </em> </p>
-            <p> <strong> <em> {{ post.intro }} </em> </strong> </p>
-            <p> {{ post.content }} </p>
-            
-            <!--
-            % if (isAdmin()) %
-                <p> <a href="index.php?access=post!deletePost&id={{post.id}}" title="DeletePost"> supprimer l'article </a> </p>
-                <p> <a href="index.php?access=post!updatepostform&id={{post.id}}" title="UpdatePost"> modifier l'article </a> </p>
-            % endif %
-            -->
+            <article>
+                <p>par {{ author.name }}</p>
+                <p>créé le : {{ post.date_created }}</p>
+                <p>modifié le : {{ post.date_updated }}</p>
+                <p>{{ post.intro }}</p>
+                <p>{{ post.content }}</p>
+            </article>
+
         </section>
 
         <section>
+        
             <h2>Commentez cet article :</h2>
-            <form method="post" action="index.php?access=comment!createcomment&id={{post.id}}">Saisissez vos informations:
-                </br>
-                <label for="author">nom ou pseudo: </label>
-                <input type="text" name="author">
-                </br>
-                <label for="title">titre: </label>
-                <input type="text" name="title">
-                </br>
-                <label for="content">commentaire: </label>
-                <textarea name="content"></textarea>
-                </br>
-                <input type="submit" value="Envoyer">
+
+            <form method="post" action="index.php?access=comment!createcomment&id={{post.id}}">
+                
+                <fieldset>
+                    <label for="author">nom ou pseudo: </label>
+                    <input type="text" name="author">
+                </fieldset>
+
+                <fieldset>
+                    <label for="title">titre: </label>
+                    <input type="text" name="title">
+                </fieldset>
+
+                <fieldset>
+                    <label for="content">commentaire: </label>
+                    <textarea name="content"></textarea>
+                </fieldset>
+
+                <fieldset class="btn-fieldset">
+                    <input class="btn" type="submit" value="Envoyer">
+                </fieldset>
+
             </form>
+
         </section>
 
         <section>
+
             <h2>Tous les commentaires sur cet article:</h2>
+
             <ul class="commentsInPost">
                 {% for comment in allComments %}
                     {% if (comment.approved is same as(1)) %}
-                        <li> <h3> {{ comment.title }} </h3> </li>
+                        <li> 
+                            <h3> {{ comment.title }} </h3>
+                        </li>
                         <li> par {{ comment.author }} </li>
                         <li> créé le : {{ comment.date_created }} </li>
                         <li> {{ comment.content }} </li>
-                        <li> <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">Supprimer ce commentaire </a> </li>
+                        <li> 
+                            <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">Supprimer ce commentaire
+                            </a>
+                        </li>
                     {% endif %}
                 {% endfor %}
             </ul>
+            
         </section>
-
-        </section>
-
 
     </main>
 {% endblock %}
