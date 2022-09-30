@@ -59,13 +59,14 @@
                     {% if (comment.approved is same as(1)) %}
                         <li> 
                             <h3> {{ comment.title }} </h3>
-                        </li>
-                        <li> par {{ comment.author }} </li>
-                        <li> créé le : {{ comment.date_created }} </li>
-                        <li> {{ comment.content }} </li>
-                        <li> 
-                            <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">Supprimer ce commentaire
-                            </a>
+                            <p> par {{ comment.author }} </p>
+                            <p> créé le : {{ comment.date_created }} </p>
+                            <p> {{ comment.content }} </p>
+                            <p> 
+                                <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">
+                                    Supprimer ce commentaire
+                                </a>
+                            </p>
                         </li>
                     {% endif %}
                 {% endfor %}

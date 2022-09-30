@@ -14,18 +14,16 @@
             <ul class="postsList">
                 {% for post in allPosts %}
                     <li>
-                        <ul class="postInList">
-                            <li>
-                                <h3> {{ post.title }} </h3>
-                            </li>
-                            <li>
+                        <article class="postInList">
+                            <h3> {{ post.title }} </h3>
+                            <p>
                                 <em> dernière modification: {{ post.date_updated }} </em>
-                            </li>
-                            <li> {{ post.intro }} </li>
-                            <li>
+                            </p>
+                            <p> {{ post.intro }} </p>
+                            <p>
                                 <a href="index.php?access=post!readpost&id={{post.id}}" title="Post"> vers l'article entier </a>
-                            </li>
-                        </ul>
+                            </p>
+                        </article>
                     </li>
                 {% endfor %}
             </ul>
