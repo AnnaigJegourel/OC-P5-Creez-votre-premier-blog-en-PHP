@@ -1,4 +1,5 @@
 <?php
+
 define("DB_DSN", "mysql:host=localhost;dbname=p5-blog");
 
 define("DB_USER", "root");

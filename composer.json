@@ -5,7 +5,6 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Annaigjegourel\\OcP5CreezVotrePremierBlogEnPhp\\": "src/",
             "App\\" : "src/"
         }
     },
@@ -17,13 +16,12 @@
     ],
     "minimum-stability": "dev",
     "require": {
-        "twig/twig": "3.x-dev"
+        "twig/twig": "^3.4.2",
+        "phpmailer/phpmailer": "^6.6.4"
     },
 
-    
     "require-dev": {
         "tracy/tracy": "^2.9.4"
     }
     
-
 }
