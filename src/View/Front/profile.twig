@@ -8,13 +8,20 @@
     <main id="profile">
 
         <section>
+
             <h2>Voici tes informations enregistrées:</h2>
-            <p>ton e-mail = {{user.email}}</p>
-            <p>la date de création de ton compte = {{user.date_created}}</p>
+
+            <article>
+                <p>ton e-mail = {{user.email}}</p>
+                <p>la date de création de ton compte = {{user.date_created}}</p>
+            </article>
+        
         </section>
 
         <section>
+
             <h2>Gérer ton compte:</h2>
+        
             <ul>
                 <li>
                     <a href="index.php?access=user!updateuserform&id={{user.id}}" title="UpdateUser">
@@ -25,6 +32,7 @@
                     Supprimer le compte </a>
                 </li>
             </ul>
+        
         </section>
         
     </main>

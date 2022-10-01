@@ -8,16 +8,26 @@
     <main id="listPosts">
 
         <section>
+
             <h2>Tous les articles publiés :</h2>
 
-            <ul class="postInList">
+            <ul class="postsList">
                 {% for post in allPosts %}
-                    <li> <h3> {{ post.title }} </h3> </li>
-                    <li> <em> dernière modification: {{ post.date_updated }} </em> </li>
-                    <li> {{ post.intro }} </li>
-                    <li> <a href="index.php?access=post!readpost&id={{post.id}}" title="Post"> vers l'article entier </a> </li>
+                    <li>
+                        <article class="postInList">
+                            <h3> {{ post.title }} </h3>
+                            <p>
+                                <em> dernière modification: {{ post.date_updated }} </em>
+                            </p>
+                            <p> {{ post.intro }} </p>
+                            <p>
+                                <a href="index.php?access=post!readpost&id={{post.id}}" title="Post"> vers l'article entier </a>
+                            </p>
+                        </article>
+                    </li>
                 {% endfor %}
             </ul>
+
         </section>
 
     </main>

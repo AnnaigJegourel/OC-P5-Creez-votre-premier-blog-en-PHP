@@ -1,40 +1,227 @@
 :root{ 
-  --dark-blue : #0E397F;
-  --dark-green: rgb(60, 127, 98);    /* #15dea5 */ /* boutons, liens non cliqués */
-  --medium-green: rgb(117, 238, 205); /* #75EECD */ /* footer */
-  --light-green: rgb(214, 255, 245);  /* #d6fff5 */ /* fond du main */
-}         
-  
-body {
-  text-align: center;
-  font-family: Geneva, 'Open Sans', Roboto, Calibri, Helvetica, Cambria, Arial, sans-serif, 'Times New Roman';
-  color: var(--dark-blue);
+    --dark-grey : rgb(79, 83, 87);
+    --medium-grey : rgb(143, 150, 156);
+    --light-grey: rgb(220, 233, 242);
+    --dark-green: rgb(79, 126, 125);
+    --medium-green: rgb(127, 205, 180);     /* like CV */
+    --white: #ffffff;
 }
 
-main {
-  padding: 10px;
-  background-color: var(--light-green);
+/* ========================== NIVEAU 0 : body ========================== */
+body{
+    text-align: center;
+    line-height: 25px;  
+    font-family: Geneva, 'Open Sans',Roboto, Calibri, Helvetica, Cambria, sans-serif, Arial, 'Times New Roman';
+    color: var(--dark-grey);
+}
+
+/* ========================== NIVEAU 1 : header, nav, footer, main ========================== */
+nav {
+    padding: 10px;
+    background-color: var(--medium-green);
 }
 
 footer {
-  padding: 10px;
-  background-color: var(--medium-green);
+    padding: 10px;
+    background-color: var(--light-grey);
 }
 
+/* ========================== NIVEAU 2: h1, section, ul(nav&footer), p(message)========================== */
+
+/*.postsList{  */         /* = section */
+    /*flex-wrap: wrap;
+    width: 90%;
+    }*/
+
+
+/* niv2: icônes footer & nav */ 
+/* niv3: les articles, comm sur 1 post, liens profil */
+/* niv6: lire modif suppr post */
+ul {
+    display: flex;
+    justify-content: space-evenly;
+    list-style: none;
+    /*border: solid 1px var(--dark-green);*/
+    padding: 0;
+}
+
+/* ========================== NIVEAU 3: h2, ul / article (sauf .postInList) / form / table, li(nav&footer) ========================== */
+h2{
+    color: var(--dark-green);
+}
+
+#admin h2{
+    text-transform: uppercase;
+}
+
+article{
+    padding: 10px;      /* ou seulement pour li des commentaires & articles en liste ? */
+}
+
+#post article{
+    margin: 0 15%;
+    /* ajuster les polices, line-heights, text-align left... */
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin: 0 20% 5% 20%;
+    box-shadow : 2px 2px 2px var(--light-grey);
+    border: solid 1px var(--medium-grey);
+    border-radius : 10px;
+    padding: 2%;
+}
+
+table {
+    margin-bottom: 60px;
+    /*table-layout: fixed;*/
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--dark-grey);
+}
+
+/* ========================== NIVEAU 4: li / p(art)/ article .postInList / fieldset / tr, a(nav&footer) ========================== */
+
+/* li */
+/*li{
+    padding: 10px;
+}*/
+.postsList li,
+.commentsInPost li{            
+    margin: 10px;
+    border: solid 1px var(--medium-grey);
+    border-radius: 10px;
+    box-shadow : 2px 2px 2px var(--light-grey);
+    padding: 10px;
+}
+
+
+/* p (dans article) */ 
+.postIntro{
+    font-weight: bold;
+    font-style: italic;
+}
+
+.postContent{
+    text-align: justify;
+}
+
+
+/* article .postInList
+.postInList{
+    margin: 10px;
+    height: fit-content;
+    border: solid 1px var(--dark-grey);
+    border-radius: 10px;
+    padding: 10px;
+    text-align: center;
+}
+*/
+
+
+
+
+/* fieldset */ 
+fieldset{
+    display: flex;
+    justify-content: space-between;
+    border: none;
+}
+
+.btn-fieldset{
+    align-self: center;
+    justify-content: space-evenly;
+    margin-top: 20px;
+    width: 50%;
+}
+
+
+/* tr */ 
+/*  thead th:nth-child(1) {
+    width: 30%;
+}
+thead th:nth-child(2) {
+    width: 20%;
+}
+thead th:nth-child(3) {
+    width: 15%;
+}
+thead th:nth-child(4) {
+    width: 35%;
+}
+th, td {
+    padding: 20px;
+}
+/* typographie */
+/*
+thead th, tfoot th {
+    font-family: 'Rock Salt', cursive;
+}
+th {
+    letter-spacing: 2px;
+}
+td {
+    letter-spacing: 1px;
+}
+tbody td {
+    text-align: center;
+}
+tfoot th {
+    text-align: right;
+}
+/* graphisme et couleurs */
+/*thead, tfoot {
+    background: url(leopardskin.jpg);
+    color: white;
+    text-shadow: 1px 1px 1px black;
+}
+thead th, tfoot th, tfoot td {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
+    border: 3px solid purple;
+}
+*/
+
 a {
-  color: var(--dark-blue);
+    color: var(--dark-green);
 }
 
 a:hover{
-  color: var(--dark-green);
+    color: var(--medium-grey);
 }
 
-ul {
-  display: flex;
-  justify-content: space-evenly;
-  list-style: none;
+
+/* ========================== NIVEAU 5: label-input-textarea / th-td / contenu li(ul2-h3-a) / contenu p(img-a), i(nav&footer) ========================== */
+/*.postsInList {*/
+    /* ul d'un article sur la page d'affichage */
+/*}*/
+
+input,
+textarea{
+    width: 45%;
 }
 
-.postInList, .commentInList {
-  flex-direction: column;
+#post strong{
+    font-size: large;
 }
+
+#post em{
+    font-size: small;
+}
+
+/*.btn{
+    width: 80px;
+    height: 30px;
+    background-color: var(--very-light-grey);
+    border: solid 1px;
+    border-radius : 10px;
+}*/
+
+/* ========================== NIVEAU 6 ========================== */
+/*.adminPosts ul {*/
+    /* radios approve / refuse dans tableau gestion postst */
+/*}*/
+/* ========================== NIVEAU 7 ========================== */
+
+/* ========================== NIVEAU 8 ========================== */

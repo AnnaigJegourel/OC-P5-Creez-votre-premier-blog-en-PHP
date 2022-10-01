@@ -1,33 +1,28 @@
 <section class="listUsers">
         
-        <h2>GERER LES UTILISATEURS inscrit(e)s sur le site</h2>
+        <h2>Gérer les comptes créés sur ce site</h2>
 
         <table>
-            <thead>
+            <tr> 
+                <th>Date de création</th>
+                <th>Identifiant</th>
+                <th>Nom</th>
+                <th>E-mail</th>
+                <th>Supprimer le compte</th>
+            </tr>
+            {% for user in allUsers %}
                 <tr>
-                    <th colspan="5">Comptes créés sur ce site</th>
+                    <td> {{ user.date_created }} </td>
+                    <td> {{ user.id }} </td>
+                    <td> {{ user.name }} </td>
+                    <td> {{ user.email }} </td>
+                    <td>
+                        <a href="index.php?access=user!deleteuser&id={{user.id}}" title="DeleteUser">
+                            Supprimer le compte 
+                        </a>
+                    </td>
                 </tr>
-            </thead>
-            <tbody>
-                <tr class="ligne1"> 
-                    <td><strong>Date de création</strong></td>
-                    <td><strong>Identifiant</strong></td>
-                    <td><strong>Nom</strong></td>
-                    <td><strong>E-mail</strong></td>
-                    <td><strong>Supprimer le compte</strong></td>
-                </tr>
-                    {% for user in allUsers %}
-                        <tr>
-                            <td> {{ user.date_created }} </td>
-                            <td> {{ user.id }} </td>
-                            <td> {{ user.name }} </td>
-                            <td> {{ user.email }} </td>
-                            <td> Supprimer
-                                <a href="index.php?access=user!deleteuser&id={{user.id}}" title="DeleteUser">
-                            </td>
-                        </tr>
-                    {% endfor %}
-            </tbody>
+            {% endfor %}
         </table>
 
-</main>
+</section>

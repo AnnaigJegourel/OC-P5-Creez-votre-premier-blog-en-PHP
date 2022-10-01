@@ -1,47 +1,43 @@
 
-<section class="listPosts">
+<section class="adminPosts">
 
             <h2>GERER LES ARTICLES</h2>
 
             <table>
-                <thead>
+                <tr>
+                    <th>Date de création</th>
+                    <th>Dernière modification</th>
+                    <th>Titre</th>
+                    <th>Chapô</th>
+                    <th>Gérer</th>
+                </tr>
+                {% for post in allPosts %}
                     <tr>
-                        <th colspan="5">Tous les posts</th>
+                        <td> {{ post.date_created }} </td>
+                        <td> {{ post.date_updated }} </td>
+                        <td> {{ post.title }} </td>
+                        <td> {{ post.intro }} </td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="index.php?access=post!readpost&id={{post.id}}" title="Post">
+                                        Lire
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index.php?access=post!updatepostform&id={{post.id}}" title="UpdatePost">
+                                        Modifier
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="index.php?access=post!deletePost&id={{post.id}}" title="DeletePost">
+                                        Supprimer
+                                    </a>
+                                </li>
+                            </ul>
+                        </td>
                     </tr>
-                </thead>
-                <tbody>
-                    <tr class="ligne1">
-                        <td><strong>Date de création</strong></td>
-                        <td><strong>Dernière modification</strong></td>
-                        <td><strong>Titre</strong></td>
-                        <td><strong>Chapô</strong></td>
-                        <td><strong>Gérer</strong></td>
-                    </tr>
-                    {% for post in allPosts %}
-                        <tr>
-                            <td> {{ post.date_created }} </td>
-                            <td> {{ post.date_updated }} </td>
-                            <td> {{ post.title }} </td>
-                            <td> {{ post.intro }} </td>
-                            <td>
-                                <ul>
-                                    <li>
-                                        <a href="index.php?access=post!readpost&id={{post.id}}" title="Post">
-                                        Lire</a>
-                                    </li>
-                                    <li>
-                                        <a href="index.php?access=post!updatepostform&id={{post.id}}" title="UpdatePost">
-                                        Modifier</a>
-                                    </li>
-                                    <li>
-                                        <a href="index.php?access=post!deletePost&id={{post.id}}" title="DeletePost">
-                                        Supprimer</a>
-                                    </li>
-                                </ul>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
+                {% endfor %}
             </table>
 
 </section>

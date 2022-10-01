@@ -1,37 +1,36 @@
 <nav>
     <ul>
         <li>
-            <a href="index.php?access=home" title="Home">
+            <a href="index.php?access=home" title="Retourner à l'accueil">
                 <i class="fas fa-home fa-fw fa-3x" aria-hidden="true"></i>
             </a>
         </li>
         <li>
-            <a href="index.php?access=post" title="Post">
-                Les articles
+            <a href="index.php?access=post" title="Lire le blog">
+                <i class="fa-solid fa-blog fa-3x"></i>
             </a>
         </li>
-    </ul>
 
-    <ul class="connection">
         {% if (isLogged()) %}
             <li>
-                <a href="index.php?access=user!readUser" title="ReadUser">
-                    Voir mon profil
+                <a href="index.php?access=user!readUser" title="Voir le profil">
+                    <i class="fa-solid fa-user fa-3x"></i>
                 </a>
             </li>
             <li>
-                <a href="index.php?access=user!logout" title="Logout">
-                    Se déconnecter</a>
+                <a href="index.php?access=user!logout" title="Se déconnecter">
+                    <i class="fa-solid fa-right-to-bracket fa-3x"></i>
+                </a>
             </li>
         {% else %}
             <li>
-                <a href="index.php?access=user" title="User">
-                    Se connecter
+                <a href="index.php?access=user!createuserform" title="Créer un profil">
+                    <i class="fa-solid fa-user fa-3x"></i>
                 </a>
             </li>
             <li>
-                <a href="index.php?access=user!createuserform" title="CreateUserForm">
-                    Créer un compte
+                <a href="index.php?access=user" title="Se connecter">
+                    <i class="fa-solid fa-right-to-bracket fa-3x"></i>
                 </a>
             </li>
         {% endif %}
