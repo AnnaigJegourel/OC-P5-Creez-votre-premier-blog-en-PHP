@@ -12,11 +12,21 @@
             <h2>{{ post.title }} </h2>
 
             <article>
-                <p>par {{ author.name }}</p>
-                <p>créé le : {{ post.date_created }}</p>
-                <p>modifié le : {{ post.date_updated }}</p>
-                <p>{{ post.intro }}</p>
-                <p>{{ post.content }}</p>
+                <p> 
+                    <strong>par {{ author.name }}</strong>
+                </p>
+                <p>
+                    <em>créé le : {{ post.date_created }}
+                        </br>
+                        modifié le : {{ post.date_updated }}
+                    </em>
+                </p>
+                <p class="postIntro">{{ post.intro }}</p>
+                <p>
+                    <i class="fa-solid fa-feather-pointed fa-2x"></i>
+                </p>
+                <p class="postContent">{{ post.content }}</p>
+
             </article>
 
         </section>

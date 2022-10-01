@@ -14,17 +14,17 @@
             <form method="post" action="index.php?access=post!updatePost&id={{post.id}}">
             
                 <fieldset>
-                    <label for="title">Titre : </label>
+                    <label for="title">titre: </label>
                     <input type="text" name="title" value="{{post.title}}">
                 </fieldset>
             
                 <fieldset>
-                    <label for="intro">Chapô (150 caractères maximum) : </label>
+                    <label for="intro">chapô: </label>
                     <textarea name="intro" maxlength="150">{{post.intro}}</textarea>
                 </fieldset>
 
                 <fieldset>
-                    <label for="content">Texte de l'article : </label>
+                    <label for="content">texte de l'article: </label>
                     <textarea name="content">{{post.content}}</textarea>
                 </fieldset>
 
