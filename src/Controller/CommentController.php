@@ -33,9 +33,8 @@ class CommentController extends MainController {
      */
     public function createCommentMethod()
     {
-        $user_id = $this->getUserId();
-
         if ($this->isLogged()) {
+            $user_id = $this->getUserId();
             $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
             $date_created = $date_created->format("Y-m-d H:i:s");
             $data = [
@@ -48,6 +47,10 @@ class CommentController extends MainController {
             ];
             ModelFactory::getModel("Comment")->createData($data);
             $message = "Votre commentaire a bien été créé. Il sera publié une fois approuvé par l'admin.";
+
+            return $this->twig->render("Front/message.twig", ["message" => $message]);
+        }else{
+            $message = "Vous devez vous connecter pour commenter un article.";
 
             return $this->twig->render("Front/message.twig", ["message" => $message]);
         }
