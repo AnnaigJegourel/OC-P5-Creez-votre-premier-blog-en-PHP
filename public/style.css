@@ -1,4 +1,4 @@
-:root{ 
+:root { 
     --dark-grey : rgb(79, 83, 87);
     --medium-grey : rgb(143, 150, 156);
     --light-grey: rgb(220, 233, 242);
@@ -8,7 +8,7 @@
 }
 
 /* ========================== NIVEAU 0 : body ========================== */
-body{
+body {
     text-align: center;
     line-height: 25px;  
     font-family: Geneva, 'Open Sans',Roboto, Calibri, Helvetica, Cambria, sans-serif, Arial, 'Times New Roman';
@@ -33,7 +33,6 @@ footer {
     width: 90%;
     }*/
 
-
 /* niv2: icônes footer & nav */ 
 /* niv3: les articles, comm sur 1 post, liens profil */
 /* niv6: lire modif suppr post */
@@ -41,24 +40,25 @@ ul {
     display: flex;
     justify-content: space-evenly;
     list-style: none;
+
     /*border: solid 1px var(--dark-green);*/
     padding: 0;
 }
 
 /* ========================== NIVEAU 3: h2, ul / article (sauf .postInList) / form / table, li(nav&footer) ========================== */
-h2{
+h2 {
     color: var(--dark-green);
 }
 
-#admin h2{
+#admin h2 {
     text-transform: uppercase;
 }
 
-article{
+article {
     padding: 10px;      /* ou seulement pour li des commentaires & articles en liste ? */
 }
 
-#post article{
+#post article {
     margin: 0 15%;
     /* ajuster les polices, line-heights, text-align left... */
 }
@@ -89,7 +89,7 @@ table {
     padding: 10px;
 }*/
 .postsList li,
-.commentsInPost li{            
+.commentsInPost li {            
     margin: 10px;
     border: solid 1px var(--medium-grey);
     border-radius: 10px;
@@ -99,12 +99,12 @@ table {
 
 
 /* p (dans article) */ 
-.postIntro{
+.postIntro {
     font-weight: bold;
     font-style: italic;
 }
 
-.postContent{
+.postContent {
     text-align: justify;
 }
 
@@ -124,13 +124,13 @@ table {
 
 
 /* fieldset */ 
-fieldset{
+fieldset {
     display: flex;
     justify-content: space-between;
     border: none;
 }
 
-.btn-fieldset{
+.btn-fieldset {
     align-self: center;
     justify-content: space-evenly;
     margin-top: 20px;
@@ -187,7 +187,7 @@ a {
     color: var(--dark-green);
 }
 
-a:hover{
+a:hover {
     color: var(--medium-grey);
 }
 
