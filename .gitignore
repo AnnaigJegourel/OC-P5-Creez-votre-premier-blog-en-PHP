@@ -4,3 +4,6 @@ public/CV.pdf
 # Dependencies
 public/node_modules/
 vendor/
+
+# Database configuration
+config/db.php
