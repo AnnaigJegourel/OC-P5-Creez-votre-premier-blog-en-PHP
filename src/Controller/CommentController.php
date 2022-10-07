@@ -56,28 +56,6 @@ class CommentController extends MainController {
         }
     }
 
-    /* ***************** READ ***************** */
-
-    /**
-     * Renders the View Comments List
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    /*public function listCommentsMethod()
-    {
-        if ($this->isAdmin()) {
-            $allComments = ModelFactory::getModel("Comment")->listDataLatest();
-
-            return $this->twig->render("Back/admin.twig", ["allComments" => $allComments]);
-        } else {
-            $message = "Vous n'êtes pas autorisé à voir la liste des commentaires";
-            
-            return $this->twig->render("Front/message.twig", ["message" => $message]);
-        }
-    }*/
-
     /* ***************** DELETE ***************** */
 
     /**

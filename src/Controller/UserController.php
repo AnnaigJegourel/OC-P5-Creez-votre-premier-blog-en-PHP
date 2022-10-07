@@ -99,25 +99,6 @@ class UserController extends MainController
 
 
     /* ***************** READ ***************** */
-    /**
-     * Renders the View of Users list (read all Users)
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    /*public function listUsersMethod()
-    {
-        if ($this->isAdmin()) {
-            $allUsers = $this->getAllUsers();
-
-            return $this->twig->render("Back/admin.twig", ["allUsers" => $allUsers]);  
-        } else {
-            $message = "Vous n'avez pas accès à la liste des utilisateurs du site.";
-
-            return $this->twig->render("Front/message.twig", ["message" => $message]);
-        }
-    }*/
 
     public function adminMethod()
     {
