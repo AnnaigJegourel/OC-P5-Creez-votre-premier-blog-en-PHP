@@ -36,10 +36,6 @@ class MailerController extends MainController
      */
     public function defaultMethod()
     {
-        require_once "../config/db.php";
-
-        // Encoder en utf-8? Caractères spéciaux non lus dans emails reçus
-        // utf8_encode() & _decode() sont obsolètes
         $data = [       
             "name" => $this->getPost()["name"],
             "email" => $this->getPost()["email"],
@@ -60,6 +56,9 @@ class MailerController extends MainController
         
             $this->mail->Port       = MAIL_PORT;      
 
+            // Attempt to assign property "CharSet" on null
+            // $mail->CharSet = "utf-8";
+
             $this->mail->setFrom(MAIL_FROM, MAIL_USERNAME); 
             $this->mail->addAddress(MAIL_TO, MAIL_TO_NAME);
 
@@ -71,26 +70,13 @@ class MailerController extends MainController
             
             $this->mail->send();
 
-            // Affichage sur le site en cas de succès:
-            echo "Message envoyé";                      
-            // OU:
-
-            /* render = ERROR:
-            ** "Call to a member function render() on null"
-            ** Index l.14 / Router l.99
-            $message = "Votre e-mail a bien été envoyé.";                 
-            return $this->twig->render("Front/message.twig", ["message" => $message]);
-            */
-            
-            /* redirect = ERROR: 
-            ** "Cannot modify header information - 
-            ** headers already sent by (output started at /...vendor/phpmailer.../src/SMTP.php:284) 
-            ** in .../MainController.php:52"
-            ** $this->redirect("home");     
-            */   
+            // $message = "Votre e-mail a bien été envoyé.";                 
+            $this->redirect("home"); 
 
         } catch(Exception) {
-            echo "Message non envoyé. Erreur: {$this->mail->ErrorInfo}";
+            // $message = "Votre e-mail n'a pas été envoyé. Erreur: {$this->mail->ErrorInfo}";                 
+            $this->redirect("home"); 
+            // echo "Message non envoyé. Erreur: {$this->mail->ErrorInfo}";
         }
     }
 }
