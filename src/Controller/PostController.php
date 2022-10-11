@@ -62,25 +62,6 @@ class PostController extends MainController
     /* ***************** CREATE ***************** */
 
     /**
-     * Renders the view create post form
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    /*public function createPostFormMethod()
-    {
-        if ($this->isAdmin()) {
-
-            return $this->twig->render("Back/createPost.twig");
-        } else {
-            $message = "Vous ne disposez pas des droits pour créer un article.";                
-            
-            return $this->twig->render("Front/message.twig", ["message" => $message]);
-        }
-    }*/
-
-    /**
      * Manages post creation
      * @return string
      * @throws LoaderError
