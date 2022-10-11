@@ -74,15 +74,32 @@ class UserController extends MainController
         $data = $this->getPost();
         $user = ModelFactory::getModel("User")->readData($this->toString($data["email"]), "email");
 
-        if(isset($user) && !empty($user) && $data["pwd"] === $user["password"]) {
-            $this->createSession($user);
+        /*$inputHash = password_hash($data["pwd"], PASSWORD_DEFAULT);
+        $bdHash = $user["password"];
+        var_dump($inputHash);
+        var_dump($bdHash);die();*/
 
+
+        /* V1 : avec hash et password_verify() */
+        if(isset($user) && !empty($user) && password_verify($data["pwd"], $user["password"])) {
+            $this->createSession($user);
             return $this->twig->render("Front/profile.twig", ["user" => $user]);
         } else {
-            $message = "L'e-mail ou le mot de passe n'existe pas dans la base de données.";
-
+            $message = "L'e-mail ou le mot de passe est erroné.";
             return $this->twig->render("Front/message.twig", ["message" => $message]);
         }
+
+
+        /* V0: sans hash
+        if(isset($user) && !empty($user) && $data["pwd"] === $user["password"]) {
+            $this->createSession($user);
+            return $this->twig->render("Front/profile.twig", ["user" => $user]);
+        } else {
+            $message = "L'e-mail ou le mot de passe est erroné.";
+            return $this->twig->render("Front/message.twig", ["message" => $message]);
+        }*/
+
+
     }
 
     /**
@@ -155,11 +172,14 @@ class UserController extends MainController
     {
         $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
         $date_created = $date_created->format("Y-m-d H:i:s");
+        $password = $this->putSlashes($this->getPost()["password"]);
+        $password = password_hash($this->password, PASSWORD_DEFAULT);
+        //var_dump($password);die();
         
         $data = [
             "name" => $this->putSlashes($this->getPost()["name"]),
             "email" => $this->putSlashes($this->getPost()["email"]),
-            "password" => $this->putSlashes($this->getPost()["password"]),
+            "password" => $password,
             "date_created" => $date_created,
             "role" => "0"
         ];
