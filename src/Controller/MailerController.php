@@ -75,7 +75,7 @@ class MailerController extends MainController
 
         } catch(Exception) {
             // $message = "Votre e-mail n'a pas été envoyé. Erreur: {$this->mail->ErrorInfo}";                 
-            $this->redirect("home"); 
+            $this->redirect("post"); 
             // echo "Message non envoyé. Erreur: {$this->mail->ErrorInfo}";
         }
     }
