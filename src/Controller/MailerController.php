@@ -56,8 +56,7 @@ class MailerController extends MainController
         
             $this->mail->Port       = MAIL_PORT;      
 
-            // Attempt to assign property "CharSet" on null
-            // $mail->CharSet = "utf-8";
+            $this->mail->CharSet = "utf-8";
 
             $this->mail->setFrom(MAIL_FROM, MAIL_USERNAME); 
             $this->mail->addAddress(MAIL_TO, MAIL_TO_NAME);
