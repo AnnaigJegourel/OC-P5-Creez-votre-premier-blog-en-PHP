@@ -153,8 +153,10 @@ abstract class MainController
     protected function getUserId()
     {
         $session = $this->getSession();
-        $id = $session["user"]["id"];
-        return $id;
+        if(isset($session["user"]) && !empty($session["user"])){
+            $id = $session["user"]["id"];
+            return $id;    
+        }
     }
 
     /**
