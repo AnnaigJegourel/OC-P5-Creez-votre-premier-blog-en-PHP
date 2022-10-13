@@ -86,7 +86,9 @@ class PostController extends MainController
         ModelFactory::getModel("Post")->createData($data);
         $message = "L'article a bien été créé.";                
             
-        return $this->twig->render("Front/message.twig", ["message" => $message]);
+        //return $this->twig->render("Front/message.twig", ["message" => $message]);
+        $this->setMessage($message);
+        $this->redirect("post");    
     }
 
     /* ***************** UPDATE ***************** */
@@ -105,11 +107,14 @@ class PostController extends MainController
             $post = ModelFactory::getModel("Post")->readData($this->toString($post_id));
 
             return $this->twig->render("Back/updatePost.twig",["post" => $post]);
-        } else {
+        } /*else {
+            // inutile car plus accessible !!
             $message = "Vous ne disposez pas des droits pour modifier un article.";      
             
-            return $this->twig->render("Front/message.twig", ["message" => $message]);
-        }
+            //return $this->twig->render("Front/message.twig", ["message" => $message]);
+            $this->setMessage($message);
+            $this->redirect("post");        
+        }*/
     }
 
     /**
@@ -131,7 +136,9 @@ class PostController extends MainController
         ModelFactory::getModel("Post")->updateData($this->toString($post_id), $data);
         $message = "Votre article a bien été modifié.";                
             
-        return $this->twig->render("Front/message.twig", ["message" => $message]);
+        //return $this->twig->render("Front/message.twig", ["message" => $message]);
+        $this->setMessage($message);
+        $this->redirect("post");        
     }
 
     /* ***************** DELETE ***************** */
@@ -150,6 +157,8 @@ class PostController extends MainController
         ModelFactory::getModel("Post")->deleteData($this->toString($post_id));
         $message = "L'article a bien été supprimé.";                
             
-        return $this->twig->render("Front/message.twig", ["message" => $message]);
+        //return $this->twig->render("Front/message.twig", ["message" => $message]);
+        $this->setMessage($message);
+        $this->redirect("post");        
     }
 }
