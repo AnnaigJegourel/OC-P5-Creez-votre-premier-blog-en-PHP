@@ -80,11 +80,15 @@ class UserController extends MainController
         if(isset($user) && !empty($user)){
             if(password_verify($data["pwd"], password_hash($user["password"], PASSWORD_DEFAULT))){
                 $this->createSession($user);
+
                 return $this->twig->render("Front/profile.twig", ["user" => $user]);
             }
         }else{
             $message = "L'e-mail ou le mot de passe est erroné.";
-            return $this->twig->render("Front/message.twig", ["message" => $message]);
+
+            //return $this->twig->render("Front/message.twig", ["message" => $message]);
+            $this->setMessage($message);
+            $this->redirect("user");            
         }
 
         /* V1 : avec hash et password_verify() -- bug car pas 2 fois même hash !! */
@@ -93,7 +97,10 @@ class UserController extends MainController
             return $this->twig->render("Front/profile.twig", ["user" => $user]);
         } else {
             $message = "L'e-mail ou le mot de passe est erroné.";
-            return $this->twig->render("Front/message.twig", ["message" => $message]);
+
+            //return $this->twig->render("Front/message.twig", ["message" => $message]);
+            $this->setMessage($message);
+            $this->redirect("user");        
         }*/
 
     }
@@ -136,7 +143,9 @@ class UserController extends MainController
         {
             $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
 
-            return $this->twig->render("Front/message.twig", ["message" => $message]);
+            //return $this->twig->render("Front/message.twig", ["message" => $message]);
+            $this->setMessage($message);
+            $this->redirect("user");            
         } else {
             $user = ModelFactory::getModel("User")->readData($this->toString($id));
 
@@ -183,7 +192,9 @@ class UserController extends MainController
         ModelFactory::getModel("User")->createData($data);
         $message = "Félicitations! Votre compte a bien été créé. Connectez-vous pour commenter les articles.";
 
-        return $this->twig->render("Front/message.twig", ["message" => $message]);
+        //return $this->twig->render("Front/message.twig", ["message" => $message]);
+        $this->setMessage($message);
+        $this->redirect("user");        
     }
 
     /* ***************** UPDATE ***************** */
@@ -228,7 +239,9 @@ class UserController extends MainController
         ModelFactory::getModel("User")->updateData($this->toString($user_id), $data);
         $message = "Le profil a bien été modifié.";
 
-        return $this->twig->render("Front/message.twig", ["message" => $message]);
+        //return $this->twig->render("Front/message.twig", ["message" => $message]);
+        $this->setMessage($message);
+        $this->redirect("user");        
     }
 
     /* ***************** DELETE ***************** */
@@ -247,6 +260,8 @@ class UserController extends MainController
         $this->logoutMethod();
         $message = "Le compte a bien été supprimé.";
 
-        return $this->twig->render("Front/message.twig", ["message" => $message]);
+        //return $this->twig->render("Front/message.twig", ["message" => $message]);
+        $this->setMessage($message);
+        $this->redirect("user");        
     }
 } 
