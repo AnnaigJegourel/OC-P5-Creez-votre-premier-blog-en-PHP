@@ -54,7 +54,7 @@ class UserController extends MainController
             'id' => $user['id'],
             'name' => $user['name'],
             'email' => $user['email'],
-            'password' => $user['password'],
+            'password' => $user['password'],        //à supprimer par sécurité?
             'date_created' => $user['date_created'],
             'role' => $user['role']
         ];
@@ -74,31 +74,27 @@ class UserController extends MainController
         $data = $this->getPost();
         $user = ModelFactory::getModel("User")->readData($this->toString($data["email"]), "email");
 
-        /*$inputHash = password_hash($data["pwd"], PASSWORD_DEFAULT);
-        $bdHash = $user["password"];
-        var_dump($inputHash);
-        var_dump($bdHash);die();*/
+        // Faire une fonction privée checkPassword()?
 
-
-        /* V1 : avec hash et password_verify() */
-        if(isset($user) && !empty($user) && password_verify($data["pwd"], $user["password"])) {
-            $this->createSession($user);
-            return $this->twig->render("Front/profile.twig", ["user" => $user]);
-        } else {
+        /* V2 avec hash lors de la vérif & pwd en dur dans la bdd */
+        if(isset($user) && !empty($user)){
+            if(password_verify($data["pwd"], password_hash($user["password"], PASSWORD_DEFAULT))){
+                $this->createSession($user);
+                return $this->twig->render("Front/profile.twig", ["user" => $user]);
+            }
+        }else{
             $message = "L'e-mail ou le mot de passe est erroné.";
             return $this->twig->render("Front/message.twig", ["message" => $message]);
         }
 
-
-        /* V0: sans hash
-        if(isset($user) && !empty($user) && $data["pwd"] === $user["password"]) {
+        /* V1 : avec hash et password_verify() -- bug car pas 2 fois même hash !! */
+        /*if(isset($user) && !empty($user) && password_verify($data["pwd"], $user["password"])) {
             $this->createSession($user);
             return $this->twig->render("Front/profile.twig", ["user" => $user]);
         } else {
             $message = "L'e-mail ou le mot de passe est erroné.";
             return $this->twig->render("Front/message.twig", ["message" => $message]);
         }*/
-
 
     }
 
