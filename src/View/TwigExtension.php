@@ -30,14 +30,14 @@ class TwigExtension extends AbstractExtension
     {
         return array(
             new TwigFunction("getSession", [$this, "getSession"]),
+            new TwigFunction("getMessage", [$this, "getMessage"]),
             new TwigFunction("getUser", [$this, "getUser"]),
             new TwigFunction("isLogged", [$this, "isLogged"]),
             new TwigFunction("isAdmin", [$this, "isAdmin"]),
         );
     }
 
-
-/**
+    /**
      * Gets SESSION Array
      * @param null|string $var
      * @return array|string
@@ -46,6 +46,21 @@ class TwigExtension extends AbstractExtension
     {
         return $this->session;
     }
+
+    /**
+     * Gets MESSAGE
+     *
+     * @return string
+     */
+    public function getMessage()
+    {
+        $session = $this->getSession();
+        if(isset($session["message"]) && !empty($session["message"])){
+            $message = $session["message"];
+            return $message;    
+        }       
+    }
+
     /**
      * Checks if a user is connected
      * @return bool
