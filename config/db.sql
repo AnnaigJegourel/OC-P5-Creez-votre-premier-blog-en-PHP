@@ -1,5 +1,3 @@
--- WARNING : add the file name inside the .gitignore file if adding sensible datas here 
-
 -- -----------------------------------------------------
 -- Schema mydb
 -- -----------------------------------------------------
@@ -28,7 +26,7 @@ INSERT INTO `User`
 (`name`, `email`, `password`, `date_created`, `role`)
 VALUES
 ("John", "john@doe.com", "john465", "2022-07-30", 0),
-("Jane", "jane@doe.com", "jane465", "2022-07-31", 0),
+("Jane", "jane@doe.com", "jane465", "2022-07-31", 0);
 
 
 -- -----------------------------------------------------

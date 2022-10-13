@@ -7,3 +7,4 @@ vendor/
 
 # Database configuration
 config/db.php
+config/user.sql
