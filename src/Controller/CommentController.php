@@ -46,13 +46,14 @@ class CommentController extends MainController {
                 "user_id" => $user_id
             ];
             ModelFactory::getModel("Comment")->createData($data);
-            $message = "Votre commentaire a bien été créé. Il sera publié une fois approuvé par l'admin.";
 
-            return $this->twig->render("Front/message.twig", ["message" => $message]);
+            $message = "Votre commentaire a bien été créé. Il sera publié une fois approuvé par l'admin.";
+            $this->setMessage($message);
+            $this->redirect("post");    
         }else{
             $message = "Vous devez vous connecter pour commenter un article.";
-
-            return $this->twig->render("Front/message.twig", ["message" => $message]);
+            $this->setMessage($message);
+            $this->redirect("post");    
         }
     }
 
@@ -78,7 +79,8 @@ class CommentController extends MainController {
             } else {
                 $message = "Vous ne pouvez pas supprimer les commentaires créés par d'autres comptes.";
             }
-        return $this->twig->render("Front/message.twig", ["message" => $message]);    
+        $this->setMessage($message);
+        $this->redirect("post");    
     }
 
     /* ***************** ADMIN ***************** */
@@ -100,6 +102,8 @@ class CommentController extends MainController {
 
         ModelFactory::getModel("Comment")->updateData($this->toString($comment_id), $data);
 
-        return $this->twig->render("Front/message.twig", ["message" => $message]);
+        //return $this->twig->render("Front/message.twig", ["message" => $message]);
+        $this->setMessage($message);
+        $this->redirect("user");    
     }
 }
