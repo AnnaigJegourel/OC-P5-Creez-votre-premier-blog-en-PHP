@@ -78,7 +78,8 @@ class CommentController extends MainController {
             } else {
                 $message = "Vous ne pouvez pas supprimer les commentaires créés par d'autres comptes.";
             }
-        return $this->twig->render("Front/message.twig", ["message" => $message]);    
+        $this->setMessage($message);
+        $this->redirect("post");    
     }
 
     /* ***************** ADMIN ***************** */
