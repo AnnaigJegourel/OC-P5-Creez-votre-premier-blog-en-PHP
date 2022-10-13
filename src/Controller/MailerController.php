@@ -69,13 +69,13 @@ class MailerController extends MainController
             
             $this->mail->send();
 
-            // $message = "Votre e-mail a bien été envoyé.";                 
-            $this->redirect("home"); 
+            $message = "Votre e-mail a bien été envoyé.";     
 
         } catch(Exception) {
-            // $message = "Votre e-mail n'a pas été envoyé. Erreur: {$this->mail->ErrorInfo}";                 
-            $this->redirect("post"); 
-            // echo "Message non envoyé. Erreur: {$this->mail->ErrorInfo}";
+            $message = "Votre e-mail n'a pas été envoyé. Erreur: {$this->mail->ErrorInfo}";   
         }
+
+        $this->setMessage($message);
+        $this->redirect("home"); 
     }
 }
