@@ -84,9 +84,20 @@ abstract class MainController
         return intval($val);
     }
 
+    /* *************** SETTERS *************** */
+    
+    /**
+     * sets MESSAGE
+     *
+     * @param string $message
+     * @return void
+     */
+    public function setMessage($message){
+        $_SESSION["message"] = $message;
+    }
 
     /* *************** GETTERS *************** */
-    
+
     /**
      * Gets POST Array or Post Var
      * @param null|string $var
