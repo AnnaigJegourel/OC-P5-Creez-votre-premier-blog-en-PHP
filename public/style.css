@@ -60,6 +60,7 @@ h2 {
 #admin h2 {
     text-transform: uppercase;
 }
+
 .postsList,             /* = ul */
 .commentsInPost {
     flex-wrap: wrap;
@@ -88,6 +89,7 @@ form {
 table {
     margin: 0 5% 5% 5%;
     width: 90%;
+    table-layout:auto;
     /*table-layout: fixed;*/
     border-collapse: collapse;
     border: 1px solid var(--dark-grey);
@@ -185,6 +187,10 @@ textarea{
     font-size: small;
 }
 
+tr {
+    border: 1px solid var(--dark-grey);
+}
+
 /*.btn{
     width: 80px;
     height: 30px;
@@ -193,13 +199,26 @@ textarea{
     border-radius : 10px;
 }*/
 
-/*
+
+
+/* ========================== NIVEAU 6 ========================== */
 th, td {
-    padding: 20px;
+    /*max-width: 20%;*/
+    padding: 0 2% 0 2%; /*right n'apparaît pas : cf. largeur des colonnes? */
+    text-align: left;
 }
-*/
+
+.chapo {    /* = th*/
+    width: 50%;
+}
+
+.date {
+    width: 11%;
+}
+
 
 /*
+
 th {
     letter-spacing: 2px;
 }
@@ -220,11 +239,46 @@ thead th, tfoot th {
     font-family: 'Rock Salt', cursive;
 }
 */
-
-/* ========================== NIVEAU 6 ========================== */
-/*.adminPosts ul {*/
-    /* radios approve / refuse dans tableau gestion postst */
-/*}*/
 /* ========================== NIVEAU 7 ========================== */
+.adminPosts ul {
+    flex-direction: column;
+}    
+
+.listComments form {
+    margin: 0;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    /*
+    justify-content: space-between;
+    margin: 0 20% 5% 20%;
+    box-shadow : 2px 2px 2px var(--light-grey);
+    border: solid 1px var(--medium-grey);
+    border-radius : 10px;
+    padding: 2%;
+    */
+}
+
 
 /* ========================== NIVEAU 8 ========================== */
+.listComments .btn-fieldset {
+    margin: 0;
+    width: 100%;
+    /*
+    fieldset {
+    display: flex;
+    justify-content: space-between;
+    border: none;}
+
+    .btn-fieldset {
+        align-self: center;
+        justify-content: space-evenly;
+        margin-top: 20px;
+        width: 50%;}
+    */
+}
+/* ========================== NIVEAU 9 ========================== */
+/* radios approve / refuse dans tableau gestion comment */
+.listComments input {
+    width: 100;
+}

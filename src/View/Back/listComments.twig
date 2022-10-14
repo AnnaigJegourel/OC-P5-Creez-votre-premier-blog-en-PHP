@@ -19,7 +19,9 @@
                     <tr>
                         <td> {{ comment.date_created }} </td>
                         <td> {{ comment.post_id }} </td>
-                        <td> "{{ comment.author }}" (identifiant: {{comment.user_id}})</td>
+                        <td> "{{ comment.author }}"
+                            </br>
+                            (identifiant: {{comment.user_id}})</td>
                         <td> {{ comment.title }} </td>
                         <td> {{ comment.content }} </td>
                         <td>
@@ -28,6 +30,7 @@
                             {% endif %}
                             {% if comment.approved is same as(0) %}
                                 refusé 
+                                </br>
                                 <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">Supprimer ce commentaire </a>
                             {% endif %}
                             {% if comment.approved is same as(1) %}
