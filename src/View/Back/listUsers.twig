@@ -1,28 +1,26 @@
 <section class="listUsers">
         
-        <h2>Gérer les comptes créés sur ce site</h2>
+        <h2>Liste des comptes créés sur ce site</h2>
 
         <table>
-            <tr> 
-                <th>Date de création</th>
-                <th>Identifiant</th>
-                <th>Nom</th>
-                <th>E-mail</th>
-                <th>Supprimer le compte</th>
-            </tr>
-            {% for user in allUsers %}
-                <tr>
-                    <td> {{ user.date_created }} </td>
-                    <td> {{ user.id }} </td>
-                    <td> {{ user.name }} </td>
-                    <td> {{ user.email }} </td>
-                    <td>
-                        <a href="index.php?access=user!deleteuser&id={{user.id}}" title="DeleteUser">
-                            Supprimer le compte 
-                        </a>
-                    </td>
+            <thead>
+                <tr> 
+                    <th>Date de création</th>
+                    <th>Identifiant</th>
+                    <th>Nom</th>
+                    <th>E-mail</th>
                 </tr>
-            {% endfor %}
+            </thead>
+            <tbody>
+                {% for user in allUsers %}
+                    <tr>
+                        <td> {{ user.date_created }} </td>
+                        <td> {{ user.id }} </td>
+                        <td> {{ user.name }} </td>
+                        <td> {{ user.email }} </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
 
 </section>

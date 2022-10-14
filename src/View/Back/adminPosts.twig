@@ -4,40 +4,45 @@
             <h2>GERER LES ARTICLES</h2>
 
             <table>
-                <tr>
-                    <th>Date de création</th>
-                    <th>Dernière modification</th>
-                    <th>Titre</th>
-                    <th>Chapô</th>
-                    <th>Gérer</th>
-                </tr>
-                {% for post in allPosts %}
+                <thead>
                     <tr>
-                        <td> {{ post.date_created }} </td>
-                        <td> {{ post.date_updated }} </td>
-                        <td> {{ post.title }} </td>
-                        <td> {{ post.intro }} </td>
-                        <td>
-                            <ul>
-                                <li>
-                                    <a href="index.php?access=post!readpost&id={{post.id}}" title="Post">
-                                        Lire
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="index.php?access=post!updatepostform&id={{post.id}}" title="UpdatePost">
-                                        Modifier
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="index.php?access=post!deletePost&id={{post.id}}" title="DeletePost">
-                                        Supprimer
-                                    </a>
-                                </li>
-                            </ul>
-                        </td>
+                        <th>Date de création</th>
+                        <th>Dernière modification</th>
+                        <th>Titre</th>
+                        <th>Chapô</th>
+                        <th>Gérer</th>
                     </tr>
-                {% endfor %}
+                </thead>
+
+                <tbody>
+                    {% for post in allPosts %}
+                        <tr>
+                            <td> {{ post.date_created }} </td>
+                            <td> {{ post.date_updated }} </td>
+                            <td> {{ post.title }} </td>
+                            <td> {{ post.intro }} </td>
+                            <td>
+                                <ul>
+                                    <li>
+                                        <a href="index.php?access=post!readpost&id={{post.id}}" title="Post">
+                                            Lire
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index.php?access=post!updatepostform&id={{post.id}}" title="UpdatePost">
+                                            Modifier
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="index.php?access=post!deletePost&id={{post.id}}" title="DeletePost">
+                                            Supprimer
+                                        </a>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                <tbody>
             </table>
 
 </section>

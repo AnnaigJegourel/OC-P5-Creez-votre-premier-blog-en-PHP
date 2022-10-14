@@ -3,23 +3,26 @@
         <h2>Gérer les commentaires</h2>
 
         <table>
-            <tr>
-                <th>Date de création</th>
-                <th>Id de l'article</th>
-                <th>Auteur</th>
-                <th>Titre</th>
-                <th>Commentaire</th>
-                <th>Statut</th>
-                <th>Modifier le statut</th>
-            </tr>
-            {% for comment in allComments %}
+            <thead>
                 <tr>
-                    <td> {{ comment.date_created }} </td>
-                    <td> {{ comment.post_id }} </td>
-                    <td> "{{ comment.author }}" (identifiant: {{comment.user_id}})</td>
-                    <td> {{ comment.title }} </td>
-                    <td> {{ comment.content }} </td>
-                    <td>
+                    <th>Date de création</th>
+                    <th>Id de l'article</th>
+                    <th>Auteur</th>
+                    <th>Titre</th>
+                    <th>Commentaire</th>
+                    <th>Statut</th>
+                    <th>Modifier le statut</th>
+                </tr>
+            </thead>
+            <tbody> 
+                {% for comment in allComments %}
+                    <tr>
+                        <td> {{ comment.date_created }} </td>
+                        <td> {{ comment.post_id }} </td>
+                        <td> "{{ comment.author }}" (identifiant: {{comment.user_id}})</td>
+                        <td> {{ comment.title }} </td>
+                        <td> {{ comment.content }} </td>
+                        <td>
                             {% if comment.approved is same as(null) %}
                                 EN ATTENTE
                             {% endif %}
@@ -46,8 +49,9 @@
                                 </fieldset>
                             </form>
                         </td>
-                </tr>
-            {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
 
     </section>
