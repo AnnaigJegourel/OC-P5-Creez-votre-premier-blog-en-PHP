@@ -7,6 +7,15 @@
     --white: #ffffff;
 }
 
+@keyframes entry{
+	0%{
+		transform: translateY(20%);
+	}
+	100%{
+		transform: translateY(0);
+	}
+}
+
 /* ========================== NIVEAU 0 : body ========================== */
 body {
     text-align: center;
@@ -28,11 +37,6 @@ footer {
 
 /* ========================== NIVEAU 2: h1, section, ul(nav&footer), p(message)========================== */
 
-/*.postsList{  */         /* = section */
-    /*flex-wrap: wrap;
-    width: 90%;
-    }*/
-
 /* niv2: icônes footer & nav */ 
 /* niv3: les articles, comm sur 1 post, liens profil */
 /* niv6: lire modif suppr post */
@@ -40,9 +44,12 @@ ul {
     display: flex;
     justify-content: space-evenly;
     list-style: none;
-
     /*border: solid 1px var(--dark-green);*/
     padding: 0;
+}
+
+#home section {
+    animation: entry 2000ms;
 }
 
 /* ========================== NIVEAU 3: h2, ul / article (sauf .postInList) / form / table, li(nav&footer) ========================== */
@@ -52,6 +59,11 @@ h2 {
 
 #admin h2 {
     text-transform: uppercase;
+}
+
+.postsList,             /* = ul */
+.commentsInPost {
+    flex-wrap: wrap;
 }
 
 article {
@@ -75,11 +87,13 @@ form {
 }
 
 table {
-    margin-bottom: 60px;
+    margin: 0 5% 5% 5%;
+    width: 90%;
+    table-layout:auto;
     /*table-layout: fixed;*/
-    width: 100%;
     border-collapse: collapse;
     border: 1px solid var(--dark-grey);
+    font-size: small;
 }
 
 /* ========================== NIVEAU 4: li / p(art)/ article .postInList / fieldset / tr, a(nav&footer) ========================== */
@@ -89,7 +103,9 @@ table {
     padding: 10px;
 }*/
 .postsList li,
-.commentsInPost li {            
+.commentsInPost li {     
+    width: 25%;       
+    height: fit-content;
     margin: 10px;
     border: solid 1px var(--medium-grey);
     border-radius: 10px;
@@ -138,50 +154,11 @@ fieldset {
 }
 
 
-/* tr */ 
-/*  thead th:nth-child(1) {
-    width: 30%;
-}
-thead th:nth-child(2) {
-    width: 20%;
-}
-thead th:nth-child(3) {
-    width: 15%;
-}
-thead th:nth-child(4) {
-    width: 35%;
-}
-th, td {
-    padding: 20px;
-}
-/* typographie */
-/*
-thead th, tfoot th {
-    font-family: 'Rock Salt', cursive;
-}
-th {
-    letter-spacing: 2px;
-}
-td {
-    letter-spacing: 1px;
-}
-tbody td {
-    text-align: center;
-}
-tfoot th {
-    text-align: right;
-}
-/* graphisme et couleurs */
-/*thead, tfoot {
-    background: url(leopardskin.jpg);
+thead {
+    background-color: var(--dark-green);
     color: white;
-    text-shadow: 1px 1px 1px black;
+    font-weight: bolder;
 }
-thead th, tfoot th, tfoot td {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
-    border: 3px solid purple;
-}
-*/
 
 a {
     color: var(--dark-green);
@@ -210,6 +187,10 @@ textarea{
     font-size: small;
 }
 
+tr {
+    border: 1px solid var(--dark-grey);
+}
+
 /*.btn{
     width: 80px;
     height: 30px;
@@ -218,10 +199,86 @@ textarea{
     border-radius : 10px;
 }*/
 
+
+
 /* ========================== NIVEAU 6 ========================== */
-/*.adminPosts ul {*/
-    /* radios approve / refuse dans tableau gestion postst */
-/*}*/
+th, td {
+    /*max-width: 20%;*/
+    padding: 0 2% 0 2%; /*right n'apparaît pas : cf. largeur des colonnes? */
+    text-align: left;
+}
+
+.chapo {    /* = th*/
+    width: 50%;
+}
+
+.date {
+    width: 11%;
+}
+
+
+/*
+
+th {
+    letter-spacing: 2px;
+}
+td {
+    letter-spacing: 1px;
+}
+tbody td {
+    text-align: center;
+}
+tfoot th {
+    text-align: right;
+}
+thead th, tfoot th, tfoot td {
+    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
+    border: 3px solid purple;
+}
+thead th, tfoot th {
+    font-family: 'Rock Salt', cursive;
+}
+*/
 /* ========================== NIVEAU 7 ========================== */
+.adminPosts ul {
+    flex-direction: column;
+}    
+
+.listComments form {
+    margin: 0;
+    box-shadow: none;
+    border: none;
+    padding: 0;
+    /*
+    justify-content: space-between;
+    margin: 0 20% 5% 20%;
+    box-shadow : 2px 2px 2px var(--light-grey);
+    border: solid 1px var(--medium-grey);
+    border-radius : 10px;
+    padding: 2%;
+    */
+}
+
 
 /* ========================== NIVEAU 8 ========================== */
+.listComments .btn-fieldset {
+    margin: 0;
+    width: 100%;
+    /*
+    fieldset {
+    display: flex;
+    justify-content: space-between;
+    border: none;}
+
+    .btn-fieldset {
+        align-self: center;
+        justify-content: space-evenly;
+        margin-top: 20px;
+        width: 50%;}
+    */
+}
+/* ========================== NIVEAU 9 ========================== */
+/* radios approve / refuse dans tableau gestion comment */
+.listComments input {
+    width: 100;
+}

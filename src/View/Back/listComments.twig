@@ -3,28 +3,34 @@
         <h2>Gérer les commentaires</h2>
 
         <table>
-            <tr>
-                <th>Date de création</th>
-                <th>Id de l'article</th>
-                <th>Auteur</th>
-                <th>Titre</th>
-                <th>Commentaire</th>
-                <th>Statut</th>
-                <th>Modifier le statut</th>
-            </tr>
-            {% for comment in allComments %}
+            <thead>
                 <tr>
-                    <td> {{ comment.date_created }} </td>
-                    <td> {{ comment.post_id }} </td>
-                    <td> "{{ comment.author }}" (identifiant: {{comment.user_id}})</td>
-                    <td> {{ comment.title }} </td>
-                    <td> {{ comment.content }} </td>
-                    <td>
+                    <th>Date de création</th>
+                    <th>Id de l'article</th>
+                    <th>Auteur</th>
+                    <th>Titre</th>
+                    <th>Commentaire</th>
+                    <th>Statut</th>
+                    <th>Modifier le statut</th>
+                </tr>
+            </thead>
+            <tbody> 
+                {% for comment in allComments %}
+                    <tr>
+                        <td> {{ comment.date_created }} </td>
+                        <td> {{ comment.post_id }} </td>
+                        <td> "{{ comment.author }}"
+                            </br>
+                            (identifiant: {{comment.user_id}})</td>
+                        <td> {{ comment.title }} </td>
+                        <td> {{ comment.content }} </td>
+                        <td>
                             {% if comment.approved is same as(null) %}
                                 EN ATTENTE
                             {% endif %}
                             {% if comment.approved is same as(0) %}
                                 refusé 
+                                </br>
                                 <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">Supprimer ce commentaire </a>
                             {% endif %}
                             {% if comment.approved is same as(1) %}
@@ -46,8 +52,9 @@
                                 </fieldset>
                             </form>
                         </td>
-                </tr>
-            {% endfor %}
+                    </tr>
+                {% endfor %}
+            </tbody>
         </table>
 
     </section>

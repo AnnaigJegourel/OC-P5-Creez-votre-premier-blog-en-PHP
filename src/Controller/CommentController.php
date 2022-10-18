@@ -46,15 +46,13 @@ class CommentController extends MainController {
                 "user_id" => $user_id
             ];
             ModelFactory::getModel("Comment")->createData($data);
-
             $message = "Votre commentaire a bien été créé. Il sera publié une fois approuvé par l'admin.";
-            $this->setMessage($message);
-            $this->redirect("post");    
         }else{
             $message = "Vous devez vous connecter pour commenter un article.";
-            $this->setMessage($message);
-            $this->redirect("post");    
         }
+        $this->setMessage($message);
+        $this->redirect("post");    
+        //$this->redirect("post");    problème getId() --> faire une getPostId()?
     }
 
     /* ***************** DELETE ***************** */
@@ -76,11 +74,12 @@ class CommentController extends MainController {
         if($this->isLogged() && ($user_id === $author_id || $this->isAdmin())) {
             ModelFactory::getModel("Comment")->deleteData($this->toString($comment_id));
             $message = "Le commentaire a bien été supprimé.";
-            } else {
-                $message = "Vous ne pouvez pas supprimer les commentaires créés par d'autres comptes.";
-            }
+        } else {
+            $message = "Vous ne pouvez pas supprimer les commentaires créés par d'autres comptes.";
+        }
         $this->setMessage($message);
         $this->redirect("post");    
+        //$this->redirect("post");    problème getId() --> faire une getPostId()?
     }
 
     /* ***************** ADMIN ***************** */
@@ -102,8 +101,7 @@ class CommentController extends MainController {
 
         ModelFactory::getModel("Comment")->updateData($this->toString($comment_id), $data);
 
-        //return $this->twig->render("Front/message.twig", ["message" => $message]);
         $this->setMessage($message);
-        $this->redirect("user");    
+        $this->redirect("user!admin");    
     }
 }
