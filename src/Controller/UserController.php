@@ -114,7 +114,7 @@ class UserController extends MainController
     {
         setcookie("PHPSESSID", "", time() - 3600, "/");
         session_destroy();
-        $this->redirect("Front/home");
+        $this->redirect("home");
     }
 
 
@@ -139,18 +139,18 @@ class UserController extends MainController
     public function readUserMethod()
     {
         $id = $this->getUserId();
-        if (!isset($id) || empty($id)) 
+        /*if (!isset($id) || empty($id)) 
         {
             $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
 
             //return $this->twig->render("Front/message.twig", ["message" => $message]);
             $this->setMessage($message);
             $this->redirect("user");            
-        } else {
+        } else {*/
             $user = ModelFactory::getModel("User")->readData($this->toString($id));
 
             return $this->twig->render("Front/profile.twig", ["user" => $user]);    
-        }
+        /*}*/
     }
 
     /* ***************** CREATE ***************** */
@@ -191,8 +191,6 @@ class UserController extends MainController
         
         ModelFactory::getModel("User")->createData($data);
         $message = "Félicitations! Votre compte a bien été créé. Connectez-vous pour commenter les articles.";
-
-        //return $this->twig->render("Front/message.twig", ["message" => $message]);
         $this->setMessage($message);
         $this->redirect("user");        
     }
@@ -208,12 +206,14 @@ class UserController extends MainController
     public function updateUserFormMethod()
     {
         $user_id = $this->getUserId();
-        if (!isset($user_id)) 
+        /*if (!isset($user_id)) 
         {
             $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
             
-            return $this->twig->render("Front/message.twig", ["message" => $message]);
-        }
+            //return $this->twig->render("Front/message.twig", ["message" => $message]);
+            $this->setMessage($message);
+            $this->redirect("user");    
+        }*/
         $user = ModelFactory::getModel("User")->readData($this->toString($user_id));
 
         return $this->twig->render("Front/updateUser.twig",["user" => $user]);
@@ -239,9 +239,8 @@ class UserController extends MainController
         ModelFactory::getModel("User")->updateData($this->toString($user_id), $data);
         $message = "Le profil a bien été modifié.";
 
-        //return $this->twig->render("Front/message.twig", ["message" => $message]);
         $this->setMessage($message);
-        $this->redirect("user");        
+        $this->redirect("user!readUser");
     }
 
     /* ***************** DELETE ***************** */
@@ -260,7 +259,6 @@ class UserController extends MainController
         $this->logoutMethod();
         $message = "Le compte a bien été supprimé.";
 
-        //return $this->twig->render("Front/message.twig", ["message" => $message]);
         $this->setMessage($message);
         $this->redirect("user");        
     }

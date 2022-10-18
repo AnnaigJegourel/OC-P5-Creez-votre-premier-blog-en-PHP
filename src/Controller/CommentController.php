@@ -23,7 +23,6 @@ class CommentController extends MainController {
 
     /* ***************** CREATE ***************** */
 
-    
     /**
      * Manages comment creation
      * @return string
