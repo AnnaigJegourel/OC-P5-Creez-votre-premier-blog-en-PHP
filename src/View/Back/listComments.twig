@@ -5,13 +5,13 @@
         <table>
             <thead>
                 <tr>
-                    <th>Date de création</th>
-                    <th>Id de l'article</th>
-                    <th>Auteur</th>
+                    <th class="date">Date de création</th>
+                    <th class="id">Id de l'article</th>
+                    <th class="date">Auteur</th>
                     <th>Titre</th>
                     <th>Commentaire</th>
                     <th>Statut</th>
-                    <th>Modifier le statut</th>
+                    <th class="modif">Modifier le statut</th>
                 </tr>
             </thead>
             <tbody> 
@@ -21,7 +21,7 @@
                         <td> {{ comment.post_id }} </td>
                         <td> "{{ comment.author }}"
                             </br>
-                            (identifiant: {{comment.user_id}})</td>
+                            (id: {{comment.user_id}})</td>
                         <td> {{ comment.title }} </td>
                         <td> {{ comment.content }} </td>
                         <td>
@@ -31,26 +31,15 @@
                             {% if comment.approved is same as(0) %}
                                 refusé 
                                 </br>
-                                <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">Supprimer ce commentaire </a>
+                                <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">supprimer</a>
                             {% endif %}
                             {% if comment.approved is same as(1) %}
                                 approuvé
                             {% endif %}
                         </td>
                         <td>
-                            <form method="post" action="index.php?access=comment!approvecomment&id={{comment.id}}">
-                                <fieldset>
-                                    <input type="radio" name="approve" value="1">
-                                    <label for="approve">Approuver</label>
-                                </fieldset>
-                                <fieldset>
-                                    <input type="radio" name="approve" value="0">
-                                    <label for="approve">Refuser</label>
-                                </fieldset>
-                                <fieldset class="btn-fieldset">
-                                    <input class="btn" type="submit" value="Envoyer">
-                                </fieldset>
-                            </form>
+                            <a href="index.php?access=comment!approvecomment&id={{comment.id}}&approve=1">approuver</a>
+                            <a href="index.php?access=comment!approvecomment&id={{comment.id}}&approve=0">refuser</a>
                         </td>
                     </tr>
                 {% endfor %}
