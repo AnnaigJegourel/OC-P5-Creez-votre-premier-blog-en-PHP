@@ -5,11 +5,12 @@
     --dark-green: rgb(79, 126, 125);
     --medium-green: rgb(127, 205, 180);     /* like CV */
     --white: #ffffff;
+    --contrast: rgb(180, 55, 113);
 }
 
 @keyframes entry{
 	0%{
-		transform: translateX(-100%);
+		transform: translateX(50%);
 	}
 	100%{
 		transform: translateX(0);
@@ -38,10 +39,14 @@ footer {
 /* ========================== NIVEAU 2: h1, section, ul(nav&footer), p(message)========================== */
 
 #message {  /* p de header */
-    margin: 4% 20% 4% 20%;
+    /*margin: 4% 20% 4% 20%;
     border-radius: 10px;
     box-shadow : 2px 2px 2px var(--medium-grey);
-    background-color: var(--light-grey);
+    background-color: var(--light-grey);*/
+    color: var(--contrast);
+    font-size: large;
+    font-weight: bolder;
+    font-style: italic;
     padding: 1%;
     animation: entry 3000ms;
 }
