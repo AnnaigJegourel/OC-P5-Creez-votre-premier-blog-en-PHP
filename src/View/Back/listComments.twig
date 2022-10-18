@@ -10,8 +10,8 @@
                     <th class="date">Auteur</th>
                     <th>Titre</th>
                     <th>Commentaire</th>
-                    <th>Statut</th>
-                    <th class="modif">Modifier le statut</th>
+                    <th class="date">Statut</th>
+                    <th class="date">Modifier le statut</th>
                 </tr>
             </thead>
             <tbody> 
@@ -38,8 +38,14 @@
                             {% endif %}
                         </td>
                         <td>
-                            <a href="index.php?access=comment!approvecomment&id={{comment.id}}&approve=1">approuver</a>
-                            <a href="index.php?access=comment!approvecomment&id={{comment.id}}&approve=0">refuser</a>
+                            <ul>
+                                <li>
+                                    <a href="index.php?access=comment!approvecomment&id={{comment.id}}&approve=1">approuver</a>
+                                </li>
+                                <li>
+                                    <a href="index.php?access=comment!approvecomment&id={{comment.id}}&approve=0">refuser</a>
+                                </li>
+                            </ul>
                         </td>
                     </tr>
                 {% endfor %}
