@@ -9,10 +9,10 @@
 
 @keyframes entry{
 	0%{
-		transform: translateY(20%);
+		transform: translateX(-100%);
 	}
 	100%{
-		transform: translateY(0);
+		transform: translateX(0);
 	}
 }
 
@@ -37,6 +37,14 @@ footer {
 
 /* ========================== NIVEAU 2: h1, section, ul(nav&footer), p(message)========================== */
 
+#message {  /* p de header */
+    margin: 4% 20% 4% 20%;
+    border-radius: 10px;
+    box-shadow : 2px 2px 2px var(--medium-grey);
+    background-color: var(--light-grey);
+    padding: 1%;
+    animation: entry 3000ms;
+}
 /* niv2: icônes footer & nav */ 
 /* niv3: les articles, comm sur 1 post, liens profil */
 /* niv6: lire modif suppr post */
@@ -48,9 +56,9 @@ ul {
     padding: 0;
 }
 
-#home section {
+/*#home section {
     animation: entry 2000ms;
-}
+}*/
 
 /* ========================== NIVEAU 3: h2, ul / article (sauf .postInList) / form / table, li(nav&footer) ========================== */
 h2 {
