@@ -87,9 +87,9 @@ class CommentController extends MainController {
      * Manages Admin's comments choice
      */
     public function approveCommentMethod()
-    {
-        $choice = $this->getPost()["approve"];
-        $data = ["approved" => $this->toInt($choice)];
+    {        
+        $choice = $this->getGet()["approve"];
+        $data = ["approved" => $this->toInt($choice)]; 
         $comment_id = $this->getId();
 
         if ($choice === "1") {
@@ -99,7 +99,6 @@ class CommentController extends MainController {
         };
 
         ModelFactory::getModel("Comment")->updateData($this->toString($comment_id), $data);
-
         $this->setMessage($message);
         $this->redirect("user!admin");    
     }

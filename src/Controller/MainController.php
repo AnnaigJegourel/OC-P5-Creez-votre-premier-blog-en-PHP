@@ -112,6 +112,16 @@ abstract class MainController
         return filter_input(INPUT_POST, $var);
     }
 
+    protected function getGet(string $var = null)
+    {
+        if ($var === null) {
+            return filter_input_array(INPUT_GET);
+        }
+
+        return filter_input(INPUT_GET, $var);
+    }
+
+
     /**
      * Gets SESSION Array
      * @param null|string $var
