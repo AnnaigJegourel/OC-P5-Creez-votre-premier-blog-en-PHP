@@ -30,6 +30,7 @@ class TwigExtension extends AbstractExtension
     {
         return array(
             new TwigFunction("getSession", [$this, "getSession"]),
+            //new TwigFunction("setMessage", [$this, "setMessage"]),
             new TwigFunction("getMessage", [$this, "getMessage"]),
             new TwigFunction("getUser", [$this, "getUser"]),
             new TwigFunction("isLogged", [$this, "isLogged"]),
@@ -47,6 +48,16 @@ class TwigExtension extends AbstractExtension
         return $this->session;
     }
 
+        /**
+     * sets MESSAGE
+     *
+     * @param string $message
+     * @return void
+     */
+    /*public function setMessage($message){
+        $_SESSION["message"] = $message;
+    }*/
+
     /**
      * Gets MESSAGE
      *
@@ -57,8 +68,14 @@ class TwigExtension extends AbstractExtension
         $session = $this->getSession();
         if(isset($session["message"]) && !empty($session["message"])){
             $message = $session["message"];
-            return $message;    
-        }       
+            return $message;
+             //unset($session["message"]);
+            //unset($_SESSION["message"]);
+        }
+        //unset($session["message"]);
+        //unset($_SESSION["message"]);
+        //$session["message"] = "";
+        //$this->setMessage("");
     }
 
     /**
