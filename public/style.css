@@ -206,14 +206,24 @@ th, td {
     /*max-width: 20%;*/
     padding: 0 2% 0 2%; /*right n'apparaît pas : cf. largeur des colonnes? */
     text-align: left;
+    line-height: 20px;
 }
 
+/*largeur relative des colonnes*/
 .chapo {    /* = th*/
     width: 50%;
 }
 
+.modif {
+    width: 20%
+}
+
 .date {
     width: 11%;
+}
+
+.id {
+    width: 8%;
 }
 
 
@@ -240,45 +250,14 @@ thead th, tfoot th {
 }
 */
 /* ========================== NIVEAU 7 ========================== */
-.adminPosts ul {
+.adminPosts ul,
+.listComments ul {
     flex-direction: column;
 }    
 
-.listComments form {
-    margin: 0;
-    box-shadow: none;
-    border: none;
-    padding: 0;
-    /*
-    justify-content: space-between;
-    margin: 0 20% 5% 20%;
-    box-shadow : 2px 2px 2px var(--light-grey);
-    border: solid 1px var(--medium-grey);
-    border-radius : 10px;
-    padding: 2%;
-    */
-}
+
 
 
 /* ========================== NIVEAU 8 ========================== */
-.listComments .btn-fieldset {
-    margin: 0;
-    width: 100%;
-    /*
-    fieldset {
-    display: flex;
-    justify-content: space-between;
-    border: none;}
 
-    .btn-fieldset {
-        align-self: center;
-        justify-content: space-evenly;
-        margin-top: 20px;
-        width: 50%;}
-    */
-}
 /* ========================== NIVEAU 9 ========================== */
-/* radios approve / refuse dans tableau gestion comment */
-.listComments input {
-    width: 100;
-}
