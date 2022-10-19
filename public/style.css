@@ -186,17 +186,25 @@ a:hover {
 /*.postsInList {*/
     /* ul d'un article sur la page d'affichage */
 /*}*/
+img {
+    margin-top: 3%;
+    width: 60%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow : 5px 5px 5px var(--light-grey);
+    filter: opacity(90%);
+}
 
 input,
-textarea{
+textarea {
     width: 45%;
 }
 
-#post strong{
+#post strong {
     font-size: large;
 }
 
-#post em{
+#post em {
     font-size: small;
 }
 
