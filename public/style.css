@@ -307,6 +307,8 @@ thead th, tfoot th {
         line-height: 100%;
     }
 
+    .postsList,
+    .commentsInPost,
     form,
     input,
     textarea {
@@ -323,4 +325,7 @@ thead th, tfoot th {
         width: 20%;
     }
 
+    @media all and (max-width: 480px){
+        /* lists */
+    }
 }
