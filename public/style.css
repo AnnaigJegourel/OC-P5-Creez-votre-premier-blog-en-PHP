@@ -225,7 +225,9 @@ tr {
 /* ========================== NIVEAU 6 ========================== */
 th, td {
     /*max-width: 20%;*/
-    padding: 0 2% 0 2%; /*right n'apparaît pas : cf. largeur des colonnes? */
+    /*padding: 0 2% 0 2%;*/ /*right n'apparaît pas : cf. largeur des colonnes? */
+    padding-left: 2%;
+    padding-right: 2%;
     text-align: left;
     line-height: 20px;
 }
@@ -235,12 +237,12 @@ th, td {
     width: 50%;
 }
 
-.modif {
-    width: 20%
-}
-
 .date {
     width: 11%;
+}
+
+.modif {
+    width: 20%
 }
 
 .id {
@@ -276,9 +278,25 @@ thead th, tfoot th {
     flex-direction: column;
 }    
 
-
-
-
 /* ========================== NIVEAU 8 ========================== */
 
 /* ========================== NIVEAU 9 ========================== */
+
+
+/* ========================== RESPONSIVE ========================== */
+
+@media all and (max-width: 1024px)
+{
+    .chapo {    /* = th*/
+        width: 40%;
+    }
+        
+    .date {
+        width: 14%;
+    }
+
+    thead,
+    tbody {
+        font-size: smaller;
+    }
+}
