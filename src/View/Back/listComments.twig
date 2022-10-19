@@ -9,7 +9,7 @@
                     <th class="id">Id de l'article</th>
                     <th class="date">Auteur</th>
                     <th>Titre</th>
-                    <th>Commentaire</th>
+                    <th class="comm">Commentaire</th>
                     <th class="date">Statut</th>
                     <th class="date">Modifier le statut</th>
                 </tr>
@@ -18,12 +18,12 @@
                 {% for comment in allComments %}
                     <tr>
                         <td> {{ comment.date_created }} </td>
-                        <td> {{ comment.post_id }} </td>
+                        <td class="id"> {{ comment.post_id }} </td>
                         <td> "{{ comment.author }}"
                             </br>
                             (id: {{comment.user_id}})</td>
                         <td> {{ comment.title }} </td>
-                        <td> {{ comment.content }} </td>
+                        <td class="comm"> {{ comment.content }} </td>
                         <td>
                             {% if comment.approved is same as(null) %}
                                 EN ATTENTE
@@ -40,10 +40,17 @@
                         <td>
                             <ul>
                                 <li>
-                                    <a href="index.php?access=comment!approvecomment&id={{comment.id}}&approve=1">approuver</a>
+                                    <a href="index.php?access=post!readpost&id={{comment.post_id}}">
+                                        Voir post
+                                    </a>
                                 </li>
                                 <li>
-                                    <a href="index.php?access=comment!approvecomment&id={{comment.id}}&approve=0">refuser</a>
+                                    <a href="index.php?access=comment!approvecomment&id={{comment.id}}&approve=1">
+                                        Approuver</a>
+                                </li>
+                                <li>
+                                    <a href="index.php?access=comment!approvecomment&id={{comment.id}}&approve=0">
+                                        Refuser</a>
                                 </li>
                             </ul>
                         </td>
