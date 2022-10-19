@@ -300,3 +300,17 @@ thead th, tfoot th {
         font-size: smaller;
     }
 }
+
+@media all and (max-width: 768px)
+{
+    .chapo,
+    .comm,
+    .id {    /* = th*/
+        display: none;
+    }
+
+    .date {
+        width: 20%;
+    }
+
+}
