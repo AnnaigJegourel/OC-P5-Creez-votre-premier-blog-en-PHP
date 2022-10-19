@@ -48,16 +48,6 @@ class TwigExtension extends AbstractExtension
         return $this->session;
     }
 
-        /**
-     * sets MESSAGE
-     *
-     * @param string $message
-     * @return void
-     */
-    /*public function setMessage($message){
-        $_SESSION["message"] = $message;
-    }*/
-
     /**
      * Gets MESSAGE
      *
@@ -68,14 +58,9 @@ class TwigExtension extends AbstractExtension
         $session = $this->getSession();
         if(isset($session["message"]) && !empty($session["message"])){
             $message = $session["message"];
-            return $message;
-             //unset($session["message"]);
-            //unset($_SESSION["message"]);
+            echo $message; //ajouter filter_var cf fichier Philippe
+            unset($_SESSION["message"]);
         }
-        //unset($session["message"]);
-        //unset($_SESSION["message"]);
-        //$session["message"] = "";
-        //$this->setMessage("");
     }
 
     /**
