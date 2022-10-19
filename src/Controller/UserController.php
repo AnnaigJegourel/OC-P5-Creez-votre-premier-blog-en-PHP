@@ -54,7 +54,7 @@ class UserController extends MainController
             'id' => $user['id'],
             'name' => $user['name'],
             'email' => $user['email'],
-            'password' => $user['password'],        //à supprimer par sécurité?
+            'password' => $user['password'],
             'date_created' => $user['date_created'],
             'role' => $user['role']
         ];
@@ -73,35 +73,21 @@ class UserController extends MainController
     {
         $data = $this->getPost();
         $user = ModelFactory::getModel("User")->readData($this->toString($data["email"]), "email");
+        //var_dump(password_verify($data["pwd"], $user["password"]));die;
 
-        // Faire une fonction privée checkPassword()?
-
-        /* V2 avec hash lors de la vérif & pwd en dur dans la bdd */
         if(isset($user) && !empty($user)){
-            if(password_verify($data["pwd"], password_hash($user["password"], PASSWORD_DEFAULT))){
+            //$pass = password_hash($user["password"], PASSWORD_DEFAULT);
+            //if(password_verify($data["pwd"], password_hash($user["password"], PASSWORD_DEFAULT))){
+            if(password_verify($data["pwd"], $user["password"])){
                 $this->createSession($user);
-
+                //var_dump($pass);die();
                 return $this->twig->render("Front/profile.twig", ["user" => $user]);
             }
         }else{
             $message = "L'e-mail ou le mot de passe est erroné.";
-
-            //return $this->twig->render("Front/message.twig", ["message" => $message]);
             $this->setMessage($message);
             $this->redirect("user");            
         }
-
-        /* V1 : avec hash et password_verify() -- bug car pas 2 fois même hash !! */
-        /*if(isset($user) && !empty($user) && password_verify($data["pwd"], $user["password"])) {
-            $this->createSession($user);
-            return $this->twig->render("Front/profile.twig", ["user" => $user]);
-        } else {
-            $message = "L'e-mail ou le mot de passe est erroné.";
-
-            //return $this->twig->render("Front/message.twig", ["message" => $message]);
-            $this->setMessage($message);
-            $this->redirect("user");        
-        }*/
 
     }
 
@@ -177,8 +163,9 @@ class UserController extends MainController
     {
         $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
         $date_created = $date_created->format("Y-m-d H:i:s");
-        $password = $this->putSlashes($this->getPost()["password"]);
-        $password = password_hash($this->password, PASSWORD_DEFAULT);
+        //$password = $this->putSlashes($this->getPost()["password"]);
+        //var_dump($password);die;
+        $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
         //var_dump($password);die();
         
         $data = [
