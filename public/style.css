@@ -303,6 +303,16 @@ thead th, tfoot th {
 
 @media all and (max-width: 768px)
 {
+    h1 {
+        line-height: 100%;
+    }
+
+    form,
+    input,
+    textarea {
+        font-size: small;
+    }
+
     .chapo,
     .comm,
     .id {    /* = th*/
