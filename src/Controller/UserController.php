@@ -50,16 +50,16 @@ class UserController extends MainController
      */
     private function createSession($user)
     {
-        $this->session['user'] = [
-            'id' => $user['id'],
-            'name' => $user['name'],
-            'email' => $user['email'],
-            'password' => $user['password'],
-            'date_created' => $user['date_created'],
-            'role' => $user['role']
+        $this->session["user"] = [
+            "id" => $user["id"],
+            "name" => $user["name"],
+            "email" => $user["email"],
+            "password" => $user["password"],
+            "date_created" => $user["date_created"],
+            "role" => $user["role"]
         ];
 
-        $_SESSION['user'] = $this->session['user'];
+        $_SESSION["user"] = $this->session["user"];
     }
 
     /**
