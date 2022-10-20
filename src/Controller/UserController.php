@@ -21,10 +21,10 @@ class UserController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function defaultMethod()
+    /*public function defaultMethod() // à transformer en condition pour login
     {
         return $this->twig->render("Front/login.twig");
-    }
+    }*/
 
     /**
      * Gets all Users
@@ -69,20 +69,24 @@ class UserController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function loginMethod()
-    {
-        $data = $this->getPost();
-        $user = ModelFactory::getModel("User")->readData($this->toString($data["email"]), "email");
+    public function defaultMethod() //à renommer en defaultM avec if-condition
+    {        
+        if(null !== $this->getPost() && !empty($this->getPost())) {
+            $data = $this->getPost();
+            $user = ModelFactory::getModel("User")->readData($this->toString($data["email"]), "email");
 
-        if(isset($user) && !empty($user)){
-            if(password_verify($data["pwd"], $user["password"])){
-                $this->createSession($user);
-                return $this->twig->render("Front/profile.twig", ["user" => $user]);
+            if(isset($user) && !empty($user)){
+                if(password_verify($data["pwd"], $user["password"])){
+                    $this->createSession($user);
+                    return $this->twig->render("Front/profile.twig", ["user" => $user]);
+                }
+            }else{
+                $message = "L'e-mail ou le mot de passe est erroné.";
+                $this->setMessage($message);
+                $this->redirect("user");            
             }
-        }else{
-            $message = "L'e-mail ou le mot de passe est erroné.";
-            $this->setMessage($message);
-            $this->redirect("user");            
+        } else {
+            return $this->twig->render("Front/login.twig");
         }
     }
 
@@ -99,7 +103,7 @@ class UserController extends MainController
     }
 
 
-    /* ***************** READ ***************** */
+    /* ***************** CRUD ***************** */
 
     public function adminMethod()
     {
@@ -120,33 +124,10 @@ class UserController extends MainController
     public function readUserMethod()
     {
         $id = $this->getUserId();
-        /*if (!isset($id) || empty($id)) 
-        {
-            $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
+        $user = ModelFactory::getModel("User")->readData($this->toString($id));
 
-            //return $this->twig->render("Front/message.twig", ["message" => $message]);
-            $this->setMessage($message);
-            $this->redirect("user");            
-        } else {*/
-            $user = ModelFactory::getModel("User")->readData($this->toString($id));
-
-            return $this->twig->render("Front/profile.twig", ["user" => $user]);    
-        /*}*/
+        return $this->twig->render("Front/profile.twig", ["user" => $user]);    
     }
-
-    /* ***************** CREATE ***************** */
-    /**
-     * Renders the view of the form to create a user account
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    /*public function createUserFormMethod()
-    {
-        //var_dump($this->getPost());die;*/
-       /* return $this->twig->render("Front/createUser.twig");
-    }*/
 
     /**
      * Manages user account creation
@@ -173,13 +154,14 @@ class UserController extends MainController
             ModelFactory::getModel("User")->createData($data);
             $message = "Félicitations! Votre compte a bien été créé. Connectez-vous pour commenter les articles.";
             $this->setMessage($message);
+            
             $this->redirect("user");            
         } else {
+
             return $this->twig->render("Front/createUser.twig");
         }
     }
 
-    /* ***************** UPDATE ***************** */
     /**
      * Renders the view update user form
      * @return string
@@ -219,7 +201,6 @@ class UserController extends MainController
         $this->redirect("user!readUser");
     }
 
-    /* ***************** DELETE ***************** */
     /**
      * Deletes a User Account
      * @return string
