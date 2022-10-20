@@ -15,61 +15,13 @@ use Twig\Error\SyntaxError;
 class UserController extends MainController
 {
     /**
-     * Renders the Login Form View
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    /*public function defaultMethod() // à transformer en condition pour login
-    {
-        return $this->twig->render("Front/login.twig");
-    }*/
-
-    /**
-     * Gets all Users
+     * Logs in User & returns user data OR redirect to login form
      * @return array\string
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    private function getAllUsers()
-    {
-        $allUsers = ModelFactory::getModel("User")->listData();
-
-        return $allUsers;
-    }
-
-    /* ***************** LOG & ADMIN ***************** */
-    /**
-     * Creates a user session
-     *
-     * @param  mixed $user
-     *
-     * @return void
-     */
-    private function createSession($user)
-    {
-        $this->session["user"] = [
-            "id" => $user["id"],
-            "name" => $user["name"],
-            "email" => $user["email"],
-            "password" => $user["password"],
-            "date_created" => $user["date_created"],
-            "role" => $user["role"]
-        ];
-
-        $_SESSION["user"] = $this->session["user"];
-    }
-
-    /**
-     * Logs in User & return user data
-     * @return array\string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    public function defaultMethod() //à renommer en defaultM avec if-condition
+    public function defaultMethod()
     {        
         if(null !== $this->getPost() && !empty($this->getPost())) {
             $data = $this->getPost();
@@ -102,6 +54,40 @@ class UserController extends MainController
         $this->redirect("home");
     }
 
+    /**
+     * Gets all Users
+     * @return array\string
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    private function getAllUsers()
+    {
+        $allUsers = ModelFactory::getModel("User")->listData();
+
+        return $allUsers;
+    }
+
+    /**
+     * Creates a user session
+     *
+     * @param  mixed $user
+     *
+     * @return void
+     */
+    private function createSession($user)
+    {
+        $this->session["user"] = [
+            "id" => $user["id"],
+            "name" => $user["name"],
+            "email" => $user["email"],
+            "password" => $user["password"],
+            "date_created" => $user["date_created"],
+            "role" => $user["role"]
+        ];
+
+        $_SESSION["user"] = $this->session["user"];
+    }
 
     /* ***************** CRUD ***************** */
 
