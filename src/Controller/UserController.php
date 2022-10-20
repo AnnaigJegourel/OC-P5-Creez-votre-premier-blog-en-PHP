@@ -50,16 +50,16 @@ class UserController extends MainController
      */
     private function createSession($user)
     {
-        $this->session['user'] = [
-            'id' => $user['id'],
-            'name' => $user['name'],
-            'email' => $user['email'],
-            'password' => $user['password'],
-            'date_created' => $user['date_created'],
-            'role' => $user['role']
+        $this->session["user"] = [
+            "id" => $user["id"],
+            "name" => $user["name"],
+            "email" => $user["email"],
+            "password" => $user["password"],
+            "date_created" => $user["date_created"],
+            "role" => $user["role"]
         ];
 
-        $_SESSION['user'] = $this->session['user'];
+        $_SESSION["user"] = $this->session["user"];
     }
 
     /**
@@ -142,10 +142,11 @@ class UserController extends MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function createUserFormMethod()
+    /*public function createUserFormMethod()
     {
-        return $this->twig->render("Front/createUser.twig");
-    }
+        //var_dump($this->getPost());die;*/
+       /* return $this->twig->render("Front/createUser.twig");
+    }*/
 
     /**
      * Manages user account creation
@@ -156,22 +157,26 @@ class UserController extends MainController
      */
     public function createUserMethod()
     {
-        $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
-        $date_created = $date_created->format("Y-m-d H:i:s");
-        $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
-        
-        $data = [
-            "name" => $this->putSlashes($this->getPost()["name"]),
-            "email" => $this->putSlashes($this->getPost()["email"]),
-            "password" => $password,
-            "date_created" => $date_created,
-            "role" => "0"
-        ];
-        
-        ModelFactory::getModel("User")->createData($data);
-        $message = "Félicitations! Votre compte a bien été créé. Connectez-vous pour commenter les articles.";
-        $this->setMessage($message);
-        $this->redirect("user");        
+        if(null !== $this->getPost() && !empty($this->getPost())) {
+            $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+            $date_created = $date_created->format("Y-m-d H:i:s");
+            $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
+            
+            $data = [
+                "name" => $this->putSlashes($this->getPost()["name"]),
+                "email" => $this->putSlashes($this->getPost()["email"]),
+                "password" => $password,
+                "date_created" => $date_created,
+                "role" => "0"
+            ];
+            
+            ModelFactory::getModel("User")->createData($data);
+            $message = "Félicitations! Votre compte a bien été créé. Connectez-vous pour commenter les articles.";
+            $this->setMessage($message);
+            $this->redirect("user");            
+        } else {
+            return $this->twig->render("Front/createUser.twig");
+        }
     }
 
     /* ***************** UPDATE ***************** */

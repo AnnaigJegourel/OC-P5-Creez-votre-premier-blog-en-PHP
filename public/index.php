@@ -1,6 +1,6 @@
 <?php
 
-header('Content-Type: text/html; charset=utf-8');
+header("Content-Type: text/html; charset=utf-8");
 
 require_once "../vendor/autoload.php";
 require_once "../config/db.php";

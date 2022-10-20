@@ -21,7 +21,7 @@
 body {
     text-align: center;
     line-height: 25px;  
-    font-family: Geneva, 'Open Sans',Roboto, Calibri, Helvetica, Cambria, sans-serif, Arial, 'Times New Roman';
+    font-family: Geneva, "Open Sans",Roboto, Calibri, Helvetica, Cambria, sans-serif, Arial, "Times New Roman";
     color: var(--dark-grey);
 }
 

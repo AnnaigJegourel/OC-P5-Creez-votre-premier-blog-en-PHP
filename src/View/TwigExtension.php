@@ -58,7 +58,7 @@ class TwigExtension extends AbstractExtension
         $session = $this->getSession();
         if(isset($session["message"]) && !empty($session["message"])){
             $message = $session["message"];
-            echo $message; //ajouter filter_var cf fichier Philippe
+            echo filter_var($message); 
             unset($_SESSION["message"]);
         }
     }
@@ -69,7 +69,7 @@ class TwigExtension extends AbstractExtension
      */
     public function isLogged(){
         $session = $this->getSession();
-        if(!empty($session) && isset($session['user']) && !empty($session['user'])) {
+        if(!empty($session) && isset($session["user"]) && !empty($session["user"])) {
             return true;
         }
     }
@@ -108,7 +108,7 @@ class TwigExtension extends AbstractExtension
      * @return bool
      */
     public function isAdmin() {
-        if ($this->isLogged() && $this->getUser()['role'] === "1"){
+        if ($this->isLogged() && $this->getUser()["role"] === "1"){
             return true;
         }
     }

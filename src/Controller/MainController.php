@@ -200,7 +200,7 @@ abstract class MainController
      */
     public function isLogged(){
         $session = $this->getSession();
-        if(!empty($session) && isset($session['user']) && !empty($session['user'])) {
+        if(!empty($session) && isset($session["user"]) && !empty($session["user"])) {
             return true;
         } /* else {
             $this->redirect("login"); 
@@ -212,7 +212,7 @@ abstract class MainController
      * @return bool
      */
     public function isAdmin() {
-        if ($this->isLogged() && $this->getUser()['role'] === "1"){
+        if ($this->isLogged() && $this->getUser()["role"] === "1"){
             return true;
         }
     }
