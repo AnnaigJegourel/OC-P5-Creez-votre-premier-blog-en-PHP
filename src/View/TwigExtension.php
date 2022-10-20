@@ -58,7 +58,7 @@ class TwigExtension extends AbstractExtension
         $session = $this->getSession();
         if(isset($session["message"]) && !empty($session["message"])){
             $message = $session["message"];
-            echo $message; //ajouter filter_var cf fichier Philippe
+            echo filter_var($message); 
             unset($_SESSION["message"]);
         }
     }
