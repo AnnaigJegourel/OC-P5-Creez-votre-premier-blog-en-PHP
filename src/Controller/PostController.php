@@ -46,7 +46,7 @@ class PostController extends MainController
             $post_id = "1";
         }
 
-        $post = ModelFactory::getModel("Post")->readData($this->toString($post_id));
+        $post = ModelFactory::getModel("Post")->readData((string) $post_id);
         $author = $this->getUser($post["user_id"]);
         $session = $this->getSession();
         $allComments = $this->getComments();
@@ -104,17 +104,10 @@ class PostController extends MainController
     {
         if ($this->isAdmin()) {
             $post_id = $this->getId();   
-            $post = ModelFactory::getModel("Post")->readData($this->toString($post_id));
+            $post = ModelFactory::getModel("Post")->readData((string)$post_id);
 
             return $this->twig->render("Back/updatePost.twig",["post" => $post]);
-        } /*else {
-            // inutile car plus accessible !!
-            $message = "Vous ne disposez pas des droits pour modifier un article.";      
-            
-            //return $this->twig->render("Front/message.twig", ["message" => $message]);
-            $this->setMessage($message);
-            $this->redirect("post");        
-        }*/
+        }
     }
 
     /**
@@ -133,10 +126,9 @@ class PostController extends MainController
             "date_updated" => $date_updated
         ];
         
-        ModelFactory::getModel("Post")->updateData($this->toString($post_id), $data);
+        ModelFactory::getModel("Post")->updateData((string) $post_id, $data);
         $message = "Votre article a bien été modifié.";                
             
-        //return $this->twig->render("Front/message.twig", ["message" => $message]);
         $this->setMessage($message);
         $this->redirect("post");        
     }
@@ -152,12 +144,11 @@ class PostController extends MainController
      */
     public function deletePostMethod()
     {
-        $post_id = $this->getId();   
-        ModelFactory::getModel("Comment")->deleteData($this->toString($post_id), "post_id");
-        ModelFactory::getModel("Post")->deleteData($this->toString($post_id));
+        $post_id = (string) $this->getId();   
+        ModelFactory::getModel("Comment")->deleteData($post_id, "post_id");
+        ModelFactory::getModel("Post")->deleteData($post_id);
         $message = "L'article a bien été supprimé.";                
             
-        //return $this->twig->render("Front/message.twig", ["message" => $message]);
         $this->setMessage($message);
         $this->redirect("post");        
     }

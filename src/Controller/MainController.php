@@ -70,9 +70,9 @@ abstract class MainController
      * @param mixed $val
      * @return void
      */
-    protected function toString(mixed $val) {
+    /*protected function toString(mixed $val) {
         return strval($val);
-    }
+    }*/
 
     /**
      * Parse a value & return it as integer
@@ -155,7 +155,7 @@ abstract class MainController
     protected function getUser($id = null)
     {
         if (isset($id) && !empty($id)) {
-            $user = ModelFactory::getModel("User")->readData($this->toString($id));
+            $user = ModelFactory::getModel("User")->readData((string)$id);
         } else {
             $session = $this->getSession();
             $user = $session["user"];
