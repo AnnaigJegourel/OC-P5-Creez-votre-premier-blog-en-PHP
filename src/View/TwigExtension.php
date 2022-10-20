@@ -75,16 +75,6 @@ class TwigExtension extends AbstractExtension
     }
 
     /**
-     * Parse a value & return it as string
-     *
-     * @param mixed $val
-     * @return void
-     */
-    protected function toString(mixed $val) {
-        return strval($val);
-    }
-
-    /**
      * Gets USER
      * Returns the data of User with id or of logged User
      * @return string
@@ -95,7 +85,7 @@ class TwigExtension extends AbstractExtension
     public function getUser($id = null)
     {
         if (isset($id) && !empty($id)) {
-            $user = ModelFactory::getModel("User")->readData($this->toString($id));
+            $user = ModelFactory::getModel("User")->readData((string) $id);
         } else {
             $session = $this->getSession();
             $user = $session["user"];

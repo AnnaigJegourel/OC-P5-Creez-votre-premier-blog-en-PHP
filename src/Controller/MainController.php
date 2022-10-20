@@ -64,26 +64,6 @@ abstract class MainController
         return addslashes($input);
     }
 
-    /**
-     * Parse a value & return it as string
-     *
-     * @param mixed $val
-     * @return void
-     */
-    protected function toString(mixed $val) {
-        return strval($val);
-    }
-
-    /**
-     * Parse a value & return it as integer
-     *
-     * @param mixed $val
-     * @return void
-     */
-    protected function toInt(mixed $val) {
-        return intval($val);
-    }
-
     /* *************** SETTERS *************** */
     
     /**
@@ -155,7 +135,7 @@ abstract class MainController
     protected function getUser($id = null)
     {
         if (isset($id) && !empty($id)) {
-            $user = ModelFactory::getModel("User")->readData($this->toString($id));
+            $user = ModelFactory::getModel("User")->readData((string)$id);
         } else {
             $session = $this->getSession();
             $user = $session["user"];

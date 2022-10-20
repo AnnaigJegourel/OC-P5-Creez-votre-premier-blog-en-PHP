@@ -15,15 +15,43 @@ use Twig\Error\SyntaxError;
 class UserController extends MainController
 {
     /**
-     * Renders the Login Form View
-     * @return string
+     * Logs in User & returns user data OR redirect to login form
+     * @return array\string
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
     public function defaultMethod()
+    {        
+        if(null !== $this->getPost() && !empty($this->getPost())) {
+            $data = $this->getPost();
+            $user = ModelFactory::getModel("User")->readData((string) $data["email"], "email");
+
+            if(isset($user) && !empty($user)){
+                if(password_verify($data["pwd"], $user["password"])){
+                    $this->createSession($user);
+                    return $this->twig->render("Front/profile.twig", ["user" => $user]);
+                }
+            }else{
+                $message = "L'e-mail ou le mot de passe est erroné.";
+                $this->setMessage($message);
+                $this->redirect("user");            
+            }
+        } else {
+            return $this->twig->render("Front/login.twig");
+        }
+    }
+
+    /**
+     * Logs out user
+     *
+     * @return void
+     */
+    public function logoutMethod()
     {
-        return $this->twig->render("Front/login.twig");
+        setcookie("PHPSESSID", "", time() - 3600, "/");
+        session_destroy();
+        $this->redirect("home");
     }
 
     /**
@@ -40,7 +68,6 @@ class UserController extends MainController
         return $allUsers;
     }
 
-    /* ***************** LOG & ADMIN ***************** */
     /**
      * Creates a user session
      *
@@ -62,44 +89,10 @@ class UserController extends MainController
         $_SESSION["user"] = $this->session["user"];
     }
 
-    /**
-     * Logs in User & return user data
-     * @return array\string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    public function loginMethod()
-    {
-        $data = $this->getPost();
-        $user = ModelFactory::getModel("User")->readData($this->toString($data["email"]), "email");
-
-        if(isset($user) && !empty($user)){
-            if(password_verify($data["pwd"], $user["password"])){
-                $this->createSession($user);
-                return $this->twig->render("Front/profile.twig", ["user" => $user]);
-            }
-        }else{
-            $message = "L'e-mail ou le mot de passe est erroné.";
-            $this->setMessage($message);
-            $this->redirect("user");            
-        }
-    }
-
-    /**
-     * Logs out user
-     *
-     * @return void
-     */
-    public function logoutMethod()
-    {
-        setcookie("PHPSESSID", "", time() - 3600, "/");
-        session_destroy();
-        $this->redirect("home");
-    }
 
 
-    /* ***************** READ ***************** */
+
+    /* ***************** CRUD ***************** */
 
     public function adminMethod()
     {
@@ -120,33 +113,10 @@ class UserController extends MainController
     public function readUserMethod()
     {
         $id = $this->getUserId();
-        /*if (!isset($id) || empty($id)) 
-        {
-            $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
+        $user = ModelFactory::getModel("User")->readData((string) $id);
 
-            //return $this->twig->render("Front/message.twig", ["message" => $message]);
-            $this->setMessage($message);
-            $this->redirect("user");            
-        } else {*/
-            $user = ModelFactory::getModel("User")->readData($this->toString($id));
-
-            return $this->twig->render("Front/profile.twig", ["user" => $user]);    
-        /*}*/
+        return $this->twig->render("Front/profile.twig", ["user" => $user]);    
     }
-
-    /* ***************** CREATE ***************** */
-    /**
-     * Renders the view of the form to create a user account
-     * @return string
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-    /*public function createUserFormMethod()
-    {
-        //var_dump($this->getPost());die;*/
-       /* return $this->twig->render("Front/createUser.twig");
-    }*/
 
     /**
      * Manages user account creation
@@ -173,13 +143,14 @@ class UserController extends MainController
             ModelFactory::getModel("User")->createData($data);
             $message = "Félicitations! Votre compte a bien été créé. Connectez-vous pour commenter les articles.";
             $this->setMessage($message);
+            
             $this->redirect("user");            
         } else {
+
             return $this->twig->render("Front/createUser.twig");
         }
     }
 
-    /* ***************** UPDATE ***************** */
     /**
      * Renders the view update user form
      * @return string
@@ -190,7 +161,7 @@ class UserController extends MainController
     public function updateUserFormMethod()
     {
         $user_id = $this->getUserId();
-        $user = ModelFactory::getModel("User")->readData($this->toString($user_id));
+        $user = ModelFactory::getModel("User")->readData((string) $user_id);
 
         return $this->twig->render("Front/updateUser.twig",["user" => $user]);
     }
@@ -212,14 +183,13 @@ class UserController extends MainController
             "password" => $password,
         ];
         
-        ModelFactory::getModel("User")->updateData($this->toString($user_id), $data);
+        ModelFactory::getModel("User")->updateData((string) $user_id, $data);
         $message = "Le profil a bien été modifié.";
 
         $this->setMessage($message);
         $this->redirect("user!readUser");
     }
 
-    /* ***************** DELETE ***************** */
     /**
      * Deletes a User Account
      * @return string
@@ -229,9 +199,9 @@ class UserController extends MainController
      */
     public function deleteUserMethod()
     {
-        $user_id = $this->getUserId();
-        ModelFactory::getModel("Comment")->deleteData($this->toString($user_id), "user_id");
-        ModelFactory::getModel("User")->deleteData($this->toString($user_id));
+        $user_id = (string) $this->getUserId();
+        ModelFactory::getModel("Comment")->deleteData($user_id, "user_id");
+        ModelFactory::getModel("User")->deleteData($user_id);
         $this->logoutMethod();
         $message = "Le compte a bien été supprimé.";
 
