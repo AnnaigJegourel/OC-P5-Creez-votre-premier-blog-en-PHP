@@ -73,14 +73,10 @@ class UserController extends MainController
     {
         $data = $this->getPost();
         $user = ModelFactory::getModel("User")->readData($this->toString($data["email"]), "email");
-        //var_dump(password_verify($data["pwd"], $user["password"]));die;
 
         if(isset($user) && !empty($user)){
-            //$pass = password_hash($user["password"], PASSWORD_DEFAULT);
-            //if(password_verify($data["pwd"], password_hash($user["password"], PASSWORD_DEFAULT))){
             if(password_verify($data["pwd"], $user["password"])){
                 $this->createSession($user);
-                //var_dump($pass);die();
                 return $this->twig->render("Front/profile.twig", ["user" => $user]);
             }
         }else{
@@ -88,7 +84,6 @@ class UserController extends MainController
             $this->setMessage($message);
             $this->redirect("user");            
         }
-
     }
 
     /**
@@ -163,10 +158,7 @@ class UserController extends MainController
     {
         $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
         $date_created = $date_created->format("Y-m-d H:i:s");
-        //$password = $this->putSlashes($this->getPost()["password"]);
-        //var_dump($password);die;
         $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
-        //var_dump($password);die();
         
         $data = [
             "name" => $this->putSlashes($this->getPost()["name"]),
@@ -193,14 +185,6 @@ class UserController extends MainController
     public function updateUserFormMethod()
     {
         $user_id = $this->getUserId();
-        /*if (!isset($user_id)) 
-        {
-            $message = "Aucun identifiant n'a été trouvé. Essayez de vous (re)connecter.";
-            
-            //return $this->twig->render("Front/message.twig", ["message" => $message]);
-            $this->setMessage($message);
-            $this->redirect("user");    
-        }*/
         $user = ModelFactory::getModel("User")->readData($this->toString($user_id));
 
         return $this->twig->render("Front/updateUser.twig",["user" => $user]);
@@ -215,12 +199,12 @@ class UserController extends MainController
      */
     public function updateUserMethod()
     {
-        $user_id = $this->getUserId();
-
+        $user_id = $this->getUserId();  
+        $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
         $data = [
             "name" => $this->getPost()["name"],
             "email" => $this->getPost()["email"],
-            "password" => $this->getPost()["password"],
+            "password" => $password,
         ];
         
         ModelFactory::getModel("User")->updateData($this->toString($user_id), $data);
