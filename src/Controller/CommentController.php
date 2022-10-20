@@ -89,7 +89,7 @@ class CommentController extends MainController {
     public function approveCommentMethod()
     {        
         $choice = $this->getGet()["approve"];
-        $data = ["approved" => $this->toInt($choice)]; 
+        $data = ["approved" => (int) $choice]; 
         $comment_id = (string) $this->getId();
 
         if ($choice === "1") {
