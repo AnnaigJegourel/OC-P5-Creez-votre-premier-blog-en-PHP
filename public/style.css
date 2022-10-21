@@ -83,7 +83,6 @@ article {
 
 #post article {
     margin: 0 15%;
-    /* ajuster les polices, line-heights, text-align left... */
 }
 
 form {
@@ -236,10 +235,6 @@ td {
     width: 11%;
 }
 
-/*.modif {
-    width: 20%;
-}*/
-
 .id {
     width: 8%;
 }
@@ -313,7 +308,7 @@ thead th, tfoot th {
     }
 
     .chapo,
-    .comm {    /* = th */
+    .comm {    /* NON !!!! */
         display: none;
     }
 
@@ -324,27 +319,81 @@ thead th, tfoot th {
     .id {
         width: 10%;
     }
+}
 
-    @media all and (max-width: 530px) {
-
-        body {
-            font-size: small;
-            line-height: 15px;;
-        }
-        fieldset,
-        input,
-        textarea,
-        .postsList li,
-        .commentsInPost li {
-            line-height: 13px;
-            font-size: smaller;
-        }
-
-        .postsList li,
-        .commentsInPost li {
-            width: 35%;
-            /*margin: 10px;
-            padding: 10px;*/
-        }
+@media all and (max-width: 530px) {
+    body {
+        font-size: small;
+        line-height: 15px;;
     }
+
+    fieldset,
+    input,
+    textarea,
+    .postsList li,
+    .commentsInPost li {
+        line-height: 13px;
+        font-size: smaller;
+    }
+
+    .postsList li,
+    .commentsInPost li {
+        width: 35%;
+    }
+
+    .btn-fieldset {
+        width: 70%;
+    }
+}
+
+@media all and (max-width: 480px) {   
+    h1,
+    h2{
+        margin-left: 5%;
+        margin-right: 5%;
+        line-height: 100%;
+    }
+    #post article {
+        margin: 0 5%;
+    }
+    
+    .postsList,
+    .commentsInPost,
+    fieldset {
+        flex-direction: column;
+    }
+
+    .postsList li,
+    .commentsInPost li {
+        width: 85%;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+    }
+
+    thead,
+    tbody {
+        font-size:xx-small;
+    }
+
+    th,
+    td {
+        line-height: 120%;
+    }
+
+    th {
+        font-weight: normal;
+        text-align: center;
+    }
+
+   /* .date {
+        width: 18%;
+    }
+
+    .id {
+        width: 10%;
+    }*/
+
 }
