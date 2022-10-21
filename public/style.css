@@ -40,10 +40,6 @@ footer {
 /* ========================== NIVEAU 2: h1, section, ul(nav&footer), p(message)========================== */
 
 #message {  /* p de header */
-    /* margin: 4% 20% 4% 20%;
-    border-radius: 10px;
-    box-shadow : 2px 2px 2px var(--medium-grey);
-    background-color: var(--light-grey); */
     color: var(--contrast);
     font-size: large;
     font-weight: bolder;
@@ -330,20 +326,25 @@ thead th, tfoot th {
     }
 
     @media all and (max-width: 530px) {
+
+        body {
+            font-size: small;
+            line-height: 15px;;
+        }
         fieldset,
         input,
         textarea,
-        .postsList p,
-        .commentsInPost p {
-            line-height: 12px;
+        .postsList li,
+        .commentsInPost li {
+            line-height: 13px;
             font-size: smaller;
         }
-    }
 
-
-    @media all and (max-width: 480px) {
-        /* forms */
-        /* tables */
-
+        .postsList li,
+        .commentsInPost li {
+            width: 35%;
+            /*margin: 10px;
+            padding: 10px;*/
+        }
     }
 }
