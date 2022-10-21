@@ -329,7 +329,21 @@ thead th, tfoot th {
         width: 10%;
     }
 
+    @media all and (max-width: 530px) {
+        fieldset,
+        input,
+        textarea,
+        .postsList p,
+        .commentsInPost p {
+            line-height: 12px;
+            font-size: smaller;
+        }
+    }
+
+
     @media all and (max-width: 480px) {
-        /* lists */
+        /* forms */
+        /* tables */
+
     }
 }
