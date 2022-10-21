@@ -240,9 +240,9 @@ td {
     width: 11%;
 }
 
-.modif {
+/*.modif {
     width: 20%;
-}
+}*/
 
 .id {
     width: 8%;
@@ -317,13 +317,16 @@ thead th, tfoot th {
     }
 
     .chapo,
-    .comm,
-    .id {    /* = th */
+    .comm {    /* = th */
         display: none;
     }
 
     .date {
-        width: 20%;
+        width: 18%;
+    }
+
+    .id {
+        width: 10%;
     }
 
     @media all and (max-width: 480px) {
