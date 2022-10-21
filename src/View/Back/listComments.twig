@@ -6,7 +6,7 @@
             <thead>
                 <tr>
                     <th class="date">Date de création</th>
-                    <th class="id">Id de l'article</th>
+                    <th class="id">Article</th>
                     <th class="date">Auteur</th>
                     <th>Titre</th>
                     <th class="comm">Commentaire</th>
@@ -18,10 +18,15 @@
                 {% for comment in allComments %}
                     <tr>
                         <td> {{ comment.date_created }} </td>
-                        <td class="id"> {{ comment.post_id }} </td>
+                        <td class="id">
+                            <a href="index.php?access=post!readpost&id={{comment.post_id}}">
+                                id: {{ comment.post_id }}
+                            </a>
+                        </td>
                         <td> "{{ comment.author }}"
                             </br>
-                            (id: {{comment.user_id}})</td>
+                            (id: {{comment.user_id}})
+                        </td>
                         <td> {{ comment.title }} </td>
                         <td class="comm"> {{ comment.content }} </td>
                         <td>
@@ -39,11 +44,6 @@
                         </td>
                         <td>
                             <ul>
-                                <li>
-                                    <a href="index.php?access=post!readpost&id={{comment.post_id}}">
-                                        Voir post
-                                    </a>
-                                </li>
                                 <li>
                                     <a href="index.php?access=comment!approvecomment&id={{comment.id}}&approve=1">
                                         Approuver</a>
