@@ -42,11 +42,6 @@
                 </fieldset>
 
                 <fieldset>
-                    <label for="title">titre: </label>
-                    <input type="text" name="title">
-                </fieldset>
-
-                <fieldset>
                     <label for="content">commentaire: </label>
                     <textarea name="content"></textarea>
                 </fieldset>
@@ -66,14 +61,13 @@
             <ul class="commentsInPost">
                 {% for comment in allComments %}
                     {% if (comment.approved is same as(1)) %}
-                        <li> 
-                            <h3> {{ comment.title }} </h3>
+                        <li>
+                            <p> le : {{ comment.date_created }} </p>
                             <p> par {{ comment.author }} </p>
-                            <p> créé le : {{ comment.date_created }} </p>
                             <p> {{ comment.content }} </p>
                             <p> 
                                 <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">
-                                    Supprimer ce commentaire
+                                    supprimer ce commentaire
                                 </a>
                             </p>
                         </li>

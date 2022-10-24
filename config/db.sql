@@ -21,14 +21,6 @@ CREATE TABLE `User` (
     `role` TINYINT(1) NOT NULL
 ) ENGINE = InnoDB;
 
--- Inserts the User data
-INSERT INTO `User`
-(`name`, `email`, `password`, `date_created`, `role`)
-VALUES
-("John", "john@doe.com", "john465", "2022-07-30", 0),
-("Jane", "jane@doe.com", "jane465", "2022-07-31", 0);
-
-
 -- -----------------------------------------------------
 -- Table Post
 -- -----------------------------------------------------
@@ -69,7 +61,6 @@ The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for t
 CREATE TABLE IF NOT EXISTS `Comment` (
     `id` SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     `date_created` DATETIME NOT NULL,
-    `title` VARCHAR(100) NOT NULL,
     `content` MEDIUMTEXT NOT NULL,
     `approved` TINYINT(1) UNSIGNED,
     `author`VARCHAR(50),
@@ -85,8 +76,8 @@ CREATE TABLE IF NOT EXISTS `Comment` (
 
 -- Inserts comments
 INSERT INTO `Comment`
-(`date_created`, `title`, `content`, `author`, `user_id`, `post_id`)
+(`date_created`, `content`, `author`, `user_id`, `post_id`)
 VALUES
-("2022-08-28", "mon comm sur le 1e article", "Je commente le premier article du blog", "Moi", 2, 1),
-("2022-08-29", "2e commentaire du 1er article", "Jai encore un truc à dire sur ce premier article", "Jane", 2, 1),
-("2022-08-27", "Ceci est un commentaire sur le 2e article", "Jai un avis sur ton artcile", "Pas John", 1, 2);
+("2022-08-28", "Je commente le premier article du blog", "Moi", 2, 1),
+("2022-08-29", "Jai encore un truc à dire sur ce premier article", "Jane", 2, 1),
+("2022-08-27", ""Jai un avis sur ton artcile", "Pas John", 1, 2);
