@@ -327,6 +327,11 @@ thead th, tfoot th {
         line-height: 15px;
     }
 
+    #message {  /* p de header */
+        font-size: medium;
+        line-height: 20px;
+    }    
+
     fieldset,
     input,
     textarea,
