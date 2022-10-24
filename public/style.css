@@ -236,7 +236,7 @@ td {
 }
 
 .id {
-    width: 8%;
+    width: 10%;
 }
 
 /*
@@ -307,8 +307,8 @@ thead th, tfoot th {
         font-size: small;
     }
 
-    .chapo,
-    .comm {    /* NON !!!! */
+    .chapo
+    {
         display: none;
     }
 
@@ -316,9 +316,6 @@ thead th, tfoot th {
         width: 18%;
     }
 
-    .id {
-        width: 10%;
-    }
 }
 
 @media all and (max-width: 530px) {
@@ -348,11 +345,12 @@ thead th, tfoot th {
 
 @media all and (max-width: 480px) {   
     h1,
-    h2{
+    h2 {
         margin-left: 5%;
         margin-right: 5%;
         line-height: 100%;
     }
+
     #post article {
         margin: 0 5%;
     }

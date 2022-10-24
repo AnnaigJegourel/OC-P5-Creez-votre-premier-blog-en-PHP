@@ -62,8 +62,8 @@
                 {% for comment in allComments %}
                     {% if (comment.approved is same as(1)) %}
                         <li>
-                            <p> le : {{ comment.date_created }} </p>
-                            <p> par {{ comment.author }} </p>
+                            <p> {{ comment.date_created }} </p>
+                            <p> <strong>par {{ comment.author }} </strong></p>
                             <p> {{ comment.content }} </p>
                             <p> 
                                 <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">
