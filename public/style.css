@@ -321,7 +321,7 @@ thead th, tfoot th {
 @media all and (max-width: 530px) {
     body {
         font-size: small;
-        line-height: 15px;;
+        line-height: 15px;
     }
 
     fieldset,
@@ -364,6 +364,7 @@ thead th, tfoot th {
     .postsList li,
     .commentsInPost li {
         width: 85%;
+        margin: 2% 5%;
     }
 
     input,
@@ -394,4 +395,11 @@ thead th, tfoot th {
         width: 10%;
     }*/
 
+    @media all and (max-width: 320px) {   
+
+        body {
+            font-size: x-small;
+            /*line-height: 15px;*/
+        }
+    }
 }
