@@ -390,17 +390,14 @@ thead th, tfoot th {
         text-align: center;
     }
 
-    .adminPosts tbody .date {
+    .adminPosts tbody .date,
+    .listComments tbody .date {
         font-size: 7px;
     }
 
     .manage {
-        width: 20%;
+        width: 22%;
     }
-
-   /* .id {
-        width: 10%;
-    }*/
 
     @media all and (max-width: 320px) {   
 
