@@ -80,4 +80,4 @@ INSERT INTO `Comment`
 VALUES
 ("2022-08-28", "Je commente le premier article du blog", "Moi", 2, 1),
 ("2022-08-29", "Jai encore un truc à dire sur ce premier article", "Jane", 2, 1),
-("2022-08-27", ""Jai un avis sur ton artcile", "Pas John", 1, 2);
+("2022-08-27", "Jai un avis sur ton artcile", "Pas John", 1, 2);
