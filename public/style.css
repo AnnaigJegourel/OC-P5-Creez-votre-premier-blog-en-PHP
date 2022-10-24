@@ -231,7 +231,8 @@ td {
     width: 50%;
 }
 
-.date {
+.date,
+.manage {
     width: 11%;
 }
 
@@ -284,7 +285,8 @@ thead th, tfoot th {
         width: 40%;
     }
 
-    .date {
+    .date,
+    .manage {
         width: 14%;
     }
 
@@ -312,7 +314,8 @@ thead th, tfoot th {
         display: none;
     }
 
-    .date {
+    .date,
+    .manage {
         width: 18%;
     }
 
@@ -387,11 +390,15 @@ thead th, tfoot th {
         text-align: center;
     }
 
-   /* .date {
-        width: 18%;
+    .adminPosts tbody .date {
+        font-size: 7px;
     }
 
-    .id {
+    .manage {
+        width: 20%;
+    }
+
+   /* .id {
         width: 10%;
     }*/
 
