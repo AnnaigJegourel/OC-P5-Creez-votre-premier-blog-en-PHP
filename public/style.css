@@ -119,7 +119,7 @@ table {
     margin: 10px;
     border: solid 1px var(--medium-grey);
     border-radius: 10px;
-    box-shadow : 2px 2px 2px var(--light-grey);
+    box-shadow: 2px 2px 2px var(--light-grey);
     padding: 10px;
 }
 

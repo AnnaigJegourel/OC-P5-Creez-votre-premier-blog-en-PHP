@@ -16,9 +16,9 @@
                     <strong>par {{ author.name }}</strong>
                 </p>
                 <p>
-                    <em>créé le : {{ post.date_created }}
+                    <em>créé le: {{ post.date_created }}
                         </br>
-                        modifié le : {{ post.date_updated }}
+                        modifié le: {{ post.date_updated }}
                     </em>
                 </p>
                 <p class="postIntro">{{ post.intro }}</p>
@@ -32,7 +32,7 @@
 
         <section>
         
-            <h2>Commentez cet article :</h2>
+            <h2>Commentez cet article:</h2>
 
             <form method="post" action="index.php?access=comment!createcomment&id={{post.id}}">
                 
