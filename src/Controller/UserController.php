@@ -51,7 +51,7 @@ class UserController extends MainController
     {
         setcookie("PHPSESSID", "", time() - 3600, "/");
         session_destroy();
-        $this->redirect("home");
+        $this->redirect("user");
     }
 
     /**

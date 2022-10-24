@@ -16,9 +16,9 @@
                     <strong>par {{ author.name }}</strong>
                 </p>
                 <p>
-                    <em>créé le : {{ post.date_created }}
+                    <em>créé le: {{ post.date_created }}
                         </br>
-                        modifié le : {{ post.date_updated }}
+                        modifié le: {{ post.date_updated }}
                     </em>
                 </p>
                 <p class="postIntro">{{ post.intro }}</p>
@@ -32,18 +32,13 @@
 
         <section>
         
-            <h2>Commentez cet article :</h2>
+            <h2>Commentez cet article:</h2>
 
             <form method="post" action="index.php?access=comment!createcomment&id={{post.id}}">
                 
                 <fieldset>
                     <label for="author">nom ou pseudo: </label>
                     <input type="text" name="author">
-                </fieldset>
-
-                <fieldset>
-                    <label for="title">titre: </label>
-                    <input type="text" name="title">
                 </fieldset>
 
                 <fieldset>
@@ -66,14 +61,13 @@
             <ul class="commentsInPost">
                 {% for comment in allComments %}
                     {% if (comment.approved is same as(1)) %}
-                        <li> 
-                            <h3> {{ comment.title }} </h3>
-                            <p> par {{ comment.author }} </p>
-                            <p> créé le : {{ comment.date_created }} </p>
+                        <li>
+                            <p> {{ comment.date_created }} </p>
+                            <p> <strong>par {{ comment.author }} </strong></p>
                             <p> {{ comment.content }} </p>
                             <p> 
                                 <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">
-                                    Supprimer ce commentaire
+                                    supprimer ce commentaire
                                 </a>
                             </p>
                         </li>

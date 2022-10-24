@@ -40,10 +40,6 @@ footer {
 /* ========================== NIVEAU 2: h1, section, ul(nav&footer), p(message)========================== */
 
 #message {  /* p de header */
-    /* margin: 4% 20% 4% 20%;
-    border-radius: 10px;
-    box-shadow : 2px 2px 2px var(--medium-grey);
-    background-color: var(--light-grey); */
     color: var(--contrast);
     font-size: large;
     font-weight: bolder;
@@ -87,7 +83,6 @@ article {
 
 #post article {
     margin: 0 15%;
-    /* ajuster les polices, line-heights, text-align left... */
 }
 
 form {
@@ -124,7 +119,7 @@ table {
     margin: 10px;
     border: solid 1px var(--medium-grey);
     border-radius: 10px;
-    box-shadow : 2px 2px 2px var(--light-grey);
+    box-shadow: 2px 2px 2px var(--light-grey);
     padding: 10px;
 }
 
@@ -236,16 +231,13 @@ td {
     width: 50%;
 }
 
-.date {
+.date,
+.manage {
     width: 11%;
 }
 
-.modif {
-    width: 20%;
-}
-
 .id {
-    width: 8%;
+    width: 10%;
 }
 
 /*
@@ -293,7 +285,8 @@ thead th, tfoot th {
         width: 40%;
     }
 
-    .date {
+    .date,
+    .manage {
         width: 14%;
     }
 
@@ -316,17 +309,106 @@ thead th, tfoot th {
         font-size: small;
     }
 
-    .chapo,
-    .comm,
-    .id {    /* = th */
+    .chapo
+    {
         display: none;
     }
 
-    .date {
-        width: 20%;
+    .date,
+    .manage {
+        width: 18%;
     }
 
-    @media all and (max-width: 480px) {
-        /* lists */
+}
+
+@media all and (max-width: 530px) {
+    body {
+        font-size: small;
+        line-height: 15px;
+    }
+
+    #message {  /* p de header */
+        font-size: medium;
+        line-height: 20px;
+    }    
+
+    fieldset,
+    input,
+    textarea,
+    .postsList li,
+    .commentsInPost li {
+        line-height: 13px;
+        font-size: smaller;
+    }
+
+    .postsList li,
+    .commentsInPost li {
+        width: 35%;
+    }
+
+    .btn-fieldset {
+        width: 70%;
+    }
+}
+
+@media all and (max-width: 480px) {   
+    h1,
+    h2 {
+        margin-left: 5%;
+        margin-right: 5%;
+        line-height: 100%;
+    }
+
+    #post article {
+        margin: 0 5%;
+    }
+    
+    .postsList,
+    .commentsInPost,
+    fieldset {
+        flex-direction: column;
+    }
+
+    .postsList li,
+    .commentsInPost li {
+        width: 85%;
+        margin: 2% 5%;
+    }
+
+    input,
+    textarea {
+        width: 100%;
+    }
+
+    thead,
+    tbody {
+        font-size:xx-small;
+    }
+
+    th,
+    td {
+        line-height: 120%;
+    }
+
+    th {
+        font-weight: normal;
+        text-align: center;
+    }
+
+    .adminPosts tbody .date,
+    .listComments tbody .date {
+        font-size: 7px;
+    }
+
+    .manage {
+        width: 22%;
+    }
+
+    @media all and (max-width: 320px) {   
+
+        body {
+            font-size: x-small;
+            /*line-height: 15px;*/
+        }
     }
 }

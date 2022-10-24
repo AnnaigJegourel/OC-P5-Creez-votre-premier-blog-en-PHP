@@ -38,7 +38,6 @@ class CommentController extends MainController {
             $date_created = $date_created->format("Y-m-d H:i:s");
             $data = [
                 "author" => $this->putSlashes($this->getPost()["author"]),
-                "title" => $this->putSlashes($this->getPost()["title"]),
                 "content" => $this->putSlashes($this->getPost()["content"]),
                 "post_id" => $this->getId(),
                 "date_created" => $date_created,
@@ -51,7 +50,6 @@ class CommentController extends MainController {
         }
         $this->setMessage($message);
         $this->redirect("post");    
-        //$this->redirect("post");    problème getId() --> faire une getPostId()?
     }
 
     /* ***************** DELETE ***************** */

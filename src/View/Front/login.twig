@@ -1,6 +1,6 @@
 {% extends "layout/layout.twig" %}
 
-{% block title %}Connexion à votre compte{% endblock %}
+{% block title %}Connexion à un compte{% endblock %}
 
 {% block description %}Page de connexion à un compte U existant{% endblock %}
 
@@ -9,10 +9,9 @@
 
         <section>
 
-            <h2>Se connecter</h2>
+            <h2>Saisissez vos informations</h2>
 
-            <form method="post" action="index.php?access=user">Saisissez les informations de votre compte :
-            
+            <form method="post" action="index.php?access=user">            
                 <fieldset>
                     <label for="email">adresse e-mail: </label>
                     <input type="email" name="email" placeholder="adresse-e-mail@exemple.com">
@@ -26,7 +25,6 @@
                 <fieldset class="btn-fieldset">
                     <input class="btn" type="submit" value="Envoyer">
                 </fieldset>
-            
             </form>
 
         </section>

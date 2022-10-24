@@ -10,18 +10,18 @@
                         <th class="date">Dernière modification</th>
                         <th>Titre</th>
                         <th class="chapo">Chapô</th>
-                        <th class="date">Gérer</th>
+                        <th class="manage">Gérer</th>
                     </tr>
                 </thead>
 
                 <tbody>
                     {% for post in allPosts %}
                         <tr>
-                            <td> {{ post.date_created }} </td>
-                            <td> {{ post.date_updated }} </td>
+                            <td class="date"> {{ post.date_created }} </td>
+                            <td class="date"> {{ post.date_updated }} </td>
                             <td> {{ post.title }} </td>
                             <td class="chapo"> {{ post.intro }} </td>
-                            <td>
+                            <td class="manage">
                                 <ul>
                                     <li>
                                         <a href="index.php?access=post!readpost&id={{post.id}}" title="Post">
