@@ -89,9 +89,6 @@ class UserController extends MainController
         $_SESSION["user"] = $this->session["user"];
     }
 
-
-
-
     /* ***************** CRUD ***************** */
 
     public function adminMethod()
