@@ -309,8 +309,7 @@ thead th, tfoot th {
         font-size: small;
     }
 
-    .chapo
-    {
+    .chapo {
         display: none;
     }
 
@@ -318,7 +317,6 @@ thead th, tfoot th {
     .manage {
         width: 18%;
     }
-
 }
 
 @media all and (max-width: 530px) {
@@ -330,7 +328,7 @@ thead th, tfoot th {
     #message {  /* p de header */
         font-size: medium;
         line-height: 20px;
-    }    
+    }
 
     fieldset,
     input,
@@ -351,7 +349,7 @@ thead th, tfoot th {
     }
 }
 
-@media all and (max-width: 480px) {   
+@media all and (max-width: 480px) {
     h1,
     h2 {
         margin-left: 5%;
@@ -362,7 +360,7 @@ thead th, tfoot th {
     #post article {
         margin: 0 5%;
     }
-    
+
     .postsList,
     .commentsInPost,
     fieldset {
@@ -382,7 +380,7 @@ thead th, tfoot th {
 
     thead,
     tbody {
-        font-size:xx-small;
+        font-size: xx-small;
     }
 
     th,
@@ -404,11 +402,9 @@ thead th, tfoot th {
         width: 22%;
     }
 
-    @media all and (max-width: 320px) {   
-
+    @media all and (max-width: 320px) {
         body {
             font-size: x-small;
-            /*line-height: 15px;*/
         }
     }
 }
