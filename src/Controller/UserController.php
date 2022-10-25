@@ -70,9 +70,7 @@ class UserController extends MainController
 
     /**
      * Creates a user session
-     *
      * @param  mixed $user
-     *
      * @return void
      */
     private function createSession($user)
@@ -90,7 +88,10 @@ class UserController extends MainController
     }
 
     /* ***************** CRUD ***************** */
-
+    /**
+     * returns the data for site administration
+     * @return void
+     */
     public function adminMethod()
     {
         return $this->twig->render("Back/admin.twig", [

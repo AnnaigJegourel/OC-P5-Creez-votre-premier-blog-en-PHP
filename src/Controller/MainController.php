@@ -56,7 +56,6 @@ abstract class MainController
 
     /**
      * Return string value with slashes where necessary
-     *
      * @param string $input
      * @return void
      */
@@ -64,11 +63,9 @@ abstract class MainController
         return addslashes($input);
     }
 
-    /* *************** SETTERS *************** */
-    
+    /* *************** SETTER *************** */
     /**
      * sets MESSAGE
-     *
      * @param string $message
      * @return void
      */
@@ -77,7 +74,6 @@ abstract class MainController
     }
 
     /* *************** GETTERS *************** */
-
     /**
      * Gets POST Array or Post Var
      * @param null|string $var
@@ -92,6 +88,11 @@ abstract class MainController
         return filter_input(INPUT_POST, $var);
     }
 
+    /**
+     * Gets GET Array or Get Var
+     * @param string|null $var
+     * @return void
+     */
     protected function getGet(string $var = null)
     {
         if ($var === null) {
@@ -100,7 +101,6 @@ abstract class MainController
 
         return filter_input(INPUT_GET, $var);
     }
-
 
     /**
      * Gets SESSION Array
@@ -173,7 +173,6 @@ abstract class MainController
     }
 
     /* ***************** BOOL / CHECKERS ***************** */
-
     /**
      * Checks if a user is connected
      * @return bool

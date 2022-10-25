@@ -18,6 +18,9 @@ class TwigExtension extends AbstractExtension
      */
     private $session = [];
 
+    /**
+     * TwigExtension constructor
+     */
     public function __construct()
     {
         $this->session = filter_var_array($_SESSION) ?? [];
@@ -50,7 +53,6 @@ class TwigExtension extends AbstractExtension
 
     /**
      * Gets MESSAGE
-     *
      * @return string
      */
     public function getMessage()
