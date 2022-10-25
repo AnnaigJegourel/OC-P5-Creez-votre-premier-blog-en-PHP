@@ -18,15 +18,13 @@
 	}
 }
 
-/* ========================== NIVEAU 0 : body ========================== */
 body {
     text-align: center;
-    line-height: 25px; 
-    font-family: Geneva, "Open Sans",Roboto, Calibri, Helvetica, Cambria, sans-serif, Arial, "Times New Roman";
+    line-height: 25px;
+    font-family: Geneva, "Open Sans", Roboto, Calibri, Helvetica, Cambria, sans-serif, Arial, "Times New Roman";
     color: var(--dark-grey);
 }
 
-/* ========================== NIVEAU 1 : header, nav, footer, main ========================== */
 nav {
     padding: 10px;
     background-color: var(--medium-green);
@@ -37,9 +35,7 @@ footer {
     background-color: var(--light-grey);
 }
 
-/* ========================== NIVEAU 2: h1, section, ul(nav&footer), p(message)========================== */
-
-#message {  /* p de header */
+#message {
     color: var(--contrast);
     font-size: large;
     font-weight: bolder;
@@ -48,22 +44,13 @@ footer {
     animation: entry 3000ms;
 }
 
-/* niv2: icônes footer & nav */
-/* niv3: les articles, comm sur 1 post, liens profil */
-/* niv6: lire modif suppr post */
 ul {
     display: flex;
     justify-content: space-evenly;
     list-style: none;
-    /* border: solid 1px var(--dark-green); */
     padding: 0;
 }
 
-/* #home section {
-    animation: entry 2000ms;
-} */
-
-/* ========================== NIVEAU 3: h2, ul / article (sauf .postInList) / form / table, li(nav&footer) ========================== */
 h2 {
     color: var(--dark-green);
 }
@@ -72,13 +59,13 @@ h2 {
     text-transform: uppercase;
 }
 
-.postsList,             /* = ul */
+.postsList,
 .commentsInPost {
     flex-wrap: wrap;
 }
 
 article {
-    padding: 10px;      /* ou seulement pour li des commentaires & articles en liste ? */
+    padding: 10px;
 }
 
 #post article {
@@ -100,18 +87,11 @@ table {
     margin: 0 5% 5% 5%;
     width: 90%;
     table-layout: auto;
-    /* table-layout: fixed; */
     border-collapse: collapse;
     border: 1px solid var(--dark-grey);
     font-size: small;
 }
 
-/* ========================== NIVEAU 4: li / p(art)/ article .postInList / fieldset / tr, a(nav&footer) ========================== */
-
-/* li */
-/* li{
-    padding: 10px;
-} */
 .postsList li,
 .commentsInPost li {
     width: 25%;
@@ -123,7 +103,6 @@ table {
     padding: 10px;
 }
 
-/* p (dans article) */
 .postIntro {
     font-weight: bold;
     font-style: italic;
@@ -133,18 +112,6 @@ table {
     text-align: justify;
 }
 
-/* article .postInList
-.postInList{
-    margin: 10px;
-    height: fit-content;
-    border: solid 1px var(--dark-grey);
-    border-radius: 10px;
-    padding: 10px;
-    text-align: center;
-}
-*/
-
-/* fieldset */
 fieldset {
     display: flex;
     justify-content: space-between;
@@ -157,7 +124,6 @@ fieldset {
     margin-top: 20px;
     width: 50%;
 }
-
 
 thead {
     background-color: var(--dark-green);
@@ -173,12 +139,6 @@ a:hover {
     color: var(--medium-grey);
 }
 
-
-/* ========================== NIVEAU 5: label-input-textarea / th-td / contenu li(ul2-h3-a) / contenu p(img-a), i(nav&footer) ========================== */
-
-/* .postsInList { */
-    /* ul d'un article sur la page d'affichage */
-/* } */
 img {
     margin-top: 3%;
     width: 60%;
@@ -205,28 +165,14 @@ tr {
     border: 1px solid var(--dark-grey);
 }
 
-/* .btn {
-    width: 80px;
-    height: 30px;
-    background-color: var(--very-light-grey);
-    border: solid 1px;
-    border-radius: 10px;
-} */
-
-
-
-/* ========================== NIVEAU 6 ========================== */
 th,
 td {
-    /* max-width: 20%; */
-    /* padding: 0 2% 0 2%; */ /* right n'apparaît pas : cf. largeur des colonnes? */
     padding-left: 2%;
     padding-right: 2%;
     text-align: left;
     line-height: 20px;
 }
 
-/* largeur relative des colonnes */
 .chapo {    /* = th */
     width: 50%;
 }
@@ -240,46 +186,12 @@ td {
     width: 10%;
 }
 
-/*
-th {
-    letter-spacing: 2px;
-}
-
-td {
-    letter-spacing: 1px;
-}
-
-tbody td {
-    text-align: center;
-}
-
-tfoot th {
-    text-align: right;
-}
-
-thead th, tfoot th, tfoot td {
-    background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.5));
-    border: 3px solid purple;
-}
-
-thead th, tfoot th {
-    font-family: 'Rock Salt', cursive;
-}
-*/
-
-/* ========================== NIVEAU 7 ========================== */
 .adminPosts ul,
 .listComments ul {
     flex-direction: column;
 }
 
-/* ========================== NIVEAU 8 ========================== */
-
-/* ========================== NIVEAU 9 ========================== */
-
-
 /* ========================== RESPONSIVE ========================== */
-
 @media all and (max-width: 1024px) {
     .chapo {    /* = th*/
         width: 40%;
@@ -325,7 +237,7 @@ thead th, tfoot th {
         line-height: 15px;
     }
 
-    #message {  /* p de header */
+    #message {
         font-size: medium;
         line-height: 20px;
     }

@@ -7,6 +7,11 @@ use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
+/**
+ * Class CommentController
+ * Manages the Comments Features
+ * @package App\Controller
+ */
 class CommentController extends MainController {
 
     /**

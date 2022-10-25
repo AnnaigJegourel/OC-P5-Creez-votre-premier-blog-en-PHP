@@ -22,7 +22,6 @@ class Router
     /**
      * Default method
      */
-
     const DEFAULT_METHOD = "defaultMethod";
 
     /**
@@ -39,7 +38,7 @@ class Router
 
     /**
      * Router constructor
-     * parses the URL, sets the controller & his method
+     * parses the URL, sets the controller & its method
      */
     public function __construct()
     {
@@ -49,7 +48,7 @@ class Router
     }
 
     /**
-     * Parses the URL to get the controller & his method
+     * Parses the URL to get the controller & its method
      */
     public function parseUrl()                           
     {
