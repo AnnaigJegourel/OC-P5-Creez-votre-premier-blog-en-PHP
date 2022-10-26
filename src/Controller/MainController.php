@@ -57,7 +57,7 @@ abstract class MainController
     /**
      * Return string value with slashes where necessary
      * @param string $input
-     * @return void
+     * @return string
      */
     protected function putSlashes(string $input) {
         return addslashes($input);
@@ -91,7 +91,7 @@ abstract class MainController
     /**
      * Gets GET Array or Get Var
      * @param string|null $var
-     * @return void
+     * @return array|string
      */
     protected function getGet(string $var = null)
     {
@@ -181,9 +181,7 @@ abstract class MainController
         $session = $this->getSession();
         if(!empty($session) && isset($session["user"]) && !empty($session["user"])) {
             return true;
-        } /* else {
-            $this->redirect("login"); 
-        }*/
+        }
     }
 
     /**
