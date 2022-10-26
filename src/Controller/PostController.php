@@ -86,7 +86,6 @@ class PostController extends MainController
         ModelFactory::getModel("Post")->createData($data);
         $message = "L'article a bien été créé.";                
             
-        //return $this->twig->render("Front/message.twig", ["message" => $message]);
         $this->setMessage($message);
         $this->redirect("post");    
     }
@@ -137,7 +136,6 @@ class PostController extends MainController
 
     /**
      * Deletes a post
-     * @return string
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -148,7 +146,7 @@ class PostController extends MainController
         ModelFactory::getModel("Comment")->deleteData($post_id, "post_id");
         ModelFactory::getModel("Post")->deleteData($post_id);
         $message = "L'article a bien été supprimé.";                
-            
+        
         $this->setMessage($message);
         $this->redirect("post");        
     }
