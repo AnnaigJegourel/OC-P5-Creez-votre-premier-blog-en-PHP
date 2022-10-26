@@ -45,7 +45,7 @@ class UserController extends MainController
     /**
      * Logs out user
      *
-     * @return void
+     * @return void                 // à supprimer?????????????????????
      */
     public function logoutMethod()
     {
@@ -90,7 +90,7 @@ class UserController extends MainController
     /* ***************** CRUD ***************** */
     /**
      * returns the data for site administration
-     * @return void
+     * @return array|string
      */
     public function adminMethod()
     {
