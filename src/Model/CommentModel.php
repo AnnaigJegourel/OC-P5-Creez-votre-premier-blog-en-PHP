@@ -51,7 +51,6 @@ class CommentModel extends MainModel {
      */
     private $user_id;
 
-    //`post_id` SMALLINT UNSIGNED NOT NULL,
     /**
      * Id of the commented post
      *
@@ -60,7 +59,6 @@ class CommentModel extends MainModel {
     private $post_id;
 
     /* ************************ GETTERS & SETTERS ************************ */
-    //`id` SMALLINT UNSIGNED PRIMARY KEY AUTO_INCREMENT,
     /**
      * Gets the Comment Id
      *
