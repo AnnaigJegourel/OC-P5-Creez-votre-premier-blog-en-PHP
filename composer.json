@@ -1,5 +1,6 @@
 {
     "name": "annaigjegourel/oc-p5-creez-votre-premier-blog-en-php",
+    "version": "0.1.0",
     "description": "OpenClassrooms P5 Blog",
     "type": "project",
     "license": "MIT",
