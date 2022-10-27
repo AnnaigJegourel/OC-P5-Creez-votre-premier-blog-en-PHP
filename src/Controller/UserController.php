@@ -28,15 +28,22 @@ class UserController extends MainController
             $user = ModelFactory::getModel("User")->readData((string) $data["email"], "email");
 
             if(isset($user) && !empty($user)){
+
                 if(password_verify($data["pwd"], $user["password"])){
                     $this->createSession($user);
                     return $this->twig->render("Front/profile.twig", ["user" => $user]);
+                } else {
+                    $message = "Le mot de passe est erroné.";
+                    $this->setMessage($message);
+                    $this->redirect("user");                
                 }
-            }else{
-                $message = "L'e-mail ou le mot de passe est erroné.";
+
+            } else {
+                $message = "L'e-mail est erroné.";
                 $this->setMessage($message);
                 $this->redirect("user");            
             }
+
         } else {
             return $this->twig->render("Front/login.twig");
         }
