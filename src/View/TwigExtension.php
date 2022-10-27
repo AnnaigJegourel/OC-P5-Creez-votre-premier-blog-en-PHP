@@ -13,7 +13,7 @@ use App\Model\Factory\ModelFactory;
  */
 class TwigExtension extends AbstractExtension
 {
-     /**
+    /**
      * @var array
      */
     private $session = [];
@@ -33,7 +33,6 @@ class TwigExtension extends AbstractExtension
     {
         return array(
             new TwigFunction("getSession", [$this, "getSession"]),
-            //new TwigFunction("setMessage", [$this, "setMessage"]),
             new TwigFunction("getMessage", [$this, "getMessage"]),
             new TwigFunction("getUser", [$this, "getUser"]),
             new TwigFunction("isLogged", [$this, "isLogged"]),
@@ -46,7 +45,7 @@ class TwigExtension extends AbstractExtension
      * @param null|string $var
      * @return array|string
      */
-    public function getSession()
+    private function getSession()
     {
         return $this->session;
     }
@@ -84,7 +83,7 @@ class TwigExtension extends AbstractExtension
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function getUser($id = null)
+    private function getUser($id = null)
     {
         if (isset($id) && !empty($id)) {
             $user = ModelFactory::getModel("User")->readData((string) $id);
