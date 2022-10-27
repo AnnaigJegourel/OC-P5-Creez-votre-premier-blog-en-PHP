@@ -181,11 +181,11 @@ class UserController extends MainController
     public function updateUserMethod()
     {
         $user_id = $this->getUserId();  
-        $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
+        //$password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
         $data = [
             "name" => $this->getPost()["name"],
             "email" => $this->getPost()["email"],
-            "password" => $password,
+            //"password" => $password,
         ];
         
         ModelFactory::getModel("User")->updateData((string) $user_id, $data);
