@@ -37,12 +37,12 @@ abstract class MainController
      * Creates the Template Engine & adds its Extensions
      */
     public function __construct()
-        {
-            $this->twig = new Environment(new FilesystemLoader("../src/View"), array("cache"=>false));
-            $this->twig->addExtension(new TwigExtension());
-            $this->session = filter_var_array($_SESSION) ?? [];
-            $this->get     = filter_input_array(INPUT_GET) ?? [];
-        }
+    {
+        $this->twig = new Environment(new FilesystemLoader("../src/View"), array("cache"=>false));
+        $this->twig->addExtension(new TwigExtension());
+        $this->session = filter_var_array($_SESSION) ?? [];
+        $this->get     = filter_input_array(INPUT_GET) ?? [];
+    }
     
     /**
      * Redirects to another URL
@@ -59,13 +59,14 @@ abstract class MainController
     }
 
     /**
-     * Return string value with slashes where necessary
+     * Returns string value with slashes where necessary
      * 
      * @param string $input
      * 
      * @return string
      */
-    protected function putSlashes(string $input) {
+    protected function putSlashes(string $input)
+    {
         return addslashes($input);
     }
 
@@ -75,7 +76,8 @@ abstract class MainController
      * 
      * @param string $message
      */
-    public function setMessage($message){
+    public function setMessage($message)
+    {
         $_SESSION["message"] = $message;
     }
 
@@ -90,6 +92,7 @@ abstract class MainController
     protected function getPost(string $var = null)
     {
         if ($var === null) {
+
             return filter_input_array(INPUT_POST);
         }
 
@@ -106,6 +109,7 @@ abstract class MainController
     protected function getGet(string $var = null)
     {
         if ($var === null) {
+
             return filter_input_array(INPUT_GET);
         }
 
@@ -156,7 +160,8 @@ abstract class MainController
         } else {
             $session = $this->getSession();
             $user = $session["user"];
-        }       
+        }
+
         return $user;
     }
 
@@ -176,6 +181,7 @@ abstract class MainController
         $session = $this->getSession();
         if(isset($session["user"]) && !empty($session["user"])){
             $id = $session["user"]["id"];
+
             return $id;    
         }
     }
@@ -200,9 +206,11 @@ abstract class MainController
      * 
      * @return bool
      */
-    public function isLogged(){
+    public function isLogged()
+    {
         $session = $this->getSession();
         if(!empty($session) && isset($session["user"]) && !empty($session["user"])) {
+
             return true;
         }
     }
@@ -212,9 +220,11 @@ abstract class MainController
      * 
      * @return bool
      */
-    public function isAdmin() {
+    public function isAdmin()
+    {
         if ($this->isLogged() && $this->getUser()["role"] === "1"){
+
             return true;
         }
     }
-};
+}

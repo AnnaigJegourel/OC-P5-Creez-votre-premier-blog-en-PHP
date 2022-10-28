@@ -135,7 +135,7 @@ abstract class MainModel
             $query = "UPDATE " . $this->table . " SET " . $set . " WHERE " . $key . " = ?";
             return;
         }  
-            
+
         $query = "UPDATE " . $this->table . " SET " . $set . " WHERE id = ?";
 
         $this->database->setData($query, [$value]);

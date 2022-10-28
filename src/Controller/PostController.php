@@ -37,8 +37,8 @@ class PostController extends MainController
     /**
      * Renders the View Post
      * 
-     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -67,8 +67,6 @@ class PostController extends MainController
     /* ***************** CREATE ***************** */
     /**
      * Manages post creation
-     * 
-     * @return string
      * 
      * @throws LoaderError
      * @throws RuntimeError
@@ -124,7 +122,7 @@ class PostController extends MainController
         $post_id = $this->getId();
         $date_updated = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
         $date_updated = $date_updated->format("Y-m-d H:i:s");
-                
+
         $data = [
             "title" => $this->putSlashes($this->getPost()["title"]),
             "intro" => $this->putSlashes($this->getPost()["intro"]),

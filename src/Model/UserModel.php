@@ -9,7 +9,8 @@ namespace App\Model;
  * 
  * @package App\Model
  */
-class UserModel extends MainModel {
+class UserModel extends MainModel
+{
     /**
      * User Id
      *
@@ -58,119 +59,118 @@ class UserModel extends MainModel {
      * 
      * @return int
      */
-	public function getId()
+    public function getId()
     {
-		return $this->id;
-	}
+        return $this->id;
+    }
 
     /**
      * Sets User Id
      *
      * @param int $id
      */
-	public function setId($id)
+    public function setId($id)
     {
-		$this->id = $id;
-	}
+        $this->id = $id;
+    }
 
     /**
      * Gets User Name
      *
      * @return string
      */
-	public function getName()
+    public function getName()
     {
-		return $this->name;
-	}
+        return $this->name;
+    }
 
     /**
      * Sets User Name
      *
      * @param string $name
      */
-	public function setName($name)
+    public function setName($name)
     {
-		$this->name = $name;
-	}
+        $this->name = $name;
+    }
 
     /**
      * Gets User E-mail
      *
      * @return string
      */
-
-	public function getEmail()
+    public function getEmail()
     {
-		return $this->email;
-	}
+        return $this->email;
+    }
 
     /**
      * Sets User E-mail
      *
      * @param string $email
      */
-	public function setEmail($email)
+    public function setEmail($email)
     {
-		$this->email = $email;
-	}
+        $this->email = $email;
+    }
 
     /**
      * Gets User Password
      *
      * @return string
      */
-	public function getPassword()
+    public function getPassword()
     {
-		return $this->password;
-	}
+        return $this->password;
+    }
 
     /**
      * Sets User Password
      *
      * @param string $password
      */
-	public function setPassword($password)
+    public function setPassword($password)
     {
-		$this->password = $password;
-	}
+        $this->password = $password;
+    }
 
     /**
      * Gets Date of User Creation
      *
      * @return DateTime
      */
-	public function getDateCreated()
+    public function getDateCreated()
     {
-		return $this->date_created;
-	}
+        return $this->date_created;
+    }
 
     /**
      * Sets Date of User Creation
      *
      * @param DateTime $date_created
      */
-	public function setDateCreated($date_created)
+    public function setDateCreated($date_created)
     {
-		$this->date_created = $date_created;
-	}
+        $this->date_created = $date_created;
+    }
 
     /**
      * Gets User Role
      *
      * @return bool
      */
-	public function getRole()
+    public function getRole()
     {
-		return $this->role;
-	}
+        return $this->role;
+    }
 
     /**
      * Sets User Role
      *
      * @param bool $role
      */
-	public function setRole($role)
+    public function setRole($role)
     {
-		$this->role = $role;
-	}
+        $this->role = $role;
+    }
 }

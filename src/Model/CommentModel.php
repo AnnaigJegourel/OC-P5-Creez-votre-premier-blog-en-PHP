@@ -10,7 +10,8 @@ namespace App\Model;
  * 
  * @package App\Model
  */
-class CommentModel extends MainModel {
+class CommentModel extends MainModel
+{
     /**
      * Comment Id
      *

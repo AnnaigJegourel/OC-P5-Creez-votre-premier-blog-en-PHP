@@ -55,8 +55,6 @@ class TwigExtension extends AbstractExtension
 
     /**
      * Gets MESSAGE
-     * 
-     * @return string
      */
     public function getMessage()
     {
@@ -76,6 +74,7 @@ class TwigExtension extends AbstractExtension
     public function isLogged(){
         $session = $this->getSession();
         if(!empty($session) && isset($session["user"]) && !empty($session["user"])) {
+
             return true;
         }
     }
@@ -98,7 +97,8 @@ class TwigExtension extends AbstractExtension
         } else {
             $session = $this->getSession();
             $user = $session["user"];
-        }       
+        }
+
         return $user;
     }
 
@@ -109,6 +109,7 @@ class TwigExtension extends AbstractExtension
      */
     public function isAdmin() {
         if ($this->isLogged() && $this->getUser()["role"] === "1"){
+
             return true;
         }
     }

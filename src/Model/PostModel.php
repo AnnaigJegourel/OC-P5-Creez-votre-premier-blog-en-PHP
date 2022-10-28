@@ -9,7 +9,8 @@ namespace App\Model;
  * 
  * @package App\Model
  */
-class PostModel extends MainModel {
+class PostModel extends MainModel
+{
     /**
      * Post Id
      *

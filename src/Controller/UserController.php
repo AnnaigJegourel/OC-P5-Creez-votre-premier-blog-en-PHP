@@ -35,6 +35,7 @@ class UserController extends MainController
 
                 if(password_verify($data["pwd"], $user["password"])){
                     $this->createSession($user);
+
                     return $this->twig->render("Front/profile.twig", ["user" => $user]);
                 } else {
                     $message = "Le mot de passe est erroné.";
@@ -186,8 +187,6 @@ class UserController extends MainController
     /**
      * Manages update user form
      * 
-     * @return string
-     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -212,8 +211,6 @@ class UserController extends MainController
     /**
      * Deletes a User Account
      * 
-     * @return string
-     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -224,8 +221,8 @@ class UserController extends MainController
         ModelFactory::getModel("Comment")->deleteData($user_id, "user_id");
         ModelFactory::getModel("User")->deleteData($user_id);
         $this->logoutMethod();
-        $message = "Le compte a bien été supprimé.";
 
+        $message = "Le compte a bien été supprimé.";
         $this->setMessage($message);
         $this->redirect("user");        
     }

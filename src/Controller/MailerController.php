@@ -33,8 +33,6 @@ class MailerController extends MainController
     /**
      * Sends the e-mail & renders the view message
      * 
-     * @return string
-     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
