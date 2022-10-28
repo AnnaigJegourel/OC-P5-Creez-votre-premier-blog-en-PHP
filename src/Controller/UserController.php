@@ -208,6 +208,21 @@ class UserController extends MainController
         $this->redirect("user!readUser");
     }
 
+    public function updatePasswordMethod()
+    {
+        $user_id = $this->getUserId();  
+        $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
+        $data = [
+            "password" => $password,
+        ];
+        
+        ModelFactory::getModel("User")->updateData((string) $user_id, $data);
+        $message = "Le mot de passe a bien été modifié.";
+
+        $this->setMessage($message);
+        $this->redirect("user!readUser");
+    }
+
     /**
      * Deletes a User Account
      * 
