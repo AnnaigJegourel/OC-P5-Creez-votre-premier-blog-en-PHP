@@ -48,7 +48,7 @@ class UserModel extends MainModel {
     /**
      * User Role
      *
-     * @var int             //et non bool car en SQL= tinyint (0 ou 1)?
+     * @var bool
      */
     private $role;
 
@@ -157,7 +157,7 @@ class UserModel extends MainModel {
     /**
      * Gets User Role
      *
-     * @return int
+     * @return bool
      */
 	public function getRole()
     {
@@ -167,7 +167,7 @@ class UserModel extends MainModel {
     /**
      * Sets User Role
      *
-     * @param int $role
+     * @param bool $role
      */
 	public function setRole($role)
     {

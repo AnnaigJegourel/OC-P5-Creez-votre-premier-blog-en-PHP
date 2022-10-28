@@ -35,7 +35,7 @@ class CommentModel extends MainModel {
     /**
      * Comment status
      *
-     * @var int         //ou bool???????????????
+     * @var bool
      */
     private $approved;
 
@@ -124,7 +124,7 @@ class CommentModel extends MainModel {
     /**
      * Gets comment status (approved=1 or not=0)
      *
-     * @return int              //or bool?
+     * @return bool
      */     
     public function getApproved()
     {
@@ -134,7 +134,7 @@ class CommentModel extends MainModel {
     /**
      * Sets comment status
      *
-     * @param int $approved
+     * @param bool $approved
      */
     public function setApproved($approved)
     {
