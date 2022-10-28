@@ -9,14 +9,18 @@ use Twig\Error\SyntaxError;
 
 /**
  * Class UserController
- * manages the User functions
+ * 
+ * Manages the User functions
+ * 
  * @package App\Controller
  */
 class UserController extends MainController
 {
     /**
      * Logs in User & returns user data OR redirect to login form
+     * 
      * @return array\string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -52,7 +56,6 @@ class UserController extends MainController
     /**
      * Logs out user
      *
-     * @return void                 // à supprimer?????????????????????
      */
     public function logoutMethod()
     {
@@ -63,7 +66,9 @@ class UserController extends MainController
 
     /**
      * Gets all Users
+     * 
      * @return array\string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -77,8 +82,8 @@ class UserController extends MainController
 
     /**
      * Creates a user session
+     * 
      * @param  mixed $user
-     * @return void
      */
     private function createSession($user)
     {
@@ -96,7 +101,8 @@ class UserController extends MainController
 
     /* ***************** CRUD ***************** */
     /**
-     * returns the data for site administration
+     * Returns the data for site administration
+     * 
      * @return array|string
      */
     public function adminMethod()
@@ -110,7 +116,9 @@ class UserController extends MainController
 
     /**
      * Renders the View Profile (read single User)
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -125,7 +133,9 @@ class UserController extends MainController
 
     /**
      * Manages user account creation
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -158,7 +168,9 @@ class UserController extends MainController
 
     /**
      * Renders the view update user form
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -173,7 +185,9 @@ class UserController extends MainController
 
     /**
      * Manages update user form
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -197,7 +211,9 @@ class UserController extends MainController
 
     /**
      * Deletes a User Account
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError

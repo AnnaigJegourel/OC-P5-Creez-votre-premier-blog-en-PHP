@@ -9,7 +9,9 @@ use App\Model\Factory\ModelFactory;
 
 /**
  * Class MainController
+ * 
  * Manages the Main Features
+ * 
  * @package App\Controller
  */
 abstract class MainController
@@ -31,6 +33,7 @@ abstract class MainController
 
     /**
      * MainController constructor
+     * 
      * Creates the Template Engine & adds its Extensions
      */
     public function __construct()
@@ -43,6 +46,7 @@ abstract class MainController
     
     /**
      * Redirects to another URL
+     * 
      * @param string $page
      * @param array $params
      */
@@ -56,7 +60,9 @@ abstract class MainController
 
     /**
      * Return string value with slashes where necessary
+     * 
      * @param string $input
+     * 
      * @return string
      */
     protected function putSlashes(string $input) {
@@ -65,9 +71,9 @@ abstract class MainController
 
     /* *************** SETTER *************** */
     /**
-     * sets MESSAGE
+     * Sets MESSAGE
+     * 
      * @param string $message
-     * @return void
      */
     public function setMessage($message){
         $_SESSION["message"] = $message;
@@ -76,7 +82,9 @@ abstract class MainController
     /* *************** GETTERS *************** */
     /**
      * Gets POST Array or Post Var
+     * 
      * @param null|string $var
+     * 
      * @return array|string
      */
     protected function getPost(string $var = null)
@@ -90,7 +98,9 @@ abstract class MainController
 
     /**
      * Gets GET Array or Get Var
+     * 
      * @param string|null $var
+     * 
      * @return array|string
      */
     protected function getGet(string $var = null)
@@ -104,7 +114,9 @@ abstract class MainController
 
     /**
      * Gets SESSION Array
+     * 
      * @param null|string $var
+     * 
      * @return array|string
      */
     protected function getSession()
@@ -114,7 +126,9 @@ abstract class MainController
 
     /**
      * Returns current ID
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -126,8 +140,11 @@ abstract class MainController
 
     /**
      * Gets USER
+     * 
      * Returns the data of User with id or of logged User
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -145,8 +162,11 @@ abstract class MainController
 
     /**
      * Gets USER ID
+     * 
      * Returns the id of the current logged User
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -162,7 +182,9 @@ abstract class MainController
 
     /**
      * Gets the COMMENTS of ONE POST beginning with the LATEST
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -175,6 +197,7 @@ abstract class MainController
     /* ***************** BOOL / CHECKERS ***************** */
     /**
      * Checks if a user is connected
+     * 
      * @return bool
      */
     public function isLogged(){
@@ -186,6 +209,7 @@ abstract class MainController
 
     /**
      * Checks if logged User is Admin
+     * 
      * @return bool
      */
     public function isAdmin() {

@@ -4,7 +4,9 @@ namespace App;
 
 /**
  * Class Router
- * manages routes to show Views
+ * 
+ * Manages routes to show Views
+ * 
  * @package App
  */
 class Router
@@ -26,19 +28,22 @@ class Router
 
     /**
      * Requested controller
+     * 
      * @var string
      */
     private $controller = self::DEFAULT_CONTROLLER;
 
     /**
      * Requested method
+     * 
      * @var string
      */
     private $method = self::DEFAULT_METHOD;
 
     /**
      * Router constructor
-     * parses the URL, sets the controller & its method
+     * 
+     * Parses the URL, sets the controller & its method
      */
     public function __construct()
     {

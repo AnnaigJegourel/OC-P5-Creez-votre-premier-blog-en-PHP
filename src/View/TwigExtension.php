@@ -9,6 +9,7 @@ use App\Model\Factory\ModelFactory;
 
 /**
  * Class TwigExtension
+ * 
  * @package App\View
  */
 class TwigExtension extends AbstractExtension
@@ -42,7 +43,9 @@ class TwigExtension extends AbstractExtension
 
     /**
      * Gets SESSION Array
+     * 
      * @param null|string $var
+     * 
      * @return array|string
      */
     private function getSession()
@@ -52,6 +55,7 @@ class TwigExtension extends AbstractExtension
 
     /**
      * Gets MESSAGE
+     * 
      * @return string
      */
     public function getMessage()
@@ -66,6 +70,7 @@ class TwigExtension extends AbstractExtension
 
     /**
      * Checks if a user is connected
+     * 
      * @return bool
      */
     public function isLogged(){
@@ -77,8 +82,11 @@ class TwigExtension extends AbstractExtension
 
     /**
      * Gets USER
+     * 
      * Returns the data of User with id or of logged User
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -96,6 +104,7 @@ class TwigExtension extends AbstractExtension
 
     /**
      * Checks if logged User is Admin
+     * 
      * @return bool
      */
     public function isAdmin() {

@@ -4,7 +4,9 @@ namespace App\Model;
 
 /**
  * Class PostModel
+ * 
  * Manages Posts Data
+ * 
  * @package App\Model
  */
 class PostModel extends MainModel {
@@ -57,7 +59,7 @@ class PostModel extends MainModel {
      */
     private $user_id;           //pas nécessaire? (clé étrangère)
 
-    /* ***** GETTERS & SETTERS ***** */
+    /* ************************ GETTERS & SETTERS ************************ */
     /**
      * Gets Post Id
      * 
@@ -72,7 +74,6 @@ class PostModel extends MainModel {
      * Sets Post Id
      *
      * @param int $id
-     * @return void         //ok car pas de "return"?
      */
 	public function setId($id)
     {
@@ -93,7 +94,6 @@ class PostModel extends MainModel {
      * Sets Date of Post Creation
      *
      * @param DateTime $date_created
-     * @return void
      */
 	public function setDateCreated($date_created)
     {
@@ -114,7 +114,6 @@ class PostModel extends MainModel {
      * Sets Date of Post Update
      *
      * @param DateTime $date_updated
-     * @return void
      */
 	public function setDateUpdated($date_updated)
     {
@@ -135,7 +134,6 @@ class PostModel extends MainModel {
      * Sets Post Title
      *
      * @param string $title
-     * @return void
      */
 	public function setTitle($title)
     {
@@ -156,7 +154,6 @@ class PostModel extends MainModel {
      * Sets Post Introduction
      *
      * @param string $intro
-     * @return void
      */
 	public function setIntro($intro)
     {
@@ -177,7 +174,6 @@ class PostModel extends MainModel {
      * Sets Post Content
      *
      * @param string $content
-     * @return void
      */
 	public function setContent($content)
     {
@@ -198,12 +194,9 @@ class PostModel extends MainModel {
      * Sets User Id
      *
      * @param int $user_id
-     * @return void         //ok car pas de "return"?
      */
 	public function setUserId($user_id)
     {
 		$this->user_id = $user_id;
 	}
-
-
 }

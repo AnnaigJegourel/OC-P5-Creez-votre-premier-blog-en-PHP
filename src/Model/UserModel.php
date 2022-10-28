@@ -4,7 +4,9 @@ namespace App\Model;
 
 /**
  * Class UserModel
+ * 
  * Manages User Data
+ * 
  * @package App\Model
  */
 class UserModel extends MainModel {
@@ -50,6 +52,7 @@ class UserModel extends MainModel {
      */
     private $role;
 
+    /* ************************ GETTERS & SETTERS ************************ */
     /**
      * Gets User Id
      * 
@@ -64,7 +67,6 @@ class UserModel extends MainModel {
      * Sets User Id
      *
      * @param int $id
-     * @return void         //ok car pas de "return"?
      */
 	public function setId($id)
     {
@@ -85,7 +87,6 @@ class UserModel extends MainModel {
      * Sets User Name
      *
      * @param string $name
-     * @return void
      */
 	public function setName($name)
     {
@@ -107,7 +108,6 @@ class UserModel extends MainModel {
      * Sets User E-mail
      *
      * @param string $email
-     * @return void
      */
 	public function setEmail($email)
     {
@@ -128,7 +128,6 @@ class UserModel extends MainModel {
      * Sets User Password
      *
      * @param string $password
-     * @return void
      */
 	public function setPassword($password)
     {
@@ -149,7 +148,6 @@ class UserModel extends MainModel {
      * Sets Date of User Creation
      *
      * @param DateTime $date_created
-     * @return void
      */
 	public function setDateCreated($date_created)
     {
@@ -170,7 +168,6 @@ class UserModel extends MainModel {
      * Sets User Role
      *
      * @param int $role
-     * @return void
      */
 	public function setRole($role)
     {

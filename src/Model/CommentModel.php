@@ -5,7 +5,9 @@ namespace App\Model;
 
 /**
  * Class CommentModel
+ * 
  * Manages Comments Data
+ * 
  * @package App\Model
  */
 class CommentModel extends MainModel {
@@ -33,7 +35,7 @@ class CommentModel extends MainModel {
     /**
      * Comment status
      *
-     * @var int         //ou bool?
+     * @var int         //ou bool???????????????
      */
     private $approved;
 
@@ -73,7 +75,6 @@ class CommentModel extends MainModel {
      * Sets the Comment Id
      *
      * @param int $id
-     * @return void                 // ok car pas de return?
      */
     public function setId($id)
     {
@@ -94,7 +95,6 @@ class CommentModel extends MainModel {
      * Sets the date of comment creation
      *
      * @param DateTime $date_created
-     * @return void
      */
     public function setDateCreated($date_created)
     {
@@ -115,7 +115,6 @@ class CommentModel extends MainModel {
      * Sets the content of a comment
      *
      * @param string $content
-     * @return void
      */
     public function setContent($content)
     {
@@ -136,7 +135,6 @@ class CommentModel extends MainModel {
      * Sets comment status
      *
      * @param int $approved
-     * @return void
      */
     public function setApproved($approved)
     {
@@ -157,7 +155,6 @@ class CommentModel extends MainModel {
      * Sets comment author name
      *
      * @param string $author
-     * @return void
      */
     public function setAuthor($author)
     {
@@ -178,7 +175,6 @@ class CommentModel extends MainModel {
      * Sets Id of the author (User id)
      *
      * @param int $user_id
-     * @return void
      */
     public function setUserId($user_id)
     {
@@ -199,7 +195,6 @@ class CommentModel extends MainModel {
      * Sets id of the commented post
      *
      * @param int $post_id
-     * @return void
      */
     public function setPostId($post_id)
     {

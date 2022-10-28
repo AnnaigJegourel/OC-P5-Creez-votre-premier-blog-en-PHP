@@ -9,14 +9,18 @@ use Twig\Error\SyntaxError;
 
 /**
  * Class CommentController
+ * 
  * Manages the Comments Features
+ * 
  * @package App\Controller
  */
 class CommentController extends MainController {
 
     /**
      * Renders the View Home
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -30,7 +34,9 @@ class CommentController extends MainController {
 
     /**
      * Manages comment creation
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -61,7 +67,9 @@ class CommentController extends MainController {
 
     /**
      * Manages comment delete
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -81,7 +89,6 @@ class CommentController extends MainController {
         }
         $this->setMessage($message);
         $this->redirect("post");    
-        //$this->redirect("post");    problème getId() --> faire une getPostId()?
     }
 
     /* ***************** ADMIN ***************** */

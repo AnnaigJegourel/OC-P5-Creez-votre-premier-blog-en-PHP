@@ -4,26 +4,32 @@ namespace App\Model;
 
 /**
  * Class MainModel
+ * 
  * Creates Queries for CRUD
+ * 
  * @package App\Model
  */
 abstract class MainModel
 {
     /**
      * Database
+     * 
      * @var PdoDb
      */
     protected $database = null;
 
     /**
      * Database Table
+     * 
      * @var string
      */
     protected $table = null;
 
     /**
      * Model constructor
+     * 
      * Receives the Database Object & creates the Table Name
+     * 
      * @param PdoDb $database
      */
     public function __construct(PdoDb $database)
@@ -35,8 +41,10 @@ abstract class MainModel
 
     /**
      * Lists all Datas from the id or another key
+     * 
      * @param string $value
      * @param string $key
+     * 
      * @return array|mixed
      */
     public function listData(string $value = null, string $key = null)
@@ -53,8 +61,10 @@ abstract class MainModel
 
     /**
      * Lists all Datas from the id or another key BEGINNING WITH THE LATEST UPDATE
+     * 
      * @param string $value
      * @param string $key
+     * 
      * @return array|mixed
      */
     public function listDataLatest(string $value = null, string $key = null)
@@ -72,6 +82,7 @@ abstract class MainModel
 
     /**
      * Creates a new Data entry
+     * 
      * @param array $data
      */
     public function createData(array $data)
@@ -85,15 +96,16 @@ abstract class MainModel
 
     /**
      * Reads Data from its id or another key
+     * 
      * @param string $value
      * @param string|null $key
+     * 
      * @return mixed
      */
     public function readData(string $value, string $key = null)
     {
         if (isset($key)) {
             $query = "SELECT * FROM " . $this->table . " WHERE " . $key . " = ?";
-            /*return;*/
         } else {
             $query = "SELECT * FROM " . $this->table . " WHERE id = ?";
         }
@@ -103,8 +115,10 @@ abstract class MainModel
 
     /**
      * Updates Data from its id or another key
+     * 
      * @param string $value
      * @param array $data
+     * 
      * @param string|null $key
      */
     public function updateData(string $value, array $data, string $key = null)
@@ -129,6 +143,7 @@ abstract class MainModel
 
     /**
      * Deletes Data from its id or another key
+     * 
      * @param string $value
      * @param string|null $key
      */
