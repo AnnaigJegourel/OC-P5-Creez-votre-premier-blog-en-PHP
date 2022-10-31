@@ -9,7 +9,9 @@ use App\Model\Factory\ModelFactory;
 
 /**
  * Class MainController
+ * 
  * Manages the Main Features
+ * 
  * @package App\Controller
  */
 abstract class MainController
@@ -31,18 +33,20 @@ abstract class MainController
 
     /**
      * MainController constructor
+     * 
      * Creates the Template Engine & adds its Extensions
      */
     public function __construct()
-        {
-            $this->twig = new Environment(new FilesystemLoader("../src/View"), array("cache"=>false));
-            $this->twig->addExtension(new TwigExtension());
-            $this->session = filter_var_array($_SESSION) ?? [];
-            $this->get     = filter_input_array(INPUT_GET) ?? [];
-        }
+    {
+        $this->twig = new Environment(new FilesystemLoader("../src/View"), array("cache"=>false));
+        $this->twig->addExtension(new TwigExtension());
+        $this->session = filter_var_array($_SESSION) ?? [];
+        $this->get     = filter_input_array(INPUT_GET) ?? [];
+    }
     
     /**
      * Redirects to another URL
+     * 
      * @param string $page
      * @param array $params
      */
@@ -55,33 +59,40 @@ abstract class MainController
     }
 
     /**
-     * Return string value with slashes where necessary
+     * Returns string value with slashes where necessary
+     * 
      * @param string $input
-     * @return void
+     * 
+     * @return string
      */
-    protected function putSlashes(string $input) {
+    protected function putSlashes(string $input)
+    {
         return addslashes($input);
     }
 
     /* *************** SETTER *************** */
     /**
-     * sets MESSAGE
+     * Sets MESSAGE
+     * 
      * @param string $message
-     * @return void
      */
-    public function setMessage($message){
+    public function setMessage($message)
+    {
         $_SESSION["message"] = $message;
     }
 
     /* *************** GETTERS *************** */
     /**
      * Gets POST Array or Post Var
+     * 
      * @param null|string $var
+     * 
      * @return array|string
      */
     protected function getPost(string $var = null)
     {
         if ($var === null) {
+
             return filter_input_array(INPUT_POST);
         }
 
@@ -90,12 +101,15 @@ abstract class MainController
 
     /**
      * Gets GET Array or Get Var
+     * 
      * @param string|null $var
-     * @return void
+     * 
+     * @return array|string
      */
     protected function getGet(string $var = null)
     {
         if ($var === null) {
+
             return filter_input_array(INPUT_GET);
         }
 
@@ -104,7 +118,9 @@ abstract class MainController
 
     /**
      * Gets SESSION Array
+     * 
      * @param null|string $var
+     * 
      * @return array|string
      */
     protected function getSession()
@@ -114,7 +130,9 @@ abstract class MainController
 
     /**
      * Returns current ID
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -126,8 +144,11 @@ abstract class MainController
 
     /**
      * Gets USER
+     * 
      * Returns the data of User with id or of logged User
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -139,14 +160,18 @@ abstract class MainController
         } else {
             $session = $this->getSession();
             $user = $session["user"];
-        }       
+        }
+
         return $user;
     }
 
     /**
      * Gets USER ID
+     * 
      * Returns the id of the current logged User
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -156,13 +181,16 @@ abstract class MainController
         $session = $this->getSession();
         if(isset($session["user"]) && !empty($session["user"])){
             $id = $session["user"]["id"];
+
             return $id;    
         }
     }
 
     /**
      * Gets the COMMENTS of ONE POST beginning with the LATEST
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -175,24 +203,28 @@ abstract class MainController
     /* ***************** BOOL / CHECKERS ***************** */
     /**
      * Checks if a user is connected
+     * 
      * @return bool
      */
-    public function isLogged(){
+    public function isLogged()
+    {
         $session = $this->getSession();
         if(!empty($session) && isset($session["user"]) && !empty($session["user"])) {
+
             return true;
-        } /* else {
-            $this->redirect("login"); 
-        }*/
+        }
     }
 
     /**
      * Checks if logged User is Admin
+     * 
      * @return bool
      */
-    public function isAdmin() {
+    public function isAdmin()
+    {
         if ($this->isLogged() && $this->getUser()["role"] === "1"){
+
             return true;
         }
     }
-};
+}

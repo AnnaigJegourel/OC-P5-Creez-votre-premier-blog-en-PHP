@@ -3,20 +3,23 @@
 namespace App\Controller;
 
 use App\Model\Factory\ModelFactory;
+
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 
 /**
  * Class CommentController
+ * 
  * Manages the Comments Features
+ * 
  * @package App\Controller
  */
-class CommentController extends MainController {
-
+class CommentController extends MainController
+{
     /**
      * Renders the View Home
-     * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -26,11 +29,9 @@ class CommentController extends MainController {
         $this->redirect("home");
     }
 
-    /* ***************** CREATE ***************** */
-
     /**
      * Manages comment creation
-     * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -41,6 +42,7 @@ class CommentController extends MainController {
             $user_id = $this->getUserId();
             $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
             $date_created = $date_created->format("Y-m-d H:i:s");
+
             $data = [
                 "author" => $this->putSlashes($this->getPost()["author"]),
                 "content" => $this->putSlashes($this->getPost()["content"]),
@@ -48,20 +50,21 @@ class CommentController extends MainController {
                 "date_created" => $date_created,
                 "user_id" => $user_id
             ];
+
             ModelFactory::getModel("Comment")->createData($data);
             $message = "Votre commentaire a bien été créé. Il sera publié une fois approuvé par l'admin.";
-        }else{
+
+        } else {
             $message = "Vous devez vous connecter pour commenter un article.";
         }
+
         $this->setMessage($message);
         $this->redirect("post");    
     }
 
-    /* ***************** DELETE ***************** */
-
     /**
      * Manages comment delete
-     * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -79,12 +82,10 @@ class CommentController extends MainController {
         } else {
             $message = "Vous ne pouvez pas supprimer les commentaires créés par d'autres comptes.";
         }
+
         $this->setMessage($message);
         $this->redirect("post");    
-        //$this->redirect("post");    problème getId() --> faire une getPostId()?
     }
-
-    /* ***************** ADMIN ***************** */
 
     /**
      * Manages Admin's comments choice

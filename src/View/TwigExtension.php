@@ -9,11 +9,12 @@ use App\Model\Factory\ModelFactory;
 
 /**
  * Class TwigExtension
+ * 
  * @package App\View
  */
 class TwigExtension extends AbstractExtension
 {
-     /**
+    /**
      * @var array
      */
     private $session = [];
@@ -33,7 +34,6 @@ class TwigExtension extends AbstractExtension
     {
         return array(
             new TwigFunction("getSession", [$this, "getSession"]),
-            //new TwigFunction("setMessage", [$this, "setMessage"]),
             new TwigFunction("getMessage", [$this, "getMessage"]),
             new TwigFunction("getUser", [$this, "getUser"]),
             new TwigFunction("isLogged", [$this, "isLogged"]),
@@ -43,17 +43,18 @@ class TwigExtension extends AbstractExtension
 
     /**
      * Gets SESSION Array
+     * 
      * @param null|string $var
+     * 
      * @return array|string
      */
-    public function getSession()
+    private function getSession()
     {
         return $this->session;
     }
 
     /**
      * Gets MESSAGE
-     * @return string
      */
     public function getMessage()
     {
@@ -67,40 +68,48 @@ class TwigExtension extends AbstractExtension
 
     /**
      * Checks if a user is connected
+     * 
      * @return bool
      */
     public function isLogged(){
         $session = $this->getSession();
         if(!empty($session) && isset($session["user"]) && !empty($session["user"])) {
+
             return true;
         }
     }
 
     /**
      * Gets USER
+     * 
      * Returns the data of User with id or of logged User
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    public function getUser($id = null)
+    private function getUser($id = null)
     {
         if (isset($id) && !empty($id)) {
             $user = ModelFactory::getModel("User")->readData((string) $id);
         } else {
             $session = $this->getSession();
             $user = $session["user"];
-        }       
+        }
+
         return $user;
     }
 
     /**
      * Checks if logged User is Admin
+     * 
      * @return bool
      */
     public function isAdmin() {
         if ($this->isLogged() && $this->getUser()["role"] === "1"){
+
             return true;
         }
     }

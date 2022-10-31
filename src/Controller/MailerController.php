@@ -11,7 +11,9 @@ use Twig\Error\SyntaxError;
 
 /**
  * Class MailerController
- * manages PHPMailer
+ * 
+ * Manages PHPMailer
+ * 
  * @package App\Controller
  */
 class MailerController extends MainController
@@ -20,7 +22,8 @@ class MailerController extends MainController
 
     /**
      * PHPMailer constructor
-     * creates a PHPMailer object
+     * 
+     * Creates a PHPMailer object
      */
     public function __construct()
     {
@@ -29,7 +32,7 @@ class MailerController extends MainController
 
     /**
      * Sends the e-mail & renders the view message
-     * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError

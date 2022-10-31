@@ -9,14 +9,18 @@ use Twig\Error\SyntaxError;
 
 /**
  * Class UserController
- * manages the User functions
+ * 
+ * Manages the User functions
+ * 
  * @package App\Controller
  */
 class UserController extends MainController
 {
     /**
      * Logs in User & returns user data OR redirect to login form
+     * 
      * @return array\string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -28,15 +32,23 @@ class UserController extends MainController
             $user = ModelFactory::getModel("User")->readData((string) $data["email"], "email");
 
             if(isset($user) && !empty($user)){
+
                 if(password_verify($data["pwd"], $user["password"])){
                     $this->createSession($user);
+
                     return $this->twig->render("Front/profile.twig", ["user" => $user]);
+                } else {
+                    $message = "Le mot de passe est erroné.";
+                    $this->setMessage($message);
+                    $this->redirect("user");                
                 }
-            }else{
-                $message = "L'e-mail ou le mot de passe est erroné.";
+
+            } else {
+                $message = "L'e-mail est erroné.";
                 $this->setMessage($message);
                 $this->redirect("user");            
             }
+
         } else {
             return $this->twig->render("Front/login.twig");
         }
@@ -45,7 +57,6 @@ class UserController extends MainController
     /**
      * Logs out user
      *
-     * @return void
      */
     public function logoutMethod()
     {
@@ -56,7 +67,9 @@ class UserController extends MainController
 
     /**
      * Gets all Users
+     * 
      * @return array\string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -70,8 +83,8 @@ class UserController extends MainController
 
     /**
      * Creates a user session
+     * 
      * @param  mixed $user
-     * @return void
      */
     private function createSession($user)
     {
@@ -89,8 +102,9 @@ class UserController extends MainController
 
     /* ***************** CRUD ***************** */
     /**
-     * returns the data for site administration
-     * @return void
+     * Returns the data for site administration
+     * 
+     * @return array|string
      */
     public function adminMethod()
     {
@@ -103,7 +117,9 @@ class UserController extends MainController
 
     /**
      * Renders the View Profile (read single User)
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -118,7 +134,9 @@ class UserController extends MainController
 
     /**
      * Manages user account creation
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -151,7 +169,9 @@ class UserController extends MainController
 
     /**
      * Renders the view update user form
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -166,7 +186,7 @@ class UserController extends MainController
 
     /**
      * Manages update user form
-     * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -174,11 +194,11 @@ class UserController extends MainController
     public function updateUserMethod()
     {
         $user_id = $this->getUserId();  
-        $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
+        //$password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
         $data = [
             "name" => $this->getPost()["name"],
             "email" => $this->getPost()["email"],
-            "password" => $password,
+            //"password" => $password,
         ];
         
         ModelFactory::getModel("User")->updateData((string) $user_id, $data);
@@ -188,9 +208,24 @@ class UserController extends MainController
         $this->redirect("user!readUser");
     }
 
+    public function updatePasswordMethod()
+    {
+        $user_id = $this->getUserId();  
+        $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
+        $data = [
+            "password" => $password,
+        ];
+        
+        ModelFactory::getModel("User")->updateData((string) $user_id, $data);
+        $message = "Le mot de passe a bien été modifié.";
+
+        $this->setMessage($message);
+        $this->redirect("user!readUser");
+    }
+
     /**
      * Deletes a User Account
-     * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -201,8 +236,8 @@ class UserController extends MainController
         ModelFactory::getModel("Comment")->deleteData($user_id, "user_id");
         ModelFactory::getModel("User")->deleteData($user_id);
         $this->logoutMethod();
-        $message = "Le compte a bien été supprimé.";
 
+        $message = "Le compte a bien été supprimé.";
         $this->setMessage($message);
         $this->redirect("user");        
     }

@@ -10,16 +10,19 @@ use Twig\Error\SyntaxError;
 
 /**
  * Class PostController
- * manages the post page
+ * 
+ * Manages the post page
+ * 
  * @package App\Controller
  */
 class PostController extends MainController
 {
     /* ***************** READ ***************** */
-
     /**
      * Renders the View Posts List
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -33,7 +36,9 @@ class PostController extends MainController
 
     /**
      * Renders the View Post
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -60,10 +65,9 @@ class PostController extends MainController
     }
 
     /* ***************** CREATE ***************** */
-
     /**
      * Manages post creation
-     * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -86,16 +90,16 @@ class PostController extends MainController
         ModelFactory::getModel("Post")->createData($data);
         $message = "L'article a bien été créé.";                
             
-        //return $this->twig->render("Front/message.twig", ["message" => $message]);
         $this->setMessage($message);
         $this->redirect("post");    
     }
 
     /* ***************** UPDATE ***************** */
-
     /**
      * Renders the view update post form
+     * 
      * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -118,7 +122,7 @@ class PostController extends MainController
         $post_id = $this->getId();
         $date_updated = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
         $date_updated = $date_updated->format("Y-m-d H:i:s");
-                
+
         $data = [
             "title" => $this->putSlashes($this->getPost()["title"]),
             "intro" => $this->putSlashes($this->getPost()["intro"]),
@@ -134,10 +138,9 @@ class PostController extends MainController
     }
 
     /* ***************** DELETE ***************** */
-
     /**
      * Deletes a post
-     * @return string
+     * 
      * @throws LoaderError
      * @throws RuntimeError
      * @throws SyntaxError
@@ -148,7 +151,7 @@ class PostController extends MainController
         ModelFactory::getModel("Comment")->deleteData($post_id, "post_id");
         ModelFactory::getModel("Post")->deleteData($post_id);
         $message = "L'article a bien été supprimé.";                
-            
+        
         $this->setMessage($message);
         $this->redirect("post");        
     }

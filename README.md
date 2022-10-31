@@ -13,24 +13,24 @@ xamppserver<br>
 PHP 8.1.6<br>
 Composer 2.3.0<br>
 
-## Installation:
+## Installation
 
-1. Clone the repository
-2. Upload & install xamppserver: [https://www.wampserver.com/en/download-wampserver-64bits/](https://www.apachefriends.org)
-3. Launch xamppserver, configure your php version to 8.1.6
-4. Go to localhost/phpmyadmin/
-5. Create a new database & name it "p5-blog"
-6. Import the database using db.sql (file at the root of this project)
-7. Launch a terminal at the root of the project & run the command "composer intall"
+1.  Clone the repository
+2.  Upload & install xamppserver: [https://www.wampserver.com/en/download-wampserver-64bits/](https://www.apachefriends.org)
+3.  Launch xamppserver, configure your php version to 8.1.6
+4.  Go to localhost/phpmyadmin/
+5.  Create a new database & name it "p5-blog"
+6.  Import the database using db.sql (file at the root of this project)
+7.  Launch a terminal at the root of the project & run the command "composer intall"
 
 Your project is ready!
 
-## Contexte / Mise en situation :
+## Contexte / Mise en situation
 
 Vous avez besoin de visibilité pour pouvoir convaincre vos futurs employeurs/clients en un seul regard. 
 Vous êtes développeuse PHP, il est donc temps de montrer vos talents au travers d’un blog à vos couleurs.
 
-### Description :
+### Description
 
 Vous allez développer votre blog professionnel, qui se décomposera en deux grands groupes de pages :
 
@@ -54,7 +54,7 @@ Voici la liste des pages qui devront être accessibles depuis votre site web :
 <br>
 📑 les pages de connexion/enregistrement des utilisateurs.
 
-### Contraintes :
+### Contraintes
 
 ➡️ Nous n’utiliserons pas WordPress : tout sera développé par vos soins. 
 <br>

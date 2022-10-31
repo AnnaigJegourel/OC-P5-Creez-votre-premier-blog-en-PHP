@@ -6,20 +6,25 @@ use App\Model\PdoDb;
 
 /**
  * Class ModelFactory
+ * 
  * Creates the Model if it doesn't exist
+ * 
  * @package App\Model
  */
 class ModelFactory
 {
     /**
      * Model
+     * 
      * @var array
      */
     private static $models = [];
 
     /**
      * Returns the Model if it exists or creates it before returning it
+     * 
      * @param $table
+     * 
      * @return mixed
      */
     public static function getModel(string $table)
