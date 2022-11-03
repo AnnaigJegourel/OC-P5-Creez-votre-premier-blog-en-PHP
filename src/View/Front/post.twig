@@ -35,21 +35,13 @@
             <h2>Commentez cet article:</h2>
 
             <form method="post" action="index.php?access=comment!createcomment&id={{post.id}}">
-                
-                <fieldset>
-                    <label for="author">nom ou pseudo: </label>
-                    <input type="text" name="author">
-                </fieldset>
-
                 <fieldset>
                     <label for="content">commentaire: </label>
                     <textarea name="content"></textarea>
                 </fieldset>
-
                 <fieldset class="btn-fieldset">
                     <input class="btn" type="submit" value="Envoyer">
                 </fieldset>
-
             </form>
 
         </section>
@@ -63,7 +55,7 @@
                     {% if (comment.approved is same as(1)) %}
                         <li>
                             <p> {{ comment.date_created }} </p>
-                            <p> <strong>par {{ comment.author }} </strong></p>
+                            <p> <strong>par {{ comment.name }} </strong></p>
                             <p> {{ comment.content }} </p>
                             <p> 
                                 <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">
@@ -74,7 +66,6 @@
                     {% endif %}
                 {% endfor %}
             </ul>
-            
         </section>
 
     </main>
