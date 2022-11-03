@@ -100,14 +100,14 @@ abstract class MainModel
     }
     
     /* **************** tous les comm avec user name from latest ***************** */
-    public function listAllComments()
+    /*public function listAllComments()
     {
         $query = "SELECT * FROM Comment
                 INNER JOIN User ON Comment.user_id = User.id
                 ORDER BY Comment.date_created DESC";
 
         return $this->database->getAllData($query);
-    }
+    }*/
 
 
     /**
