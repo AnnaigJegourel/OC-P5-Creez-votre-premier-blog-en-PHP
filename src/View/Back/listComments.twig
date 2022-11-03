@@ -8,8 +8,8 @@
                 <tr>
                     <th class="date">Date de création</th>
                     <th class="id">Article</th>
-                    <th class="date">Auteur</th>
                     <th class="comm">Commentaire</th>
+                    <th class="date">Auteur</th>
                     <th class="manage">Statut</th>
                 </tr>
             </thead>
@@ -26,15 +26,12 @@
                             </a>
                         </td>
 
-                        <td> "{{ comment.author }}"
-                            </br>
-                            (id: {{comment.user_id}})
-                        </td>
-
                         <td class="comm">
                             {{ comment.content }}
                         </td>
                         
+                        <td> {{ comment.name }} </td>
+
                         <td>
                             <ul>
                                 <li>
