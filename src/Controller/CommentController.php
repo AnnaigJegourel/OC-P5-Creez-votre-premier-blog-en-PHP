@@ -44,7 +44,6 @@ class CommentController extends MainController
             $date_created = $date_created->format("Y-m-d H:i:s");
 
             $data = [
-                "author" => $this->putSlashes($this->getPost()["author"]),
                 "content" => $this->putSlashes($this->getPost()["content"]),
                 "post_id" => $this->getId(),
                 "date_created" => $date_created,

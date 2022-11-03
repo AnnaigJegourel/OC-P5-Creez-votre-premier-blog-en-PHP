@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Model\Factory\ModelFactory;
+
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
@@ -52,13 +53,11 @@ class PostController extends MainController
         }
 
         $post = ModelFactory::getModel("Post")->readData((string) $post_id);
-        $author = $this->getUser($post["user_id"]);
         $session = $this->getSession();
-        $allComments = $this->getComments();
+        $allComments = ModelFactory::getModel("Comment")->listSinglePostComments($this->getId(), "post_id");
 
         return $this->twig->render("Front/post.twig", [
             "post" => $post,
-            "author" => $author,
             "session" => $session,
             "allComments" => $allComments
         ]);

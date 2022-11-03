@@ -110,7 +110,7 @@ class UserController extends MainController
     {
         return $this->twig->render("Back/admin.twig", [
             "allPosts" => ModelFactory::getModel("Post")->listDataLatest(),
-            "allComments" => ModelFactory::getModel("Comment")->listDataLatest(),
+            "allComments" => ModelFactory::getModel("Comment")->listSinglePostComments(),
             "allUsers" => $this->getAllUsers()
         ]);
     }
@@ -235,10 +235,10 @@ class UserController extends MainController
         $user_id = (string) $this->getUserId();
         ModelFactory::getModel("Comment")->deleteData($user_id, "user_id");
         ModelFactory::getModel("User")->deleteData($user_id);
+        
         $this->logoutMethod();
-
         $message = "Le compte a bien été supprimé.";
         $this->setMessage($message);
-        $this->redirect("user");        
+        $this->redirect("home");        
     }
 } 
