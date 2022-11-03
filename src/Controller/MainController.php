@@ -195,11 +195,11 @@ abstract class MainController
      * @throws RuntimeError
      * @throws SyntaxError
      */
-    protected function getComments()
+/*    protected function getComments()
     {
         return ModelFactory::getModel("Comment")->listDataLatest($this->getId(), "post_id");
     }
-
+*/
     /* ***************** BOOL / CHECKERS ***************** */
     /**
      * Checks if a user is connected
