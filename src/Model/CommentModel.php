@@ -41,13 +41,6 @@ class CommentModel extends MainModel
     private $approved;
 
     /**
-     * Comment Author (pseudo)
-     *
-     * @var string
-     */
-    //private $author;
-
-    /**
      * Comment User (author) id
      *
      * @var int
@@ -141,26 +134,6 @@ class CommentModel extends MainModel
     {
         $this->approved = $approved;
     }
-
-    /**
-     * Gets comment author name
-     *
-     * @return string
-     */
-    /*public function getAuthor()
-    {
-        return $this->author;
-    }*/
-
-    /**
-     * Sets comment author name
-     *
-     * @param string $author
-     */
-    /*public function setAuthor($author)
-    {
-        $this->author = $author;
-    }*/
 
     /**
      * Gets Id of the author (User id)

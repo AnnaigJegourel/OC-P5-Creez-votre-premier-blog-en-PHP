@@ -186,20 +186,6 @@ abstract class MainController
         }
     }
 
-    /**
-     * Gets the COMMENTS of ONE POST beginning with the LATEST
-     * 
-     * @return string
-     * 
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-/*    protected function getComments()
-    {
-        return ModelFactory::getModel("Comment")->listDataLatest($this->getId(), "post_id");
-    }
-*/
     /* ***************** BOOL / CHECKERS ***************** */
     /**
      * Checks if a user is connected
