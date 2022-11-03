@@ -194,11 +194,9 @@ class UserController extends MainController
     public function updateUserMethod()
     {
         $user_id = $this->getUserId();  
-        //$password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
         $data = [
             "name" => $this->getPost()["name"],
             "email" => $this->getPost()["email"],
-            //"password" => $password,
         ];
         
         ModelFactory::getModel("User")->updateData((string) $user_id, $data);
@@ -208,6 +206,13 @@ class UserController extends MainController
         $this->redirect("user!readUser");
     }
 
+    /**
+     * Manages password update form
+     * 
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
     public function updatePasswordMethod()
     {
         $user_id = $this->getUserId();  
