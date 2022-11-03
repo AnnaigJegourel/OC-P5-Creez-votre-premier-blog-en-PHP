@@ -45,7 +45,7 @@ class CommentModel extends MainModel
      *
      * @var string
      */
-    private $author;
+    //private $author;
 
     /**
      * Comment User (author) id
@@ -147,20 +147,20 @@ class CommentModel extends MainModel
      *
      * @return string
      */
-    public function getAuthor()
+    /*public function getAuthor()
     {
         return $this->author;
-    }
+    }*/
 
     /**
      * Sets comment author name
      *
      * @param string $author
      */
-    public function setAuthor($author)
+    /*public function setAuthor($author)
     {
         $this->author = $author;
-    }
+    }*/
 
     /**
      * Gets Id of the author (User id)
