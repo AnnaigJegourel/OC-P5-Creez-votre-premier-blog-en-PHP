@@ -159,7 +159,9 @@ abstract class MainController
             $user = ModelFactory::getModel("User")->readData((string)$id);
         } else {
             $session = $this->getSession();
-            $user = $session["user"];
+            if(isset($session["user"]) && !empty($session["user"])){
+                $user = $session["user"];
+            }
         }
 
         return $user;
@@ -178,12 +180,7 @@ abstract class MainController
      */
     protected function getUserId()
     {
-        $session = $this->getSession();
-        if(isset($session["user"]) && !empty($session["user"])){
-            $id = $session["user"]["id"];
-
-            return $id;    
-        }
+        return $this->getUser()["id"];    
     }
 
     /* ***************** BOOL / CHECKERS ***************** */
