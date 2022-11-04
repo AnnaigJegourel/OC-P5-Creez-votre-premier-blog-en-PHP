@@ -54,7 +54,7 @@
                 {% for comment in allComments %}
                     {% if (comment.approved is same as(1)) %}
                         <li>
-                            <p> {{ comment.date_created |date("d/m/Y")}} </p>
+                            <p> {{ comment.date_created|date("d/m/Y")  }} </p>
                             <p> <strong>par {{ comment.name }} </strong></p>
                             <p> {{ comment.content }} </p>
                             <p> 
