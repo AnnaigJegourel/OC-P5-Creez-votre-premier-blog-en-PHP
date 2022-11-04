@@ -62,7 +62,7 @@ class UserController extends MainController
     {
         setcookie("PHPSESSID", "", time() - 3600, "/");
         session_destroy();
-        $this->redirect("user");
+        $this->redirect("home");
     }
 
     /**
@@ -240,10 +240,7 @@ class UserController extends MainController
         $user_id = (string) $this->getUserId();
         ModelFactory::getModel("Comment")->deleteData($user_id, "user_id");
         ModelFactory::getModel("User")->deleteData($user_id);
-        
+
         $this->logoutMethod();
-        $message = "Le compte a bien été supprimé.";
-        $this->setMessage($message);
-        $this->redirect("home");        
     }
-} 
+}
