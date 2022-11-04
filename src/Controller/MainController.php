@@ -76,7 +76,7 @@ abstract class MainController
      * 
      * @param string $message
      */
-    public function setMessage($message)
+    protected function setMessage($message)
     {
         $_SESSION["message"] = $message;
     }
@@ -155,6 +155,7 @@ abstract class MainController
      */
     protected function getUser($id = null)
     {
+        $user= [];
         if (isset($id) && !empty($id)) {
             $user = ModelFactory::getModel("User")->readData((string)$id);
         } else {
@@ -180,7 +181,13 @@ abstract class MainController
      */
     protected function getUserId()
     {
-        return $this->getUser()["id"];    
+        $id = "";
+        if(isset($this->getUser()["id"]) && !empty($this->getUser()["id"]))
+        {
+            $id = $this->getUser()["id"];
+        }
+
+        return $id;    
     }
 
     /* ***************** BOOL / CHECKERS ***************** */
