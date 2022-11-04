@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+
 use App\View\TwigExtension;
 use App\Model\Factory\ModelFactory;
 
@@ -43,7 +44,7 @@ abstract class MainController
         $this->session = filter_var_array($_SESSION) ?? [];
         $this->get     = filter_input_array(INPUT_GET) ?? [];
     }
-    
+
     /**
      * Redirects to another URL
      * 
@@ -54,7 +55,7 @@ abstract class MainController
     {
         $params["access"] = $page;
         header("Location: index.php?" . http_build_query($params));
-        
+
         exit;
     }
 
@@ -118,9 +119,9 @@ abstract class MainController
 
     /**
      * Gets SESSION Array
-     * 
+     *
      * @param null|string $var
-     * 
+     *
      * @return array|string
      */
     protected function getSession()
@@ -187,7 +188,7 @@ abstract class MainController
             $id = $this->getUser()["id"];
         }
 
-        return $id;    
+        return $id;
     }
 
     /* ***************** BOOL / CHECKERS ***************** */
