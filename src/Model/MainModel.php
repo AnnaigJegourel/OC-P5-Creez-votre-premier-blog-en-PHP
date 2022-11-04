@@ -79,31 +79,6 @@ abstract class MainModel
 
         return $this->database->getAllData($query);
     }
-
-    /**
-     * Lists all comments about a post
-     *
-     * @param string|null $value
-     * @param string|null $key
-     * @return array|mixed
-     */
-    public function listSinglePostComments(string $value = null, string $key = null)
-    {
-        if (isset($key)) {
-            $query = "SELECT * FROM Comment
-            INNER JOIN User ON Comment.user_id = User.id
-            WHERE " . $key . " = ? 
-            ORDER BY Comment.date_created DESC";
-
-            return $this->database->getAllData($query, [$value]);
-        }
-
-        $query = "SELECT * FROM Comment
-                INNER JOIN User ON Comment.user_id = User.id
-                ORDER BY Comment.date_created DESC";
-    
-        return $this->database->getAllData($query);
-    }
     
     /**
      * Creates a new Data entry
