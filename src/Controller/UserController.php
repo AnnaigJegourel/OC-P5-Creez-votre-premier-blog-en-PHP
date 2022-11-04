@@ -110,7 +110,7 @@ class UserController extends MainController
     {
         return $this->twig->render("Back/admin.twig", [
             "allPosts" => ModelFactory::getModel("Post")->listDataLatest(),
-            "allComments" => ModelFactory::getModel("Comment")->listSinglePostComments(),
+            "allComments" => ModelFactory::getModel("Comment")->listComments(),
             "allUsers" => $this->getAllUsers()
         ]);
     }

@@ -61,7 +61,7 @@ class CommentModel extends MainModel
      * @param string|null $key
      * @return array|mixed
      */
-    public function listSinglePostComments(string $value = null, string $key = null)
+    public function listComments(string $value = null, string $key = null)
     {
         if (isset($key)) {
             $query = "SELECT Comment.id, Comment.date_created, content, approved, user_id, post_id, name
