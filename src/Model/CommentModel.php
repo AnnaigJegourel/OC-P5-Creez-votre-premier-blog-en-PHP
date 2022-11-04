@@ -64,16 +64,16 @@ class CommentModel extends MainModel
     public function listSinglePostComments(string $value = null, string $key = null)
     {
         if (isset($key)) {
-            $query = "SELECT * FROM Comment
-            INNER JOIN User ON Comment.user_id = User.id
-            WHERE " . $key . " = ? 
-            ORDER BY Comment.date_created DESC";
+            $query = "SELECT Comment.id, Comment.date_created, content, approved, user_id, post_id, name
+                    FROM Comment INNER JOIN User ON Comment.user_id = User.id
+                    WHERE " . $key . " = ? 
+                    ORDER BY Comment.date_created DESC";
 
             return $this->database->getAllData($query, [$value]);
         }
 
-        $query = "SELECT * FROM Comment
-                INNER JOIN User ON Comment.user_id = User.id
+        $query = "SELECT Comment.id, Comment.date_created, content, approved, user_id, post_id, name
+                FROM Comment INNER JOIN User ON Comment.user_id = User.id
                 ORDER BY Comment.date_created DESC";
     
         return $this->database->getAllData($query);

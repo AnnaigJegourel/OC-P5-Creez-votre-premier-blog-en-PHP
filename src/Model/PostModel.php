@@ -58,7 +58,7 @@ class PostModel extends MainModel
      *
      * @var int
      */
-    private $user_id;           //pas nécessaire? (clé étrangère)
+    private $user_id;
 
     /* ************************ GETTERS & SETTERS ************************ */
     /**
