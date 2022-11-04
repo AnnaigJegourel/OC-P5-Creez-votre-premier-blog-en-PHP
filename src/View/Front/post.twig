@@ -16,9 +16,9 @@
                     <strong>par {{ author.name }}</strong>
                 </p>
                 <p>
-                    <em>créé le: {{ post.date_created }}
+                    <em>créé le: {{ post.date_created|date("d/m/Y") }}
                         </br>
-                        modifié le: {{ post.date_updated }}
+                        modifié le: {{ post.date_updated|date("d/m/Y") }}
                     </em>
                 </p>
                 <p class="postIntro">{{ post.intro }}</p>
@@ -54,7 +54,7 @@
                 {% for comment in allComments %}
                     {% if (comment.approved is same as(1)) %}
                         <li>
-                            <p> {{ comment.date_created }} </p>
+                            <p> {{ comment.date_created |date("d/m/Y")}} </p>
                             <p> <strong>par {{ comment.name }} </strong></p>
                             <p> {{ comment.content }} </p>
                             <p> 

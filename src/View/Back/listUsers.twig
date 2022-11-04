@@ -14,7 +14,7 @@
             <tbody>
                 {% for user in allUsers %}
                     <tr>
-                        <td> {{ user.date_created }} </td>
+                        <td> {{ user.date_created|date("d/m/Y") }} </td>
                         <td> {{ user.id }} </td>
                         <td> {{ user.name }} </td>
                         <td>

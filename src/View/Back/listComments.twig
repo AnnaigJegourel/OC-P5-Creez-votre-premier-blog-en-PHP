@@ -18,7 +18,7 @@
                 {% for comment in allComments %}
                     <tr>
 
-                        <td class="date"> {{ comment.date_created }} </td>
+                        <td class="date"> {{ comment.date_created|date("d/m/Y") }} </td>
 
                         <td class="id">
                             <a href="index.php?access=post!readpost&id={{comment.post_id}}">
