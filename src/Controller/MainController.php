@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
+
 use App\View\TwigExtension;
 use App\Model\Factory\ModelFactory;
 
@@ -43,7 +44,7 @@ abstract class MainController
         $this->session = filter_var_array($_SESSION) ?? [];
         $this->get     = filter_input_array(INPUT_GET) ?? [];
     }
-    
+
     /**
      * Redirects to another URL
      * 
@@ -54,7 +55,7 @@ abstract class MainController
     {
         $params["access"] = $page;
         header("Location: index.php?" . http_build_query($params));
-        
+
         exit;
     }
 
@@ -76,7 +77,7 @@ abstract class MainController
      * 
      * @param string $message
      */
-    public function setMessage($message)
+    protected function setMessage($message)
     {
         $_SESSION["message"] = $message;
     }
@@ -118,9 +119,9 @@ abstract class MainController
 
     /**
      * Gets SESSION Array
-     * 
+     *
      * @param null|string $var
-     * 
+     *
      * @return array|string
      */
     protected function getSession()
@@ -155,11 +156,14 @@ abstract class MainController
      */
     protected function getUser($id = null)
     {
+        $user= [];
         if (isset($id) && !empty($id)) {
             $user = ModelFactory::getModel("User")->readData((string)$id);
         } else {
             $session = $this->getSession();
-            $user = $session["user"];
+            if(isset($session["user"]) && !empty($session["user"])){
+                $user = $session["user"];
+            }
         }
 
         return $user;
@@ -178,28 +182,15 @@ abstract class MainController
      */
     protected function getUserId()
     {
-        $session = $this->getSession();
-        if(isset($session["user"]) && !empty($session["user"])){
-            $id = $session["user"]["id"];
-
-            return $id;    
+        $id = "";
+        if(isset($this->getUser()["id"]) && !empty($this->getUser()["id"]))
+        {
+            $id = $this->getUser()["id"];
         }
+
+        return $id;
     }
 
-    /**
-     * Gets the COMMENTS of ONE POST beginning with the LATEST
-     * 
-     * @return string
-     * 
-     * @throws LoaderError
-     * @throws RuntimeError
-     * @throws SyntaxError
-     */
-/*    protected function getComments()
-    {
-        return ModelFactory::getModel("Comment")->listDataLatest($this->getId(), "post_id");
-    }
-*/
     /* ***************** BOOL / CHECKERS ***************** */
     /**
      * Checks if a user is connected

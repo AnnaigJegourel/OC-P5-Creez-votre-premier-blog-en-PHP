@@ -17,8 +17,8 @@
                 <tbody>
                     {% for post in allPosts %}
                         <tr>
-                            <td class="date"> {{ post.date_created }} </td>
-                            <td class="date"> {{ post.date_updated }} </td>
+                            <td class="date"> {{ post.date_created|date("d/m/Y") }} </td>
+                            <td class="date"> {{ post.date_updated|date("d/m/Y") }} </td>
                             <td> {{ post.title }} </td>
                             <td class="chapo"> {{ post.intro }} </td>
                             <td class="manage">

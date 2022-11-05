@@ -41,13 +41,6 @@ class CommentModel extends MainModel
     private $approved;
 
     /**
-     * Comment Author (pseudo)
-     *
-     * @var string
-     */
-    //private $author;
-
-    /**
      * Comment User (author) id
      *
      * @var int
@@ -60,6 +53,31 @@ class CommentModel extends MainModel
      * @var int
      */
     private $post_id;
+
+    /**
+     * Lists all comments about a post
+     *
+     * @param string|null $value
+     * @param string|null $key
+     * @return array|mixed
+     */
+    public function listComments(string $value = null, string $key = null)
+    {
+        if (isset($key)) {
+            $query = "SELECT Comment.id, Comment.date_created, content, approved, user_id, post_id, name
+                    FROM Comment INNER JOIN User ON Comment.user_id = User.id
+                    WHERE " . $key . " = ? 
+                    ORDER BY Comment.date_created DESC";
+
+            return $this->database->getAllData($query, [$value]);
+        }
+
+        $query = "SELECT Comment.id, Comment.date_created, content, approved, user_id, post_id, name
+                FROM Comment INNER JOIN User ON Comment.user_id = User.id
+                ORDER BY Comment.date_created DESC";
+    
+        return $this->database->getAllData($query);
+    }
 
     /* ************************ GETTERS & SETTERS ************************ */
     /**
@@ -141,26 +159,6 @@ class CommentModel extends MainModel
     {
         $this->approved = $approved;
     }
-
-    /**
-     * Gets comment author name
-     *
-     * @return string
-     */
-    /*public function getAuthor()
-    {
-        return $this->author;
-    }*/
-
-    /**
-     * Sets comment author name
-     *
-     * @param string $author
-     */
-    /*public function setAuthor($author)
-    {
-        $this->author = $author;
-    }*/
 
     /**
      * Gets Id of the author (User id)

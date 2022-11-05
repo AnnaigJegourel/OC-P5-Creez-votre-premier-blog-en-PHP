@@ -58,7 +58,7 @@ class CommentController extends MainController
         }
 
         $this->setMessage($message);
-        $this->redirect("post");    
+        $this->redirect("post");
     }
 
     /**
@@ -71,7 +71,7 @@ class CommentController extends MainController
     public function deleteCommentMethod()
     {
         $user_id = $this->getUserId();
-        $comment_id = (string) $this->getId();   
+        $comment_id = (string) $this->getId();
         $comment = ModelFactory::getModel("Comment")->readData($comment_id);
         $author_id = (string) $comment["user_id"];
 
@@ -83,7 +83,7 @@ class CommentController extends MainController
         }
 
         $this->setMessage($message);
-        $this->redirect("post");    
+        $this->redirect("post");
     }
 
     /**
@@ -103,6 +103,6 @@ class CommentController extends MainController
 
         ModelFactory::getModel("Comment")->updateData($comment_id, $data);
         $this->setMessage($message);
-        $this->redirect("user!admin");    
+        $this->redirect("user!admin");
     }
 }

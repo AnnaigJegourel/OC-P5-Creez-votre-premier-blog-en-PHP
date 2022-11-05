@@ -92,11 +92,14 @@ class TwigExtension extends AbstractExtension
      */
     private function getUser($id = null)
     {
+        $user= [];
         if (isset($id) && !empty($id)) {
             $user = ModelFactory::getModel("User")->readData((string) $id);
         } else {
             $session = $this->getSession();
-            $user = $session["user"];
+            if(isset($session["user"]) && !empty($session["user"])){
+                $user = $session["user"];
+            }
         }
 
         return $user;

@@ -17,7 +17,7 @@
                         <article class="postInList">
                             <h3> {{ post.title }} </h3>
                             <p>
-                                <em> dernière modification: {{ post.date_updated }} </em>
+                                <em> dernière modification: {{ post.date_updated|date("d/m/Y") }} </em>
                             </p>
                             <p> {{ post.intro }} </p>
                             <p>

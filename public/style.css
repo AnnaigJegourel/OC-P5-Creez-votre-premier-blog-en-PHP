@@ -193,7 +193,7 @@ td {
 
 /* ========================== RESPONSIVE ========================== */
 @media all and (max-width: 1024px) {
-    .chapo {    /* = th*/
+    .chapo {    /* = th */
         width: 40%;
     }
 

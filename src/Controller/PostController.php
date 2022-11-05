@@ -46,22 +46,25 @@ class PostController extends MainController
      */
     public function readPostMethod()
     {
-        $post_id = $this->getId();   
-        if (!isset($post_id)) 
+        $post_id = $this->getId();
+        if (!isset($post_id))
         {
             $post_id = "1";
         }
 
         $post = ModelFactory::getModel("Post")->readData((string) $post_id);
+        $author = $this->getUser($post["user_id"]);
         $session = $this->getSession();
-        $allComments = ModelFactory::getModel("Comment")->listSinglePostComments($this->getId(), "post_id");
+        $allComments = ModelFactory::getModel("Comment")->listComments($this->getId(), "post_id");
 
         return $this->twig->render("Front/post.twig", [
             "post" => $post,
+            "author" => $author,
             "session" => $session,
             "allComments" => $allComments
         ]);
     }
+
 
     /* ***************** CREATE ***************** */
     /**
@@ -87,10 +90,10 @@ class PostController extends MainController
         ];
         
         ModelFactory::getModel("Post")->createData($data);
-        $message = "L'article a bien été créé.";                
-            
+        $message = "L'article a bien été créé.";
+
         $this->setMessage($message);
-        $this->redirect("post");    
+        $this->redirect("post");
     }
 
     /* ***************** UPDATE ***************** */
@@ -106,7 +109,7 @@ class PostController extends MainController
     public function updatePostFormMethod()
     {
         if ($this->isAdmin()) {
-            $post_id = $this->getId();   
+            $post_id = $this->getId();
             $post = ModelFactory::getModel("Post")->readData((string)$post_id);
 
             return $this->twig->render("Back/updatePost.twig",["post" => $post]);
@@ -128,12 +131,12 @@ class PostController extends MainController
             "content" => $this->putSlashes($this->getPost()["content"]),
             "date_updated" => $date_updated
         ];
-        
+
         ModelFactory::getModel("Post")->updateData((string) $post_id, $data);
-        $message = "Votre article a bien été modifié.";                
-            
+        $message = "Votre article a bien été modifié.";
+
         $this->setMessage($message);
-        $this->redirect("post");        
+        $this->redirect("post");
     }
 
     /* ***************** DELETE ***************** */
@@ -146,12 +149,12 @@ class PostController extends MainController
      */
     public function deletePostMethod()
     {
-        $post_id = (string) $this->getId();   
+        $post_id = (string) $this->getId();
         ModelFactory::getModel("Comment")->deleteData($post_id, "post_id");
         ModelFactory::getModel("Post")->deleteData($post_id);
-        $message = "L'article a bien été supprimé.";                
-        
+        $message = "L'article a bien été supprimé.";
+
         $this->setMessage($message);
-        $this->redirect("post");        
+        $this->redirect("post");
     }
 }
