@@ -30,53 +30,43 @@
 
         </section>
 
-        {% if isLogged() %}
-            <section>
-                <h2>Commentez cet article:</h2>
-                <form method="post" action="index.php?access=comment!createcomment&id={{post.id}}">
-                    <fieldset>
-                        <label for="content">commentaire: </label>
-                        <textarea name="content"></textarea>
-                    </fieldset>
-                    <fieldset class="btn-fieldset">
-                        <input class="btn" type="submit" value="Envoyer">
-                    </fieldset>
-                </form>
-            </section>
+        <section>
+        
+            <h2>Commentez cet article:</h2>
 
-            <section>
-                <h2>Tous les commentaires sur cet article:</h2>
-                <ul class="commentsInPost">
-                    {% for comment in allComments %}
-                        {% if (comment.approved is same as(1)) %}
-                            <li>
-                                <p> {{ comment.date_created|date("d/m/Y")  }} </p>
-                                <p> <strong>par {{ comment.name }} </strong></p>
-                                <p> {{ comment.content }} </p>
-                                <p> 
-                                    {% if isAdmin() or getUserId() is same as(comment.user_id) %}
-                                        <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">
-                                            supprimer ce commentaire
-                                        </a>
-                                    {% endif %}
-                                </p>
-                            </li>
-                        {% endif %}
-                    {% endfor %}
-                </ul>
-            </section>
+            <form method="post" action="index.php?access=comment!createcomment&id={{post.id}}">
+                <fieldset>
+                    <label for="content">commentaire: </label>
+                    <textarea name="content"></textarea>
+                </fieldset>
+                <fieldset class="btn-fieldset">
+                    <input class="btn" type="submit" value="Envoyer">
+                </fieldset>
+            </form>
 
-        {% else %}
-            <section>
-                <h2>Créez un compte pour commenter cet article!</h2>
-                <p>En créant un compte sur ce site, vous pourrez commenter les articles et lire les commentaires des autres utilisateurs et utilisatrices.
-                    </br>
-                    <a href="index.php?access=user!createuser" title="Créer un profil">
-                        Je crée mon profil
-                    </a>
-                </p>
-            </section>
-        {% endif %}
+        </section>
+
+        <section>
+
+            <h2>Tous les commentaires sur cet article:</h2>
+
+            <ul class="commentsInPost">
+                {% for comment in allComments %}
+                    {% if (comment.approved is same as(1)) %}
+                        <li>
+                            <p> {{ comment.date_created|date("d/m/Y")  }} </p>
+                            <p> <strong>par {{ comment.name }} </strong></p>
+                            <p> {{ comment.content }} </p>
+                            <p> 
+                                <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">
+                                    supprimer ce commentaire
+                                </a>
+                            </p>
+                        </li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        </section>
 
     </main>
 {% endblock %}
