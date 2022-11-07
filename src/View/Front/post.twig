@@ -59,9 +59,11 @@
                                 <p> <strong>par {{ comment.name }} </strong></p>
                                 <p> {{ comment.content }} </p>
                                 <p> 
+                                    {% if isAdmin() or getUserId() is same as(comment.user_id) %}
                                     <a href="index.php?access=comment!deletecomment&id={{comment.id}}" title="DeleteComment">
                                         supprimer ce commentaire
                                     </a>
+                                    {% endif %}
                                 </p>
                             </li>
                         {% endif %}
