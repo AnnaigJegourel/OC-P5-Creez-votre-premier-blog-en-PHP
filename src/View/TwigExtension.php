@@ -38,6 +38,7 @@ class TwigExtension extends AbstractExtension
             new TwigFunction("getUser", [$this, "getUser"]),
             new TwigFunction("isLogged", [$this, "isLogged"]),
             new TwigFunction("isAdmin", [$this, "isAdmin"]),
+            new TwigFunction("getUserId", [$this, "getUserId"])
         );
     }
 
@@ -115,5 +116,27 @@ class TwigExtension extends AbstractExtension
 
             return true;
         }
+    }
+
+    /**
+     * Gets USER ID
+     * 
+     * Returns the id of the current logged User
+     * 
+     * @return string
+     * 
+     * @throws LoaderError
+     * @throws RuntimeError
+     * @throws SyntaxError
+     */
+    public function getUserId()
+    {
+        $id = "";
+        if(isset($this->getUser()["id"]) && !empty($this->getUser()["id"]))
+        {
+            $id = (int) $this->getUser()["id"];
+        }
+        
+        return $id;
     }
 }
