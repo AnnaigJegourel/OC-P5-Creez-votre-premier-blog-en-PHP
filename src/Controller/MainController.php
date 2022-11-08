@@ -218,4 +218,26 @@ abstract class MainController
             return true;
         }
     }
+
+    /**
+     * Check an Array
+     * @param array $array
+     * @return bool
+     */
+    protected function checkArray(array $array)
+    {        
+        if(!empty($array)) {
+
+            foreach ($array as $key => $value) {
+
+                if(empty($key) || empty($value)) {
+
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        return false;
+    }
 }
