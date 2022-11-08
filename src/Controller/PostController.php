@@ -77,21 +77,28 @@ class PostController extends MainController
     public function createPostMethod()
     {
         if($this->isAdmin()){
-            $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
-            $date_created = $date_created->format("Y-m-d H:i:s");
-            $user_id = $this->getUserId();
 
-            $data = [
-                "title" => $this->putSlashes($this->getPost()["title"]),
-                "intro" => $this->putSlashes($this->getPost()["intro"]),
-                "content" => $this->putSlashes($this->getPost()["content"]),
-                "date_created" => $date_created,
-                "date_updated" => $date_created,
-                "user_id" => $user_id
-            ];
+            if($this->checkArray($this->getPost())) {
 
-            ModelFactory::getModel("Post")->createData($data);
-            $message = "L'article a bien été créé.";
+                $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+                $date_created = $date_created->format("Y-m-d H:i:s");
+                $user_id = $this->getUserId();
+
+                $data = [
+                    "title" => $this->putSlashes($this->getPost()["title"]),
+                    "intro" => $this->putSlashes($this->getPost()["intro"]),
+                    "content" => $this->putSlashes($this->getPost()["content"]),
+                    "date_created" => $date_created,
+                    "date_updated" => $date_created,
+                    "user_id" => $user_id
+                ];
+
+                ModelFactory::getModel("Post")->createData($data);
+                $message = "L'article a bien été créé.";
+
+            } else {
+                $message = "L'article n'a pas été créé, vous devez remplir tous les champs du formulaire.";
+            }
 
         } else {
             $message = "Vous devez vous connecter en tant qu'admin pour créer un article.";
