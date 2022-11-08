@@ -85,9 +85,9 @@ class PostController extends MainController
                 $user_id = $this->getUserId();
 
                 $data = [
-                    "title" => $this->putSlashes($this->getPost()["title"]),
-                    "intro" => $this->putSlashes($this->getPost()["intro"]),
-                    "content" => $this->putSlashes($this->getPost()["content"]),
+                    "title" => (string) $this->putSlashes($this->getPost()["title"]),
+                    "intro" => (string) $this->putSlashes($this->getPost()["intro"]),
+                    "content" => (string) $this->putSlashes($this->getPost()["content"]),
                     "date_created" => $date_created,
                     "date_updated" => $date_created,
                     "user_id" => $user_id
