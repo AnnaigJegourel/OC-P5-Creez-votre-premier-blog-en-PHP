@@ -40,7 +40,7 @@ class CommentController extends MainController
     {
         if ($this->isLogged()) {
 
-            if(!empty($this->getPost())){
+            if($this->checkArray($this->getPost())){
                 $user_id = $this->getUserId();
                 $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
                 $date_created = $date_created->format("Y-m-d H:i:s");
