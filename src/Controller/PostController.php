@@ -113,6 +113,10 @@ class PostController extends MainController
             $post = ModelFactory::getModel("Post")->readData((string)$post_id);
 
             return $this->twig->render("Back/updatePost.twig",["post" => $post]);
+        } else {
+            $message = "Vous devez être connecté(e) en tant qu'admin pour consulter cette page.";
+            $this->setMessage($message);
+            $this->redirect("user");
         }
     }
 
