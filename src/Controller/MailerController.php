@@ -40,43 +40,49 @@ class MailerController extends MainController
      */
     public function defaultMethod()
     {
-        $data = [       
-            "name" => $this->getPost()["name"],
-            "email" => $this->getPost()["email"],
-            "subject" => $this->getPost()["subject"],
-            "message" => $this->getPost()["message"]
-        ];
+        if($this->checkArray($this->getPost())){
 
-        try{
-            $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;
+            $data = [       
+                "name" => (string) $this->getPost()["name"],
+                "email" => (string) $this->getPost()["email"],
+                "subject" => (string) $this->getPost()["subject"],
+                "message" => (string) $this->getPost()["message"]
+            ];
 
-            $this->mail->isSMTP();
-            $this->mail->Host       = MAIL_HOST;
+            try{
+                $this->mail->SMTPDebug = SMTP::DEBUG_SERVER;
 
-            $this->mail->SMTPAuth   = true;
-            $this->mail->Username   = MAIL_FROM;
-            $this->mail->Password   = MAIL_PASSWORD;
-            $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
+                $this->mail->isSMTP();
+                $this->mail->Host       = MAIL_HOST;
 
-            $this->mail->Port       = MAIL_PORT;
+                $this->mail->SMTPAuth   = true;
+                $this->mail->Username   = MAIL_FROM;
+                $this->mail->Password   = MAIL_PASSWORD;
+                $this->mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
 
-            $this->mail->CharSet = "utf-8";
+                $this->mail->Port       = MAIL_PORT;
 
-            $this->mail->setFrom(MAIL_FROM, MAIL_USERNAME);
-            $this->mail->addAddress(MAIL_TO, MAIL_TO_NAME);
+                $this->mail->CharSet = "utf-8";
 
-            $this->mail->addReplyTo($data["email"], $data["name"]);
+                $this->mail->setFrom(MAIL_FROM, MAIL_USERNAME);
+                $this->mail->addAddress(MAIL_TO, MAIL_TO_NAME);
 
-            $this->mail->Subject = $data["subject"];
-            $this->mail->Body    = $data["message"];
-            $this->mail->AltBody = $data["message"];
+                $this->mail->addReplyTo($data["email"], $data["name"]);
 
-            $this->mail->send();
+                $this->mail->Subject = $data["subject"];
+                $this->mail->Body    = $data["message"];
+                $this->mail->AltBody = $data["message"];
 
-            $message = "Votre e-mail a bien été envoyé.";
+                $this->mail->send();
 
-        } catch(Exception) {
-            $message = "Votre e-mail n'a pas été envoyé. Erreur: {$this->mail->ErrorInfo}";
+                $message = "Votre e-mail a bien été envoyé.";
+
+            } catch(Exception) {
+                $message = "Votre e-mail n'a pas été envoyé. Erreur: {$this->mail->ErrorInfo}";
+            }
+
+        } else {
+            $message = "Veuillez remplir tous les champs du formulaire.";
         }
 
         $this->setMessage($message);
