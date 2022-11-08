@@ -192,10 +192,18 @@ class UserController extends MainController
      */
     public function updateUserFormMethod()
     {
-        $user_id = $this->getUserId();
-        $user = ModelFactory::getModel("User")->readData((string) $user_id);
+        if($this->isLogged()){
+            $user_id = $this->getUserId();
+                $user = ModelFactory::getModel("User")->readData((string) $user_id);
+    
+                return $this->twig->render("Front/updateUser.twig",["user" => $user]);        
 
-        return $this->twig->render("Front/updateUser.twig",["user" => $user]);
+        } else {
+            $message = "Vous devez vous connecter pour modifier votre profil.";
+
+            $this->setMessage($message);
+            $this->redirect("user");    
+        }
     }
 
     /**
