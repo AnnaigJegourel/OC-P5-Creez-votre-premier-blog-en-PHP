@@ -15,7 +15,7 @@
             
                 <fieldset>
                     <label for="title">titre: </label>
-                    <input type="text" name="title" value="{{post.title}}" required>
+                    <input type="text" name="title" value="{{post.title}}" maxlength="100" required>
                 </fieldset>
             
                 <fieldset>
@@ -25,7 +25,7 @@
 
                 <fieldset>
                     <label for="content">texte de l'article: </label>
-                    <textarea name="content" required>{{post.content}}</textarea>
+                    <textarea name="content" maxlength="15000" required>{{post.content}}</textarea>
                 </fieldset>
 
                 <fieldset class="btn-fieldset">
