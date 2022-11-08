@@ -109,11 +109,17 @@ class UserController extends MainController
      */
     public function adminMethod()
     {
-        return $this->twig->render("Back/admin.twig", [
-            "allPosts" => ModelFactory::getModel("Post")->listDataLatest(),
-            "allComments" => ModelFactory::getModel("Comment")->listComments(),
-            "allUsers" => $this->getAllUsers()
-        ]);
+        if($this->isAdmin()){
+            return $this->twig->render("Back/admin.twig", [
+                "allPosts" => ModelFactory::getModel("Post")->listDataLatest(),
+                "allComments" => ModelFactory::getModel("Comment")->listComments(),
+                "allUsers" => $this->getAllUsers()
+            ]);
+        } else {
+            $message = "Vous devez être connecté(e) en tant qu'admin pour consulter cette page.";
+            $this->setMessage($message);
+            $this->redirect("user");
+        }
     }
 
     /**
@@ -127,10 +133,17 @@ class UserController extends MainController
      */
     public function readUserMethod()
     {
-        $id = $this->getUserId();
-        $user = ModelFactory::getModel("User")->readData((string) $id);
+        if($this->isLogged()){
+            $id = $this->getUserId();
+            $user = ModelFactory::getModel("User")->readData((string) $id);
+    
+            return $this->twig->render("Front/profile.twig", ["user" => $user]);    
+        } else {
+            $message = "Vous devez vous connecter pour consulter une page de profil.";
+            $this->setMessage($message);
 
-        return $this->twig->render("Front/profile.twig", ["user" => $user]);
+            $this->redirect("user");
+        }
     }
 
     /**
@@ -179,10 +192,18 @@ class UserController extends MainController
      */
     public function updateUserFormMethod()
     {
-        $user_id = $this->getUserId();
-        $user = ModelFactory::getModel("User")->readData((string) $user_id);
+        if($this->isLogged()){
+            $user_id = $this->getUserId();
+                $user = ModelFactory::getModel("User")->readData((string) $user_id);
+    
+                return $this->twig->render("Front/updateUser.twig",["user" => $user]);        
 
-        return $this->twig->render("Front/updateUser.twig",["user" => $user]);
+        } else {
+            $message = "Vous devez vous connecter pour modifier votre profil.";
+
+            $this->setMessage($message);
+            $this->redirect("user");    
+        }
     }
 
     /**
@@ -194,17 +215,23 @@ class UserController extends MainController
      */
     public function updateUserMethod()
     {
-        $user_id = $this->getUserId();
-        $data = [
-            "name" => $this->getPost()["name"],
-            "email" => $this->getPost()["email"],
-        ];
+        if($this->isLogged()){
+            $user_id = $this->getUserId();
+            $data = [
+                "name" => $this->getPost()["name"],
+                "email" => $this->getPost()["email"],
+            ];
 
-        ModelFactory::getModel("User")->updateData((string) $user_id, $data);
-        $message = "Le profil a bien été modifié.";
-
-        $this->setMessage($message);
-        $this->redirect("user!readUser");
+            ModelFactory::getModel("User")->updateData((string) $user_id, $data);
+            $message = "Le profil a bien été modifié.";
+            $this->setMessage($message);
+            $this->redirect("user!readUser");
+    
+        } else {
+            $message = "Vous devez vous connecter pour modifier votre profil.";
+            $this->setMessage($message);
+            $this->redirect("user");
+        }
     }
 
     /**
@@ -216,17 +243,24 @@ class UserController extends MainController
      */
     public function updatePasswordMethod()
     {
-        $user_id = $this->getUserId();
-        $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
-        $data = [
-            "password" => $password,
-        ];
+        if($this->isLogged()){
+            $user_id = $this->getUserId();
+            $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
+            $data = [
+                "password" => $password,
+            ];
         
-        ModelFactory::getModel("User")->updateData((string) $user_id, $data);
-        $message = "Le mot de passe a bien été modifié.";
+            ModelFactory::getModel("User")->updateData((string) $user_id, $data);
+            $message = "Le mot de passe a bien été modifié.";
 
-        $this->setMessage($message);
-        $this->redirect("user!readUser");
+            $this->setMessage($message);
+            $this->redirect("user!readUser");
+        } else {
+            $message = "Vous devez vous connecter pour modifier votre mot de passe.";
+
+            $this->setMessage($message);
+            $this->redirect("user");    
+        }
     }
 
     /**

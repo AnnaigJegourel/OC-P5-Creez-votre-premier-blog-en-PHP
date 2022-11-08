@@ -76,21 +76,26 @@ class PostController extends MainController
      */
     public function createPostMethod()
     {
-        $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
-        $date_created = $date_created->format("Y-m-d H:i:s");
-        $user_id = $this->getUserId();
+        if($this->isAdmin()){
+            $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+            $date_created = $date_created->format("Y-m-d H:i:s");
+            $user_id = $this->getUserId();
 
-        $data = [
-            "title" => $this->putSlashes($this->getPost()["title"]),
-            "intro" => $this->putSlashes($this->getPost()["intro"]),
-            "content" => $this->putSlashes($this->getPost()["content"]),
-            "date_created" => $date_created,
-            "date_updated" => $date_created,
-            "user_id" => $user_id
-        ];
-        
-        ModelFactory::getModel("Post")->createData($data);
-        $message = "L'article a bien été créé.";
+            $data = [
+                "title" => $this->putSlashes($this->getPost()["title"]),
+                "intro" => $this->putSlashes($this->getPost()["intro"]),
+                "content" => $this->putSlashes($this->getPost()["content"]),
+                "date_created" => $date_created,
+                "date_updated" => $date_created,
+                "user_id" => $user_id
+            ];
+
+            ModelFactory::getModel("Post")->createData($data);
+            $message = "L'article a bien été créé.";
+
+        } else {
+            $message = "Vous devez vous connecter en tant qu'admin pour créer un article.";
+        }
 
         $this->setMessage($message);
         $this->redirect("post");
@@ -113,6 +118,10 @@ class PostController extends MainController
             $post = ModelFactory::getModel("Post")->readData((string)$post_id);
 
             return $this->twig->render("Back/updatePost.twig",["post" => $post]);
+        } else {
+            $message = "Vous devez être connecté(e) en tant qu'admin pour consulter cette page.";
+            $this->setMessage($message);
+            $this->redirect("user");
         }
     }
 
@@ -121,20 +130,25 @@ class PostController extends MainController
      */
     public function updatePostMethod()
     {
-        $post_id = $this->getId();
-        $date_updated = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
-        $date_updated = $date_updated->format("Y-m-d H:i:s");
+        if($this->isAdmin()){
+            $post_id = $this->getId();
+            $date_updated = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+            $date_updated = $date_updated->format("Y-m-d H:i:s");
 
-        $data = [
-            "title" => $this->putSlashes($this->getPost()["title"]),
-            "intro" => $this->putSlashes($this->getPost()["intro"]),
-            "content" => $this->putSlashes($this->getPost()["content"]),
-            "date_updated" => $date_updated
-        ];
+            $data = [
+                "title" => $this->putSlashes($this->getPost()["title"]),
+                "intro" => $this->putSlashes($this->getPost()["intro"]),
+                "content" => $this->putSlashes($this->getPost()["content"]),
+                "date_updated" => $date_updated
+            ];
 
-        ModelFactory::getModel("Post")->updateData((string) $post_id, $data);
-        $message = "Votre article a bien été modifié.";
+            ModelFactory::getModel("Post")->updateData((string) $post_id, $data);
+            $message = "Votre article a bien été modifié.";
 
+        } else {
+            $message = "Vous devez vous connecter en tant qu'admin pour modifier un article.";
+        }
+        
         $this->setMessage($message);
         $this->redirect("post");
     }
