@@ -30,10 +30,11 @@
 
         </section>
 
-        {% if isLogged() %}
-            <section>
-        
-                <h2>Commentez cet article:</h2>
+        <section>
+
+            <h2>Commentez cet article:</h2>
+
+            {% if isLogged() %}
 
                 <form method="post" action="index.php?access=comment!createcomment&id={{post.id}}">
                     <fieldset>
@@ -45,15 +46,32 @@
                     </fieldset>
                 </form>
 
-            </section>
+            {% else %}
 
-            <section>
+                <p>
+                    <a href="index.php?access=user!createuser">
+                        en créant un compte
+                    </a>
+                    </br>
+                        ou
+                    </br>
+                    <a href="index.php?access=user">
+                        en vous connectant
+                    </a>
+                    </br>
+                </p>
 
-                <h2>Tous les commentaires sur cet article:</h2>
+            {% endif %}
 
-                <ul class="commentsInPost">
-                    {% for comment in allComments %}
-                        {% if (comment.approved is same as(1)) %}
+        </section>
+
+        <section>
+
+            <h2>Tous les commentaires sur cet article:</h2>
+
+            <ul class="commentsInPost">
+                {% for comment in allComments %}
+                    {% if (comment.approved is same as(1)) %}
                             <li>
                                 <p> {{ comment.date_created|date("d/m/Y")  }} </p>
                                 <p> <strong>par {{ comment.name }} </strong></p>
@@ -70,18 +88,6 @@
                     {% endfor %}
                 </ul>
             </section>
-        {% else %}
-
-            <section>
-                <h2>Créez un compte pour commenter cet article!</h2>
-                <p>
-                    En créant un compte sur ce site, vous pourrez commenter les articles et lire les commentaires des autres utilisateurs et utilisatrices.
-                    <a href="index.php?access=user!createuser" title="Créer un profil">
-                        </br>Je crée mon profil
-                    </a>
-                </p>
-            </section>
-        {% endif %}
 
     </main>
 {% endblock %}
