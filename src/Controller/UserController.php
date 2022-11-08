@@ -109,11 +109,17 @@ class UserController extends MainController
      */
     public function adminMethod()
     {
-        return $this->twig->render("Back/admin.twig", [
-            "allPosts" => ModelFactory::getModel("Post")->listDataLatest(),
-            "allComments" => ModelFactory::getModel("Comment")->listComments(),
-            "allUsers" => $this->getAllUsers()
-        ]);
+        if($this->isAdmin()){
+            return $this->twig->render("Back/admin.twig", [
+                "allPosts" => ModelFactory::getModel("Post")->listDataLatest(),
+                "allComments" => ModelFactory::getModel("Comment")->listComments(),
+                "allUsers" => $this->getAllUsers()
+            ]);
+        } else {
+            $message = "Vous devez être connecté(e) en tant qu'admin pour consulter cette page.";
+            $this->setMessage($message);
+            $this->redirect("user");
+        }
     }
 
     /**
