@@ -133,10 +133,17 @@ class UserController extends MainController
      */
     public function readUserMethod()
     {
-        $id = $this->getUserId();
-        $user = ModelFactory::getModel("User")->readData((string) $id);
+        if($this->isLogged()){
+            $id = $this->getUserId();
+            $user = ModelFactory::getModel("User")->readData((string) $id);
+    
+            return $this->twig->render("Front/profile.twig", ["user" => $user]);    
+        } else {
+            $message = "Vous devez vous connecter pour consulter une page de profil.";
+            $this->setMessage($message);
 
-        return $this->twig->render("Front/profile.twig", ["user" => $user]);
+            $this->redirect("user");
+        }
     }
 
     /**
