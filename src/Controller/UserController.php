@@ -215,17 +215,23 @@ class UserController extends MainController
      */
     public function updateUserMethod()
     {
-        $user_id = $this->getUserId();
-        $data = [
-            "name" => $this->getPost()["name"],
-            "email" => $this->getPost()["email"],
-        ];
+        if($this->isLogged()){
+            $user_id = $this->getUserId();
+            $data = [
+                "name" => $this->getPost()["name"],
+                "email" => $this->getPost()["email"],
+            ];
 
-        ModelFactory::getModel("User")->updateData((string) $user_id, $data);
-        $message = "Le profil a bien été modifié.";
-
-        $this->setMessage($message);
-        $this->redirect("user!readUser");
+            ModelFactory::getModel("User")->updateData((string) $user_id, $data);
+            $message = "Le profil a bien été modifié.";
+            $this->setMessage($message);
+            $this->redirect("user!readUser");
+    
+        } else {
+            $message = "Vous devez vous connecter pour modifier votre profil.";
+            $this->setMessage($message);
+            $this->redirect("user");
+        }
     }
 
     /**
