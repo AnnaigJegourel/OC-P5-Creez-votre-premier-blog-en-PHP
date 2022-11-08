@@ -30,22 +30,22 @@
 
                 <fieldset>
                     <label for="name">Votre nom: </label>
-                    <input type="text" name="name">
+                    <input type="text" name="name" maxlength="50" required>
                 </fieldset>
 
                 <fieldset>
                     <label for="email">Votre adresse e-mail: </label>
-                    <input type="email" name="email">
+                    <input type="email" name="email" maxlength="100" required>
                 </fieldset>			
 
                 <fieldset>
                     <label for="subject">Sujet du message: </label>
-                    <input type="text" name="subject">
+                    <input type="text" name="subject" maxlength="100" required>
                 </fieldset>			
 
                 <fieldset>
                     <label for="message">Votre message: </label>
-                    <textarea name="message"></textarea>
+                    <textarea name="message" maxlength="1500" required></textarea>
                 </fieldset>			
                 
                 <fieldset class="btn-fieldset">

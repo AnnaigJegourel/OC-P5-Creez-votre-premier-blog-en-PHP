@@ -3,20 +3,20 @@
         <h2>Créer un article</h2>
 
         <form method="post" action="index.php?access=post!createpost">
-            
+
             <fieldset>
                 <label for="title">titre: </label>
-                <input type="text" name="title">
+                <input type="text" name="title" maxlength="100" required>
             </fieldset>
 
             <fieldset>
                 <label for="intro">chapô: </label>
-                <textarea name="intro" maxlength="150" placeholder="150 caractères maximum"></textarea>
+                <textarea name="intro" maxlength="150" placeholder="150 caractères maximum" required></textarea>
             </fieldset>
 
             <fieldset>
                 <label for="content">texte de l'article: </label>
-                <textarea name="content"></textarea>
+                <textarea name="content" maxlength="15000" required></textarea>
             </fieldset>
 			
             <fieldset class="btn-fieldset">
