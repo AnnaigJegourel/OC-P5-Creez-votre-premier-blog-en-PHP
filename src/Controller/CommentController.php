@@ -39,19 +39,25 @@ class CommentController extends MainController
     public function createCommentMethod()
     {
         if ($this->isLogged()) {
-            $user_id = $this->getUserId();
-            $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
-            $date_created = $date_created->format("Y-m-d H:i:s");
 
-            $data = [
-                "content" => $this->putSlashes($this->getPost()["content"]),
-                "post_id" => $this->getId(),
-                "date_created" => $date_created,
-                "user_id" => $user_id
-            ];
+            if($this->checkArray($this->getPost())){
+                $user_id = $this->getUserId();
+                $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+                $date_created = $date_created->format("Y-m-d H:i:s");
 
-            ModelFactory::getModel("Comment")->createData($data);
-            $message = "Votre commentaire a bien été créé. Il sera publié une fois approuvé par l'admin.";
+                $data = [
+                    "content" => (string) $this->putSlashes($this->getPost()["content"]),
+                    "post_id" => $this->getId(),
+                    "date_created" => $date_created,
+                    "user_id" => $user_id
+                ];    
+    
+                ModelFactory::getModel("Comment")->createData($data);
+                $message = "Votre commentaire a bien été créé. Il sera publié une fois approuvé par l'admin.";    
+            
+            } else {
+                $message = "Veuillez saisir un texte";    
+            }
 
         } else {
             $message = "Vous devez vous connecter pour commenter un article.";

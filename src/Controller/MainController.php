@@ -218,4 +218,51 @@ abstract class MainController
             return true;
         }
     }
+
+    /**
+     * Check an Array
+     * @param array $array
+     * @return bool
+     */
+    protected function checkArray(array $array)
+    {        
+        if(!empty($array)) {
+
+            foreach ($array as $key => $value) {
+
+                if(empty($key) || empty($value)) {
+
+                    return false;
+                }
+            }
+            return true;
+        }
+        
+        return false;
+    }
+
+    /**
+     * Checks is a value is in an array
+     * @param array $array
+     * @param string $key
+     * @return bool
+     */
+    protected function checkArrayElement(array $array, string $key, string $value)
+    {
+        if (!empty($array)) {
+
+            foreach ($array as $user) {
+
+                    foreach ($user as $k => $v) {
+                        
+                        if($k === $key && $v === $value) {
+
+                            return true;
+                        }
+                    }
+            }
+        }
+
+        return false;
+    }
 }
