@@ -283,17 +283,24 @@ class UserController extends MainController
     public function updatePasswordMethod()
     {
         if($this->isLogged()){
-            $user_id = $this->getUserId();
-            $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
-            $data = [
-                "password" => $password,
-            ];
-        
-            ModelFactory::getModel("User")->updateData((string) $user_id, $data);
-            $message = "Le mot de passe a bien été modifié.";
+
+            if(null !== $this->getPost() && $this->checkArray($this->getPost())) {
+                $user_id = $this->getUserId();
+                $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
+
+                $data = [
+                    "password" => $password,
+                ];
+                ModelFactory::getModel("User")->updateData((string) $user_id, $data);
+                $message = "Le mot de passe a bien été modifié.";
+            
+            } else {
+                $message = "Vous devez remplir le champ du formulaire.";
+            }
 
             $this->setMessage($message);
             $this->redirect("user!readUser");
+
         } else {
             $message = "Vous devez vous connecter pour modifier votre mot de passe.";
 
