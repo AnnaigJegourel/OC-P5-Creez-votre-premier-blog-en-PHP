@@ -157,27 +157,57 @@ class UserController extends MainController
      */
     public function createUserMethod()
     {
-        if(null !== $this->getPost() && !empty($this->getPost())) {
-            $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
-            $date_created = $date_created->format("Y-m-d H:i:s");
-            $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
+        if (!$this->isLogged()) {
 
-            $data = [
-                "name" => $this->putSlashes($this->getPost()["name"]),
-                "email" => $this->putSlashes($this->getPost()["email"]),
-                "password" => $password,
-                "date_created" => $date_created,
-                "role" => "0"
-            ];
+            if(null !== $this->getPost() && $this->checkArray($this->getPost())) {
 
-            ModelFactory::getModel("User")->createData($data);
-            $message = "Félicitations! Votre compte a bien été créé. Connectez-vous pour commenter les articles.";
+                $allUsers = ModelFactory::getModel("User")->listData();
+                $email = (string) $this->putSlashes($this->getPost()["email"]);
+
+                if(!$this->checkArrayElement($allUsers, "email", $email)){
+                    $name = (string) $this->putSlashes($this->getPost()["name"]);
+
+                    if(!$this->checkArrayElement($allUsers, "name", $name)){
+                        $date_created = new \DateTime("now", new \DateTimeZone("Europe/Paris"));
+                        $date_created = $date_created->format("Y-m-d H:i:s");
+                        $password = password_hash($this->getPost()["password"], PASSWORD_DEFAULT);
+        
+                        $data = [
+                            "name" => $name,
+                            "email" => $email,
+                            "password" => $password,
+                            "date_created" => $date_created,
+                            "role" => "0"
+                        ];
+        
+                        ModelFactory::getModel("User")->createData($data);
+                        $message = "Félicitations! Votre compte a bien été créé. Connectez-vous pour commenter les articles.";
+                        $this->setMessage($message);
+        
+                        $this->redirect("user");
+
+                    } else {
+                        $message = "Un compte à ce nom existe déjà, veuillez en saisir un autre.";
+                        $this->setMessage($message);
+    
+                        $this->redirect("user!createUser");            
+                    }
+                } else {
+                    $message = "Un compte avec cet e-mail existe déjà, veuillez en saisir un autre.";
+                    $this->setMessage($message);
+
+                    $this->redirect("user!createUser");        
+                }
+
+            } else {
+
+                return $this->twig->render("Front/createUser.twig");
+            }
+        } else {
+            $message = "Vous ne pouvez pas créer de compte lorsque vous êtes connecté(e).";
             $this->setMessage($message);
 
-            $this->redirect("user");
-        } else {
-
-            return $this->twig->render("Front/createUser.twig");
+            $this->redirect("user!readUser");
         }
     }
 
