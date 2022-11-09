@@ -240,4 +240,29 @@ abstract class MainController
         
         return false;
     }
+
+    /**
+     * Checks is a value is in an array
+     * @param array $array
+     * @param string $key
+     * @return bool
+     */
+    protected function checkArrayElement(array $array, string $key, string $value)
+    {
+        if (!empty($array)) {
+
+            foreach ($array as $user) {
+
+                    foreach ($user as $k => $v) {
+                        
+                        if($k === $key && $v === $value) {
+
+                            return true;
+                        }
+                    }
+            }
+        }
+
+        return false;
+    }
 }
