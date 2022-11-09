@@ -18,7 +18,8 @@
     "minimum-stability": "dev",
     "require": {
         "twig/twig": "^3.4.2",
-        "phpmailer/phpmailer": "^6.6.4"
+        "phpmailer/phpmailer": "^6.6.4",
+        "slim/csrf": "1.x-dev"
     },
 
     "require-dev": {
