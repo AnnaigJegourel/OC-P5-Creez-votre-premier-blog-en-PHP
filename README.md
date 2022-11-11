@@ -1,7 +1,8 @@
 # OC-P5-Créez votre premier blog en PHP
 
 Training program "Back-end Developer: PHP/Symfony" (OpenClassrooms)<br>
-Project 5:  Blog made from scratch, using PHP, OO paradigm & model-view-controller pattern.
+Project 5:  Blog made from scratch, using PHP, OO paradigm & model-view-controller pattern.<br>
+✅ Validated on November 9, 2022
 
 <a href="https://codeclimate.com/github/AnnaigJegourel/OC-P5-Creez-votre-premier-blog-en-PHP/maintainability"><img src="https://api.codeclimate.com/v1/badges/45cffc5f39efdfb0c1b5/maintainability" /></a>
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/67632e5883c04645a5864846ade98bab)](https://www.codacy.com/gh/AnnaigJegourel/OC-P5-Creez-votre-premier-blog-en-PHP/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=AnnaigJegourel/OC-P5-Creez-votre-premier-blog-en-PHP&amp;utm_campaign=Badge_Grade)
